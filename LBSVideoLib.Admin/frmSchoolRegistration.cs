@@ -23,6 +23,9 @@ namespace LBFVideoLib.Admin
         List<Subject> _subjectList = new List<Subject>();
         List<Book> bookList = new List<Book>();
 
+        List<ClassFB> regInfoFB = new List<ClassFB>();
+
+
         public frmSchoolRegistration()
         {
             InitializeComponent();
@@ -42,11 +45,17 @@ namespace LBFVideoLib.Admin
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
+            SaveRegDataOnFireBase();
+
+            return;
+
 
             if (ValidateRegistrationForm() == false)
             {
                 return;
             }
+
+
 
             #region Create Folder Structure
 
@@ -87,7 +96,7 @@ namespace LBFVideoLib.Admin
             if (Directory.Exists(clientVideoFolderPath) == false)
             {
                 Directory.CreateDirectory(clientVideoFolderPath);
-            } 
+            }
             #endregion
 
             // Copy client distribution
@@ -456,6 +465,34 @@ namespace LBFVideoLib.Admin
 
             return true;
 
+        }
+
+        private void SaveRegDataOnFireBase()
+        {
+            RegInfoFB info = new RegInfoFB();
+            info.RegDate = DateTime.Now.ToString();
+            info.LoginEmail = txtEmailId.Text;
+            info.Password = txtPwd.Text;
+            info.SchoolName = txtSchoolName.Text;
+            info.Session = cmbSchoolSession.SelectedText;
+
+            info.Classes = new List<ClassFB>()
+            {
+                new ClassFB() { Name = "First", Series = new List<SeriesFB>() {
+                    new SeriesFB() {Name="First",Subjects = new List<SubjectFB>()
+                    {
+                        new SubjectFB() {Name ="Hindi",Books =new List<BookFB>()
+                        {
+                           new BookFB() { Name = "Text Book" }
+                        }
+                        }
+                    }
+                  }
+                }
+            } };
+
+            string jsonString1 = JsonHelper.ParseObjectToJSON<RegInfoFB>(info);
+            FirebaseHelper.PostData(jsonString1, txtSchoolCode.Text);
         }
     }
 }

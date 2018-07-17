@@ -7,13 +7,17 @@ namespace LBFVideoLib.Common
 {
   public  class LicenseHelper
     {
-        private static Dictionary<string, DateTime> sessionList = new Dictionary<string, DateTime>();
+        private static Dictionary<string, string> sessionList = new Dictionary<string, string>();
 
         static LicenseHelper()
         {
-            sessionList.Add("2018-19", DateTime.Parse("30-04-2019 11:59:59 PM").ToUniversalTime());
-            sessionList.Add("2019-20", DateTime.Parse("30-04-2020 11:59:59 PM").ToUniversalTime());
-            sessionList.Add("2020-21", DateTime.Parse("30-04-2021 11:59:59 PM").ToUniversalTime());
+            //sessionList.Add("2018-19", DateTime.Parse("30-04-2019 11:59:59 PM").ToUniversalTime());
+            //sessionList.Add("2019-20", DateTime.Parse("30-04-2020 11:59:59 PM").ToUniversalTime());
+            //sessionList.Add("2020-21", DateTime.Parse("30-04-2021 11:59:59 PM").ToUniversalTime());
+
+            sessionList.Add("2018-19", "30-04-2019 11:59:59 PM");
+            sessionList.Add("2019-20", "30-04-2020 11:59:59 PM");
+            sessionList.Add("2020-21", "30-04-2021 11:59:59 PM");
         }
 
         public static List<string> GetSessionList()
@@ -23,7 +27,7 @@ namespace LBFVideoLib.Common
 
         public static DateTime GetExpiryDateBySessionString(string session)
         {
-            return sessionList[session];
+            return Convert.ToDateTime(sessionList[session]);
         }
     }
 }
