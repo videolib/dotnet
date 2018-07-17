@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2035
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LBSVideoLib", "LBSVideoLib\LBSVideoLib.csproj", "{67318857-AA74-4BFE-8DB6-3797FAF5C555}"
 EndProject
@@ -10,6 +10,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LBFVideoLib.Admin", "LBSVideoLib.Admin\LBFVideoLib.Admin.csproj", "{CD073D7B-E2F1-4381-99F2-0E808CA0DAF3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LBFVideoLib.Common", "LBSVideoLib.Common\LBFVideoLib.Common.csproj", "{B091D00D-56FE-4A44-A42C-BB4EFDE2BD11}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{252B6686-8CDE-4841-9F58-1A08D2EB4BFB}"
+	ProjectSection(SolutionItems) = preProject
+		Notes.txt = Notes.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
