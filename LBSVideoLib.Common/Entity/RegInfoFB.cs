@@ -3,86 +3,107 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace LBFVideoLib.Common.Entity
-{
+namespace LBFVideoLib.Common.Entity {
 
-    public class RegInfoFB
+  public class RegInfoFB {
+
+    public RegInfoFB() {
+      Classes = new List<ClassFB>();
+
+    }
+
+    public string RegDate
     {
-        public string RegDate
-        {
-            get; set;
-        }
+      get; set;
+    }
 
-        public string LoginEmail
-        {
-            get; set;
-        }
-        public string Password
-        {
-            get; set;
-        }
+    public string LoginEmail
+    {
+      get; set;
+    }
+    public string Password
+    {
+      get; set;
+    }
 
-        public string SchoolName
-        {
-            get; set;
-        }
+    public string SchoolName
+    {
+      get; set;
+    }
 
-        public string SchoolCode
-        {
-            get; set;
-        }
+    public string City
+    {
+      get; set;
+    }
 
-        public string Session
-        {
-            get; set;
-        }
+    public string SchoolCode
+    {
+      get; set;
+    }
 
-
-        public List<ClassFB> Classes
-        {
-            get; set;
-        }
+    public string Session
+    {
+      get; set;
     }
 
 
-    public class ClassFB
+    public List<ClassFB> Classes
     {
-
-        public string Name
-        {
-            get; set;
-        }
-
-        public List<SeriesFB> Series
-        {
-            get; set;
-        }
+      get; set;
     }
-    public class SeriesFB
-    {
+  }
 
-        public string Name
-        {
-            get; set;
-        }
-        public List<SubjectFB> Subjects;
+
+  public class ClassFB {
+    public ClassFB() {
+      Series = new List<SeriesFB>();
     }
 
-    public class SubjectFB
+    public string Name
     {
-        public string Name
-        {
-            get; set;
-        }
-        public List<BookFB> Books;
+      get; set;
     }
 
-    public class BookFB
+    public List<SeriesFB> Series
     {
-        public string Name
-        {
-            get; set;
-        }
-
+      get; set;
     }
+  }
+  public class SeriesFB {
+
+    public SeriesFB() {
+      Subjects = new List<SubjectFB>();
+    }
+
+    public string Name
+    {
+      get; set;
+    }
+    public List<SubjectFB> Subjects;
+  }
+
+  public class SubjectFB {
+
+    public SubjectFB() {
+      Books = new List<BookFB>();
+    }
+    public string Name
+    {
+      get; set;
+    }
+    public List<BookFB> Books;
+  }
+
+   public class BookFB {
+    public string Name
+    {
+      get; set;
+    }
+
+    public int WatchCount
+    {
+      get; set;
+    }
+
+  }
 }

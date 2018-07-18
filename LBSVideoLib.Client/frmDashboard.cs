@@ -128,5 +128,9 @@ namespace LBFVideoLib.Client
         {
             Application.Exit();
         }
+
+    private void panel6_Paint(object sender, PaintEventArgs e) {
+
     }
+  }
 }
