@@ -20,8 +20,8 @@ namespace LBFVideoLib.Client
 
         private void frmVideoLibrary_Load(object sender, EventArgs e)
         {
-            _clientRootPath = ClientInfo.GetClientRootPath();
-            _clientInfoFilePath = ClientInfo.GetClientInfoFilePath();
+            _clientRootPath = ClientHelper.GetClientRootPath();
+            _clientInfoFilePath = ClientHelper.GetClientInfoFilePath();
 
             this.ClientInfoObject.LastAccessEndTime = DateTime.UtcNow;
             this.ClientInfoObject.LastAccessStartTime = DateTime.UtcNow;
@@ -31,12 +31,12 @@ namespace LBFVideoLib.Client
 
             FillTreeView();
             treeView1.ExpandAll();
-            
+
         }
 
         #region Private Methods
 
-        private void FillTreeView( )
+        private void FillTreeView()
         {
             treeView1.Nodes.Clear();
 
@@ -51,7 +51,7 @@ namespace LBFVideoLib.Client
                 //{
                 //    treeView1.SelectedNode = rootNode;
                 //}
-                AddTreeNode(rootNode, rootDirectoryList[i],   "");
+                AddTreeNode(rootNode, rootDirectoryList[i], "");
 
             }
         }
@@ -79,7 +79,7 @@ namespace LBFVideoLib.Client
                 //{
                 //    treeView1.SelectedNode = rootNode;
                 //}
-                AddTreeNode(rootNode, directoryList[i],"");
+                AddTreeNode(rootNode, directoryList[i], "");
             }
             //}
         }
@@ -98,11 +98,11 @@ namespace LBFVideoLib.Client
             upcomingVideoForm.ParentFormControl = this;
             upcomingVideoForm.ClientInfoObject = this.ClientInfoObject;
             upcomingVideoForm.EncryptedVideo = false;
-            upcomingVideoForm.NextVideoFileList = new string[] { Path.Combine(ClientInfo.GetClientVideoFilePath(), @"First\First-S1\First-S1-English\First-S1-English-Basic\VID-20150929-WA0005.mp4") };
+            upcomingVideoForm.NextVideoFileList = new string[] { Path.Combine(ClientHelper.GetClientVideoFilePath(ClientInfoObject.SchoolId, ClientInfoObject.SchoolCity), @"First\First-S1\First-S1-English\First-S1-English-Basic\VID-20150929-WA0005.mp4") };
             upcomingVideoForm.Show();
             this.Hide();
         }
 
-        
+
     }
 }

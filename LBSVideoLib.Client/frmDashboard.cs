@@ -1,5 +1,7 @@
 ﻿using LBFVideoLib.Common;
+using LBFVideoLib.Common.Entity;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Windows.Forms;
 
@@ -7,31 +9,65 @@ namespace LBFVideoLib.Client
 {
     public partial class frmDashboard : Form
     {
-        private string _clientRootPath = "";
-        private string _clientInfoFilePath = "";
+        //private string _clientRootPath = "";
+        //private string _clientInfoFilePath = "";
         public Form ParentFormControl { get; set; }
         public ClientInfo ClientInfoObject { get; set; }
-
-
+        private Dictionary<string, string> _bookVideoList = new Dictionary<string, string>();
 
         public frmDashboard()
         {
             InitializeComponent();
         }
 
-      
+
         private void frmDashboard_Load(object sender, EventArgs e)
         {
-            _clientRootPath = ClientInfo.GetClientRootPath();
-            _clientInfoFilePath= ClientInfo.GetClientInfoFilePath();
-            this.ClientInfoObject.LastAccessEndTime = DateTime.UtcNow;
-            this.ClientInfoObject.LastAccessStartTime = DateTime.UtcNow;
-            Cryptograph.EncryptObject(this.ClientInfoObject, _clientInfoFilePath);
+            FillVideoList();
+            FillRandomVideoList();
+
+            lblSessionYears.Text = ClientHelper.GetSessionString(ClientInfoObject.SessionString);
+            lblSchoolWelcome.Text = ClientHelper.GetWelcomeString(ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);
+            lblExpireDate.Text = ClientHelper.GetExpiryDateString(ClientInfoObject.ExpiryDate);
 
             FillTreeView();
-            treeView1.ExpandAll();
-            this.lblSchoolDetail.Text = this.ClientInfoObject.GetClientDetail();
+            treeView1.CollapseAll();
+        }
 
+        private Dictionary<string,string> FillRandomVideoList()
+        {
+            //List<int> randomNumberList = new List<int>();
+            //Random random = new Random();
+            //randomNumberList.Add(random.Next(0, _bookVideoList.Count - 1));
+            return null;
+        }
+
+        private void FillVideoList()
+        {
+            // Fill video list
+            string videoRelativePath = "";
+            for (int i = 0; i < ClientInfoObject.SelectedVideoDetails.Count; i++)
+            {
+                ClassFB classFB = ClientInfoObject.SelectedVideoDetails[i];
+                videoRelativePath = Path.Combine(ClientHelper.GetClientVideoFilePath(ClientInfoObject.SchoolId, ClientInfoObject.SchoolCity), classFB.Name);
+                for (int k = 0; k < classFB.Series.Count; k++)
+                {
+                    string seriesVideoPath = Path.Combine(videoRelativePath, classFB.Series[k].Name);
+                    for (int j = 0; j < classFB.Series[k].Subjects.Count; j++)
+                    {
+                        string subjectVideoPath = Path.Combine(seriesVideoPath, classFB.Series[k].Subjects[j].Name);
+                        for (int l = 0; l < classFB.Series[k].Subjects[j].Books.Count; l++)
+                        {
+                            string bookVideoPath = Path.Combine(subjectVideoPath, classFB.Series[k].Subjects[j].Books[l].Name);
+                            string[] videoList = Directory.GetFiles(bookVideoPath);
+                            for (int m = 0; m < videoList.Length; m++)
+                            {
+                                _bookVideoList.Add(Path.Combine(bookVideoPath, videoList[m]), videoList[m]);
+                            }
+                        }
+                    }
+                }
+            }
         }
 
         #region Private Methods
@@ -39,14 +75,9 @@ namespace LBFVideoLib.Client
         private void FillTreeView()
         {
             treeView1.Nodes.Clear();
-            //_clientRootPath = ConfigHelper.TargetFolderPath;
-            //_clientInfoFilePath = Path.Combine(_clientRootPath, ConfigHelper.ClientInfoFileName);
-       
-            //this.lblSchoolName.Text = this.ClientInfoObject.SchoolName;
 
             // Fill Tree
-            // get root
-            string[] rootDirectoryList = Directory.GetDirectories(_clientRootPath);
+            string[] rootDirectoryList = Directory.GetDirectories(ClientHelper.GetClientVideoFilePath(ClientInfoObject.SchoolId, ClientInfoObject.SchoolCity));
             for (int i = 0; i < rootDirectoryList.Length; i++)
             {
                 TreeNode rootNode = new TreeNode(Path.GetFileName(rootDirectoryList[i]));
@@ -99,12 +130,12 @@ namespace LBFVideoLib.Client
             }
         }
 
-     
+
 
         private void myButton1_Click(object sender, EventArgs e)
         {
-              PlayVideo();
-           // OpenVideoLibrary();
+            PlayVideo();
+            // OpenVideoLibrary();
         }
 
         private void PlayVideo()
@@ -114,7 +145,7 @@ namespace LBFVideoLib.Client
             upcomingVideo.ParentFormControl = this;
             upcomingVideo.ClientInfoObject = this.ClientInfoObject;
             upcomingVideo.EncryptedVideo = false;
-            upcomingVideo.NextVideoFileList = new string[] { Path.Combine(ClientInfo.GetClientVideoFilePath(), @"First\First-S1\First-S1-English\First-S1-English-Basic\VID-20150929-WA0005.mp4") };
+            upcomingVideo.NextVideoFileList = new string[] { Path.Combine(ClientHelper.GetClientVideoFilePath(ClientInfoObject.SchoolId, ClientInfoObject.SchoolCity), @"First\First-S1\First-S1-English\First-S1-English-Basic\VID-20150929-WA0005.mp4") };
             upcomingVideo.Show();
             this.Hide();
         }
@@ -129,8 +160,10 @@ namespace LBFVideoLib.Client
             Application.Exit();
         }
 
-    private void panel6_Paint(object sender, PaintEventArgs e) {
 
+        private void lblContact_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(ClientHelper.GetContactMessageString(), "Contact", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
-  }
 }

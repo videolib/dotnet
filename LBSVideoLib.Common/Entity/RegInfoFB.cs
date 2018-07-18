@@ -53,8 +53,8 @@ namespace LBFVideoLib.Common.Entity {
     }
   }
 
-
-  public class ClassFB {
+    [Serializable()]
+    public class ClassFB {
     public ClassFB() {
       Series = new List<SeriesFB>();
     }
@@ -69,7 +69,8 @@ namespace LBFVideoLib.Common.Entity {
       get; set;
     }
   }
-  public class SeriesFB {
+    [Serializable()]
+    public class SeriesFB {
 
     public SeriesFB() {
       Subjects = new List<SubjectFB>();
@@ -82,7 +83,8 @@ namespace LBFVideoLib.Common.Entity {
     public List<SubjectFB> Subjects;
   }
 
-  public class SubjectFB {
+    [Serializable()]
+    public class SubjectFB {
 
     public SubjectFB() {
       Books = new List<BookFB>();
@@ -94,7 +96,8 @@ namespace LBFVideoLib.Common.Entity {
     public List<BookFB> Books;
   }
 
-   public class BookFB {
+    [Serializable()]
+    public class BookFB {
     public string Name
     {
       get; set;

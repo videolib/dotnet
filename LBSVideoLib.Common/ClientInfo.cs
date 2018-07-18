@@ -1,4 +1,6 @@
-﻿using System;
+﻿using LBFVideoLib.Common.Entity;
+using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace LBFVideoLib.Common
@@ -24,20 +26,8 @@ namespace LBFVideoLib.Common
 
         public string SessionString { get; set; }
 
-        public static string GetClientRootPath()
-        {
-            return Directory.GetCurrentDirectory();
-            //return @"D:\School\ClientPackages\1280";
-        }
-        public static string GetClientInfoFilePath()
-        {
-            return Path.Combine(GetClientRootPath(), ConfigHelper.ClientInfoFileName);
-        }
+        public List<ClassFB> SelectedVideoDetails { get; set; }
 
-        public static string GetClientVideoFilePath()
-        {
-            return Path.Combine(GetClientRootPath(), "Videos");
-        }
 
         public string GetClientDetail()
         {

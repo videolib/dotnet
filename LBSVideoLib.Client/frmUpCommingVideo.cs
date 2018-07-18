@@ -31,8 +31,8 @@ namespace LBFVideoLib.Client
 
         private void frmDashboard_Load(object sender, EventArgs e)
         {
-            _clientRootPath = ClientInfo.GetClientRootPath();
-            _clientInfoFilePath = ClientInfo.GetClientInfoFilePath();
+            _clientRootPath = ClientHelper.GetClientRootPath();
+            _clientInfoFilePath = ClientHelper.GetClientInfoFilePath();
             this.ClientInfoObject.LastAccessEndTime = DateTime.UtcNow;
             this.ClientInfoObject.LastAccessStartTime = DateTime.UtcNow;
             Cryptograph.EncryptObject(this.ClientInfoObject, _clientInfoFilePath);
@@ -68,15 +68,14 @@ namespace LBFVideoLib.Client
         private void FillTreeView()
         {
             treeView1.Nodes.Clear();
-          // Fill Tree
+            // Fill Tree
             // get root
-            string[] rootDirectoryList = Directory.GetDirectories(_clientRootPath);
+            string[] rootDirectoryList = Directory.GetDirectories(ClientHelper.GetClientVideoFilePath(ClientInfoObject.SchoolId, ClientInfoObject.SchoolCity));
             for (int i = 0; i < rootDirectoryList.Length; i++)
             {
                 TreeNode rootNode = new TreeNode(Path.GetFileName(rootDirectoryList[i]));
                 treeView1.Nodes.Add(rootNode);
                 AddTreeNode(rootNode, rootDirectoryList[i]);
-
             }
         }
 
@@ -110,14 +109,14 @@ namespace LBFVideoLib.Client
         private void myButton12_Click(object sender, EventArgs e)
         {
             this.lblFileName.Text = "VID - 20160508 - WA0004";
-            this.axWindowsMediaPlayer1.URL = Path.Combine(ClientInfo.GetClientVideoFilePath(), @"Third\Third-S2\Third-S2-Science\Third-S2-Science-Practical\VID-20160508-WA0004.mp4");
+            this.axWindowsMediaPlayer1.URL = Path.Combine(ClientHelper.GetClientVideoFilePath(ClientInfoObject.SchoolId, ClientInfoObject.SchoolCity), @"Third\Third-S2\Third-S2-Science\Third-S2-Science-Practical\VID-20160508-WA0004.mp4");
         }
 
-      
+
         private void myButton11_Click(object sender, EventArgs e)
         {
             this.lblFileName.Text = "VID-20151009-WA0006";
-            this.axWindowsMediaPlayer1.URL = Path.Combine(ClientInfo.GetClientVideoFilePath(), @"Third\Third-S2\Third-S2-Science\Third-S2-Science-Theory\VID-20151009-WA0006.mp4");
+            this.axWindowsMediaPlayer1.URL = Path.Combine(ClientHelper.GetClientVideoFilePath(ClientInfoObject.SchoolId, ClientInfoObject.SchoolCity), @"Third\Third-S2\Third-S2-Science\Third-S2-Science-Theory\VID-20151009-WA0006.mp4");
         }
 
         private void btnFullScreen_Click(object sender, EventArgs e)
