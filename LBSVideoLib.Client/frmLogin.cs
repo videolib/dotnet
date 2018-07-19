@@ -49,6 +49,8 @@ namespace LBFVideoLib.Client
             if (!File.Exists(_clientInfoFilePath))
             {
                 MessageBox.Show("Invalid Configuration", "Configuration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+                return;
             }
             _clientInfo = Cryptograph.DecryptObject<ClientInfo>(_clientInfoFilePath);
             if (_clientInfo != null)
