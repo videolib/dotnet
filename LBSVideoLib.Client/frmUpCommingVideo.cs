@@ -149,6 +149,11 @@ namespace LBFVideoLib.Client
         private void frmUpCommingVideo_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.ParentFormControl.Show();
-        }       
+        }
+
+        private void lblContact_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(ClientHelper.GetContactMessageString(), "Contact", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }

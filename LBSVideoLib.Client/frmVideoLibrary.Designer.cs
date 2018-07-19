@@ -28,29 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Urdu");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("First-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode1});
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("First", new System.Windows.Forms.TreeNode[] {
-            treeNode2});
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Maths");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Second-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode4});
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Hindi");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Second-S2", new System.Windows.Forms.TreeNode[] {
-            treeNode6});
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Second", new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode7});
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("English");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Third-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode9});
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Third", new System.Windows.Forms.TreeNode[] {
-            treeNode10});
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Classes", new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode8,
-            treeNode11});
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Urdu");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("First-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode13});
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("First", new System.Windows.Forms.TreeNode[] {
+            treeNode14});
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Maths");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Second-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode16});
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Hindi");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Second-S2", new System.Windows.Forms.TreeNode[] {
+            treeNode18});
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Second", new System.Windows.Forms.TreeNode[] {
+            treeNode17,
+            treeNode19});
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("English");
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Third-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode21});
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Third", new System.Windows.Forms.TreeNode[] {
+            treeNode22});
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Classes", new System.Windows.Forms.TreeNode[] {
+            treeNode15,
+            treeNode20,
+            treeNode23});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVideoLibrary));
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.panel9 = new System.Windows.Forms.Panel();
@@ -73,8 +73,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.lblExpireDate = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.lblSessionYears = new System.Windows.Forms.Label();
+            this.lblContact = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
@@ -82,6 +81,7 @@
             this.myButton10 = new LBFVideoLib.Client.myButton();
             this.myButton11 = new LBFVideoLib.Client.myButton();
             this.myButton12 = new LBFVideoLib.Client.myButton();
+            this.lblSessionYears = new System.Windows.Forms.Label();
             this.panel9.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -101,32 +101,32 @@
             this.treeView1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.treeView1.Location = new System.Drawing.Point(0, 151);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "Node12";
-            treeNode1.Text = "Urdu";
-            treeNode2.Name = "Node2";
-            treeNode2.Text = "First-S1";
-            treeNode3.Name = "Node1";
-            treeNode3.Text = "First";
-            treeNode4.Name = "Node11";
-            treeNode4.Text = "Maths";
-            treeNode5.Name = "Node4";
-            treeNode5.Text = "Second-S1";
-            treeNode6.Name = "Node10";
-            treeNode6.Text = "Hindi";
-            treeNode7.Name = "Node5";
-            treeNode7.Text = "Second-S2";
-            treeNode8.Name = "Node3";
-            treeNode8.Text = "Second";
-            treeNode9.Name = "Node9";
-            treeNode9.Text = "English";
-            treeNode10.Name = "Node8";
-            treeNode10.Text = "Third-S1";
-            treeNode11.Name = "Node7";
-            treeNode11.Text = "Third";
-            treeNode12.Name = "Node0";
-            treeNode12.Text = "Classes";
+            treeNode13.Name = "Node12";
+            treeNode13.Text = "Urdu";
+            treeNode14.Name = "Node2";
+            treeNode14.Text = "First-S1";
+            treeNode15.Name = "Node1";
+            treeNode15.Text = "First";
+            treeNode16.Name = "Node11";
+            treeNode16.Text = "Maths";
+            treeNode17.Name = "Node4";
+            treeNode17.Text = "Second-S1";
+            treeNode18.Name = "Node10";
+            treeNode18.Text = "Hindi";
+            treeNode19.Name = "Node5";
+            treeNode19.Text = "Second-S2";
+            treeNode20.Name = "Node3";
+            treeNode20.Text = "Second";
+            treeNode21.Name = "Node9";
+            treeNode21.Text = "English";
+            treeNode22.Name = "Node8";
+            treeNode22.Text = "Third-S1";
+            treeNode23.Name = "Node7";
+            treeNode23.Text = "Third";
+            treeNode24.Name = "Node0";
+            treeNode24.Text = "Classes";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode12});
+            treeNode24});
             this.treeView1.Size = new System.Drawing.Size(271, 500);
             this.treeView1.TabIndex = 4;
             // 
@@ -344,40 +344,29 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(167, 24);
             this.label2.TabIndex = 5;
-            this.label2.Text = "LBS Video Portal";
+            this.label2.Text = "LBF Video Portal";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label10
+            // lblContact
             // 
-            this.label10.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.ForeColor = System.Drawing.Color.White;
-            this.label10.Location = new System.Drawing.Point(1265, 15);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(80, 24);
-            this.label10.TabIndex = 4;
-            this.label10.Text = "Contact";
-            this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblSessionYears
-            // 
-            this.lblSessionYears.AutoSize = true;
-            this.lblSessionYears.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSessionYears.ForeColor = System.Drawing.Color.White;
-            this.lblSessionYears.Location = new System.Drawing.Point(35, 15);
-            this.lblSessionYears.Name = "lblSessionYears";
-            this.lblSessionYears.Size = new System.Drawing.Size(163, 24);
-            this.lblSessionYears.TabIndex = 3;
-            this.lblSessionYears.Text = "Session 2018-19";
-            this.lblSessionYears.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblContact.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblContact.AutoSize = true;
+            this.lblContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblContact.ForeColor = System.Drawing.Color.White;
+            this.lblContact.Location = new System.Drawing.Point(1265, 15);
+            this.lblContact.Name = "lblContact";
+            this.lblContact.Size = new System.Drawing.Size(80, 24);
+            this.lblContact.TabIndex = 4;
+            this.lblContact.Text = "Contact";
+            this.lblContact.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblContact.Click += new System.EventHandler(this.lblContact_Click);
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.label10);
             this.panel2.Controls.Add(this.lblSessionYears);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.lblContact);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
@@ -448,6 +437,18 @@
             this.myButton12.Size = new System.Drawing.Size(201, 149);
             this.myButton12.TabIndex = 15;
             // 
+            // lblSessionYears
+            // 
+            this.lblSessionYears.AutoSize = true;
+            this.lblSessionYears.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSessionYears.ForeColor = System.Drawing.Color.White;
+            this.lblSessionYears.Location = new System.Drawing.Point(35, 15);
+            this.lblSessionYears.Name = "lblSessionYears";
+            this.lblSessionYears.Size = new System.Drawing.Size(115, 24);
+            this.lblSessionYears.TabIndex = 7;
+            this.lblSessionYears.Text = "Session {0}";
+            this.lblSessionYears.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // frmVideoLibrary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -495,8 +496,7 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label lblSessionYears;
+        private System.Windows.Forms.Label lblContact;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel pnlMain;
         private System.Windows.Forms.Panel panel6;
@@ -506,5 +506,6 @@
         private myButton myButton12;
         private System.Windows.Forms.Label lblExpireDate;
         private System.Windows.Forms.Label lblSchoolWelcome;
+        private System.Windows.Forms.Label lblSessionYears;
     }
 }
