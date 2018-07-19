@@ -5,10 +5,24 @@ using System.Windows.Forms;
 
 namespace LBFVideoLib.Client
 {
-   public class CustomeThumbControl : Panel
+    public class CustomeThumbControl : Panel
     {
+        Action<object, EventArgs> _clickDeligate;
         PictureBox pict = new PictureBox();
         Label lbl = new Label();
+
+
+        public CustomeThumbControl(Action<object, EventArgs> clickDeligate)
+        {
+            _clickDeligate = clickDeligate;
+            pict.Click += Pict_Click;
+        }      
+
+        private void Pict_Click(object sender, EventArgs e)
+        {
+            _clickDeligate(this, e);
+        }
+
         
         public string ThumbUrl
         {
@@ -31,6 +45,9 @@ namespace LBFVideoLib.Client
             lbl.Dock = DockStyle.Bottom;
             lbl.Text = ThumbName;
             lbl.Margin = new Padding(0, 20, 0, 0);
+            //lbl.Font = new Font(lbl.Font, FontStyle.Bold);
+            lbl.ForeColor = System.Drawing.Color.Red;
+
             this.Controls.Add(lbl);
             this.Controls.SetChildIndex(lbl, 1);
 
@@ -43,7 +60,7 @@ namespace LBFVideoLib.Client
             {
                 pict.BackgroundImage = new ImageEx(ThumbUrl).Image;
             }
-         
+
             pict.BackgroundImageLayout = ImageLayout.Stretch;
             //pict.Image = PlayImage;
             this.Controls.Add(pict);
@@ -60,6 +77,13 @@ namespace LBFVideoLib.Client
                 return Image.FromStream(base64stream);
             }
         }
+
+        //protected override void OnClick(EventArgs e)
+        //{
+        //    base.OnClick(e);
+        //    _clickDeligate(this, e);
+        //}
+
     }
 
     public class ImageEx

@@ -32,6 +32,9 @@ namespace LBFVideoLib.Client
 
             FillTreeView();
             treeView1.CollapseAll();
+
+            AddRecomVideos();
+            AddMostWatchesVideos();
         }
 
         private Dictionary<string, string> FillRandomVideoList()
@@ -169,12 +172,129 @@ namespace LBFVideoLib.Client
             Application.Exit();
         }
 
-
         private void lblContact_Click(object sender, EventArgs e)
         {
             MessageBox.Show(ClientHelper.GetContactMessageString(), "Contact", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-      
+        private void AddRecomVideos()
+        {
+            string thumbnailPath = Path.Combine(ClientHelper.GetClientRootPath(), "Thumbnails");
+            string demoVideoPath =  Path.Combine(ClientHelper.GetClientRootPath(), "DemoVideos");
+
+
+            CustomeThumbControl ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
+            ctlThumb.ThumbName = "EGBC01F002L01P002";
+            ctlThumb.VideoUrl =  Path.Combine(demoVideoPath , "EGBC01F002L01P002.mp4");            
+            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_ENGLISH.png");
+            ctlThumb.Click += CtlThumb_Click;
+            ctlThumb.Height = 200;
+            ctlThumb.Width = 200;
+            pnlRecomVideo.Controls.Add(ctlThumb);
+
+            ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
+            ctlThumb.ThumbName = "HVKC01F002L001P002";
+            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F002L001P002.mp4");            
+            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
+            ctlThumb.Click += CtlThumb_Click;
+            ctlThumb.Height = 200;
+            ctlThumb.Width = 200;
+            pnlRecomVideo.Controls.Add(ctlThumb);
+
+            ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
+            ctlThumb.ThumbName = "EGBC02F026L07P048";
+            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "EGBC02F026L07P048.mp4");
+            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_ENGLISH.png");
+            ctlThumb.Click += CtlThumb_Click;
+            ctlThumb.Height = 200;
+            ctlThumb.Width = 200;
+            pnlRecomVideo.Controls.Add(ctlThumb);
+
+            ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
+            ctlThumb.ThumbName = "HVKC01F006L003P017";
+            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F006L003P017.mp4");
+            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
+            ctlThumb.Click += CtlThumb_Click;
+            ctlThumb.Height = 200;
+            ctlThumb.Width = 200;
+            pnlRecomVideo.Controls.Add(ctlThumb);
+
+            ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
+            ctlThumb.ThumbName = "HVKC01F038L016P105";
+            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F038L016P105.mp4");
+            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
+            ctlThumb.Click += CtlThumb_Click;
+            ctlThumb.Height = 200;
+            ctlThumb.Width = 200;
+            pnlRecomVideo.Controls.Add(ctlThumb);
+
+        }
+
+        private void AddMostWatchesVideos()
+        {
+            string thumbnailPath = Path.Combine(ClientHelper.GetClientRootPath(), "Thumbnails");
+            string demoVideoPath = Path.Combine(ClientHelper.GetClientRootPath(), "DemoVideos");
+
+            CustomeThumbControl ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
+            ctlThumb.ThumbName = "EGBC01F002L01P002";
+            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "EGBC01F002L01P002.mp4");
+            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_ENGLISH.png");
+            ctlThumb.Click += CtlThumb_Click;
+            ctlThumb.Height = 200;
+            ctlThumb.Width = 200;
+            pnlMostWatchVideo.Controls.Add(ctlThumb);
+
+            ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
+            ctlThumb.ThumbName = "HVKC01F002L001P002";
+            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F002L001P002.mp4");
+            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
+            ctlThumb.Click += CtlThumb_Click;
+            ctlThumb.Height = 200;
+            ctlThumb.Width = 200;
+            pnlMostWatchVideo.Controls.Add(ctlThumb);
+
+            ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
+            ctlThumb.ThumbName = "EGBC02F026L07P048";
+            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "EGBC02F026L07P048.mp4");
+            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_ENGLISH.png");
+            ctlThumb.Click += CtlThumb_Click;
+            ctlThumb.Height = 200;
+            ctlThumb.Width = 200;
+            pnlMostWatchVideo.Controls.Add(ctlThumb);
+
+            ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
+            ctlThumb.ThumbName = "HVKC01F006L003P017";
+            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F006L003P017.mp4");
+            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
+            ctlThumb.Click += CtlThumb_Click;
+            ctlThumb.Height = 200;
+            ctlThumb.Width = 200;
+            pnlMostWatchVideo.Controls.Add(ctlThumb);
+
+            ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
+            ctlThumb.ThumbName = "HVKC01F038L016P105";
+            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F038L016P105.mp4");
+            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
+            ctlThumb.Click += CtlThumb_Click;
+            ctlThumb.Height = 200;
+            ctlThumb.Width = 200;
+            pnlMostWatchVideo.Controls.Add(ctlThumb);
+        }
+
+        private void CtlThumb_Click(object sender, EventArgs e)
+        {
+            CustomeThumbControl ctl =  sender as CustomeThumbControl;
+
+           frmUpCommingVideo upcomingVideoForm = new frmUpCommingVideo();
+            upcomingVideoForm.ParentFormControl = this;
+            upcomingVideoForm.ClientInfoObject = this.ClientInfoObject;
+            upcomingVideoForm.EncryptedVideo = false;
+            upcomingVideoForm.NextVideoFileList = new string[] {ctl.VideoUrl};
+            upcomingVideoForm.Show();
+            this.Hide();
+
+            
+        }
+        
     }
 }

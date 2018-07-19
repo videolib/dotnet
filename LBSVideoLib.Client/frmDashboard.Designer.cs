@@ -53,18 +53,10 @@
             treeNode11});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDashboard));
             this.pnlMain = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.myButton5 = new LBFVideoLib.Client.myButton();
-            this.myButton6 = new LBFVideoLib.Client.myButton();
-            this.myButton7 = new LBFVideoLib.Client.myButton();
-            this.myButton8 = new LBFVideoLib.Client.myButton();
+            this.pnlMostWatchVideo = new System.Windows.Forms.FlowLayoutPanel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.myButton4 = new LBFVideoLib.Client.myButton();
-            this.myButton3 = new LBFVideoLib.Client.myButton();
-            this.myButton2 = new LBFVideoLib.Client.myButton();
-            this.myButton1 = new LBFVideoLib.Client.myButton();
+            this.pnlRecomVideo = new System.Windows.Forms.FlowLayoutPanel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -80,9 +72,7 @@
             this.lblContact = new System.Windows.Forms.Label();
             this.lblSessionYears = new System.Windows.Forms.Label();
             this.pnlMain.SuspendLayout();
-            this.panel9.SuspendLayout();
             this.panel7.SuspendLayout();
-            this.panel8.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -93,9 +83,9 @@
             // pnlMain
             // 
             this.pnlMain.BackColor = System.Drawing.Color.White;
-            this.pnlMain.Controls.Add(this.panel9);
+            this.pnlMain.Controls.Add(this.pnlMostWatchVideo);
             this.pnlMain.Controls.Add(this.panel7);
-            this.pnlMain.Controls.Add(this.panel8);
+            this.pnlMain.Controls.Add(this.pnlRecomVideo);
             this.pnlMain.Controls.Add(this.panel6);
             this.pnlMain.Controls.Add(this.panel3);
             this.pnlMain.Controls.Add(this.panel1);
@@ -107,124 +97,42 @@
             this.pnlMain.Size = new System.Drawing.Size(1359, 741);
             this.pnlMain.TabIndex = 0;
             // 
-            // panel9
+            // pnlMostWatchVideo
             // 
-            this.panel9.Controls.Add(this.myButton5);
-            this.panel9.Controls.Add(this.myButton6);
-            this.panel9.Controls.Add(this.myButton7);
-            this.panel9.Controls.Add(this.myButton8);
-            this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel9.Location = new System.Drawing.Point(273, 444);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(1086, 254);
-            this.panel9.TabIndex = 33;
-            // 
-            // myButton5
-            // 
-            this.myButton5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.myButton5.ButtonName = "Hindi Grammer";
-            this.myButton5.Location = new System.Drawing.Point(771, 22);
-            this.myButton5.Name = "myButton5";
-            this.myButton5.Size = new System.Drawing.Size(201, 173);
-            this.myButton5.TabIndex = 18;
-            // 
-            // myButton6
-            // 
-            this.myButton6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.myButton6.ButtonName = "Scient Practical";
-            this.myButton6.Location = new System.Drawing.Point(535, 22);
-            this.myButton6.Name = "myButton6";
-            this.myButton6.Size = new System.Drawing.Size(201, 173);
-            this.myButton6.TabIndex = 17;
-            // 
-            // myButton7
-            // 
-            this.myButton7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.myButton7.ButtonName = "Hindi\'s Basic";
-            this.myButton7.Location = new System.Drawing.Point(290, 22);
-            this.myButton7.Name = "myButton7";
-            this.myButton7.Size = new System.Drawing.Size(201, 173);
-            this.myButton7.TabIndex = 16;
-            // 
-            // myButton8
-            // 
-            this.myButton8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.myButton8.ButtonName = "English Grammer";
-            this.myButton8.Location = new System.Drawing.Point(28, 22);
-            this.myButton8.Name = "myButton8";
-            this.myButton8.Size = new System.Drawing.Size(201, 173);
-            this.myButton8.TabIndex = 15;
-            this.myButton8.Click += new System.EventHandler(this.myButton8_Click);
+            this.pnlMostWatchVideo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlMostWatchVideo.Location = new System.Drawing.Point(273, 466);
+            this.pnlMostWatchVideo.Name = "pnlMostWatchVideo";
+            this.pnlMostWatchVideo.Size = new System.Drawing.Size(1086, 232);
+            this.pnlMostWatchVideo.TabIndex = 37;
             // 
             // panel7
             // 
             this.panel7.Controls.Add(this.label5);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(273, 397);
+            this.panel7.Location = new System.Drawing.Point(273, 419);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(1086, 47);
-            this.panel7.TabIndex = 32;
+            this.panel7.TabIndex = 35;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.White;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.label5.Location = new System.Drawing.Point(28, 9);
+            this.label5.Location = new System.Drawing.Point(14, 9);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(281, 29);
+            this.label5.Size = new System.Drawing.Size(238, 25);
             this.label5.TabIndex = 8;
             this.label5.Text = "Most Watched Lessons";
             // 
-            // panel8
+            // pnlRecomVideo
             // 
-            this.panel8.Controls.Add(this.myButton4);
-            this.panel8.Controls.Add(this.myButton3);
-            this.panel8.Controls.Add(this.myButton2);
-            this.panel8.Controls.Add(this.myButton1);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel8.Location = new System.Drawing.Point(273, 175);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(1086, 222);
-            this.panel8.TabIndex = 31;
-            // 
-            // myButton4
-            // 
-            this.myButton4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.myButton4.ButtonName = "Maths Basic";
-            this.myButton4.Location = new System.Drawing.Point(771, 19);
-            this.myButton4.Name = "myButton4";
-            this.myButton4.Size = new System.Drawing.Size(201, 173);
-            this.myButton4.TabIndex = 14;
-            // 
-            // myButton3
-            // 
-            this.myButton3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.myButton3.ButtonName = "Hindi Grammer";
-            this.myButton3.Location = new System.Drawing.Point(535, 19);
-            this.myButton3.Name = "myButton3";
-            this.myButton3.Size = new System.Drawing.Size(201, 173);
-            this.myButton3.TabIndex = 13;
-            // 
-            // myButton2
-            // 
-            this.myButton2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.myButton2.ButtonName = "English Grammer";
-            this.myButton2.Location = new System.Drawing.Point(290, 19);
-            this.myButton2.Name = "myButton2";
-            this.myButton2.Size = new System.Drawing.Size(201, 173);
-            this.myButton2.TabIndex = 12;
-            // 
-            // myButton1
-            // 
-            this.myButton1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.myButton1.ButtonName = "Hindi\'s Basic";
-            this.myButton1.Location = new System.Drawing.Point(28, 19);
-            this.myButton1.Name = "myButton1";
-            this.myButton1.Size = new System.Drawing.Size(201, 173);
-            this.myButton1.TabIndex = 11;
-            this.myButton1.Click += new System.EventHandler(this.myButton1_Click);
+            this.pnlRecomVideo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlRecomVideo.Location = new System.Drawing.Point(273, 175);
+            this.pnlRecomVideo.Name = "pnlRecomVideo";
+            this.pnlRecomVideo.Size = new System.Drawing.Size(1086, 244);
+            this.pnlRecomVideo.TabIndex = 34;
             // 
             // panel6
             // 
@@ -239,11 +147,11 @@
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.White;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.label4.Location = new System.Drawing.Point(28, 12);
+            this.label4.Location = new System.Drawing.Point(14, 12);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(230, 29);
+            this.label4.Size = new System.Drawing.Size(189, 25);
             this.label4.TabIndex = 8;
             this.label4.Text = "Recommendations";
             // 
@@ -262,7 +170,7 @@
             this.lblSchoolWelcome.BackColor = System.Drawing.Color.White;
             this.lblSchoolWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSchoolWelcome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.lblSchoolWelcome.Location = new System.Drawing.Point(28, 18);
+            this.lblSchoolWelcome.Location = new System.Drawing.Point(14, 18);
             this.lblSchoolWelcome.Name = "lblSchoolWelcome";
             this.lblSchoolWelcome.Size = new System.Drawing.Size(282, 29);
             this.lblSchoolWelcome.TabIndex = 7;
@@ -432,10 +340,8 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmDashboard_FormClosed);
             this.Load += new System.EventHandler(this.frmDashboard_Load);
             this.pnlMain.ResumeLayout(false);
-            this.panel9.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
-            this.panel8.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.panel3.ResumeLayout(false);
@@ -459,24 +365,16 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label lblExpireDate;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label lblSchoolWelcome;
-        private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TreeView treeView1;
-        private myButton myButton5;
-        private myButton myButton6;
-        private myButton myButton7;
-        private myButton myButton8;
-        private myButton myButton4;
-        private myButton myButton3;
-        private myButton myButton2;
-        private myButton myButton1;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.FlowLayoutPanel pnlRecomVideo;
+        private System.Windows.Forms.FlowLayoutPanel pnlMostWatchVideo;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Label lblExpireDate;
+        private System.Windows.Forms.Label label11;
     }
 }

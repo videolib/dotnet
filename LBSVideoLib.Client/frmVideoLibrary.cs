@@ -186,5 +186,10 @@ namespace LBFVideoLib.Client
         {
             MessageBox.Show(ClientHelper.GetContactMessageString(), "Contact", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void myButton1_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }
