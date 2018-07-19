@@ -46,6 +46,13 @@ namespace LBFVideoLib.Common
             return string.Format("Expires on {0}", expiryDate.ToString("dd MMMM yyyy"));
         }
 
+        public static string GetSubjectThumbnailSourcePath()
+        {
+            return Path.Combine(ConfigHelper.ClientDistributionPath, "Thumbnails");
+        }
+
+    
+
         #endregion
     }
 }

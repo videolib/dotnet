@@ -20,6 +20,10 @@ namespace LBFVideoLib.Client
             get; set;
         }
 
+        public string VideoUrl
+        {
+            get; set;
+        }
 
         protected override void OnPaint(PaintEventArgs e)
         {

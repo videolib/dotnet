@@ -123,23 +123,34 @@ namespace LBFVideoLib.Admin
                 Book selectedBook = (chkListBooks.CheckedItems[i]) as Book;
 
                 string selectedBookVideos = selectedBook.BookId;// Directory.GetFiles(selectedBook.BookId);
-                //foreach (string selectedBookVideo in selectedBookVideos)
-                //{
-                    string clientTargetVideoPath = Path.Combine(clientVideoFolderPath, selectedBook.ClassName);
+                                                                //foreach (string selectedBookVideo in selectedBookVideos)
+                                                                //{
+                string clientTargetVideoPath = Path.Combine(clientVideoFolderPath, selectedBook.ClassName);
 
-                    clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.SeriesName);
-                    clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.SubjectName);
-                    if (Directory.Exists(clientTargetVideoPath) == false)
-                    {
-                        Directory.CreateDirectory(clientTargetVideoPath);
-                    }
+                clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.SeriesName);
+                clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.SubjectName);
+                if (Directory.Exists(clientTargetVideoPath) == false)
+                {
+                    Directory.CreateDirectory(clientTargetVideoPath);
+                }
 
                 clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.BookName);
 
-               // clientTargetVideoPath = Path.Combine(clientTargetVideoPath, Path.GetFileName(selectedBookVideo));
+                // clientTargetVideoPath = Path.Combine(clientTargetVideoPath, Path.GetFileName(selectedBookVideo));
 
-                    Cryptograph.EncryptFile(selectedBookVideos, clientTargetVideoPath);
+                Cryptograph.EncryptFile(selectedBookVideos, clientTargetVideoPath);
                 //}
+            }
+
+            if (Directory.Exists(Path.Combine(clientSchoolCodeFolderPath, "Thumbnails")) == false)
+            {
+                Directory.CreateDirectory(Path.Combine(clientSchoolCodeFolderPath, "Thumbnails"));
+            }
+
+            string[] subjectThumbnailFiles = Directory.GetFiles(LBFVideoLib.Common.ClientHelper.GetSubjectThumbnailSourcePath());
+            for (int i = 0; i < subjectThumbnailFiles.Length; i++)
+            {
+                System.IO.File.Copy(subjectThumbnailFiles[i], Path.Combine(Path.Combine(clientSchoolCodeFolderPath, "Thumbnails"), Path.GetFileName(subjectThumbnailFiles[i])));
             }
 
             // Save data on firebase

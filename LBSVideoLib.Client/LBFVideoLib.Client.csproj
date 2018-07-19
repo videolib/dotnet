@@ -143,16 +143,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Icon_-10x.png" />
-    <Content Include="Thumbnails\Subject\Subjects_ENGLISH.png">
+    <Content Include="Thumbnails\Subjects_ENGLISH.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Thumbnails\Subject\Subjects_EVS.png">
+    <Content Include="Thumbnails\Subjects_EVS.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Thumbnails\Subject\Subjects_HINDI.png">
+    <Content Include="Thumbnails\Subjects_HINDI.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Thumbnails\Subject\Subjects_MATHS.png">
+    <Content Include="Thumbnails\Subjects_MATHS.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
