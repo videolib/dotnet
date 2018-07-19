@@ -153,6 +153,19 @@ namespace LBFVideoLib.Admin
                 System.IO.File.Copy(subjectThumbnailFiles[i], Path.Combine(Path.Combine(clientSchoolCodeFolderPath, "Thumbnails"), Path.GetFileName(subjectThumbnailFiles[i])));
             }
 
+
+            // Demo Videos
+            if (Directory.Exists(Path.Combine(clientSchoolCodeFolderPath, "DemoVideos")) == false)
+            {
+                Directory.CreateDirectory(Path.Combine(clientSchoolCodeFolderPath, "DemoVideos"));
+            }
+            string[] demoVideoFiles = Directory.GetFiles(LBFVideoLib.Common.ClientHelper.GetDemoVideoSourcePath());
+            for (int i = 0; i < demoVideoFiles.Length; i++)
+            {
+                System.IO.File.Copy(demoVideoFiles[i], Path.Combine(Path.Combine(clientSchoolCodeFolderPath, "DemoVideos"), Path.GetFileName(demoVideoFiles[i])));
+            }
+
+
             // Save data on firebase
             List<ClassFB> selectedClassList = SaveRegDataOnFireBase();
 
@@ -171,7 +184,7 @@ namespace LBFVideoLib.Admin
 
 
             // Copy client project bin folder to target location.
-            MessageBox.Show("Registraion completed sucessfully.", "Info", MessageBoxButtons.OK);
+            MessageBox.Show("Registraion completed sucessfully.", "Info", MessageBoxButtons.OK,MessageBoxIcon.Information);
 
             InitializeRegistrationForm();
 

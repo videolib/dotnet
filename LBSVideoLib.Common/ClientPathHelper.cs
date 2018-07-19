@@ -10,7 +10,7 @@ namespace LBFVideoLib.Common
         public static string GetClientRootPath()
         {
             //return Directory.GetCurrentDirectory();
-            return @"D:\Development\School\Setup\Admin\ClientPackages\789";
+            return @"D:\Development\School\Setup\Admin\ClientPackages\89";
         }
 
         public static string GetClientInfoFilePath()
@@ -51,7 +51,11 @@ namespace LBFVideoLib.Common
             return Path.Combine(ConfigHelper.ClientDistributionPath, "Thumbnails");
         }
 
-    
+        public static string GetDemoVideoSourcePath()
+        {
+            return Path.Combine(ConfigHelper.ClientDistributionPath, "DemoVideos");
+        }
+
 
         #endregion
     }

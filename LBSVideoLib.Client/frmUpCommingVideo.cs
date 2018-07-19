@@ -51,20 +51,71 @@ namespace LBFVideoLib.Client
                 this.axWindowsMediaPlayer1.URL = this.NextVideoFileList[0];
             }
 
-            CustomeThumbControl ctlThumb = new CustomeThumbControl();
-            ctlThumb.ThumbName = ".Net Crea Application";
-            ctlThumb.VideoUrl = "";
-            string thumbnailPath = Path.Combine(ClientHelper.GetClientRootPath(), "Thumbnails");            
-            ctlThumb.ThumbUrl = Path.Combine (thumbnailPath, "Subjects_ENGLISH.png");
+            AddMostWatchesVideos();
+
+
+        }
+
+
+        private void AddMostWatchesVideos()
+        {
+            string thumbnailPath = Path.Combine(ClientHelper.GetClientRootPath(), "Thumbnails");
+            string demoVideoPath = Path.Combine(ClientHelper.GetClientRootPath(), "DemoVideos");
+
+            CustomeThumbControl ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
+            ctlThumb.ThumbName = "EGBC01F002L01P002";
+            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "EGBC01F002L01P002.mp4");
+            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_ENGLISH.png");
             ctlThumb.Click += CtlThumb_Click;
+            ctlThumb.Height = 150;
+            ctlThumb.Width = 150;
+            pnlVideo.Controls.Add(ctlThumb);
+
+            ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
+            ctlThumb.ThumbName = "HVKC01F002L001P002";
+            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F002L001P002.mp4");
+            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
+            ctlThumb.Click += CtlThumb_Click;
+            ctlThumb.Height = 150;
+            ctlThumb.Width = 150;
+            pnlVideo.Controls.Add(ctlThumb);
+
+            ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
+            ctlThumb.ThumbName = "EGBC02F026L07P048";
+            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "EGBC02F026L07P048.mp4");
+            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_ENGLISH.png");
+            ctlThumb.Click += CtlThumb_Click;
+            ctlThumb.Height = 150;
+            ctlThumb.Width = 150;
+            pnlVideo.Controls.Add(ctlThumb);
+
+            ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
+            ctlThumb.ThumbName = "HVKC01F006L003P017";
+            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F006L003P017.mp4");
+            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
+            ctlThumb.Click += CtlThumb_Click;
+            ctlThumb.Height = 150;
+            ctlThumb.Width = 150;
+            pnlVideo.Controls.Add(ctlThumb);
+
+            ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
+            ctlThumb.ThumbName = "HVKC01F038L016P105";
+            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F038L016P105.mp4");
+            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
+            ctlThumb.Click += CtlThumb_Click;
+            ctlThumb.Height = 150;
+            ctlThumb.Width = 150;
             pnlVideo.Controls.Add(ctlThumb);
         }
 
         private void CtlThumb_Click(object sender, EventArgs e)
         {
-            //(sender as CustomeThumbControl).VideoUrl;
+            CustomeThumbControl ctl = sender as CustomeThumbControl;
+            this.lblFileName.Text = Path.GetFileNameWithoutExtension(ctl.VideoUrl);
+            this.axWindowsMediaPlayer1.URL = ctl.VideoUrl;
         }
 
+        
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             if (e.Node.Tag != null)
@@ -136,19 +187,16 @@ namespace LBFVideoLib.Client
 
         private void btnFullScreen_Click(object sender, EventArgs e)
         {
-            if (this.axWindowsMediaPlayer1.fullScreen == false)
-                this.axWindowsMediaPlayer1.fullScreen = true;
+      
         }
 
         private void btnRewind_Click(object sender, EventArgs e)
         {
-            this.axWindowsMediaPlayer1.Ctlcontrols.currentPosition -= 10;
 
         }
 
         private void btnFastForward_Click(object sender, EventArgs e)
         {
-            this.axWindowsMediaPlayer1.Ctlcontrols.currentPosition += 30;
         }
 
         private void frmUpCommingVideo_FormClosed(object sender, FormClosedEventArgs e)
@@ -159,6 +207,24 @@ namespace LBFVideoLib.Client
         private void lblContact_Click(object sender, EventArgs e)
         {
             MessageBox.Show(ClientHelper.GetContactMessageString(), "Contact", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
+
+        private void btnRewind_Click_1(object sender, EventArgs e)
+        {
+            this.axWindowsMediaPlayer1.Ctlcontrols.currentPosition -= 10;
+
+        }
+
+        private void btnFullScreen_Click_1(object sender, EventArgs e)
+        {
+            if (this.axWindowsMediaPlayer1.fullScreen == false)
+                this.axWindowsMediaPlayer1.fullScreen = true;
+        }
+
+        private void btnFastForward_Click_1(object sender, EventArgs e)
+        {
+            this.axWindowsMediaPlayer1.Ctlcontrols.currentPosition += 10;
+
         }
     }
 }
