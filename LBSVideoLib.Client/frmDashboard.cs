@@ -80,9 +80,11 @@ namespace LBFVideoLib.Client
             string[] rootDirectoryList = Directory.GetDirectories(ClientHelper.GetClientVideoFilePath(ClientInfoObject.SchoolId, ClientInfoObject.SchoolCity));
             for (int i = 0; i < rootDirectoryList.Length; i++)
             {
-                TreeNode rootNode = new TreeNode(Path.GetFileName(rootDirectoryList[i]));
+                TreeNode rootNode = new TreeNode(ClientInfoObject.SchoolName);
                 treeView1.Nodes.Add(rootNode);
-                AddTreeNode(rootNode, rootDirectoryList[i]);
+                TreeNode firstClassNode = new TreeNode(Path.GetFileName(rootDirectoryList[i]));
+                rootNode.Nodes.Add(firstClassNode);
+                AddTreeNode(firstClassNode, rootDirectoryList[i]);
             }
         }
 

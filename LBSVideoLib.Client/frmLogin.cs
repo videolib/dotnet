@@ -37,10 +37,10 @@ namespace LBFVideoLib.Client
                 frm.Show();
                 this.Hide();
             }
-            //else
-            //{
-            //    lblStatus.Text = "Invalid Email Id or Password!!";
-            //}
+            else
+            {
+                lblStatus.Text = "Invalid Email Id or Password!!";
+            }
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
@@ -49,6 +49,8 @@ namespace LBFVideoLib.Client
             if (!File.Exists(_clientInfoFilePath))
             {
                 MessageBox.Show("Invalid Configuration", "Configuration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                this.Close();
+                return;
             }
             _clientInfo = Cryptograph.DecryptObject<ClientInfo>(_clientInfoFilePath);
             if (_clientInfo != null)

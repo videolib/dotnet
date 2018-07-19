@@ -186,16 +186,19 @@
             // lblStatus
             // 
             this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(199, 183);
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.ForeColor = System.Drawing.Color.Red;
+            this.lblStatus.Location = new System.Drawing.Point(155, 193);
             this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(0, 15);
+            this.lblStatus.Size = new System.Drawing.Size(208, 15);
             this.lblStatus.TabIndex = 10;
+            this.lblStatus.Text = "                                                                   ";
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(37, 223);
+            this.label6.Location = new System.Drawing.Point(37, 232);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(330, 15);
             this.label6.TabIndex = 8;
@@ -205,7 +208,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(37, 205);
+            this.label5.Location = new System.Drawing.Point(37, 214);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(122, 15);
             this.label5.TabIndex = 7;
