@@ -51,6 +51,12 @@ namespace LBFVideoLib.Client
                 this.axWindowsMediaPlayer1.URL = this.NextVideoFileList[0];
             }
 
+            CustomeThumbControl ctlThumb = new CustomeThumbControl();
+            ctlThumb.ThumbName = ".Net Crea Application";
+            string thumbnailPath = Path.Combine(ClientHelper.GetClientRootPath(), "Thumbnails");
+            string thumbnailSubjectPath = Path.Combine(thumbnailPath, "Subject");
+            ctlThumb.ThumbUrl = Path.Combine (thumbnailSubjectPath, "Subjects_ENGLISH.png");
+            pnlVideo.Controls.Add(ctlThumb);
         }
 
 
@@ -143,13 +149,6 @@ namespace LBFVideoLib.Client
         private void frmUpCommingVideo_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.ParentFormControl.Show();
-        }
-
-        private void panel5_Paint(object sender, PaintEventArgs e)
-        {
-            frmDashboard frm = new frmDashboard();
-            frm.Show();
-            this.Hide();
-        }
+        }       
     }
 }

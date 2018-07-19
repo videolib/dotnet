@@ -142,6 +142,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Icon_-10x.png" />
     <Content Include="Thumbnails\Subject\Subjects_ENGLISH.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
