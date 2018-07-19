@@ -33,17 +33,17 @@ namespace LBFVideoLib.Common
 
         public static string GetSessionString(string sessionString)
         {
-            return string.Format("Session {0}", sessionString);
+            return string.Format("Session : {0}", sessionString);
         }
 
         public static string GetWelcomeString(string schoolName, string schoolCity, string schoolCode)
         {
-            return string.Format("Welcome, {0}, {1} [{2}]", schoolName, schoolCity, schoolCode);
+            return string.Format("Welcome, {0} {1} {2}", schoolName, schoolCity, schoolCode);
         }
 
         public static string GetExpiryDateString(DateTime expiryDate)
         {
-            return string.Format("Expire on {0}", expiryDate.ToShortDateString());
+            return string.Format("Expires on {0}", expiryDate.ToString("dd MMMM yyyy"));
         }
 
         #endregion
