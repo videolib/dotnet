@@ -66,6 +66,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entity\SchoolClass.cs" />
     <Compile Include="Entity\Series.cs" />
+    <Compile Include="ThumbnailHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

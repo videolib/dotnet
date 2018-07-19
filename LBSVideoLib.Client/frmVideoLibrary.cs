@@ -39,6 +39,7 @@ namespace LBFVideoLib.Client
 
             FillTreeView();
             treeView1.CollapseAll();
+            FillVideoLibrary(treeView1.Nodes[0].Tag as TreeTag);
         }
 
         #region Private Methods
@@ -113,13 +114,17 @@ namespace LBFVideoLib.Client
 
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
+            FillVideoLibrary(e.Node.Tag as TreeTag);
+        }
 
-            TreeTag currentNodeTag = ((e.Node as TreeNode).Tag as TreeTag);
-            if (_lastSelectedNode != null && e.Node.Equals(_lastSelectedNode))
-            {
-                return;
-            }
-            _lastSelectedNode = e.Node;
+        private void FillVideoLibrary(TreeTag currentNodeTag)
+        {
+            //TreeTag currentNodeTag = ((e.Node as TreeNode).Tag as TreeTag);
+            //if (_lastSelectedNode != null && e.Node.Text.Equals(_lastSelectedNode.Text))
+            //{
+            //    return;
+            //}
+            //  _lastSelectedNode = e.Node;
             videFilePathList.Clear();
             if (currentNodeTag.BookVideoList.Count == 0)
             {
@@ -134,25 +139,23 @@ namespace LBFVideoLib.Client
                 GetVideoFileList(currentNodeTag.CurrentDirectoryPath, videFilePathList);
             }
 
-          
+            flowLayoutVideoPanel.Controls.Clear();
             for (int j = 0; j < videFilePathList.Count; j++)
             {
-                //CustomeThumbControl ctlThumb = new CustomeThumbControl();
-                //ctlThumb.ThumbName = videFilePathList[j].FileName;
-                //string thumbnailPath = videFilePathList[j].ThumbnailFilePath; ;// Path.Combine(ClientHelper.GetClientRootPath(), "Thumbnails");
-                ////string thumbnailSubjectPath = Path.Combine(thumbnailPath, "Subject");
-                //ctlThumb.ThumbUrl = videFilePathList[j].ThumbnailFilePath; //Path.Combine(thumbnailSubjectPath, "Subjects_ENGLISH.png");
-                //ctlThumb.Click += CtlThumb_Click;
-                ////ctlThumb
-                //flowLayoutVideoListPnl.Controls.Add(ctlThumb);
+                CustomeThumbControl ctlThumb = new CustomeThumbControl();
+                ctlThumb.ThumbName = videFilePathList[j].FileName;
+                ctlThumb.ThumbUrl = videFilePathList[j].ThumbnailFilePath; //Path.Combine(thumbnailSubjectPath, "Subjects_ENGLISH.png");
+                ctlThumb.VideoUrl = videFilePathList[j].VideoFullUrl;
+                ctlThumb.Click += CtlThumb_Click;
+                ctlThumb.Size = new System.Drawing.Size(201, 173);
+                //ctlThumb
+                flowLayoutVideoPanel.Controls.Add(ctlThumb);
             }
-
-
         }
 
         private void CtlThumb_Click(object sender, EventArgs e)
         {
-           
+
         }
 
         private void GetVideoFileList(string currentPath, List<ThumbnailInfo> videFilePathList)
@@ -165,7 +168,7 @@ namespace LBFVideoLib.Client
                     ThumbnailInfo thumbnailInfo = new ThumbnailInfo();
                     thumbnailInfo.VideoFullUrl = fileList[i];
                     thumbnailInfo.FileName = Path.GetFileName(fileList[i]);
-                    thumbnailInfo.ThumbnailFilePath = "";
+                    thumbnailInfo.ThumbnailFilePath = Path.Combine(ClientHelper.GetClientThumbanailPath(), ThumbnailHelper.GetThumbnailFileName(currentPath));
                     videFilePathList.Add(thumbnailInfo);
                 }
             }
