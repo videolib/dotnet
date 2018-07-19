@@ -28,132 +28,77 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode73 = new System.Windows.Forms.TreeNode("Urdu");
-            System.Windows.Forms.TreeNode treeNode74 = new System.Windows.Forms.TreeNode("First-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode73});
-            System.Windows.Forms.TreeNode treeNode75 = new System.Windows.Forms.TreeNode("First", new System.Windows.Forms.TreeNode[] {
-            treeNode74});
-            System.Windows.Forms.TreeNode treeNode76 = new System.Windows.Forms.TreeNode("Maths");
-            System.Windows.Forms.TreeNode treeNode77 = new System.Windows.Forms.TreeNode("Second-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode76});
-            System.Windows.Forms.TreeNode treeNode78 = new System.Windows.Forms.TreeNode("Hindi");
-            System.Windows.Forms.TreeNode treeNode79 = new System.Windows.Forms.TreeNode("Second-S2", new System.Windows.Forms.TreeNode[] {
-            treeNode78});
-            System.Windows.Forms.TreeNode treeNode80 = new System.Windows.Forms.TreeNode("Second", new System.Windows.Forms.TreeNode[] {
-            treeNode77,
-            treeNode79});
-            System.Windows.Forms.TreeNode treeNode81 = new System.Windows.Forms.TreeNode("English");
-            System.Windows.Forms.TreeNode treeNode82 = new System.Windows.Forms.TreeNode("Third-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode81});
-            System.Windows.Forms.TreeNode treeNode83 = new System.Windows.Forms.TreeNode("Third", new System.Windows.Forms.TreeNode[] {
-            treeNode82});
-            System.Windows.Forms.TreeNode treeNode84 = new System.Windows.Forms.TreeNode("Classes", new System.Windows.Forms.TreeNode[] {
-            treeNode75,
-            treeNode80,
-            treeNode83});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Urdu");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("First-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode1});
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("First", new System.Windows.Forms.TreeNode[] {
+            treeNode2});
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Maths");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Second-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode4});
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Hindi");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Second-S2", new System.Windows.Forms.TreeNode[] {
+            treeNode6});
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Second", new System.Windows.Forms.TreeNode[] {
+            treeNode5,
+            treeNode7});
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("English");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Third-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode9});
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Third", new System.Windows.Forms.TreeNode[] {
+            treeNode10});
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Classes", new System.Windows.Forms.TreeNode[] {
+            treeNode3,
+            treeNode8,
+            treeNode11});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUpCommingVideo));
-            this.myButton9 = new LBFVideoLib.Client.myButton();
-            this.myButton10 = new LBFVideoLib.Client.myButton();
-            this.myButton12 = new LBFVideoLib.Client.myButton();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.myButton11 = new LBFVideoLib.Client.myButton();
             this.pnlMain = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.btnFullScreen = new System.Windows.Forms.Button();
-            this.btnFastForward = new System.Windows.Forms.Button();
-            this.btnRewind = new System.Windows.Forms.Button();
-            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.lblFileName = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lblFileNameLabel = new System.Windows.Forms.Label();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.lblSchoolWelcome = new System.Windows.Forms.Label();
             this.txtEmailId = new System.Windows.Forms.TextBox();
             this.lblEmail = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.lblExpireDate = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.lblSessionYears = new System.Windows.Forms.Label();
-            this.lblExpireDate = new System.Windows.Forms.Label();
-            this.lblSchoolWelcome = new System.Windows.Forms.Label();
-            this.panel6.SuspendLayout();
+            this.pnlVideo = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.lblFileName = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.btnFullScreen = new System.Windows.Forms.Button();
+            this.btnFastForward = new System.Windows.Forms.Button();
+            this.btnRewind = new System.Windows.Forms.Button();
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.pnlMain.SuspendLayout();
-            this.panel9.SuspendLayout();
-            this.panel10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
-            this.panel8.SuspendLayout();
-            this.panel7.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.panel10.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
-            // 
-            // myButton9
-            // 
-            this.myButton9.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.myButton9.ButtonName = "Video1";
-            this.myButton9.Location = new System.Drawing.Point(771, 16);
-            this.myButton9.Name = "myButton9";
-            this.myButton9.Size = new System.Drawing.Size(201, 149);
-            this.myButton9.TabIndex = 18;
-            // 
-            // myButton10
-            // 
-            this.myButton10.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.myButton10.ButtonName = "Video1";
-            this.myButton10.Location = new System.Drawing.Point(535, 16);
-            this.myButton10.Name = "myButton10";
-            this.myButton10.Size = new System.Drawing.Size(201, 149);
-            this.myButton10.TabIndex = 17;
-            // 
-            // myButton12
-            // 
-            this.myButton12.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.myButton12.ButtonName = "Video1";
-            this.myButton12.Location = new System.Drawing.Point(28, 16);
-            this.myButton12.Name = "myButton12";
-            this.myButton12.Size = new System.Drawing.Size(201, 149);
-            this.myButton12.TabIndex = 15;
-            this.myButton12.Click += new System.EventHandler(this.myButton12_Click);
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.myButton9);
-            this.panel6.Controls.Add(this.myButton10);
-            this.panel6.Controls.Add(this.myButton11);
-            this.panel6.Controls.Add(this.myButton12);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel6.Location = new System.Drawing.Point(273, 528);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1076, 178);
-            this.panel6.TabIndex = 34;
-            // 
-            // myButton11
-            // 
-            this.myButton11.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.myButton11.ButtonName = "Video1";
-            this.myButton11.Location = new System.Drawing.Point(290, 16);
-            this.myButton11.Name = "myButton11";
-            this.myButton11.Size = new System.Drawing.Size(201, 149);
-            this.myButton11.TabIndex = 16;
-            this.myButton11.Click += new System.EventHandler(this.myButton11_Click);
             // 
             // pnlMain
             // 
             this.pnlMain.BackColor = System.Drawing.Color.White;
-            this.pnlMain.Controls.Add(this.panel9);
+            this.pnlMain.Controls.Add(this.axWindowsMediaPlayer1);
+            this.pnlMain.Controls.Add(this.panel10);
             this.pnlMain.Controls.Add(this.panel8);
             this.pnlMain.Controls.Add(this.panel7);
-            this.pnlMain.Controls.Add(this.panel6);
+            this.pnlMain.Controls.Add(this.pnlVideo);
+            this.pnlMain.Controls.Add(this.panel9);
             this.pnlMain.Controls.Add(this.panel3);
             this.pnlMain.Controls.Add(this.panel1);
             this.pnlMain.Controls.Add(this.panel4);
@@ -166,138 +111,11 @@
             // 
             // panel9
             // 
-            this.panel9.Controls.Add(this.panel10);
-            this.panel9.Controls.Add(this.axWindowsMediaPlayer1);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel9.Location = new System.Drawing.Point(273, 106);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(1076, 348);
+            this.panel9.Size = new System.Drawing.Size(1076, 600);
             this.panel9.TabIndex = 39;
-            // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.btnFullScreen);
-            this.panel10.Controls.Add(this.btnFastForward);
-            this.panel10.Controls.Add(this.btnRewind);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel10.Location = new System.Drawing.Point(0, 254);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(1076, 94);
-            this.panel10.TabIndex = 2;
-            // 
-            // btnFullScreen
-            // 
-            this.btnFullScreen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnFullScreen.Location = new System.Drawing.Point(109, 0);
-            this.btnFullScreen.Name = "btnFullScreen";
-            this.btnFullScreen.Size = new System.Drawing.Size(855, 94);
-            this.btnFullScreen.TabIndex = 5;
-            this.btnFullScreen.Text = "Full Screen";
-            this.btnFullScreen.UseVisualStyleBackColor = true;
-            this.btnFullScreen.Click += new System.EventHandler(this.btnFullScreen_Click);
-            // 
-            // btnFastForward
-            // 
-            this.btnFastForward.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnFastForward.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnFastForward.Image = ((System.Drawing.Image)(resources.GetObject("btnFastForward.Image")));
-            this.btnFastForward.Location = new System.Drawing.Point(964, 0);
-            this.btnFastForward.Name = "btnFastForward";
-            this.btnFastForward.Size = new System.Drawing.Size(112, 94);
-            this.btnFastForward.TabIndex = 4;
-            this.btnFastForward.UseVisualStyleBackColor = true;
-            this.btnFastForward.Click += new System.EventHandler(this.btnFastForward_Click);
-            // 
-            // btnRewind
-            // 
-            this.btnRewind.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnRewind.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnRewind.Image = ((System.Drawing.Image)(resources.GetObject("btnRewind.Image")));
-            this.btnRewind.Location = new System.Drawing.Point(0, 0);
-            this.btnRewind.Margin = new System.Windows.Forms.Padding(0);
-            this.btnRewind.Name = "btnRewind";
-            this.btnRewind.Size = new System.Drawing.Size(109, 94);
-            this.btnRewind.TabIndex = 3;
-            this.btnRewind.UseVisualStyleBackColor = true;
-            this.btnRewind.Click += new System.EventHandler(this.btnRewind_Click);
-            // 
-            // axWindowsMediaPlayer1
-            // 
-            this.axWindowsMediaPlayer1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(0, 0);
-            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
-            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(1076, 254);
-            this.axWindowsMediaPlayer1.TabIndex = 1;
-            // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.lblFileName);
-            this.panel8.Controls.Add(this.label6);
-            this.panel8.Controls.Add(this.lblFileNameLabel);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel8.Location = new System.Drawing.Point(273, 454);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(1076, 37);
-            this.panel8.TabIndex = 38;
-            // 
-            // lblFileName
-            // 
-            this.lblFileName.AutoSize = true;
-            this.lblFileName.BackColor = System.Drawing.Color.White;
-            this.lblFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFileName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.lblFileName.Location = new System.Drawing.Point(178, 5);
-            this.lblFileName.Name = "lblFileName";
-            this.lblFileName.Size = new System.Drawing.Size(78, 29);
-            this.lblFileName.TabIndex = 10;
-            this.lblFileName.Text = "ABCD";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.White;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.label6.Location = new System.Drawing.Point(766, 5);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(281, 29);
-            this.label6.TabIndex = 9;
-            this.label6.Text = "Watch Count: 32 Times";
-            // 
-            // lblFileNameLabel
-            // 
-            this.lblFileNameLabel.AutoSize = true;
-            this.lblFileNameLabel.BackColor = System.Drawing.Color.White;
-            this.lblFileNameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFileNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.lblFileNameLabel.Location = new System.Drawing.Point(36, 5);
-            this.lblFileNameLabel.Name = "lblFileNameLabel";
-            this.lblFileNameLabel.Size = new System.Drawing.Size(148, 29);
-            this.lblFileNameLabel.TabIndex = 8;
-            this.lblFileNameLabel.Text = "File Name: ";
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.label5);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel7.Location = new System.Drawing.Point(273, 491);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1076, 37);
-            this.panel7.TabIndex = 35;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.White;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.label5.Location = new System.Drawing.Point(36, 3);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(240, 29);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Upcomming Videos";
             // 
             // panel3
             // 
@@ -309,6 +127,18 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1076, 53);
             this.panel3.TabIndex = 26;
+            // 
+            // lblSchoolWelcome
+            // 
+            this.lblSchoolWelcome.AutoSize = true;
+            this.lblSchoolWelcome.BackColor = System.Drawing.Color.White;
+            this.lblSchoolWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSchoolWelcome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.lblSchoolWelcome.Location = new System.Drawing.Point(28, 13);
+            this.lblSchoolWelcome.Name = "lblSchoolWelcome";
+            this.lblSchoolWelcome.Size = new System.Drawing.Size(282, 29);
+            this.lblSchoolWelcome.TabIndex = 29;
+            this.lblSchoolWelcome.Text = "Welcome, {0}, {1}, [{2}]";
             // 
             // txtEmailId
             // 
@@ -352,32 +182,32 @@
             this.treeView1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.treeView1.Location = new System.Drawing.Point(0, 151);
             this.treeView1.Name = "treeView1";
-            treeNode73.Name = "Node12";
-            treeNode73.Text = "Urdu";
-            treeNode74.Name = "Node2";
-            treeNode74.Text = "First-S1";
-            treeNode75.Name = "Node1";
-            treeNode75.Text = "First";
-            treeNode76.Name = "Node11";
-            treeNode76.Text = "Maths";
-            treeNode77.Name = "Node4";
-            treeNode77.Text = "Second-S1";
-            treeNode78.Name = "Node10";
-            treeNode78.Text = "Hindi";
-            treeNode79.Name = "Node5";
-            treeNode79.Text = "Second-S2";
-            treeNode80.Name = "Node3";
-            treeNode80.Text = "Second";
-            treeNode81.Name = "Node9";
-            treeNode81.Text = "English";
-            treeNode82.Name = "Node8";
-            treeNode82.Text = "Third-S1";
-            treeNode83.Name = "Node7";
-            treeNode83.Text = "Third";
-            treeNode84.Name = "Node0";
-            treeNode84.Text = "Classes";
+            treeNode1.Name = "Node12";
+            treeNode1.Text = "Urdu";
+            treeNode2.Name = "Node2";
+            treeNode2.Text = "First-S1";
+            treeNode3.Name = "Node1";
+            treeNode3.Text = "First";
+            treeNode4.Name = "Node11";
+            treeNode4.Text = "Maths";
+            treeNode5.Name = "Node4";
+            treeNode5.Text = "Second-S1";
+            treeNode6.Name = "Node10";
+            treeNode6.Text = "Hindi";
+            treeNode7.Name = "Node5";
+            treeNode7.Text = "Second-S2";
+            treeNode8.Name = "Node3";
+            treeNode8.Text = "Second";
+            treeNode9.Name = "Node9";
+            treeNode9.Text = "English";
+            treeNode10.Name = "Node8";
+            treeNode10.Text = "Third-S1";
+            treeNode11.Name = "Node7";
+            treeNode11.Text = "Third";
+            treeNode12.Name = "Node0";
+            treeNode12.Text = "Classes";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode84});
+            treeNode12});
             this.treeView1.Size = new System.Drawing.Size(271, 500);
             this.treeView1.TabIndex = 4;
             // 
@@ -390,8 +220,7 @@
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(271, 151);
-            this.panel5.TabIndex = 1;
-            this.panel5.Paint += new System.Windows.Forms.PaintEventHandler(this.panel5_Paint);
+            this.panel5.TabIndex = 1;       
             // 
             // panel4
             // 
@@ -403,6 +232,20 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1349, 43);
             this.panel4.TabIndex = 24;
+            // 
+            // lblExpireDate
+            // 
+            this.lblExpireDate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblExpireDate.AutoSize = true;
+            this.lblExpireDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExpireDate.ForeColor = System.Drawing.Color.White;
+            this.lblExpireDate.Location = new System.Drawing.Point(63, 11);
+            this.lblExpireDate.Name = "lblExpireDate";
+            this.lblExpireDate.Size = new System.Drawing.Size(105, 16);
+            this.lblExpireDate.TabIndex = 3;
+            this.lblExpireDate.Text = "Expires on {0}";
             // 
             // label11
             // 
@@ -468,31 +311,125 @@
             this.lblSessionYears.Text = "Session 2018-19";
             this.lblSessionYears.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // lblExpireDate
+            // pnlVideo
             // 
-            this.lblExpireDate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblExpireDate.AutoSize = true;
-            this.lblExpireDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExpireDate.ForeColor = System.Drawing.Color.White;
-            this.lblExpireDate.Location = new System.Drawing.Point(63, 11);
-            this.lblExpireDate.Name = "lblExpireDate";
-            this.lblExpireDate.Size = new System.Drawing.Size(105, 16);
-            this.lblExpireDate.TabIndex = 3;
-            this.lblExpireDate.Text = "Expires on {0}";
+            this.pnlVideo.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlVideo.Location = new System.Drawing.Point(273, 551);
+            this.pnlVideo.Name = "pnlVideo";
+            this.pnlVideo.Size = new System.Drawing.Size(1076, 155);
+            this.pnlVideo.TabIndex = 40;
             // 
-            // lblSchoolWelcome
+            // panel7
             // 
-            this.lblSchoolWelcome.AutoSize = true;
-            this.lblSchoolWelcome.BackColor = System.Drawing.Color.White;
-            this.lblSchoolWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSchoolWelcome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.lblSchoolWelcome.Location = new System.Drawing.Point(28, 13);
-            this.lblSchoolWelcome.Name = "lblSchoolWelcome";
-            this.lblSchoolWelcome.Size = new System.Drawing.Size(282, 29);
-            this.lblSchoolWelcome.TabIndex = 29;
-            this.lblSchoolWelcome.Text = "Welcome, {0}, {1}, [{2}]";
+            this.panel7.Controls.Add(this.label5);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel7.Location = new System.Drawing.Point(273, 514);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(1076, 37);
+            this.panel7.TabIndex = 41;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.White;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.label5.Location = new System.Drawing.Point(36, 10);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(163, 20);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Upcomming Videos";
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.lblFileName);
+            this.panel8.Controls.Add(this.label6);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel8.Location = new System.Drawing.Point(273, 477);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(1076, 37);
+            this.panel8.TabIndex = 42;
+            // 
+            // lblFileName
+            // 
+            this.lblFileName.AutoSize = true;
+            this.lblFileName.BackColor = System.Drawing.Color.White;
+            this.lblFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFileName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.lblFileName.Location = new System.Drawing.Point(37, 4);
+            this.lblFileName.Name = "lblFileName";
+            this.lblFileName.Size = new System.Drawing.Size(61, 24);
+            this.lblFileName.TabIndex = 10;
+            this.lblFileName.Text = "ABCD";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.White;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.label6.Location = new System.Drawing.Point(874, 5);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(176, 17);
+            this.label6.TabIndex = 9;
+            this.label6.Text = "Watch Count: 32 Times";
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.btnFullScreen);
+            this.panel10.Controls.Add(this.btnFastForward);
+            this.panel10.Controls.Add(this.btnRewind);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel10.Location = new System.Drawing.Point(273, 443);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(1076, 34);
+            this.panel10.TabIndex = 43;
+            // 
+            // btnFullScreen
+            // 
+            this.btnFullScreen.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFullScreen.BackgroundImage")));
+            this.btnFullScreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnFullScreen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnFullScreen.Location = new System.Drawing.Point(98, 0);
+            this.btnFullScreen.Name = "btnFullScreen";
+            this.btnFullScreen.Size = new System.Drawing.Size(866, 34);
+            this.btnFullScreen.TabIndex = 5;
+            this.btnFullScreen.Text = "Full Screen";
+            this.btnFullScreen.UseVisualStyleBackColor = true;
+            // 
+            // btnFastForward
+            // 
+            this.btnFastForward.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFastForward.BackgroundImage")));
+            this.btnFastForward.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnFastForward.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnFastForward.Location = new System.Drawing.Point(964, 0);
+            this.btnFastForward.Name = "btnFastForward";
+            this.btnFastForward.Size = new System.Drawing.Size(112, 34);
+            this.btnFastForward.TabIndex = 4;
+            this.btnFastForward.UseVisualStyleBackColor = true;
+            // 
+            // btnRewind
+            // 
+            this.btnRewind.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRewind.BackgroundImage")));
+            this.btnRewind.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRewind.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnRewind.Image = ((System.Drawing.Image)(resources.GetObject("btnRewind.Image")));
+            this.btnRewind.Location = new System.Drawing.Point(0, 0);
+            this.btnRewind.Margin = new System.Windows.Forms.Padding(0);
+            this.btnRewind.Name = "btnRewind";
+            this.btnRewind.Size = new System.Drawing.Size(98, 34);
+            this.btnRewind.TabIndex = 3;
+            this.btnRewind.UseVisualStyleBackColor = true;
+            // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(273, 106);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(1076, 337);
+            this.axWindowsMediaPlayer1.TabIndex = 44;
             // 
             // frmUpCommingVideo
             // 
@@ -505,15 +442,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmUpCommingVideo_FormClosed);
             this.Load += new System.EventHandler(this.frmDashboard_Load);
-            this.panel6.ResumeLayout(false);
             this.pnlMain.ResumeLayout(false);
-            this.panel9.ResumeLayout(false);
-            this.panel10.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
-            this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -521,17 +450,17 @@
             this.panel4.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
+            this.panel10.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
-        private myButton myButton9;
-        private myButton myButton10;
-        private myButton myButton12;
-        private System.Windows.Forms.Panel panel6;
-        private myButton myButton11;
         private System.Windows.Forms.Panel pnlMain;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox txtEmailId;
@@ -546,18 +475,18 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lblSessionYears;
         private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label lblFileNameLabel;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lblExpireDate;
+        private System.Windows.Forms.Label lblSchoolWelcome;
         private AxWMPLib.AxWindowsMediaPlayer axWindowsMediaPlayer1;
         private System.Windows.Forms.Panel panel10;
         private System.Windows.Forms.Button btnFullScreen;
         private System.Windows.Forms.Button btnFastForward;
         private System.Windows.Forms.Button btnRewind;
+        private System.Windows.Forms.Panel panel8;
         private System.Windows.Forms.Label lblFileName;
-        private System.Windows.Forms.Label lblExpireDate;
-        private System.Windows.Forms.Label lblSchoolWelcome;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.FlowLayoutPanel pnlVideo;
     }
 }
