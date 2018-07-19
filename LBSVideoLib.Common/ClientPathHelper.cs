@@ -22,6 +22,11 @@ namespace LBFVideoLib.Common
         {
             return Path.Combine(GetClientRootPath(), string.Format("{0}_{1}_{2}", schoolCode, schoolCity, "LBFVideos"));
         }
+
+        public static string GetClientThumbanailPath()
+        {
+            return Path.Combine(GetClientRootPath(), "Thumbnails");
+        }
         #endregion
 
         #region Message String Helper

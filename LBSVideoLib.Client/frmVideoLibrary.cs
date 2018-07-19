@@ -142,11 +142,11 @@ namespace LBFVideoLib.Client
             flowLayoutVideoPanel.Controls.Clear();
             for (int j = 0; j < videFilePathList.Count; j++)
             {
-                CustomeThumbControl ctlThumb = new CustomeThumbControl();
+                CustomeThumbControl ctlThumb = new CustomeThumbControl(CtlThumb_Click);
                 ctlThumb.ThumbName = videFilePathList[j].FileName;
                 ctlThumb.ThumbUrl = videFilePathList[j].ThumbnailFilePath; //Path.Combine(thumbnailSubjectPath, "Subjects_ENGLISH.png");
                 ctlThumb.VideoUrl = videFilePathList[j].VideoFullUrl;
-                ctlThumb.Click += CtlThumb_Click;
+                //ctlThumb.Click += CtlThumb_Click;
                 ctlThumb.Size = new System.Drawing.Size(201, 173);
                 //ctlThumb
                 flowLayoutVideoPanel.Controls.Add(ctlThumb);
@@ -155,7 +155,7 @@ namespace LBFVideoLib.Client
 
         private void CtlThumb_Click(object sender, EventArgs e)
         {
-
+           
         }
 
         private void GetVideoFileList(string currentPath, List<ThumbnailInfo> videFilePathList)
