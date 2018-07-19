@@ -37,10 +37,10 @@ namespace LBFVideoLib.Client
                 frm.Show();
                 this.Hide();
             }
-            //else
-            //{
-            //    lblStatus.Text = "Invalid Email Id or Password!!";
-            //}
+            else
+            {
+                lblStatus.Text = "Invalid Email Id or Password!!";
+            }
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
