@@ -53,12 +53,17 @@ namespace LBFVideoLib.Client
 
             CustomeThumbControl ctlThumb = new CustomeThumbControl();
             ctlThumb.ThumbName = ".Net Crea Application";
-            string thumbnailPath = Path.Combine(ClientHelper.GetClientRootPath(), "Thumbnails");
-            string thumbnailSubjectPath = Path.Combine(thumbnailPath, "Subject");
-            ctlThumb.ThumbUrl = Path.Combine (thumbnailSubjectPath, "Subjects_ENGLISH.png");
+            ctlThumb.VideoUrl = "";
+            string thumbnailPath = Path.Combine(ClientHelper.GetClientRootPath(), "Thumbnails");            
+            ctlThumb.ThumbUrl = Path.Combine (thumbnailPath, "Subjects_ENGLISH.png");
+            ctlThumb.Click += CtlThumb_Click;
             pnlVideo.Controls.Add(ctlThumb);
         }
 
+        private void CtlThumb_Click(object sender, EventArgs e)
+        {
+            //(sender as CustomeThumbControl).VideoUrl;
+        }
 
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
@@ -149,6 +154,11 @@ namespace LBFVideoLib.Client
         private void frmUpCommingVideo_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.ParentFormControl.Show();
-        }       
+        }
+
+        private void lblContact_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show(ClientHelper.GetContactMessageString(), "Contact", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
