@@ -53,6 +53,8 @@
     <Compile Include="Cryptograph.cs" />
     <Compile Include="Entity\RegInfoFB.cs" />
     <Compile Include="Entity\Subject.cs" />
+    <Compile Include="Entity\ThumbnailInfo.cs" />
+    <Compile Include="Entity\TreeTag.cs" />
     <Compile Include="FileHelper.cs" />
     <Compile Include="FirebaseHelper.cs" />
     <Compile Include="JsonHelper.cs" />

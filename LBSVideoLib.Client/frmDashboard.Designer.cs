@@ -54,9 +54,17 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDashboard));
             this.pnlMain = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.myButton5 = new LBFVideoLib.Client.myButton();
+            this.myButton6 = new LBFVideoLib.Client.myButton();
+            this.myButton7 = new LBFVideoLib.Client.myButton();
+            this.myButton8 = new LBFVideoLib.Client.myButton();
             this.panel7 = new System.Windows.Forms.Panel();
             this.label5 = new System.Windows.Forms.Label();
             this.panel8 = new System.Windows.Forms.Panel();
+            this.myButton4 = new LBFVideoLib.Client.myButton();
+            this.myButton3 = new LBFVideoLib.Client.myButton();
+            this.myButton2 = new LBFVideoLib.Client.myButton();
+            this.myButton1 = new LBFVideoLib.Client.myButton();
             this.panel6 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -71,14 +79,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblContact = new System.Windows.Forms.Label();
             this.lblSessionYears = new System.Windows.Forms.Label();
-            this.myButton5 = new LBFVideoLib.Client.myButton();
-            this.myButton6 = new LBFVideoLib.Client.myButton();
-            this.myButton7 = new LBFVideoLib.Client.myButton();
-            this.myButton8 = new LBFVideoLib.Client.myButton();
-            this.myButton4 = new LBFVideoLib.Client.myButton();
-            this.myButton3 = new LBFVideoLib.Client.myButton();
-            this.myButton2 = new LBFVideoLib.Client.myButton();
-            this.myButton1 = new LBFVideoLib.Client.myButton();
             this.pnlMain.SuspendLayout();
             this.panel9.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -119,6 +119,43 @@
             this.panel9.Size = new System.Drawing.Size(1086, 254);
             this.panel9.TabIndex = 33;
             // 
+            // myButton5
+            // 
+            this.myButton5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.myButton5.ButtonName = "Hindi Grammer";
+            this.myButton5.Location = new System.Drawing.Point(771, 22);
+            this.myButton5.Name = "myButton5";
+            this.myButton5.Size = new System.Drawing.Size(201, 173);
+            this.myButton5.TabIndex = 18;
+            // 
+            // myButton6
+            // 
+            this.myButton6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.myButton6.ButtonName = "Scient Practical";
+            this.myButton6.Location = new System.Drawing.Point(535, 22);
+            this.myButton6.Name = "myButton6";
+            this.myButton6.Size = new System.Drawing.Size(201, 173);
+            this.myButton6.TabIndex = 17;
+            // 
+            // myButton7
+            // 
+            this.myButton7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.myButton7.ButtonName = "Hindi\'s Basic";
+            this.myButton7.Location = new System.Drawing.Point(290, 22);
+            this.myButton7.Name = "myButton7";
+            this.myButton7.Size = new System.Drawing.Size(201, 173);
+            this.myButton7.TabIndex = 16;
+            // 
+            // myButton8
+            // 
+            this.myButton8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.myButton8.ButtonName = "English Grammer";
+            this.myButton8.Location = new System.Drawing.Point(28, 22);
+            this.myButton8.Name = "myButton8";
+            this.myButton8.Size = new System.Drawing.Size(201, 173);
+            this.myButton8.TabIndex = 15;
+            this.myButton8.Click += new System.EventHandler(this.myButton8_Click);
+            // 
             // panel7
             // 
             this.panel7.Controls.Add(this.label5);
@@ -151,6 +188,43 @@
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(1086, 222);
             this.panel8.TabIndex = 31;
+            // 
+            // myButton4
+            // 
+            this.myButton4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.myButton4.ButtonName = "Maths Basic";
+            this.myButton4.Location = new System.Drawing.Point(771, 19);
+            this.myButton4.Name = "myButton4";
+            this.myButton4.Size = new System.Drawing.Size(201, 173);
+            this.myButton4.TabIndex = 14;
+            // 
+            // myButton3
+            // 
+            this.myButton3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.myButton3.ButtonName = "Hindi Grammer";
+            this.myButton3.Location = new System.Drawing.Point(535, 19);
+            this.myButton3.Name = "myButton3";
+            this.myButton3.Size = new System.Drawing.Size(201, 173);
+            this.myButton3.TabIndex = 13;
+            // 
+            // myButton2
+            // 
+            this.myButton2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.myButton2.ButtonName = "English Grammer";
+            this.myButton2.Location = new System.Drawing.Point(290, 19);
+            this.myButton2.Name = "myButton2";
+            this.myButton2.Size = new System.Drawing.Size(201, 173);
+            this.myButton2.TabIndex = 12;
+            // 
+            // myButton1
+            // 
+            this.myButton1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.myButton1.ButtonName = "Hindi\'s Basic";
+            this.myButton1.Location = new System.Drawing.Point(28, 19);
+            this.myButton1.Name = "myButton1";
+            this.myButton1.Size = new System.Drawing.Size(201, 173);
+            this.myButton1.TabIndex = 11;
+            this.myButton1.Click += new System.EventHandler(this.myButton1_Click);
             // 
             // panel6
             // 
@@ -345,80 +419,6 @@
             this.lblSessionYears.TabIndex = 3;
             this.lblSessionYears.Text = "Session {0}";
             this.lblSessionYears.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // myButton5
-            // 
-            this.myButton5.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.myButton5.ButtonName = "Hindi Grammer";
-            this.myButton5.Location = new System.Drawing.Point(771, 22);
-            this.myButton5.Name = "myButton5";
-            this.myButton5.Size = new System.Drawing.Size(201, 173);
-            this.myButton5.TabIndex = 18;
-            // 
-            // myButton6
-            // 
-            this.myButton6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.myButton6.ButtonName = "Scient Practical";
-            this.myButton6.Location = new System.Drawing.Point(535, 22);
-            this.myButton6.Name = "myButton6";
-            this.myButton6.Size = new System.Drawing.Size(201, 173);
-            this.myButton6.TabIndex = 17;
-            // 
-            // myButton7
-            // 
-            this.myButton7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.myButton7.ButtonName = "Hindi\'s Basic";
-            this.myButton7.Location = new System.Drawing.Point(290, 22);
-            this.myButton7.Name = "myButton7";
-            this.myButton7.Size = new System.Drawing.Size(201, 173);
-            this.myButton7.TabIndex = 16;
-            // 
-            // myButton8
-            // 
-            this.myButton8.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.myButton8.ButtonName = "English Grammer";
-            this.myButton8.Location = new System.Drawing.Point(28, 22);
-            this.myButton8.Name = "myButton8";
-            this.myButton8.Size = new System.Drawing.Size(201, 173);
-            this.myButton8.TabIndex = 15;
-            this.myButton8.Click += new System.EventHandler(this.myButton8_Click);
-            // 
-            // myButton4
-            // 
-            this.myButton4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.myButton4.ButtonName = "Maths Basic";
-            this.myButton4.Location = new System.Drawing.Point(771, 19);
-            this.myButton4.Name = "myButton4";
-            this.myButton4.Size = new System.Drawing.Size(201, 173);
-            this.myButton4.TabIndex = 14;
-            // 
-            // myButton3
-            // 
-            this.myButton3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.myButton3.ButtonName = "Hindi Grammer";
-            this.myButton3.Location = new System.Drawing.Point(535, 19);
-            this.myButton3.Name = "myButton3";
-            this.myButton3.Size = new System.Drawing.Size(201, 173);
-            this.myButton3.TabIndex = 13;
-            // 
-            // myButton2
-            // 
-            this.myButton2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.myButton2.ButtonName = "English Grammer";
-            this.myButton2.Location = new System.Drawing.Point(290, 19);
-            this.myButton2.Name = "myButton2";
-            this.myButton2.Size = new System.Drawing.Size(201, 173);
-            this.myButton2.TabIndex = 12;
-            // 
-            // myButton1
-            // 
-            this.myButton1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.myButton1.ButtonName = "Hindi\'s Basic";
-            this.myButton1.Location = new System.Drawing.Point(28, 19);
-            this.myButton1.Name = "myButton1";
-            this.myButton1.Size = new System.Drawing.Size(201, 173);
-            this.myButton1.TabIndex = 11;
-            this.myButton1.Click += new System.EventHandler(this.myButton1_Click);
             // 
             // frmDashboard
             // 

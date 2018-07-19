@@ -23,7 +23,7 @@ namespace LBFVideoLib.Client
 
         private void frmDashboard_Load(object sender, EventArgs e)
         {
-           // FillVideoList();
+            // FillVideoList();
             //FillRandomVideoList();
 
             lblSessionYears.Text = ClientHelper.GetSessionString(ClientInfoObject.SessionString);
@@ -34,7 +34,7 @@ namespace LBFVideoLib.Client
             treeView1.CollapseAll();
         }
 
-        private Dictionary<string,string> FillRandomVideoList()
+        private Dictionary<string, string> FillRandomVideoList()
         {
             //List<int> randomNumberList = new List<int>();
             //Random random = new Random();
@@ -80,11 +80,14 @@ namespace LBFVideoLib.Client
             string[] rootDirectoryList = Directory.GetDirectories(ClientHelper.GetClientVideoFilePath(ClientInfoObject.SchoolId, ClientInfoObject.SchoolCity));
             for (int i = 0; i < rootDirectoryList.Length; i++)
             {
-                TreeNode rootNode = new TreeNode(ClientInfoObject.SchoolName);
+                //TreeNode rootNode = new TreeNode(ClientInfoObject.SchoolName);
+                //treeView1.Nodes.Add(rootNode);
+                TreeNode rootNode = new TreeNode(Path.GetFileName(rootDirectoryList[i]));
+                TreeTag treeTag = new TreeTag();
+                treeTag.CurrentDirectoryPath = rootDirectoryList[i];
+                rootNode.Tag = treeTag;
                 treeView1.Nodes.Add(rootNode);
-                TreeNode firstClassNode = new TreeNode(Path.GetFileName(rootDirectoryList[i]));
-                rootNode.Nodes.Add(firstClassNode);
-                AddTreeNode(firstClassNode, rootDirectoryList[i]);
+                AddTreeNode(rootNode, rootDirectoryList[i]);
             }
         }
 
@@ -102,21 +105,25 @@ namespace LBFVideoLib.Client
                 parentNode.Tag = fileList;
             }
 
-            //else { 
-            for (int i = 0; i < directoryList.Length; i++)
+            else
             {
-                TreeNode rootNode = new TreeNode(Path.GetFileName(directoryList[i]));
-                parentNode.Nodes.Add(rootNode);
-                AddTreeNode(rootNode, directoryList[i]);
+                for (int i = 0; i < directoryList.Length; i++)
+                {
+                    TreeNode rootNode = new TreeNode(Path.GetFileName(directoryList[i]));
+                    TreeTag treeTag = new TreeTag();
+                    treeTag.CurrentDirectoryPath = directoryList[i];
+                    rootNode.Tag = treeTag;
+                    parentNode.Nodes.Add(rootNode);
+                    AddTreeNode(rootNode, directoryList[i]);
+                }
             }
-            //}
         }
 
         private void OpenVideoLibrary()
         {
             frmVideoLibrary frmVideoLibrary = new frmVideoLibrary();
             frmVideoLibrary.ParentFormControl = this;
-            // frmVideoLibrary.SelectedNode = e.Node;
+            frmVideoLibrary.DashboardFormControl = this;
             frmVideoLibrary.ClientInfoObject = this.ClientInfoObject;
             this.Hide();
             frmVideoLibrary.Show();
@@ -167,5 +174,7 @@ namespace LBFVideoLib.Client
         {
             MessageBox.Show(ClientHelper.GetContactMessageString(), "Contact", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+      
     }
 }
