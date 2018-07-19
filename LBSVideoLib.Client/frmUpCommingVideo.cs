@@ -39,7 +39,11 @@ namespace LBFVideoLib.Client
 
             FillTreeView();
             treeView1.ExpandAll();
-            this.lblSchoolDetail.Text = this.ClientInfoObject.GetClientDetail();
+
+            lblSessionYears.Text = ClientHelper.GetSessionString(ClientInfoObject.SessionString);
+            lblSchoolWelcome.Text = ClientHelper.GetWelcomeString(ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);
+            lblExpireDate.Text = ClientHelper.GetExpiryDateString(ClientInfoObject.ExpiryDate);
+
 
             if (this.NextVideoFileList.Length > 0)
             {
@@ -139,6 +143,13 @@ namespace LBFVideoLib.Client
         private void frmUpCommingVideo_FormClosed(object sender, FormClosedEventArgs e)
         {
             this.ParentFormControl.Show();
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+            frmDashboard frm = new frmDashboard();
+            frm.Show();
+            this.Hide();
         }
     }
 }

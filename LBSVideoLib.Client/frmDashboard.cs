@@ -23,8 +23,8 @@ namespace LBFVideoLib.Client
 
         private void frmDashboard_Load(object sender, EventArgs e)
         {
-            FillVideoList();
-            FillRandomVideoList();
+           // FillVideoList();
+            //FillRandomVideoList();
 
             lblSessionYears.Text = ClientHelper.GetSessionString(ClientInfoObject.SessionString);
             lblSchoolWelcome.Text = ClientHelper.GetWelcomeString(ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);

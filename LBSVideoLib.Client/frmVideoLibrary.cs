@@ -27,7 +27,10 @@ namespace LBFVideoLib.Client
             this.ClientInfoObject.LastAccessStartTime = DateTime.UtcNow;
             Cryptograph.EncryptObject(this.ClientInfoObject, _clientInfoFilePath);
 
-            lblSchoolDetail.Text = this.ClientInfoObject.GetClientDetail();
+            lblSessionYears.Text = ClientHelper.GetSessionString(ClientInfoObject.SessionString);
+            lblSchoolWelcome.Text = ClientHelper.GetWelcomeString(ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);
+            lblExpireDate.Text = ClientHelper.GetExpiryDateString(ClientInfoObject.ExpiryDate);
+
 
             FillTreeView();
             treeView1.ExpandAll();
@@ -103,6 +106,9 @@ namespace LBFVideoLib.Client
             this.Hide();
         }
 
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
 
+        }
     }
 }

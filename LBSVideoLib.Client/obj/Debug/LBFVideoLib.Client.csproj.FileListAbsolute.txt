@@ -44,3 +44,7 @@ D:\TestProject\C#\dotnet\LBSVideoLib.Client\obj\Debug\LBFVideoLib.Client.csproj.
 D:\TestProject\C#\dotnet\LBSVideoLib.Client\obj\Debug\LBFVideoLib.Client.csproj.CopyComplete
 D:\TestProject\C#\dotnet\LBSVideoLib.Client\obj\Debug\LBFVideoLib.Client.exe
 D:\TestProject\C#\dotnet\LBSVideoLib.Client\obj\Debug\LBFVideoLib.Client.pdb
+D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Client\bin\Debug\Thumbnails\Subject\Subjects_ENGLISH.png
+D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Client\bin\Debug\Thumbnails\Subject\Subjects_EVS.png
+D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Client\bin\Debug\Thumbnails\Subject\Subjects_HINDI.png
+D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Client\bin\Debug\Thumbnails\Subject\Subjects_MATHS.png

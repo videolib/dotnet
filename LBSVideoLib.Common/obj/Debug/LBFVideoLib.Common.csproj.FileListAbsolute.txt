@@ -13,7 +13,6 @@ D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Common\bin\Debug\Newtonsoft
 D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Common\bin\Debug\Newtonsoft.Json.xml
 D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Common\obj\Debug\LBFVideoLib.Common.dll
 D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Common\obj\Debug\LBFVideoLib.Common.pdb
-D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Common\obj\Debug\LBFVideoLib.Common.csprojResolveAssemblyReference.cache
 D:\TestProject\C#\dotnet\LBSVideoLib.Common\bin\Debug\LBFVideoLib.Common.dll
 D:\TestProject\C#\dotnet\LBSVideoLib.Common\bin\Debug\LBFVideoLib.Common.pdb
 D:\TestProject\C#\dotnet\LBSVideoLib.Common\bin\Debug\Newtonsoft.Json.dll
