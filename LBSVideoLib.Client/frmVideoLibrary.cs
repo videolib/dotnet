@@ -134,7 +134,7 @@ namespace LBFVideoLib.Client
                 GetVideoFileList(currentNodeTag.CurrentDirectoryPath, videFilePathList);
             }
 
-            flowLayoutVideoListPnl.Controls.Clear();
+          
             for (int j = 0; j < videFilePathList.Count; j++)
             {
                 //CustomeThumbControl ctlThumb = new CustomeThumbControl();
