@@ -122,22 +122,24 @@ namespace LBFVideoLib.Admin
             {
                 Book selectedBook = (chkListBooks.CheckedItems[i]) as Book;
 
-                string[] selectedBookVideos = Directory.GetFiles(selectedBook.BookId);
-                foreach (string selectedBookVideo in selectedBookVideos)
-                {
+                string selectedBookVideos = selectedBook.BookId;// Directory.GetFiles(selectedBook.BookId);
+                //foreach (string selectedBookVideo in selectedBookVideos)
+                //{
                     string clientTargetVideoPath = Path.Combine(clientVideoFolderPath, selectedBook.ClassName);
 
                     clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.SeriesName);
                     clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.SubjectName);
-                    clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.BookName);
                     if (Directory.Exists(clientTargetVideoPath) == false)
                     {
                         Directory.CreateDirectory(clientTargetVideoPath);
                     }
-                    clientTargetVideoPath = Path.Combine(clientTargetVideoPath, Path.GetFileName(selectedBookVideo));
 
-                    Cryptograph.EncryptFile(selectedBookVideo, clientTargetVideoPath);
-                }
+                clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.BookName);
+
+               // clientTargetVideoPath = Path.Combine(clientTargetVideoPath, Path.GetFileName(selectedBookVideo));
+
+                    Cryptograph.EncryptFile(selectedBookVideos, clientTargetVideoPath);
+                //}
             }
 
             // Save data on firebase
@@ -336,7 +338,7 @@ namespace LBFVideoLib.Admin
             if (checkedState == CheckState.Checked)
             {
                 // add series
-                string[] bookFolderList = Directory.GetDirectories(selectedSubject.SubjectId); // Directory.GetDirectories(Path.Combine(_sourceFolderPath, Path.Combine(selectedSeries.ClassName, selectedSeries.SeriesName)));
+                string[] bookFolderList = Directory.GetFiles(selectedSubject.SubjectId); // Directory.GetDirectories(Path.Combine(_sourceFolderPath, Path.Combine(selectedSeries.ClassName, selectedSeries.SeriesName)));
                 for (int i = 0; i < bookFolderList.Length; i++)
                 {
                     //chkListSeries.Items.Add(seriesList[i]);
