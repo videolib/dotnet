@@ -31,7 +31,7 @@ namespace LBFVideoLib.Client
             lblExpireDate.Text = ClientHelper.GetExpiryDateString(ClientInfoObject.ExpiryDate);
 
             FillTreeView();
-            treeView1.CollapseAll();
+            treeView1.ExpandAll();
 
             AddRecomVideos();
             AddMostWatchesVideos();
@@ -290,10 +290,10 @@ namespace LBFVideoLib.Client
             upcomingVideoForm.ClientInfoObject = this.ClientInfoObject;
             upcomingVideoForm.EncryptedVideo = false;
             upcomingVideoForm.NextVideoFileList = new string[] {ctl.VideoUrl};
-            upcomingVideoForm.Show();
-            this.Hide();
-
-            
+            upcomingVideoForm.EncryptedVideo = false;
+            upcomingVideoForm.DashboardFormControl = this;
+            upcomingVideoForm.Show();            
+            this.Hide();            
         }
         
     }

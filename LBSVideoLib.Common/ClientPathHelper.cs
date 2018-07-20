@@ -9,23 +9,25 @@ namespace LBFVideoLib.Common
         #region Path Helper Methods
         public static string GetClientRootPath()
         {
-            //return Directory.GetCurrentDirectory();
-            return @"D:\Development\School\Setup\Admin\ClientPackages\89";
+            return Directory.GetCurrentDirectory();
+            //return @"D:\Development\School\Setup\Admin\ClientPackages\89";
         }
 
         public static string GetClientInfoFilePath()
         {
-            return Path.Combine(GetClientRootPath(), Path.Combine("Package", ConfigHelper.ClientInfoFileName));
+            return Path.Combine(GetClientRootPath(), ConfigHelper.ClientInfoFileName);
         }
 
         public static string GetClientVideoFilePath(string schoolCode, string schoolCity)
         {
-            return Path.Combine(GetClientRootPath(), string.Format("{0}_{1}_{2}", schoolCode, schoolCity, "LBFVideos"));
+         string parentPath=   Directory.GetParent(GetClientRootPath()).FullName;
+
+            return Path.Combine(parentPath, string.Format("{0}_{1}_{2}", schoolCode, schoolCity, "LBFVideos"));
         }
 
         public static string GetClientThumbanailPath()
         {
-            return Path.Combine(GetClientRootPath(), "Thumbnails");
+                     return Path.Combine(GetClientRootPath(), "Thumbnails");
         }
         #endregion
 

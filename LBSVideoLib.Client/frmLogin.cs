@@ -45,6 +45,7 @@ namespace LBFVideoLib.Client
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
+            ClientHelper.GetClientThumbanailPath();
             _clientInfoFilePath = ClientHelper.GetClientInfoFilePath();
             if (!File.Exists(_clientInfoFilePath))
             {

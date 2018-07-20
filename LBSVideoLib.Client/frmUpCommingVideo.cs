@@ -1,4 +1,5 @@
 ﻿using LBFVideoLib.Common;
+using LBFVideoLib.Common.Entity;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,6 +25,8 @@ namespace LBFVideoLib.Client
 
         public bool EncryptedVideo { get; set; }
 
+        public Form DashboardFormControl { get; set; }
+
         public frmUpCommingVideo()
         {
             InitializeComponent();
@@ -47,8 +50,23 @@ namespace LBFVideoLib.Client
 
             if (this.NextVideoFileList.Length > 0)
             {
+
+                if (EncryptedVideo)
+                {
+                    //string tempDirectory = Path.Combine(Path.GetDirectoryName(this.NextVideoFileList[0]), "Temp");
+                    string tempDirectory = Path.Combine(Path.GetTempPath(), "Temp");
+                    System.IO.Directory.CreateDirectory(tempDirectory);
+                    string tempFilePath = Path.Combine(tempDirectory, Path.GetFileName(this.NextVideoFileList[0]));
+                    Cryptograph.DecryptFile(this.NextVideoFileList[0], tempFilePath);
+                    this.axWindowsMediaPlayer1.URL = tempFilePath;
+                }
+                else
+                {
+                    this.axWindowsMediaPlayer1.URL = this.NextVideoFileList[0];
+                }
+
                 this.lblFileName.Text = Path.GetFileNameWithoutExtension(this.NextVideoFileList[0]);
-                this.axWindowsMediaPlayer1.URL = this.NextVideoFileList[0];
+                //   this.axWindowsMediaPlayer1.URL = this.NextVideoFileList[0];
             }
 
             AddMostWatchesVideos();
@@ -113,9 +131,10 @@ namespace LBFVideoLib.Client
             CustomeThumbControl ctl = sender as CustomeThumbControl;
             this.lblFileName.Text = Path.GetFileNameWithoutExtension(ctl.VideoUrl);
             this.axWindowsMediaPlayer1.URL = ctl.VideoUrl;
+            this.EncryptedVideo = false;
         }
 
-        
+
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             if (e.Node.Tag != null)
@@ -140,6 +159,9 @@ namespace LBFVideoLib.Client
             for (int i = 0; i < rootDirectoryList.Length; i++)
             {
                 TreeNode rootNode = new TreeNode(Path.GetFileName(rootDirectoryList[i]));
+                TreeTag treeTag = new TreeTag();
+                treeTag.CurrentDirectoryPath = rootDirectoryList[i];
+                rootNode.Tag = treeTag;
                 treeView1.Nodes.Add(rootNode);
                 AddTreeNode(rootNode, rootDirectoryList[i]);
             }
@@ -159,14 +181,18 @@ namespace LBFVideoLib.Client
                 parentNode.Tag = fileList;
             }
 
-            //else { 
-            for (int i = 0; i < directoryList.Length; i++)
+            else
             {
-                TreeNode rootNode = new TreeNode(Path.GetFileName(directoryList[i]));
-                parentNode.Nodes.Add(rootNode);
-                AddTreeNode(rootNode, directoryList[i]);
+                for (int i = 0; i < directoryList.Length; i++)
+                {
+                    TreeNode rootNode = new TreeNode(Path.GetFileName(directoryList[i]));
+                    TreeTag treeTag = new TreeTag();
+                    treeTag.CurrentDirectoryPath = directoryList[i];
+                    rootNode.Tag = treeTag;
+                    parentNode.Nodes.Add(rootNode);
+                    AddTreeNode(rootNode, directoryList[i]);
+                }
             }
-            //}
         }
 
 
@@ -187,7 +213,7 @@ namespace LBFVideoLib.Client
 
         private void btnFullScreen_Click(object sender, EventArgs e)
         {
-      
+
         }
 
         private void btnRewind_Click(object sender, EventArgs e)
@@ -201,7 +227,18 @@ namespace LBFVideoLib.Client
 
         private void frmUpCommingVideo_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.ParentFormControl.Show();
+            if (this.ParentFormControl.Name == "frmVideoLibrary")
+            {
+                this.ParentFormControl.Show();
+            }
+            else
+            {
+                frmVideoLibrary frmVideoLibrary = new frmVideoLibrary();
+                frmVideoLibrary.ParentFormControl = this.DashboardFormControl;
+                frmVideoLibrary.DashboardFormControl = this.DashboardFormControl;
+                frmVideoLibrary.ClientInfoObject = this.ClientInfoObject;
+                frmVideoLibrary.Show();
+            }
         }
 
         private void lblContact_Click(object sender, EventArgs e)
@@ -224,6 +261,18 @@ namespace LBFVideoLib.Client
         private void btnFastForward_Click_1(object sender, EventArgs e)
         {
             this.axWindowsMediaPlayer1.Ctlcontrols.currentPosition += 10;
+
+        }
+
+        private void pnlLogo_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            this.DashboardFormControl.Show();
+        }
+
+        private void treeView1_NodeMouseClick_1(object sender, TreeNodeMouseClickEventArgs e)
+        {
+            this.Close();
 
         }
     }

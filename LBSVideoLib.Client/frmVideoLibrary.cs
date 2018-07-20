@@ -93,7 +93,8 @@ namespace LBFVideoLib.Client
 
         private void frmVideoLibrary_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Application.Exit();
+            // Application.Exit();
+            this.DashboardFormControl.Show();            
         }
 
         private void myButton1_Click(object sender, EventArgs e)
@@ -108,6 +109,7 @@ namespace LBFVideoLib.Client
             upcomingVideoForm.ClientInfoObject = this.ClientInfoObject;
             upcomingVideoForm.EncryptedVideo = false;
             upcomingVideoForm.NextVideoFileList = new string[] { Path.Combine(ClientHelper.GetClientVideoFilePath(ClientInfoObject.SchoolId, ClientInfoObject.SchoolCity), @"First\First-S1\First-S1-English\First-S1-English-Basic\VID-20150929-WA0005.mp4") };
+            upcomingVideoForm.DashboardFormControl = this.DashboardFormControl;
             upcomingVideoForm.Show();
             this.Hide();
         }
@@ -155,8 +157,19 @@ namespace LBFVideoLib.Client
 
         private void CtlThumb_Click(object sender, EventArgs e)
         {
-           
+            CustomeThumbControl ctl = sender as CustomeThumbControl;
+
+            frmUpCommingVideo upcomingVideoForm = new frmUpCommingVideo();
+            upcomingVideoForm.ParentFormControl = this;
+            upcomingVideoForm.ClientInfoObject = this.ClientInfoObject;
+            upcomingVideoForm.EncryptedVideo = false;
+            upcomingVideoForm.NextVideoFileList = new string[] { ctl.VideoUrl };
+            upcomingVideoForm.EncryptedVideo = true;
+            upcomingVideoForm.DashboardFormControl = this.DashboardFormControl;
+            upcomingVideoForm.Show();
+            this.Hide();
         }
+        
 
         private void GetVideoFileList(string currentPath, List<ThumbnailInfo> videFilePathList)
         {
@@ -190,6 +203,11 @@ namespace LBFVideoLib.Client
         private void myButton1_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void pnlLogo_Click(object sender, EventArgs e)
+        {
+            this.Close();            
         }
     }
 }
