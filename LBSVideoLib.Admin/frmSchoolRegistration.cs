@@ -34,6 +34,7 @@ namespace LBFVideoLib.Admin
             _sourceVideoFolderPath = ConfigHelper.SourceVideoFolderPath;
             _clientTargetPath = _clientDistributionRootPath = ConfigHelper.ClientDistributionTargetRootPath;
             _clientInfoFileName = ConfigHelper.ClientInfoFileName;
+            cmbSchoolSession.SelectedValue = 1;
             //    this.lblSessionYears.Text = string.Format(ConfigHelper.SessionYears, ConfigHelper.SessionYears);
 
 
@@ -142,27 +143,27 @@ namespace LBFVideoLib.Admin
                 //}
             }
 
-            if (Directory.Exists(Path.Combine(clientSchoolCodeFolderPath, "Thumbnails")) == false)
+            if (Directory.Exists(Path.Combine(clientPacakgeFolderPath, "Thumbnails")) == false)
             {
-                Directory.CreateDirectory(Path.Combine(clientSchoolCodeFolderPath, "Thumbnails"));
+                Directory.CreateDirectory(Path.Combine(clientPacakgeFolderPath, "Thumbnails"));
             }
 
             string[] subjectThumbnailFiles = Directory.GetFiles(LBFVideoLib.Common.ClientHelper.GetSubjectThumbnailSourcePath());
             for (int i = 0; i < subjectThumbnailFiles.Length; i++)
             {
-                System.IO.File.Copy(subjectThumbnailFiles[i], Path.Combine(Path.Combine(clientSchoolCodeFolderPath, "Thumbnails"), Path.GetFileName(subjectThumbnailFiles[i])));
+                System.IO.File.Copy(subjectThumbnailFiles[i], Path.Combine(Path.Combine(clientPacakgeFolderPath, "Thumbnails"), Path.GetFileName(subjectThumbnailFiles[i])));
             }
 
 
             // Demo Videos
-            if (Directory.Exists(Path.Combine(clientSchoolCodeFolderPath, "DemoVideos")) == false)
+            if (Directory.Exists(Path.Combine(clientPacakgeFolderPath, "DemoVideos")) == false)
             {
-                Directory.CreateDirectory(Path.Combine(clientSchoolCodeFolderPath, "DemoVideos"));
+                Directory.CreateDirectory(Path.Combine(clientPacakgeFolderPath, "DemoVideos"));
             }
             string[] demoVideoFiles = Directory.GetFiles(LBFVideoLib.Common.ClientHelper.GetDemoVideoSourcePath());
             for (int i = 0; i < demoVideoFiles.Length; i++)
             {
-                System.IO.File.Copy(demoVideoFiles[i], Path.Combine(Path.Combine(clientSchoolCodeFolderPath, "DemoVideos"), Path.GetFileName(demoVideoFiles[i])));
+                System.IO.File.Copy(demoVideoFiles[i], Path.Combine(Path.Combine(clientPacakgeFolderPath, "DemoVideos"), Path.GetFileName(demoVideoFiles[i])));
             }
 
 
@@ -425,7 +426,7 @@ namespace LBFVideoLib.Admin
             txtSchoolCode.Text = "";
             txtSchoolName.Text = "";
             cmbSchoolSession.DataSource = LicenseHelper.GetSessionList();
-            cmbSchoolSession.SelectedIndex = -1;
+            cmbSchoolSession.SelectedIndex = 0;
             // Read all folders to fill classes
             string[] classNameList = Directory.GetDirectories(_sourceVideoFolderPath);
 

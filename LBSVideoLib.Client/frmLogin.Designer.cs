@@ -156,7 +156,6 @@
             this.txtPwd.PasswordChar = '*';
             this.txtPwd.Size = new System.Drawing.Size(283, 24);
             this.txtPwd.TabIndex = 12;
-            this.txtPwd.Text = "123";
             // 
             // label4
             // 
@@ -233,7 +232,6 @@
             this.txtEmailId.Name = "txtEmailId";
             this.txtEmailId.Size = new System.Drawing.Size(283, 24);
             this.txtEmailId.TabIndex = 1;
-            this.txtEmailId.Text = "jainnitin@gmail.com";
             // 
             // lblEmail
             // 
@@ -302,9 +300,9 @@
             this.label11.ForeColor = System.Drawing.Color.White;
             this.label11.Location = new System.Drawing.Point(594, 11);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(341, 16);
+            this.label11.Size = new System.Drawing.Size(337, 16);
             this.label11.TabIndex = 0;
-            this.label11.Text = "LBF Publiications Pvt. Ltd. |  All Rights Reserved";
+            this.label11.Text = "LBF Publications Pvt. Ltd. |  All Rights Reserved";
             // 
             // frmLogin
             // 

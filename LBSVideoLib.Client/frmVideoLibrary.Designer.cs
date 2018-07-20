@@ -82,7 +82,7 @@
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.treeView1.Location = new System.Drawing.Point(0, 151);
+            this.treeView1.Location = new System.Drawing.Point(0, 167);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "Node12";
             treeNode1.Text = "Urdu";
@@ -110,7 +110,7 @@
             treeNode12.Text = "Classes";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode12});
-            this.treeView1.Size = new System.Drawing.Size(271, 500);
+            this.treeView1.Size = new System.Drawing.Size(271, 484);
             this.treeView1.TabIndex = 4;
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
@@ -139,11 +139,11 @@
             // 
             this.pnlLogo.BackColor = System.Drawing.Color.White;
             this.pnlLogo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlLogo.BackgroundImage")));
-            this.pnlLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlLogo.Location = new System.Drawing.Point(0, 0);
             this.pnlLogo.Name = "pnlLogo";
-            this.pnlLogo.Size = new System.Drawing.Size(271, 151);
+            this.pnlLogo.Size = new System.Drawing.Size(271, 167);
             this.pnlLogo.TabIndex = 1;
             this.pnlLogo.Click += new System.EventHandler(this.pnlLogo_Click);
             // 
@@ -192,9 +192,9 @@
             this.label11.ForeColor = System.Drawing.Color.White;
             this.label11.Location = new System.Drawing.Point(594, 11);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(341, 16);
+            this.label11.Size = new System.Drawing.Size(337, 16);
             this.label11.TabIndex = 0;
-            this.label11.Text = "LBF Publiications Pvt. Ltd. |  All Rights Reserved";
+            this.label11.Text = "LBF Publications Pvt. Ltd. |  All Rights Reserved";
             // 
             // panel4
             // 

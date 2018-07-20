@@ -132,22 +132,21 @@
             // 
             // btnFullScreen
             // 
-            this.btnFullScreen.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFullScreen.BackgroundImage")));
             this.btnFullScreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnFullScreen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnFullScreen.Image = ((System.Drawing.Image)(resources.GetObject("btnFullScreen.Image")));
             this.btnFullScreen.Location = new System.Drawing.Point(98, 0);
             this.btnFullScreen.Name = "btnFullScreen";
             this.btnFullScreen.Size = new System.Drawing.Size(866, 34);
             this.btnFullScreen.TabIndex = 5;
-            this.btnFullScreen.Text = "Full Screen";
             this.btnFullScreen.UseVisualStyleBackColor = true;
             this.btnFullScreen.Click += new System.EventHandler(this.btnFullScreen_Click_1);
             // 
             // btnFastForward
             // 
-            this.btnFastForward.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnFastForward.BackgroundImage")));
             this.btnFastForward.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnFastForward.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnFastForward.Image = ((System.Drawing.Image)(resources.GetObject("btnFastForward.Image")));
             this.btnFastForward.Location = new System.Drawing.Point(964, 0);
             this.btnFastForward.Name = "btnFastForward";
             this.btnFastForward.Size = new System.Drawing.Size(112, 34);
@@ -158,7 +157,7 @@
             // btnRewind
             // 
             this.btnRewind.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRewind.BackgroundImage")));
-            this.btnRewind.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnRewind.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnRewind.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnRewind.Image = ((System.Drawing.Image)(resources.GetObject("btnRewind.Image")));
             this.btnRewind.Location = new System.Drawing.Point(0, 0);
@@ -185,11 +184,11 @@
             this.lblFileName.BackColor = System.Drawing.Color.White;
             this.lblFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFileName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.lblFileName.Location = new System.Drawing.Point(37, 4);
+            this.lblFileName.Location = new System.Drawing.Point(36, 8);
             this.lblFileName.Name = "lblFileName";
-            this.lblFileName.Size = new System.Drawing.Size(61, 24);
+            this.lblFileName.Size = new System.Drawing.Size(85, 24);
             this.lblFileName.TabIndex = 10;
-            this.lblFileName.Text = "ABCD";
+            this.lblFileName.Text = "Alphabet";
             // 
             // label6
             // 
@@ -197,7 +196,7 @@
             this.label6.BackColor = System.Drawing.Color.White;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.label6.Location = new System.Drawing.Point(874, 5);
+            this.label6.Location = new System.Drawing.Point(874, 10);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(176, 17);
             this.label6.TabIndex = 9;
@@ -216,13 +215,13 @@
             // 
             this.label5.AutoSize = true;
             this.label5.BackColor = System.Drawing.Color.White;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.label5.Location = new System.Drawing.Point(36, 10);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(163, 20);
+            this.label5.Size = new System.Drawing.Size(131, 16);
             this.label5.TabIndex = 8;
-            this.label5.Text = "Upcomming Videos";
+            this.label5.Text = "Upcoming Videos";
             // 
             // pnlVideo
             // 
@@ -303,7 +302,7 @@
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.treeView1.Location = new System.Drawing.Point(0, 151);
+            this.treeView1.Location = new System.Drawing.Point(0, 167);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "Node12";
             treeNode1.Text = "Urdu";
@@ -331,7 +330,7 @@
             treeNode12.Text = "Classes";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode12});
-            this.treeView1.Size = new System.Drawing.Size(271, 500);
+            this.treeView1.Size = new System.Drawing.Size(271, 484);
             this.treeView1.TabIndex = 4;
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick_1);
             // 
@@ -339,11 +338,11 @@
             // 
             this.pnlLogo.BackColor = System.Drawing.Color.White;
             this.pnlLogo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlLogo.BackgroundImage")));
-            this.pnlLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pnlLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlLogo.Location = new System.Drawing.Point(0, 0);
             this.pnlLogo.Name = "pnlLogo";
-            this.pnlLogo.Size = new System.Drawing.Size(271, 151);
+            this.pnlLogo.Size = new System.Drawing.Size(271, 167);
             this.pnlLogo.TabIndex = 1;
             this.pnlLogo.Click += new System.EventHandler(this.pnlLogo_Click);
             // 
@@ -382,9 +381,9 @@
             this.label11.ForeColor = System.Drawing.Color.White;
             this.label11.Location = new System.Drawing.Point(594, 11);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(341, 16);
+            this.label11.Size = new System.Drawing.Size(337, 16);
             this.label11.TabIndex = 0;
-            this.label11.Text = "LBF Publiications Pvt. Ltd. |  All Rights Reserved";
+            this.label11.Text = "LBF Publications Pvt. Ltd. |  All Rights Reserved";
             // 
             // panel2
             // 

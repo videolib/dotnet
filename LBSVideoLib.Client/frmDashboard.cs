@@ -295,6 +295,10 @@ namespace LBFVideoLib.Client
             upcomingVideoForm.Show();            
             this.Hide();            
         }
-        
+
+        private void pnlRecomVideo_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
     }
 }

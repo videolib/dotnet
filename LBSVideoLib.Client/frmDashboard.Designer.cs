@@ -133,6 +133,7 @@
             this.pnlRecomVideo.Name = "pnlRecomVideo";
             this.pnlRecomVideo.Size = new System.Drawing.Size(1086, 244);
             this.pnlRecomVideo.TabIndex = 34;
+            this.pnlRecomVideo.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlRecomVideo_Paint);
             // 
             // panel6
             // 
@@ -195,7 +196,7 @@
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.treeView1.Location = new System.Drawing.Point(0, 151);
+            this.treeView1.Location = new System.Drawing.Point(0, 167);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "Node12";
             treeNode1.Text = "Urdu";
@@ -223,7 +224,7 @@
             treeNode12.Text = "Classes";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode12});
-            this.treeView1.Size = new System.Drawing.Size(271, 492);
+            this.treeView1.Size = new System.Drawing.Size(271, 476);
             this.treeView1.TabIndex = 4;
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
@@ -231,11 +232,11 @@
             // 
             this.panel5.BackColor = System.Drawing.Color.White;
             this.panel5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel5.BackgroundImage")));
-            this.panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(271, 151);
+            this.panel5.Size = new System.Drawing.Size(271, 167);
             this.panel5.TabIndex = 1;
             // 
             // panel4
@@ -273,9 +274,9 @@
             this.label11.ForeColor = System.Drawing.Color.White;
             this.label11.Location = new System.Drawing.Point(594, 11);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(341, 16);
+            this.label11.Size = new System.Drawing.Size(337, 16);
             this.label11.TabIndex = 0;
-            this.label11.Text = "LBF Publiications Pvt. Ltd. |  All Rights Reserved";
+            this.label11.Text = "LBF Publications Pvt. Ltd. |  All Rights Reserved";
             // 
             // panel2
             // 
