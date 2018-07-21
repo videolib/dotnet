@@ -35,7 +35,7 @@ namespace LBFVideoLib.Common
 
         public static string GetRegisteredSchoolInfoFilePath()
         {
-            return Path.Combine(System.IO.Directory.GetCurrentDirectory(), "RegisteredSchoolData");
+            return Path.Combine(Directory.GetCurrentDirectory(), "ClientRegistrationData");
         }
 
         #endregion
