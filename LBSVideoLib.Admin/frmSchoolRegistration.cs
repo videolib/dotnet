@@ -12,7 +12,8 @@ namespace LBFVideoLib.Admin
 {
     public partial class frmSchoolRegistration : Form
     {
-        private string _clientTargetPath = "";
+        #region Private members
+        //private string _clientTargetPath = "";
         private string _sourceVideoFolderPath = "";
         private string _clientDistributionRootPath = "";
         private string _clientInfoFileName = "";
@@ -22,34 +23,31 @@ namespace LBFVideoLib.Admin
         List<Subject> _subjectList = new List<Subject>();
         List<Book> bookList = new List<Book>();
         List<ClassFB> regInfoFB = new List<ClassFB>();
+        #endregion
 
         public frmSchoolRegistration()
         {
             InitializeComponent();
         }
 
+        #region Events
+
         private void frmSchoolRegistration_Load(object sender, EventArgs e)
         {
             // read configuration information
             _sourceVideoFolderPath = ConfigHelper.SourceVideoFolderPath;
-            _clientTargetPath = _clientDistributionRootPath = ConfigHelper.ClientDistributionTargetRootPath;
+            _clientDistributionRootPath = ConfigHelper.ClientDistributionTargetRootPath;
             _clientInfoFileName = ConfigHelper.ClientInfoFileName;
-            cmbSchoolSession.SelectedValue = 1;
-            //    this.lblSessionYears.Text = string.Format(ConfigHelper.SessionYears, ConfigHelper.SessionYears);
-
 
             InitializeRegistrationForm();
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-
             if (ValidateRegistrationForm() == false)
             {
                 return;
             }
-
-
 
             #region Create Folder Structure
 
@@ -93,7 +91,7 @@ namespace LBFVideoLib.Admin
             }
             #endregion
 
-            // Copy client distribution
+            #region Copy client distribution
             if (Directory.Exists(ConfigHelper.ClientDistributionPath))
             {
                 string[] clientDistributionFiles = Directory.GetFiles(ConfigHelper.ClientDistributionPath);
@@ -116,31 +114,27 @@ namespace LBFVideoLib.Admin
                 MessageBox.Show("Client distribution doesn't find on specified path.", "Error", MessageBoxButtons.OK);
             }
 
-
-            //  File.Move(_clientInfoFilePath, Path.Combine(_clientTargetPath, Path.GetFileName(_clientInfoFilePath)));
-
             for (int i = 0; i < chkListBooks.CheckedItems.Count; i++)
             {
                 Book selectedBook = (chkListBooks.CheckedItems[i]) as Book;
 
-                string selectedBookVideos = selectedBook.BookId;// Directory.GetFiles(selectedBook.BookId);
-                                                                //foreach (string selectedBookVideo in selectedBookVideos)
-                                                                //{
-                string clientTargetVideoPath = Path.Combine(clientVideoFolderPath, selectedBook.ClassName);
-
-                clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.SeriesName);
-                clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.SubjectName);
-                if (Directory.Exists(clientTargetVideoPath) == false)
+                //   string[] selectedBookVideos =  Directory.GetFiles(selectedBook.BookId);
+                foreach (string selectedBookVideo in selectedBook.VideoList)
                 {
-                    Directory.CreateDirectory(clientTargetVideoPath);
+                    string clientTargetVideoPath = Path.Combine(clientVideoFolderPath, selectedBook.ClassName);
+                    clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.SeriesName);
+                    clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.SubjectName);
+                    clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.BookName);
+
+                    if (Directory.Exists(clientTargetVideoPath) == false)
+                    {
+                        Directory.CreateDirectory(clientTargetVideoPath);
+                    }
+
+                    clientTargetVideoPath = Path.Combine(clientTargetVideoPath, Path.GetFileName(selectedBookVideo));
+
+                    Cryptograph.EncryptFile(selectedBookVideo, clientTargetVideoPath);
                 }
-
-                clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.BookName);
-
-                // clientTargetVideoPath = Path.Combine(clientTargetVideoPath, Path.GetFileName(selectedBookVideo));
-
-                Cryptograph.EncryptFile(selectedBookVideos, clientTargetVideoPath);
-                //}
             }
 
             if (Directory.Exists(Path.Combine(clientPacakgeFolderPath, "Thumbnails")) == false)
@@ -151,29 +145,47 @@ namespace LBFVideoLib.Admin
             string[] subjectThumbnailFiles = Directory.GetFiles(LBFVideoLib.Common.ClientHelper.GetSubjectThumbnailSourcePath());
             for (int i = 0; i < subjectThumbnailFiles.Length; i++)
             {
-                System.IO.File.Copy(subjectThumbnailFiles[i], Path.Combine(Path.Combine(clientPacakgeFolderPath, "Thumbnails"), Path.GetFileName(subjectThumbnailFiles[i])));
+                System.IO.File.Copy(subjectThumbnailFiles[i], Path.Combine(Path.Combine(clientPacakgeFolderPath, "Thumbnails"), Path.GetFileName(subjectThumbnailFiles[i])), true);
             }
 
 
-            // Demo Videos
-            if (Directory.Exists(Path.Combine(clientPacakgeFolderPath, "DemoVideos")) == false)
-            {
-                Directory.CreateDirectory(Path.Combine(clientPacakgeFolderPath, "DemoVideos"));
-            }
-            string[] demoVideoFiles = Directory.GetFiles(LBFVideoLib.Common.ClientHelper.GetDemoVideoSourcePath());
-            for (int i = 0; i < demoVideoFiles.Length; i++)
-            {
-                System.IO.File.Copy(demoVideoFiles[i], Path.Combine(Path.Combine(clientPacakgeFolderPath, "DemoVideos"), Path.GetFileName(demoVideoFiles[i])));
-            }
+            //// Demo Videos
+            //if (Directory.Exists(Path.Combine(clientPacakgeFolderPath, "DemoVideos")) == false)
+            //{
+            //    Directory.CreateDirectory(Path.Combine(clientPacakgeFolderPath, "DemoVideos"));
+            //}
+            //string[] demoVideoFiles = Directory.GetFiles(LBFVideoLib.Common.ClientHelper.GetDemoVideoSourcePath());
+            //for (int i = 0; i < demoVideoFiles.Length; i++)
+            //{
+            //    System.IO.File.Copy(demoVideoFiles[i], Path.Combine(Path.Combine(clientPacakgeFolderPath, "DemoVideos"), Path.GetFileName(demoVideoFiles[i])));
+            //}
+
+            #endregion
 
 
             // Save data on firebase
             List<ClassFB> selectedClassList = SaveRegDataOnFireBase();
 
+            string registeredSchoolInfo = Newtonsoft.Json.JsonConvert.SerializeObject(selectedClassList);
+
+            if (Directory.Exists(ClientHelper.GetRegisteredSchoolInfoFilePath()) == false)
+            {
+                Directory.CreateDirectory(ClientHelper.GetRegisteredSchoolInfoFilePath());
+            }
+            if (System.IO.File.Exists(Path.Combine(ClientHelper.GetRegisteredSchoolInfoFilePath(), this.txtSchoolCode.Text.Trim() + ".txt")))
+            {
+                System.IO.File.Delete(Path.Combine(ClientHelper.GetRegisteredSchoolInfoFilePath(), this.txtSchoolCode.Text.Trim() + ".txt"));
+            }
+            StreamWriter sw = System.IO.File.CreateText(Path.Combine(ClientHelper.GetRegisteredSchoolInfoFilePath(), this.txtSchoolCode.Text.Trim() + ".txt"));
+            sw.Write(registeredSchoolInfo);
+            sw.Flush();
+            sw.Close();
+
             // Set client email, password and license date in client info class.
             ClientInfo clientInfo = new ClientInfo();
             clientInfo.EmailId = txtEmailId.Text.ToLower().Trim();
             clientInfo.Password = txtPwd.Text.Trim();
+            clientInfo.RegistrationDate = DateTime.Now;
             clientInfo.ExpiryDate = LicenseHelper.GetExpiryDateBySessionString(cmbSchoolSession.SelectedItem.ToString());
             clientInfo.SessionString = cmbSchoolSession.SelectedItem.ToString();
             clientInfo.SchoolId = this.txtSchoolCode.Text.Trim();
@@ -185,7 +197,7 @@ namespace LBFVideoLib.Admin
 
 
             // Copy client project bin folder to target location.
-            MessageBox.Show("Registraion completed sucessfully.", "Info", MessageBoxButtons.OK,MessageBoxIcon.Information);
+            MessageBox.Show("Registraion completed sucessfully.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             InitializeRegistrationForm();
 
@@ -224,6 +236,8 @@ namespace LBFVideoLib.Admin
             }
         }
 
+        #endregion 
+
         #endregion
 
         #region Update Check List Item Binding Methods
@@ -235,9 +249,8 @@ namespace LBFVideoLib.Admin
             if (checkedState == CheckState.Checked)
             {
                 // add series
-                //SchoolClass selectedClass = (chkListClass.Items[e.Index] as SchoolClass);
                 selectedClass.Selected = true;
-                string[] seriesFolderList = Directory.GetDirectories(selectedClass.ClassId); //Directory.GetDirectories(Path.Combine(_sourceFolderPath, selectedClassName));
+                string[] seriesFolderList = Directory.GetDirectories(selectedClass.ClassId);
                 for (int i = 0; i < seriesFolderList.Length; i++)
                 {
                     //chkListSeries.Items.Add(seriesList[i]);
@@ -334,8 +347,6 @@ namespace LBFVideoLib.Admin
 
             }
 
-
-
             ((ListBox)this.chkListSubject).DataSource = null;
             ((ListBox)this.chkListSubject).DataSource = _subjectList;
             ((ListBox)this.chkListSubject).DisplayMember = "SubjectName";
@@ -363,20 +374,29 @@ namespace LBFVideoLib.Admin
             if (checkedState == CheckState.Checked)
             {
                 // add series
-                string[] bookFolderList = Directory.GetFiles(selectedSubject.SubjectId); // Directory.GetDirectories(Path.Combine(_sourceFolderPath, Path.Combine(selectedSeries.ClassName, selectedSeries.SeriesName)));
+                string[] bookFolderList = Directory.GetDirectories(selectedSubject.SubjectId);
+
                 for (int i = 0; i < bookFolderList.Length; i++)
                 {
-                    //chkListSeries.Items.Add(seriesList[i]);
                     Book book = new Book();
                     book.BookId = bookFolderList[i];
                     book.BookName = Path.GetFileName(bookFolderList[i]);
                     book.SubjectName = selectedSubject.SubjectName;
                     book.ClassName = selectedSubject.ClassName;
                     book.SeriesName = selectedSubject.SeriesName;
+                    string[] videoList = Directory.GetFiles(bookFolderList[i]);
+                    if (videoList.Length > 0)
+                    {
+                        book.VideoList = videoList;
+                    }
+                    if (bookFolderList.Length == 1)
+                    {
+                        book.Selected = true;
+                    }
+
                     bookList.Add(book);
                 }
                 selectedSubject.Selected = true;
-
             }
             else if (checkedState == CheckState.Unchecked)
             {
@@ -418,6 +438,7 @@ namespace LBFVideoLib.Admin
 
         #endregion
 
+        #region Private Methods
         private void InitializeRegistrationForm()
         {
             txtEmailId.Text = "";
@@ -427,6 +448,7 @@ namespace LBFVideoLib.Admin
             txtSchoolName.Text = "";
             cmbSchoolSession.DataSource = LicenseHelper.GetSessionList();
             cmbSchoolSession.SelectedIndex = 0;
+
             // Read all folders to fill classes
             string[] classNameList = Directory.GetDirectories(_sourceVideoFolderPath);
 
@@ -438,16 +460,15 @@ namespace LBFVideoLib.Admin
                 _classList.Add(schoolClass);
             }
 
-     ((ListBox)this.chkListClass).DataSource = null;
-
-            ((ListBox)this.chkListClass).DataSource = _classList;
-            ((ListBox)this.chkListClass).DisplayMember = "ClassName";
-            ((ListBox)this.chkListClass).ValueMember = "Selected";
+            chkListClass.DataSource = null;
             chkListSeries.DataSource = null;
             chkListSubject.DataSource = null;
             chkListBooks.DataSource = null;
 
-
+            // Fill list box with class list.
+            ((ListBox)this.chkListClass).DataSource = _classList;
+            ((ListBox)this.chkListClass).DisplayMember = "ClassName";
+            ((ListBox)this.chkListClass).ValueMember = "Selected";
         }
 
         private bool ValidateRegistrationForm()
@@ -548,6 +569,7 @@ namespace LBFVideoLib.Admin
             FirebaseHelper.PostData(jsonString1, txtSchoolCode.Text);
             return info.Classes;
         }
+        #endregion
     }
 }
 

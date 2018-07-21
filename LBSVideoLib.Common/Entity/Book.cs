@@ -20,6 +20,8 @@ namespace LBFVideoLib.Common
         public string SeriesName { get; set; }
         public string ClassName { get; set; }
 
+        public string[] VideoList { get; set; }
+
         public bool Selected { get; set; }
 
     }

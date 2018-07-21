@@ -26,8 +26,9 @@ namespace LBFVideoLib.Common
 
         public string SessionString { get; set; }
 
-        public List<ClassFB> SelectedVideoDetails { get; set; }
+        public DateTime RegistrationDate { get; set; }
 
+        public List<ClassFB> SelectedVideoDetails { get; set; }
 
         public string GetClientDetail()
         {

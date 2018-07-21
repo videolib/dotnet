@@ -2,6 +2,7 @@
 using LBFVideoLib.Common.Entity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
 
@@ -180,12 +181,12 @@ namespace LBFVideoLib.Client
         private void AddRecomVideos()
         {
             string thumbnailPath = Path.Combine(ClientHelper.GetClientRootPath(), "Thumbnails");
-            string demoVideoPath =  Path.Combine(ClientHelper.GetClientRootPath(), "DemoVideos");
+            string demoVideoPath = Path.Combine(ClientHelper.GetClientRootPath(), "DemoVideos");
 
 
             CustomeThumbControl ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
             ctlThumb.ThumbName = "EGBC01F002L01P002";
-            ctlThumb.VideoUrl =  Path.Combine(demoVideoPath , "EGBC01F002L01P002.mp4");            
+            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "EGBC01F002L01P002.mp4");
             ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_ENGLISH.png");
             ctlThumb.Click += CtlThumb_Click;
             ctlThumb.Height = 200;
@@ -194,7 +195,7 @@ namespace LBFVideoLib.Client
 
             ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
             ctlThumb.ThumbName = "HVKC01F002L001P002";
-            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F002L001P002.mp4");            
+            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F002L001P002.mp4");
             ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
             ctlThumb.Click += CtlThumb_Click;
             ctlThumb.Height = 200;
@@ -283,17 +284,17 @@ namespace LBFVideoLib.Client
 
         private void CtlThumb_Click(object sender, EventArgs e)
         {
-            CustomeThumbControl ctl =  sender as CustomeThumbControl;
+            CustomeThumbControl ctl = sender as CustomeThumbControl;
 
-           frmUpCommingVideo upcomingVideoForm = new frmUpCommingVideo();
+            frmUpCommingVideo upcomingVideoForm = new frmUpCommingVideo();
             upcomingVideoForm.ParentFormControl = this;
             upcomingVideoForm.ClientInfoObject = this.ClientInfoObject;
             upcomingVideoForm.EncryptedVideo = false;
-            upcomingVideoForm.NextVideoFileList = new string[] {ctl.VideoUrl};
+            upcomingVideoForm.NextVideoFileList = new string[] { ctl.VideoUrl };
             upcomingVideoForm.EncryptedVideo = false;
             upcomingVideoForm.DashboardFormControl = this;
-            upcomingVideoForm.Show();            
-            this.Hide();            
+            upcomingVideoForm.Show();
+            this.Hide();
         }
 
         private void pnlRecomVideo_Paint(object sender, PaintEventArgs e)

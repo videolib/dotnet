@@ -6,11 +6,11 @@ namespace LBFVideoLib.Common
     public class ClientHelper
     {
 
-        #region Path Helper Methods
+        #region Client Path Helper Methods
         public static string GetClientRootPath()
         {
-           // return Directory.GetCurrentDirectory();
-            return @"D:\Development\School\Setup\Admin\ClientPackages\454\Package";
+            // return Directory.GetCurrentDirectory();
+            return @"D:\School\ClientPackages\1111\Package";
         }
 
         public static string GetClientInfoFilePath()
@@ -20,15 +20,24 @@ namespace LBFVideoLib.Common
 
         public static string GetClientVideoFilePath(string schoolCode, string schoolCity)
         {
-         string parentPath=   Directory.GetParent(GetClientRootPath()).FullName;
+            string parentPath = Directory.GetParent(GetClientRootPath()).FullName;
 
             return Path.Combine(parentPath, string.Format("{0}_{1}_{2}", schoolCode, schoolCity, "LBFVideos"));
         }
 
         public static string GetClientThumbanailPath()
         {
-                     return Path.Combine(GetClientRootPath(), "Thumbnails");
+            return Path.Combine(GetClientRootPath(), "Thumbnails");
         }
+        #endregion
+
+        #region Admin Path Helper Methods
+
+        public static string GetRegisteredSchoolInfoFilePath()
+        {
+            return Path.Combine(System.IO.Directory.GetCurrentDirectory(), "RegisteredSchoolData");
+        }
+
         #endregion
 
         #region Message String Helper
