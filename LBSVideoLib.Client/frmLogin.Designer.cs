@@ -41,7 +41,6 @@
             this.btnLogin = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.lblSchoolWelcome = new System.Windows.Forms.Label();
             this.txtEmailId = new System.Windows.Forms.TextBox();
             this.lblEmail = new System.Windows.Forms.Label();
@@ -50,6 +49,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.lblExpireDate = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.linklblForgotPwd = new System.Windows.Forms.LinkLabel();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -121,13 +121,13 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.linklblForgotPwd);
             this.panel1.Controls.Add(this.lblShowPwd);
             this.panel1.Controls.Add(this.txtPwd);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.btnLogin);
             this.panel1.Controls.Add(this.lblStatus);
             this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.lblSchoolWelcome);
             this.panel1.Controls.Add(this.txtEmailId);
             this.panel1.Controls.Add(this.lblEmail);
@@ -203,16 +203,6 @@
             this.label6.Size = new System.Drawing.Size(330, 15);
             this.label6.TabIndex = 8;
             this.label6.Text = "Contact info@LBF.in from your registered Email-ID";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(37, 214);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(122, 15);
-            this.label5.TabIndex = 7;
-            this.label5.Text = "Forgot Password?";
             // 
             // lblSchoolWelcome
             // 
@@ -306,6 +296,17 @@
             this.label11.TabIndex = 0;
             this.label11.Text = "LBF Publications Pvt. Ltd. |  All Rights Reserved";
             // 
+            // linklblForgotPwd
+            // 
+            this.linklblForgotPwd.AutoSize = true;
+            this.linklblForgotPwd.Location = new System.Drawing.Point(37, 212);
+            this.linklblForgotPwd.Name = "linklblForgotPwd";
+            this.linklblForgotPwd.Size = new System.Drawing.Size(122, 15);
+            this.linklblForgotPwd.TabIndex = 14;
+            this.linklblForgotPwd.TabStop = true;
+            this.linklblForgotPwd.Text = "Forgot Password?";
+            this.linklblForgotPwd.Click += new System.EventHandler(this.lblForgotPwd_Click);
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -342,7 +343,6 @@
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label lblSchoolWelcome;
         private System.Windows.Forms.TextBox txtEmailId;
         private System.Windows.Forms.Label lblEmail;
@@ -352,5 +352,6 @@
     private System.Windows.Forms.Panel panel4;
     private System.Windows.Forms.Label lblExpireDate;
     private System.Windows.Forms.Label label11;
-  }
+        private System.Windows.Forms.LinkLabel linklblForgotPwd;
+    }
 }

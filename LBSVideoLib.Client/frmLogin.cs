@@ -88,5 +88,10 @@ namespace LBFVideoLib.Client
         {
             MessageBox.Show(ClientHelper.GetContactMessageString(), "Contact", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void lblForgotPwd_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(string.Format("mailto:info@lbf.in?subject={0}", _clientInfo.SchoolName));
+        }
     }
 }
