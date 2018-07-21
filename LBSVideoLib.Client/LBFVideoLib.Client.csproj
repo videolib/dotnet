@@ -57,10 +57,10 @@
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmPlayVideo.cs">
+    <Compile Include="Unsed\frmPlayVideo.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmPlayVideo.Designer.cs">
+    <Compile Include="Unsed\frmPlayVideo.Designer.cs">
       <DependentUpon>frmPlayVideo.cs</DependentUpon>
     </Compile>
     <Compile Include="frmUpCommingVideo.cs">
@@ -75,7 +75,7 @@
     <Compile Include="frmVideoLibrary.Designer.cs">
       <DependentUpon>frmVideoLibrary.cs</DependentUpon>
     </Compile>
-    <Compile Include="myButton cs.cs">
+    <Compile Include="Unsed\myButton cs.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Program.cs" />
@@ -86,7 +86,7 @@
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmPlayVideo.resx">
+    <EmbeddedResource Include="Unsed\frmPlayVideo.resx">
       <DependentUpon>frmPlayVideo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmUpCommingVideo.resx">

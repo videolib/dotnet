@@ -28,39 +28,31 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Urdu");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("First-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode1});
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("First", new System.Windows.Forms.TreeNode[] {
-            treeNode2});
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Maths");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Second-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode4});
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Hindi");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Second-S2", new System.Windows.Forms.TreeNode[] {
-            treeNode6});
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Second", new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode7});
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("English");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Third-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode9});
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Third", new System.Windows.Forms.TreeNode[] {
-            treeNode10});
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Classes", new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode8,
-            treeNode11});
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Urdu");
+            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("First-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode25});
+            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("First", new System.Windows.Forms.TreeNode[] {
+            treeNode26});
+            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Maths");
+            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("Second-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode28});
+            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("Hindi");
+            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("Second-S2", new System.Windows.Forms.TreeNode[] {
+            treeNode30});
+            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("Second", new System.Windows.Forms.TreeNode[] {
+            treeNode29,
+            treeNode31});
+            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("English");
+            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("Third-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode33});
+            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("Third", new System.Windows.Forms.TreeNode[] {
+            treeNode34});
+            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("Classes", new System.Windows.Forms.TreeNode[] {
+            treeNode27,
+            treeNode32,
+            treeNode35});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDashboard));
             this.pnlMain = new System.Windows.Forms.Panel();
-            this.pnlMostWatchVideo = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.label5 = new System.Windows.Forms.Label();
-            this.pnlRecomVideo = new System.Windows.Forms.FlowLayoutPanel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.lblSchoolWelcome = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.panel5 = new System.Windows.Forms.Panel();
@@ -71,13 +63,25 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblContact = new System.Windows.Forms.Label();
             this.lblSessionYears = new System.Windows.Forms.Label();
+            this.pnlLeft = new System.Windows.Forms.Panel();
+            this.pnlRight = new System.Windows.Forms.Panel();
+            this.pnlTop = new System.Windows.Forms.Panel();
+            this.pnlBottome = new System.Windows.Forms.Panel();
+            this.pnlHeading = new System.Windows.Forms.Panel();
+            this.lblSchoolWelcome = new System.Windows.Forms.Label();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.label4 = new System.Windows.Forms.Label();
+            this.pnlRecomVideo = new System.Windows.Forms.FlowLayoutPanel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.label5 = new System.Windows.Forms.Label();
+            this.pnlMostWatchVideo = new System.Windows.Forms.FlowLayoutPanel();
             this.pnlMain.SuspendLayout();
-            this.panel7.SuspendLayout();
-            this.panel6.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.pnlHeading.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel7.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlMain
@@ -87,7 +91,11 @@
             this.pnlMain.Controls.Add(this.panel7);
             this.pnlMain.Controls.Add(this.pnlRecomVideo);
             this.pnlMain.Controls.Add(this.panel6);
-            this.pnlMain.Controls.Add(this.panel3);
+            this.pnlMain.Controls.Add(this.pnlHeading);
+            this.pnlMain.Controls.Add(this.pnlBottome);
+            this.pnlMain.Controls.Add(this.pnlTop);
+            this.pnlMain.Controls.Add(this.pnlRight);
+            this.pnlMain.Controls.Add(this.pnlLeft);
             this.pnlMain.Controls.Add(this.panel1);
             this.pnlMain.Controls.Add(this.panel4);
             this.pnlMain.Controls.Add(this.panel2);
@@ -96,86 +104,6 @@
             this.pnlMain.Name = "pnlMain";
             this.pnlMain.Size = new System.Drawing.Size(1359, 741);
             this.pnlMain.TabIndex = 0;
-            // 
-            // pnlMostWatchVideo
-            // 
-            this.pnlMostWatchVideo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMostWatchVideo.Location = new System.Drawing.Point(273, 466);
-            this.pnlMostWatchVideo.Name = "pnlMostWatchVideo";
-            this.pnlMostWatchVideo.Size = new System.Drawing.Size(1086, 232);
-            this.pnlMostWatchVideo.TabIndex = 37;
-            // 
-            // panel7
-            // 
-            this.panel7.Controls.Add(this.label5);
-            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(273, 419);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1086, 47);
-            this.panel7.TabIndex = 35;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.White;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.label5.Location = new System.Drawing.Point(14, 9);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(238, 25);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Most Watched Lessons";
-            // 
-            // pnlRecomVideo
-            // 
-            this.pnlRecomVideo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlRecomVideo.Location = new System.Drawing.Point(273, 175);
-            this.pnlRecomVideo.Name = "pnlRecomVideo";
-            this.pnlRecomVideo.Size = new System.Drawing.Size(1086, 244);
-            this.pnlRecomVideo.TabIndex = 34;
-            this.pnlRecomVideo.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlRecomVideo_Paint);
-            // 
-            // panel6
-            // 
-            this.panel6.Controls.Add(this.label4);
-            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(273, 122);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1086, 53);
-            this.panel6.TabIndex = 27;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.White;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.label4.Location = new System.Drawing.Point(14, 12);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(189, 25);
-            this.label4.TabIndex = 8;
-            this.label4.Text = "Recommendations";
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.lblSchoolWelcome);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(273, 53);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1086, 69);
-            this.panel3.TabIndex = 26;
-            // 
-            // lblSchoolWelcome
-            // 
-            this.lblSchoolWelcome.AutoSize = true;
-            this.lblSchoolWelcome.BackColor = System.Drawing.Color.White;
-            this.lblSchoolWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSchoolWelcome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.lblSchoolWelcome.Location = new System.Drawing.Point(14, 18);
-            this.lblSchoolWelcome.Name = "lblSchoolWelcome";
-            this.lblSchoolWelcome.Size = new System.Drawing.Size(282, 29);
-            this.lblSchoolWelcome.TabIndex = 7;
-            this.lblSchoolWelcome.Text = "Welcome, {0}, {1}, [{2}]";
             // 
             // panel1
             // 
@@ -198,32 +126,32 @@
             this.treeView1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.treeView1.Location = new System.Drawing.Point(0, 167);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "Node12";
-            treeNode1.Text = "Urdu";
-            treeNode2.Name = "Node2";
-            treeNode2.Text = "First-S1";
-            treeNode3.Name = "Node1";
-            treeNode3.Text = "First";
-            treeNode4.Name = "Node11";
-            treeNode4.Text = "Maths";
-            treeNode5.Name = "Node4";
-            treeNode5.Text = "Second-S1";
-            treeNode6.Name = "Node10";
-            treeNode6.Text = "Hindi";
-            treeNode7.Name = "Node5";
-            treeNode7.Text = "Second-S2";
-            treeNode8.Name = "Node3";
-            treeNode8.Text = "Second";
-            treeNode9.Name = "Node9";
-            treeNode9.Text = "English";
-            treeNode10.Name = "Node8";
-            treeNode10.Text = "Third-S1";
-            treeNode11.Name = "Node7";
-            treeNode11.Text = "Third";
-            treeNode12.Name = "Node0";
-            treeNode12.Text = "Classes";
+            treeNode25.Name = "Node12";
+            treeNode25.Text = "Urdu";
+            treeNode26.Name = "Node2";
+            treeNode26.Text = "First-S1";
+            treeNode27.Name = "Node1";
+            treeNode27.Text = "First";
+            treeNode28.Name = "Node11";
+            treeNode28.Text = "Maths";
+            treeNode29.Name = "Node4";
+            treeNode29.Text = "Second-S1";
+            treeNode30.Name = "Node10";
+            treeNode30.Text = "Hindi";
+            treeNode31.Name = "Node5";
+            treeNode31.Text = "Second-S2";
+            treeNode32.Name = "Node3";
+            treeNode32.Text = "Second";
+            treeNode33.Name = "Node9";
+            treeNode33.Text = "English";
+            treeNode34.Name = "Node8";
+            treeNode34.Text = "Third-S1";
+            treeNode35.Name = "Node7";
+            treeNode35.Text = "Third";
+            treeNode36.Name = "Node0";
+            treeNode36.Text = "Classes";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode12});
+            treeNode36});
             this.treeView1.Size = new System.Drawing.Size(271, 476);
             this.treeView1.TabIndex = 4;
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
@@ -329,6 +257,117 @@
             this.lblSessionYears.Text = "Session {0}";
             this.lblSessionYears.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // pnlLeft
+            // 
+            this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlLeft.Location = new System.Drawing.Point(273, 53);
+            this.pnlLeft.Name = "pnlLeft";
+            this.pnlLeft.Size = new System.Drawing.Size(28, 645);
+            this.pnlLeft.TabIndex = 38;
+            // 
+            // pnlRight
+            // 
+            this.pnlRight.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnlRight.Location = new System.Drawing.Point(1335, 53);
+            this.pnlRight.Name = "pnlRight";
+            this.pnlRight.Size = new System.Drawing.Size(24, 645);
+            this.pnlRight.TabIndex = 39;
+            // 
+            // pnlTop
+            // 
+            this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlTop.Location = new System.Drawing.Point(301, 53);
+            this.pnlTop.Name = "pnlTop";
+            this.pnlTop.Size = new System.Drawing.Size(1034, 22);
+            this.pnlTop.TabIndex = 40;
+            // 
+            // pnlBottome
+            // 
+            this.pnlBottome.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlBottome.Location = new System.Drawing.Point(301, 681);
+            this.pnlBottome.Name = "pnlBottome";
+            this.pnlBottome.Size = new System.Drawing.Size(1034, 17);
+            this.pnlBottome.TabIndex = 41;
+            // 
+            // pnlHeading
+            // 
+            this.pnlHeading.Controls.Add(this.lblSchoolWelcome);
+            this.pnlHeading.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlHeading.Location = new System.Drawing.Point(301, 75);
+            this.pnlHeading.Name = "pnlHeading";
+            this.pnlHeading.Size = new System.Drawing.Size(1034, 60);
+            this.pnlHeading.TabIndex = 42;
+            // 
+            // lblSchoolWelcome
+            // 
+            this.lblSchoolWelcome.AutoSize = true;
+            this.lblSchoolWelcome.BackColor = System.Drawing.Color.White;
+            this.lblSchoolWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSchoolWelcome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.lblSchoolWelcome.Location = new System.Drawing.Point(5, 18);
+            this.lblSchoolWelcome.Name = "lblSchoolWelcome";
+            this.lblSchoolWelcome.Size = new System.Drawing.Size(282, 29);
+            this.lblSchoolWelcome.TabIndex = 7;
+            this.lblSchoolWelcome.Text = "Welcome, {0}, {1}, [{2}]";
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.label4);
+            this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel6.Location = new System.Drawing.Point(301, 135);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(1034, 38);
+            this.panel6.TabIndex = 43;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.White;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.label4.Location = new System.Drawing.Point(5, 12);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(189, 25);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "Recommendations";
+            // 
+            // pnlRecomVideo
+            // 
+            this.pnlRecomVideo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlRecomVideo.Location = new System.Drawing.Point(301, 173);
+            this.pnlRecomVideo.Name = "pnlRecomVideo";
+            this.pnlRecomVideo.Size = new System.Drawing.Size(1034, 219);
+            this.pnlRecomVideo.TabIndex = 44;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.label5);
+            this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel7.Location = new System.Drawing.Point(301, 392);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(1034, 57);
+            this.panel7.TabIndex = 45;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.White;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.label5.Location = new System.Drawing.Point(5, 23);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(238, 25);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Most Watched Lessons";
+            // 
+            // pnlMostWatchVideo
+            // 
+            this.pnlMostWatchVideo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlMostWatchVideo.Location = new System.Drawing.Point(301, 449);
+            this.pnlMostWatchVideo.Name = "pnlMostWatchVideo";
+            this.pnlMostWatchVideo.Size = new System.Drawing.Size(1034, 232);
+            this.pnlMostWatchVideo.TabIndex = 46;
+            // 
             // frmDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -341,17 +380,17 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmDashboard_FormClosed);
             this.Load += new System.EventHandler(this.frmDashboard_Load);
             this.pnlMain.ResumeLayout(false);
-            this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
-            this.panel6.ResumeLayout(false);
-            this.panel6.PerformLayout();
-            this.panel3.ResumeLayout(false);
-            this.panel3.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.pnlHeading.ResumeLayout(false);
+            this.pnlHeading.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -363,19 +402,23 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblContact;
         private System.Windows.Forms.Label lblSessionYears;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Label lblSchoolWelcome;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TreeView treeView1;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.FlowLayoutPanel pnlRecomVideo;
-        private System.Windows.Forms.FlowLayoutPanel pnlMostWatchVideo;
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label lblExpireDate;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Panel pnlBottome;
+        private System.Windows.Forms.Panel pnlTop;
+        private System.Windows.Forms.Panel pnlRight;
+        private System.Windows.Forms.Panel pnlLeft;
+        private System.Windows.Forms.FlowLayoutPanel pnlMostWatchVideo;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.FlowLayoutPanel pnlRecomVideo;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Panel pnlHeading;
+        private System.Windows.Forms.Label lblSchoolWelcome;
     }
 }

@@ -16,7 +16,11 @@ namespace LBFVideoLib.Client
         {
             _clickDeligate = clickDeligate;
             pict.Click += Pict_Click;
-        }      
+        }
+
+        public CustomeThumbControl()
+        {            
+        }
 
         private void Pict_Click(object sender, EventArgs e)
         {

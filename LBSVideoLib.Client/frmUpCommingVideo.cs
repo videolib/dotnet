@@ -44,7 +44,7 @@ namespace LBFVideoLib.Client
             treeView1.ExpandAll();
 
             lblSessionYears.Text = ClientHelper.GetSessionString(ClientInfoObject.SessionString);
-            lblSchoolWelcome.Text = ClientHelper.GetWelcomeString(ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);
+            lblWelcome.Text = ClientHelper.GetWelcomeString(ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);
             lblExpireDate.Text = ClientHelper.GetExpiryDateString(ClientInfoObject.ExpiryDate);
 
 
