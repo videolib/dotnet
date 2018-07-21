@@ -5,12 +5,18 @@ using System.Text;
 
 namespace LBFVideoLib.Common
 {
-    class FileHelper
+    public class FileHelper
     {
         // Delete file
-        public void DeleteFile(string filePath)
+        public static void DeleteFile(string filePath)
         {
             System.IO.File.Delete(filePath);
+        }
+
+        public static void CreateFile(string filePath, string content)
+        {
+            //write string to file
+            System.IO.File.WriteAllText(@filePath, content);
         }
     }
 }

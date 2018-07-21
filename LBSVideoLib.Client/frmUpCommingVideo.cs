@@ -22,10 +22,12 @@ namespace LBFVideoLib.Client
         {
             get; set;
         }
-
+        
         public bool EncryptedVideo { get; set; }
 
         public Form DashboardFormControl { get; set; }
+
+        public string SelectedVideo { get; set; }
 
         public frmUpCommingVideo()
         {
@@ -43,7 +45,7 @@ namespace LBFVideoLib.Client
             FillTreeView();
             treeView1.ExpandAll();
 
-            lblSessionYears.Text = ClientHelper.GetSessionString(ClientInfoObject.SessionString);
+            lblSessionYears.Text = ClientHelper.GetSessionString(ClientInfoObject.SessionString);            
             lblWelcome.Text = ClientHelper.GetWelcomeString(ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);
             lblExpireDate.Text = ClientHelper.GetExpiryDateString(ClientInfoObject.ExpiryDate);
 

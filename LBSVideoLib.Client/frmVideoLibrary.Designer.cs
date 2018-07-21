@@ -114,7 +114,7 @@
             treeNode24.Text = "Classes";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode24});
-            this.treeView1.Size = new System.Drawing.Size(271, 484);
+            this.treeView1.Size = new System.Drawing.Size(318, 484);
             this.treeView1.TabIndex = 4;
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
@@ -126,7 +126,7 @@
             this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlLogo.Location = new System.Drawing.Point(0, 0);
             this.pnlLogo.Name = "pnlLogo";
-            this.pnlLogo.Size = new System.Drawing.Size(271, 167);
+            this.pnlLogo.Size = new System.Drawing.Size(318, 167);
             this.pnlLogo.TabIndex = 1;
             this.pnlLogo.Click += new System.EventHandler(this.pnlLogo_Click);
             // 
@@ -139,7 +139,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 53);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(273, 653);
+            this.panel1.Size = new System.Drawing.Size(320, 653);
             this.panel1.TabIndex = 25;
             // 
             // label11
@@ -253,9 +253,9 @@
             // flowLayoutVideoPanel
             // 
             this.flowLayoutVideoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutVideoPanel.Location = new System.Drawing.Point(301, 135);
+            this.flowLayoutVideoPanel.Location = new System.Drawing.Point(348, 135);
             this.flowLayoutVideoPanel.Name = "flowLayoutVideoPanel";
-            this.flowLayoutVideoPanel.Size = new System.Drawing.Size(1045, 554);
+            this.flowLayoutVideoPanel.Size = new System.Drawing.Size(998, 554);
             this.flowLayoutVideoPanel.TabIndex = 53;
             // 
             // pnlHeading
@@ -264,9 +264,9 @@
             this.pnlHeading.Controls.Add(this.lblEmail);
             this.pnlHeading.Controls.Add(this.lblSchoolWelcome);
             this.pnlHeading.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlHeading.Location = new System.Drawing.Point(301, 75);
+            this.pnlHeading.Location = new System.Drawing.Point(348, 75);
             this.pnlHeading.Name = "pnlHeading";
-            this.pnlHeading.Size = new System.Drawing.Size(1045, 60);
+            this.pnlHeading.Size = new System.Drawing.Size(998, 60);
             this.pnlHeading.TabIndex = 51;
             // 
             // lblSchoolWelcome
@@ -284,17 +284,17 @@
             // pnlBottome
             // 
             this.pnlBottome.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlBottome.Location = new System.Drawing.Point(301, 689);
+            this.pnlBottome.Location = new System.Drawing.Point(348, 689);
             this.pnlBottome.Name = "pnlBottome";
-            this.pnlBottome.Size = new System.Drawing.Size(1045, 17);
+            this.pnlBottome.Size = new System.Drawing.Size(998, 17);
             this.pnlBottome.TabIndex = 50;
             // 
             // pnlTop
             // 
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlTop.Location = new System.Drawing.Point(301, 53);
+            this.pnlTop.Location = new System.Drawing.Point(348, 53);
             this.pnlTop.Name = "pnlTop";
-            this.pnlTop.Size = new System.Drawing.Size(1045, 22);
+            this.pnlTop.Size = new System.Drawing.Size(998, 22);
             this.pnlTop.TabIndex = 49;
             // 
             // pnlRight
@@ -308,7 +308,7 @@
             // pnlLeft
             // 
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlLeft.Location = new System.Drawing.Point(273, 53);
+            this.pnlLeft.Location = new System.Drawing.Point(320, 53);
             this.pnlLeft.Name = "pnlLeft";
             this.pnlLeft.Size = new System.Drawing.Size(28, 653);
             this.pnlLeft.TabIndex = 47;
@@ -316,21 +316,21 @@
             // txtEmailId
             // 
             this.txtEmailId.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmailId.Location = new System.Drawing.Point(795, 11);
+            this.txtEmailId.Location = new System.Drawing.Point(712, 11);
             this.txtEmailId.Multiline = true;
             this.txtEmailId.Name = "txtEmailId";
             this.txtEmailId.Size = new System.Drawing.Size(231, 36);
-            this.txtEmailId.TabIndex = 30;
+            this.txtEmailId.TabIndex = 32;
             // 
             // lblEmail
             // 
             this.lblEmail.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.lblEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEmail.ForeColor = System.Drawing.Color.White;
-            this.lblEmail.Location = new System.Drawing.Point(712, 11);
+            this.lblEmail.Location = new System.Drawing.Point(629, 11);
             this.lblEmail.Name = "lblEmail";
             this.lblEmail.Size = new System.Drawing.Size(84, 36);
-            this.lblEmail.TabIndex = 29;
+            this.lblEmail.TabIndex = 31;
             this.lblEmail.Text = "Search";
             this.lblEmail.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -371,12 +371,12 @@
         private System.Windows.Forms.Label lblSessionYears;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutVideoPanel;
         private System.Windows.Forms.Panel pnlHeading;
-        private System.Windows.Forms.TextBox txtEmailId;
-        private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.Label lblSchoolWelcome;
         private System.Windows.Forms.Panel pnlBottome;
         private System.Windows.Forms.Panel pnlTop;
         private System.Windows.Forms.Panel pnlRight;
         private System.Windows.Forms.Panel pnlLeft;
+        private System.Windows.Forms.TextBox txtEmailId;
+        private System.Windows.Forms.Label lblEmail;
     }
 }

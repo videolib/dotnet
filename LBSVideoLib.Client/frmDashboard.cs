@@ -189,8 +189,8 @@ namespace LBFVideoLib.Client
             ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "EGBC01F002L01P002.mp4");
             ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_ENGLISH.png");
             ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 200;
-            ctlThumb.Width = 200;
+            ctlThumb.Height = 180;
+            ctlThumb.Width = 180;
             pnlRecomVideo.Controls.Add(ctlThumb);
 
             ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
@@ -198,8 +198,8 @@ namespace LBFVideoLib.Client
             ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F002L001P002.mp4");
             ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
             ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 200;
-            ctlThumb.Width = 200;
+            ctlThumb.Height = 180;
+            ctlThumb.Width = 180;
             pnlRecomVideo.Controls.Add(ctlThumb);
 
             ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
@@ -207,8 +207,8 @@ namespace LBFVideoLib.Client
             ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "EGBC02F026L07P048.mp4");
             ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_ENGLISH.png");
             ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 200;
-            ctlThumb.Width = 200;
+            ctlThumb.Height = 180;
+            ctlThumb.Width = 180;
             pnlRecomVideo.Controls.Add(ctlThumb);
 
             ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
@@ -216,8 +216,8 @@ namespace LBFVideoLib.Client
             ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F006L003P017.mp4");
             ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
             ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 200;
-            ctlThumb.Width = 200;
+            ctlThumb.Height = 180;
+            ctlThumb.Width = 180;
             pnlRecomVideo.Controls.Add(ctlThumb);
 
             ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
@@ -225,8 +225,8 @@ namespace LBFVideoLib.Client
             ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F038L016P105.mp4");
             ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
             ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 200;
-            ctlThumb.Width = 200;
+            ctlThumb.Height = 180;
+            ctlThumb.Width = 180;
             pnlRecomVideo.Controls.Add(ctlThumb);
 
         }
@@ -241,8 +241,8 @@ namespace LBFVideoLib.Client
             ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "EGBC01F002L01P002.mp4");
             ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_ENGLISH.png");
             ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 200;
-            ctlThumb.Width = 200;
+            ctlThumb.Height = 180;
+            ctlThumb.Width = 180;
             pnlMostWatchVideo.Controls.Add(ctlThumb);
 
             ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
@@ -250,8 +250,8 @@ namespace LBFVideoLib.Client
             ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F002L001P002.mp4");
             ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
             ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 200;
-            ctlThumb.Width = 200;
+            ctlThumb.Height = 180;
+            ctlThumb.Width = 180;
             pnlMostWatchVideo.Controls.Add(ctlThumb);
 
             ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
@@ -259,8 +259,8 @@ namespace LBFVideoLib.Client
             ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "EGBC02F026L07P048.mp4");
             ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_ENGLISH.png");
             ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 200;
-            ctlThumb.Width = 200;
+            ctlThumb.Height = 180;
+            ctlThumb.Width = 180;
             pnlMostWatchVideo.Controls.Add(ctlThumb);
 
             ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
@@ -268,8 +268,8 @@ namespace LBFVideoLib.Client
             ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F006L003P017.mp4");
             ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
             ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 200;
-            ctlThumb.Width = 200;
+            ctlThumb.Height = 180;
+            ctlThumb.Width = 180;
             pnlMostWatchVideo.Controls.Add(ctlThumb);
 
             ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
@@ -277,8 +277,8 @@ namespace LBFVideoLib.Client
             ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F038L016P105.mp4");
             ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
             ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 200;
-            ctlThumb.Width = 200;
+            ctlThumb.Height = 180;
+            ctlThumb.Width = 180;
             pnlMostWatchVideo.Controls.Add(ctlThumb);
         }
 

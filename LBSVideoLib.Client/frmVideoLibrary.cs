@@ -149,7 +149,7 @@ namespace LBFVideoLib.Client
                 ctlThumb.ThumbUrl = videFilePathList[j].ThumbnailFilePath; //Path.Combine(thumbnailSubjectPath, "Subjects_ENGLISH.png");
                 ctlThumb.VideoUrl = videFilePathList[j].VideoFullUrl;
                 //ctlThumb.Click += CtlThumb_Click;
-                ctlThumb.Size = new System.Drawing.Size(201, 173);
+                ctlThumb.Size = new System.Drawing.Size(180, 180);
                 //ctlThumb
                 flowLayoutVideoPanel.Controls.Add(ctlThumb);
             }
