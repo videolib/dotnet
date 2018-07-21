@@ -87,45 +87,54 @@ namespace LBFVideoLib.Client
             ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "EGBC01F002L01P002.mp4");
             ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_ENGLISH.png");
             ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 150;
+            ctlThumb.Height = 180;
             ctlThumb.Width = 150;
-            pnlVideo.Controls.Add(ctlThumb);
+            flowLayoutPanelUpcoming.Controls.Add(ctlThumb);
 
             ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
             ctlThumb.ThumbName = "HVKC01F002L001P002";
             ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F002L001P002.mp4");
             ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
             ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 150;
+            ctlThumb.Height = 180;
             ctlThumb.Width = 150;
-            pnlVideo.Controls.Add(ctlThumb);
+            flowLayoutPanelUpcoming.Controls.Add(ctlThumb);
 
             ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
             ctlThumb.ThumbName = "EGBC02F026L07P048";
             ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "EGBC02F026L07P048.mp4");
             ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_ENGLISH.png");
             ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 150;
+            ctlThumb.Height = 180;
             ctlThumb.Width = 150;
-            pnlVideo.Controls.Add(ctlThumb);
+            flowLayoutPanelUpcoming.Controls.Add(ctlThumb);
 
             ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
             ctlThumb.ThumbName = "HVKC01F006L003P017";
             ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F006L003P017.mp4");
             ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
             ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 150;
+            ctlThumb.Height = 180;
             ctlThumb.Width = 150;
-            pnlVideo.Controls.Add(ctlThumb);
+            flowLayoutPanelPrevious.Controls.Add(ctlThumb);
 
             ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
             ctlThumb.ThumbName = "HVKC01F038L016P105";
             ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F038L016P105.mp4");
             ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
             ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 150;
+            ctlThumb.Height = 180;
             ctlThumb.Width = 150;
-            pnlVideo.Controls.Add(ctlThumb);
+            flowLayoutPanelPrevious.Controls.Add(ctlThumb);
+
+            ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
+            ctlThumb.ThumbName = "HVKC01F038L016P105";
+            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F038L016P105.mp4");
+            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
+            ctlThumb.Click += CtlThumb_Click;
+            ctlThumb.Height = 180;
+            ctlThumb.Width = 150;
+            flowLayoutPanelPrevious.Controls.Add(ctlThumb);
         }
 
         private void CtlThumb_Click(object sender, EventArgs e)
