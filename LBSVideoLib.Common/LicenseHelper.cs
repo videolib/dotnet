@@ -34,20 +34,42 @@ namespace LBFVideoLib.Common
             return Convert.ToDateTime(sessionList[session]);
         }
 
-        public static bool CheckLicenseValidity(ClientInfo clientInfo, out string message)
+        public static bool CheckLicenseValidity(ClientInfo clientInfo, out string message, out bool deleteVideo)
         {
             bool valid = true;
+            deleteVideo = false;
             message = "";
-            if (DateTime.Now < clientInfo.LastAccessStartTime || DateTime.Now < clientInfo.LastAccessEndTime)
+
+            //Caes1 => RegDate < CurrentDate & CurrentDate < Exp Date & LastAccessTime > CurrentDate = Show Message
+            if (clientInfo.RegistrationDate.CompareTo(DateTime.Now) < 0 && clientInfo.ExpiryDate.CompareTo(DateTime.Now) > 0 && clientInfo.LastAccessEndTime.CompareTo(DateTime.Now) > 0)
             {
                 valid = false;
                 message = "Invalid clock";
             }
-            else if (DateTime.Now > clientInfo.ExpiryDate)
+            // Clock time is behind
+            //Caes2 => RegDate > CurrentDate & CurrentDate < Exp Date = Show Message
+            else if (clientInfo.RegistrationDate.CompareTo(DateTime.Now) > 0)
+            {
+                valid = false;
+                message = "Invalid clock";
+            }
+            //Caes3 => 	RegDate < CurrentDate & CurrentDate > Exp Date = Del Video Folder
+            else if (clientInfo.ExpiryDate.CompareTo(DateTime.Now) < 0)
             {
                 valid = false;
                 message = "Your subscription has expired. To renew please\nContact:info@lbf.in or Call on +91 0 9109138808";
+                deleteVideo = true;
             }
+            //if (DateTime.Now < clientInfo.LastAccessStartTime || DateTime.Now < clientInfo.LastAccessEndTime)
+            //{
+            //    valid = false;
+            //    message = "Your subscription has expired. To renew please\nContact:info@lbf.in or Call on +91 0 9109138808";
+            //}
+            //else if (DateTime.Now > clientInfo.ExpiryDate)
+            //{
+            //    valid = false;
+            //    message = "Your subscription has expired. To renew please\nContact:info@lbf.in or Call on +91 0 9109138808";
+            //}
             return valid;
         }
     }

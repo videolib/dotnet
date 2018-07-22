@@ -139,6 +139,7 @@ namespace LBFVideoLib.Client
 
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
+            
             if (e.Node.Tag != null)
             {
                 frmVideoLibrary frmVideoLibrary = new frmVideoLibrary();

@@ -49,6 +49,8 @@ namespace LBFVideoLib.Admin
                 return;
             }
 
+            List<VideoInfo> videoInfoList = new List<VideoInfo>();
+
             #region Create Folder Structure
 
             // Copy encrypted client info json file to target location.
@@ -82,18 +84,24 @@ namespace LBFVideoLib.Admin
                 Directory.CreateDirectory(clientPacakgeFolderPath);
             }
 
-
             // Define client video folder path i.e. SchoolCode_City_LBFVideos
             string clientVideoFolderPath = Path.Combine(clientSchoolCodeFolderPath, string.Format("{0}_{1}_LBFVideos", txtSchoolCode.Text.Trim(), txtSchoolCity.Text.Trim()));
             if (Directory.Exists(clientVideoFolderPath) == false)
             {
                 Directory.CreateDirectory(clientVideoFolderPath);
             }
+
             #endregion
 
-            #region Copy client distribution
+            #region Copy Client Distribution
+
             if (Directory.Exists(ConfigHelper.ClientDistributionPath))
             {
+                // Delete old package folder inside school code
+                System.IO.Directory.Delete(clientPacakgeFolderPath, true);
+                // Create new package folder on same path.
+                System.IO.Directory.CreateDirectory(clientPacakgeFolderPath);
+
                 string[] clientDistributionFiles = Directory.GetFiles(ConfigHelper.ClientDistributionPath);
                 for (int i = 0; i < clientDistributionFiles.Length; i++)
                 {
@@ -118,22 +126,34 @@ namespace LBFVideoLib.Admin
             {
                 Book selectedBook = (chkListBooks.CheckedItems[i]) as Book;
 
-                //   string[] selectedBookVideos =  Directory.GetFiles(selectedBook.BookId);
-                foreach (string selectedBookVideo in selectedBook.VideoList)
+                if (selectedBook.VideoList != null)
                 {
-                    string clientTargetVideoPath = Path.Combine(clientVideoFolderPath, selectedBook.ClassName);
-                    clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.SeriesName);
-                    clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.SubjectName);
-                    clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.BookName);
+                    //   string[] selectedBookVideos =  Directory.GetFiles(selectedBook.BookId);
 
-                    if (Directory.Exists(clientTargetVideoPath) == false)
+                    foreach (string selectedBookVideo in selectedBook.VideoList)
                     {
-                        Directory.CreateDirectory(clientTargetVideoPath);
+
+                        string clientTargetVideoPath = Path.Combine(clientVideoFolderPath, selectedBook.ClassName);
+                        clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.SeriesName);
+                        clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.SubjectName);
+                        clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.BookName);
+
+                        if (Directory.Exists(clientTargetVideoPath) == false)
+                        {
+                            Directory.CreateDirectory(clientTargetVideoPath);
+                        }
+
+                        VideoInfo videoInfo = new VideoInfo();
+                        videoInfo.VideoName = Path.GetFileName(selectedBookVideo);
+                        videoInfo.ClassName = selectedBook.ClassName;
+                        videoInfo.SeriesName = selectedBook.SeriesName;
+                        videoInfo.Subject = selectedBook.SubjectName;
+                        videoInfo.Book = selectedBook.BookName;
+                        clientTargetVideoPath = Path.Combine(clientTargetVideoPath, Path.GetFileName(selectedBookVideo));
+
+                        Cryptograph.EncryptFile(selectedBookVideo, clientTargetVideoPath);
+                        videoInfoList.Add(videoInfo);
                     }
-
-                    clientTargetVideoPath = Path.Combine(clientTargetVideoPath, Path.GetFileName(selectedBookVideo));
-
-                    Cryptograph.EncryptFile(selectedBookVideo, clientTargetVideoPath);
                 }
             }
 
@@ -192,9 +212,16 @@ namespace LBFVideoLib.Admin
             clientInfo.SchoolName = this.txtSchoolName.Text.Trim();
             clientInfo.SchoolCity = txtSchoolCity.Text.Trim();
             clientInfo.SelectedVideoDetails = selectedClassList;
+            clientInfo.VideoInfoList = videoInfoList;
+
             // Generate client info json file and encrypt it.
             Cryptograph.EncryptObject(clientInfo, Path.Combine(clientPacakgeFolderPath, _clientInfoFileName));
 
+            string clientInfoPlainText = Newtonsoft.Json.JsonConvert.SerializeObject(clientInfo);
+            sw = System.IO.File.CreateText(Path.Combine(ClientHelper.GetRegisteredSchoolInfoFilePath(), this.txtSchoolCode.Text.Trim() + "-Plain.txt"));
+            sw.Write(clientInfoPlainText);
+            sw.Flush();
+            sw.Close();
 
             // Copy client project bin folder to target location.
             MessageBox.Show("Registraion completed sucessfully.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -384,11 +411,14 @@ namespace LBFVideoLib.Admin
                     book.SubjectName = selectedSubject.SubjectName;
                     book.ClassName = selectedSubject.ClassName;
                     book.SeriesName = selectedSubject.SeriesName;
+
                     string[] videoList = Directory.GetFiles(bookFolderList[i]);
+
                     if (videoList.Length > 0)
                     {
                         book.VideoList = videoList;
                     }
+
                     if (bookFolderList.Length == 1)
                     {
                         book.Selected = true;

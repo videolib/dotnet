@@ -25,7 +25,7 @@ namespace LBFVideoLib.Client
             try
             {
                 // Ignore any errors that might occur while closing the file handle.
-                MessageBox.Show("Exit");
+           //     MessageBox.Show("Exit");
             }
             catch { }
         }

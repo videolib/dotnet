@@ -8,6 +8,12 @@ namespace LBFVideoLib.Common
     [Serializable()]
     public class ClientInfo
     {
+        public ClientInfo()
+        {
+            SessionList = new List<SessionInfo>();
+            VideoInfoList = new List<VideoInfo>();
+        }
+
         public string EmailId { get; set; }
 
         public string Password { get; set; }
@@ -29,6 +35,10 @@ namespace LBFVideoLib.Common
         public DateTime RegistrationDate { get; set; }
 
         public List<ClassFB> SelectedVideoDetails { get; set; }
+
+        public List<SessionInfo> SessionList { get; set; }
+
+        public List<VideoInfo> VideoInfoList { get; set; }
 
         public string GetClientDetail()
         {

@@ -33,6 +33,7 @@ namespace LBFVideoLib.Client
 
             FillTreeView();
             treeView1.ExpandAll();
+            TreeViewHelper.TreeViewObject = treeView1;
 
             AddRecomVideos();
             AddMostWatchesVideos();

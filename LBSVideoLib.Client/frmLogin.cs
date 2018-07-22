@@ -10,42 +10,18 @@ namespace LBFVideoLib.Client
         private string _clientInfoFilePath = "";
         // Check license duraion
         private ClientInfo _clientInfo = null;
+
         public frmLogin()
         {
             InitializeComponent();
         }
 
-        private void frmLogin_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void btnLogin_Click(object sender, EventArgs e)
-        {
-            bool authenticated = Authentication.AuthenticateClient(txtEmailId.Text.Trim(), txtPwd.Text.Trim());
-
-            if (authenticated)
-            {
-                _clientInfo.LastAccessStartTime = DateTime.UtcNow;
-                _clientInfo.LastAccessEndTime = DateTime.UtcNow;
-                Cryptograph.EncryptObject(_clientInfo, ClientHelper.GetClientInfoFilePath());
-
-                frmDashboard frm = new frmDashboard();
-                // frm.MdiParent = this.MdiParent;
-                frm.ParentFormControl = this;
-                frm.ClientInfoObject = _clientInfo;
-                frm.Show();
-                this.Hide();
-            }
-            else
-            {
-                lblStatus.Text = "Invalid Email Id or Password!!";
-            }
-        }
+        #region Form Events
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            ClientHelper.GetClientThumbanailPath();
+            //ClientHelper.GetClientThumbanailPath();
+
             _clientInfoFilePath = ClientHelper.GetClientInfoFilePath();
             if (!File.Exists(_clientInfoFilePath))
             {
@@ -53,7 +29,10 @@ namespace LBFVideoLib.Client
                 this.Close();
                 return;
             }
-            _clientInfo = Cryptograph.DecryptObject<ClientInfo>(_clientInfoFilePath);
+
+            TreeViewHelper.ClientInfoObject = Cryptograph.DecryptObject<ClientInfo>(_clientInfoFilePath);
+            _clientInfo = TreeViewHelper.ClientInfoObject;
+
             if (_clientInfo != null)
             {
                 lblSessionYears.Text = ClientHelper.GetSessionString(_clientInfo.SessionString);
@@ -62,11 +41,46 @@ namespace LBFVideoLib.Client
             }
 
             // Check license duraion
-            string message = "";
-            bool valid = LicenseHelper.CheckLicenseValidity(_clientInfo, out message);
+            string message = ""; bool deleteVideos = false;
+            bool valid = LicenseHelper.CheckLicenseValidity(_clientInfo, out message, out deleteVideos);
+
+            if (deleteVideos && valid == false)
+            {
+                Directory.Delete(ClientHelper.GetClientVideoFilePath(_clientInfo.SchoolId, _clientInfo.SchoolCity), true);
+            }
             if (valid == false)
             {
                 MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.Close();
+            }
+        }
+
+        #endregion
+
+        #region Control Events
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            bool authenticated = Authentication.AuthenticateClient(txtEmailId.Text.Trim(), txtPwd.Text.Trim());
+
+            if (authenticated)
+            {
+                SessionInfo sessionInfo = new SessionInfo();
+                sessionInfo.StartTime = DateTime.Now;
+                //_clientInfo.LastAccessStartTime = DateTime.UtcNow;
+                //_clientInfo.LastAccessEndTime = DateTime.UtcNow;
+                _clientInfo.SessionList.Add(sessionInfo);
+                Cryptograph.EncryptObject(_clientInfo, ClientHelper.GetClientInfoFilePath());
+
+                frmDashboard frm = new frmDashboard();
+                // frm.MdiParent = this.MdiParent;
+                frm.ParentFormControl = this;
+                frm.ClientInfoObject = TreeViewHelper.ClientInfoObject;//_clientInfo
+                frm.Show();
+                this.Hide();
+            }
+            else
+            {
+                lblStatus.Text = "Invalid Email Id or Password!!";
             }
         }
 
@@ -91,7 +105,8 @@ namespace LBFVideoLib.Client
 
         private void lblForgotPwd_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(string.Format("mailto:info@lbf.in?subject={0}-{1}", _clientInfo.SchoolName,_clientInfo.SchoolId));
-        }
+            System.Diagnostics.Process.Start(string.Format("mailto:info@lbf.in?subject={0}-{1}", _clientInfo.SchoolName, _clientInfo.SchoolId));
+        } 
+        #endregion
     }
 }

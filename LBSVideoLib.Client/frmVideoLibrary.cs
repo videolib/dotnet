@@ -28,7 +28,6 @@ namespace LBFVideoLib.Client
         {
             _clientInfoFilePath = ClientHelper.GetClientInfoFilePath();
             this.ClientInfoObject.LastAccessEndTime = DateTime.UtcNow;
-            this.ClientInfoObject.LastAccessStartTime = DateTime.UtcNow;
             Cryptograph.EncryptObject(this.ClientInfoObject, _clientInfoFilePath);
 
             _clientRootPath = ClientHelper.GetClientRootPath();
@@ -38,8 +37,11 @@ namespace LBFVideoLib.Client
             lblExpireDate.Text = ClientHelper.GetExpiryDateString(ClientInfoObject.ExpiryDate);
 
             FillTreeView();
-            treeView1.CollapseAll();
-            FillVideoLibrary(treeView1.Nodes[0].Tag as TreeTag);
+            treeView1.SelectedNode = treeView1.Nodes[0].Nodes[0];
+            treeView1.ExpandAll();
+           
+
+         //   FillVideoLibrary(treeView1.Nodes[0].Tag as TreeTag);
         }
 
         #region Private Methods
@@ -116,7 +118,9 @@ namespace LBFVideoLib.Client
 
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
-            FillVideoLibrary(e.Node.Tag as TreeTag);
+            MessageBox.Show("video");
+
+           // FillVideoLibrary(e.Node.Tag as TreeTag);
         }
 
         private void FillVideoLibrary(TreeTag currentNodeTag)
