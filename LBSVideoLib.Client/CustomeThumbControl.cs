@@ -10,12 +10,12 @@ namespace LBFVideoLib.Client
         Action<object, EventArgs> _clickDeligate;
         PictureBox pict = new PictureBox();
         Label lbl = new Label();
-
+        Panel pnlSpace = new Panel();
 
         public CustomeThumbControl(Action<object, EventArgs> clickDeligate)
         {
             _clickDeligate = clickDeligate;
-            pict.Click += Pict_Click;
+            pict.Click += Pict_Click;                        
         }
 
         public CustomeThumbControl()
@@ -46,14 +46,21 @@ namespace LBFVideoLib.Client
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
-            lbl.Dock = DockStyle.Bottom;
-            lbl.Text = ThumbName;
-            lbl.Margin = new Padding(0, 20, 0, 0);
-            //lbl.Font = new Font(lbl.Font, FontStyle.Bold);
-            lbl.ForeColor = System.Drawing.Color.Red;
 
-            this.Controls.Add(lbl);
-            this.Controls.SetChildIndex(lbl, 1);
+            //lbl.Dock = DockStyle.Bottom;
+            //lbl.Text = ThumbName;
+            ////lbl.Font = new Font(lbl.Font, FontStyle.Bold);
+            //lbl.ForeColor = System.Drawing.Color.Red;
+            //lbl.Font = new Font("Microsoft Sans Serif", 10, FontStyle.Regular);
+            //lbl.Height = 20;
+            //this.Controls.Add(lbl);
+            //this.Controls.SetChildIndex(lbl, 1);
+
+            //pnlSpace.Dock = DockStyle.Bottom;
+            //pnlSpace.Height = 50;
+            //this.Controls.Add(pnlSpace);
+            ////this.Controls.SetChildIndex(pnlSpace, 2);
+
 
             pict.Dock = DockStyle.Fill;
             if (string.IsNullOrEmpty(ThumbUrl))
@@ -65,10 +72,21 @@ namespace LBFVideoLib.Client
                 pict.BackgroundImage = new ImageEx(ThumbUrl).Image;
             }
 
-            pict.BackgroundImageLayout = ImageLayout.Stretch;
+            pict.BackgroundImageLayout = ImageLayout.Center;
             //pict.Image = PlayImage;
             this.Controls.Add(pict);
-            this.Controls.SetChildIndex(lbl, 0);
+            //this.Controls.SetChildIndex(lbl, 0);
+
+
+            lbl.Dock = DockStyle.Bottom;
+            lbl.Text = ThumbName;
+            //lbl.Font = new Font(lbl.Font, FontStyle.Bold);
+            lbl.ForeColor = System.Drawing.Color.Red;
+            lbl.Font = new Font("Microsoft Sans Serif", 10, FontStyle.Regular);
+            lbl.Height = 15;
+            lbl.TextAlign = ContentAlignment.MiddleCenter;
+            this.Controls.Add(lbl);
+            //this.Controls.SetChildIndex(lbl, 1);
         }
 
         private Image PlayImage

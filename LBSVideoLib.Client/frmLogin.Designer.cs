@@ -35,6 +35,7 @@
             this.lblSessionYears = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.linklblForgotPwd = new System.Windows.Forms.LinkLabel();
             this.lblShowPwd = new System.Windows.Forms.Label();
             this.txtPwd = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -49,7 +50,6 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.lblExpireDate = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.linklblForgotPwd = new System.Windows.Forms.LinkLabel();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -74,7 +74,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(644, 15);
+            this.label2.Location = new System.Drawing.Point(689, 15);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(167, 24);
             this.label2.TabIndex = 5;
@@ -87,7 +87,7 @@
             this.lblContact.AutoSize = true;
             this.lblContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblContact.ForeColor = System.Drawing.Color.White;
-            this.lblContact.Location = new System.Drawing.Point(1257, 15);
+            this.lblContact.Location = new System.Drawing.Point(1263, 15);
             this.lblContact.Name = "lblContact";
             this.lblContact.Size = new System.Drawing.Size(80, 24);
             this.lblContact.TabIndex = 4;
@@ -100,7 +100,7 @@
             this.lblSessionYears.AutoSize = true;
             this.lblSessionYears.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSessionYears.ForeColor = System.Drawing.Color.White;
-            this.lblSessionYears.Location = new System.Drawing.Point(35, 15);
+            this.lblSessionYears.Location = new System.Drawing.Point(22, 15);
             this.lblSessionYears.Name = "lblSessionYears";
             this.lblSessionYears.Size = new System.Drawing.Size(115, 24);
             this.lblSessionYears.TabIndex = 3;
@@ -137,6 +137,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(854, 401);
             this.panel1.TabIndex = 26;
+            // 
+            // linklblForgotPwd
+            // 
+            this.linklblForgotPwd.AutoSize = true;
+            this.linklblForgotPwd.Location = new System.Drawing.Point(37, 212);
+            this.linklblForgotPwd.Name = "linklblForgotPwd";
+            this.linklblForgotPwd.Size = new System.Drawing.Size(122, 15);
+            this.linklblForgotPwd.TabIndex = 14;
+            this.linklblForgotPwd.TabStop = true;
+            this.linklblForgotPwd.Text = "Forgot Password?";
+            this.linklblForgotPwd.Click += new System.EventHandler(this.lblForgotPwd_Click);
             // 
             // lblShowPwd
             // 
@@ -295,17 +306,6 @@
             this.label11.Size = new System.Drawing.Size(337, 16);
             this.label11.TabIndex = 0;
             this.label11.Text = "LBF Publications Pvt. Ltd. |  All Rights Reserved";
-            // 
-            // linklblForgotPwd
-            // 
-            this.linklblForgotPwd.AutoSize = true;
-            this.linklblForgotPwd.Location = new System.Drawing.Point(37, 212);
-            this.linklblForgotPwd.Name = "linklblForgotPwd";
-            this.linklblForgotPwd.Size = new System.Drawing.Size(122, 15);
-            this.linklblForgotPwd.TabIndex = 14;
-            this.linklblForgotPwd.TabStop = true;
-            this.linklblForgotPwd.Text = "Forgot Password?";
-            this.linklblForgotPwd.Click += new System.EventHandler(this.lblForgotPwd_Click);
             // 
             // frmLogin
             // 
