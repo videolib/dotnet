@@ -34,6 +34,7 @@ namespace LBFVideoLib.Client
 
         private List<string> tempFileList = new List<string>();
         private string _lastPlayedVideoFullUrl = "";
+        private bool _skipNodeSelection = true;
 
 
         public frmUpCommingVideo()
@@ -94,9 +95,11 @@ namespace LBFVideoLib.Client
 
         private void PlayEncryptedVideo(string videoUrl)
         {
+            VideoInfo currentVideoInfo = this.ClientInfoObject.VideoInfoList.First(i => i.VideoFullUrl.ToLower().Equals(videoUrl.ToLower()));
+            currentVideoInfo.WatchCount++;
             //string tempDirectory = Path.Combine(Path.GetDirectoryName(this.NextVideoFileList[0]), "Temp");
             string tempDirectory = Path.Combine(Path.GetTempPath(), "Temp");
-            System.IO.Directory.CreateDirectory(tempDirectory);
+            Directory.CreateDirectory(tempDirectory);
             string tempFilePath = Path.Combine(tempDirectory, Path.GetFileName(videoUrl));
             tempFileList.Add(tempFilePath);
             Cryptograph.DecryptFile(videoUrl, tempFilePath);
@@ -326,16 +329,19 @@ namespace LBFVideoLib.Client
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            //if (e.Node.Tag != null)
-            //{
-            frmVideoLibrary frmVideoLibrary = new frmVideoLibrary();
-            frmVideoLibrary.ParentFormControl = this.DashboardFormControl;
-            frmVideoLibrary.SelectedNode = e.Node;
-            frmVideoLibrary.ClientInfoObject = this.ClientInfoObject;
-            frmVideoLibrary.Show();
-            this.Close();
-
-            //}
+            if (_skipNodeSelection == false)
+            {
+                frmVideoLibrary frmVideoLibrary = new frmVideoLibrary();
+                frmVideoLibrary.ParentFormControl = this.DashboardFormControl;
+                frmVideoLibrary.SelectedNode = e.Node;
+                frmVideoLibrary.ClientInfoObject = this.ClientInfoObject;
+                frmVideoLibrary.Show();
+                this.Close();
+            }
+            else
+            {
+                _skipNodeSelection = false;
+            }
         }
 
         private void lblPrivacyPolicy_Click(object sender, EventArgs e)
