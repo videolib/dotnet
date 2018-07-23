@@ -58,6 +58,12 @@
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
     <Compile Include="CommonAppStateDataHelper.cs" />
+    <Compile Include="frmPrivacyPolicy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPrivacyPolicy.Designer.cs">
+      <DependentUpon>frmPrivacyPolicy.cs</DependentUpon>
+    </Compile>
     <Compile Include="TreeExtension.cs" />
     <Compile Include="Unsed\frmPlayVideo.cs">
       <SubType>Form</SubType>
@@ -87,6 +93,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmLogin.resx">
       <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPrivacyPolicy.resx">
+      <DependentUpon>frmPrivacyPolicy.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Unsed\frmPlayVideo.resx">
       <DependentUpon>frmPlayVideo.cs</DependentUpon>

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUpCommingVideo));
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Urdu");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("First-S1", new System.Windows.Forms.TreeNode[] {
             treeNode1});
@@ -52,9 +51,9 @@
             treeNode3,
             treeNode8,
             treeNode11});
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUpCommingVideo));
             this.pnlMain = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
-            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.panel10 = new System.Windows.Forms.Panel();
             this.btnFullScreen = new System.Windows.Forms.Button();
             this.btnFastForward = new System.Windows.Forms.Button();
@@ -85,9 +84,10 @@
             this.lblSessionYears = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblContact = new System.Windows.Forms.Label();
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.lblPrivacyPolicy = new System.Windows.Forms.Label();
             this.pnlMain.SuspendLayout();
             this.panel9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.panel10.SuspendLayout();
             this.panel8.SuspendLayout();
             this.pnlVideo.SuspendLayout();
@@ -97,6 +97,7 @@
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlMain
@@ -128,16 +129,6 @@
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(1029, 653);
             this.panel9.TabIndex = 39;
-            // 
-            // axWindowsMediaPlayer1
-            // 
-            this.axWindowsMediaPlayer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(28, 55);
-            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
-            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(977, 314);
-            this.axWindowsMediaPlayer1.TabIndex = 68;
             // 
             // panel10
             // 
@@ -410,6 +401,7 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.panel4.Controls.Add(this.lblPrivacyPolicy);
             this.panel4.Controls.Add(this.lblExpireDate);
             this.panel4.Controls.Add(this.label11);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -497,6 +489,31 @@
             this.lblContact.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblContact.Click += new System.EventHandler(this.lblContact_Click);
             // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(28, 55);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(977, 314);
+            this.axWindowsMediaPlayer1.TabIndex = 68;
+            // 
+            // lblPrivacyPolicy
+            // 
+            this.lblPrivacyPolicy.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPrivacyPolicy.AutoSize = true;
+            this.lblPrivacyPolicy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrivacyPolicy.ForeColor = System.Drawing.Color.White;
+            this.lblPrivacyPolicy.Location = new System.Drawing.Point(1230, 11);
+            this.lblPrivacyPolicy.Name = "lblPrivacyPolicy";
+            this.lblPrivacyPolicy.Size = new System.Drawing.Size(107, 16);
+            this.lblPrivacyPolicy.TabIndex = 4;
+            this.lblPrivacyPolicy.Text = "Privacy Policy";
+            this.lblPrivacyPolicy.Click += new System.EventHandler(this.lblPrivacyPolicy_Click);
+            // 
             // frmUpCommingVideo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -510,7 +527,6 @@
             this.Load += new System.EventHandler(this.frmUpCommingVideo_Load);
             this.pnlMain.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.panel10.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
@@ -526,6 +542,7 @@
             this.panel4.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -564,5 +581,6 @@
         private System.Windows.Forms.Panel pnlPreviousVideo;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelPrevious;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblPrivacyPolicy;
     }
 }

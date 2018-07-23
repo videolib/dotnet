@@ -332,5 +332,11 @@ namespace LBFVideoLib.Client
                 _skipNodeSelection = false;
             }
         }
+
+        private void lblPrivacyPolicy_Click(object sender, EventArgs e)
+        {
+            frmPrivacyPolicy frm = new frmPrivacyPolicy();
+            frm.Show();
+        }
     }
 }

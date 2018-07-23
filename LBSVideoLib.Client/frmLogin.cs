@@ -112,7 +112,8 @@ namespace LBFVideoLib.Client
 
         private void lblPrivacyPolicy_Click(object sender, EventArgs e)
         {
-            frmPri
+            frmPrivacyPolicy frm = new frmPrivacyPolicy();
+            frm.Show();
         }
     }
 }
