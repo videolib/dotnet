@@ -109,5 +109,10 @@ namespace LBFVideoLib.Client
             System.Diagnostics.Process.Start(string.Format("mailto:info@lbf.in?subject={0}-{1}", _clientInfo.SchoolName, _clientInfo.SchoolId));
         }
         #endregion
+
+        private void lblPrivacyPolicy_Click(object sender, EventArgs e)
+        {
+            frmPri
+        }
     }
 }

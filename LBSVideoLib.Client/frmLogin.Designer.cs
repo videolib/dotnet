@@ -50,6 +50,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.lblExpireDate = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.lblPrivacyPolicy = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -271,6 +272,7 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.panel4.Controls.Add(this.lblPrivacyPolicy);
             this.panel4.Controls.Add(this.lblExpireDate);
             this.panel4.Controls.Add(this.label11);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -306,6 +308,21 @@
             this.label11.Size = new System.Drawing.Size(337, 16);
             this.label11.TabIndex = 0;
             this.label11.Text = "LBF Publications Pvt. Ltd. |  All Rights Reserved";
+            // 
+            // lblPrivacyPolicy
+            // 
+            this.lblPrivacyPolicy.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPrivacyPolicy.AutoSize = true;
+            this.lblPrivacyPolicy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrivacyPolicy.ForeColor = System.Drawing.Color.White;
+            this.lblPrivacyPolicy.Location = new System.Drawing.Point(1230, 11);
+            this.lblPrivacyPolicy.Name = "lblPrivacyPolicy";
+            this.lblPrivacyPolicy.Size = new System.Drawing.Size(107, 16);
+            this.lblPrivacyPolicy.TabIndex = 2;
+            this.lblPrivacyPolicy.Text = "Privacy Policy";
+            this.lblPrivacyPolicy.Click += new System.EventHandler(this.lblPrivacyPolicy_Click);
             // 
             // frmLogin
             // 
@@ -353,5 +370,6 @@
     private System.Windows.Forms.Label lblExpireDate;
     private System.Windows.Forms.Label label11;
         private System.Windows.Forms.LinkLabel linklblForgotPwd;
+        private System.Windows.Forms.Label lblPrivacyPolicy;
     }
 }
