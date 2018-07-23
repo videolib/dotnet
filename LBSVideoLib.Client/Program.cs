@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LBFVideoLib.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -24,8 +25,16 @@ namespace LBFVideoLib.Client
         {
             try
             {
-                // Ignore any errors that might occur while closing the file handle.
-           //     MessageBox.Show("Exit");
+                if (CommonAppStateDataHelper.ClientInfoObject.SessionList.Count > 0)
+                {
+                    //if (online)
+                    //{
+                    //    // update it in firebase database.
+                    CommonAppStateDataHelper.ClientInfoObject.SessionList.Clear();
+                    //}
+                    CommonAppStateDataHelper.ClientInfoObject.LastAccessEndTime = DateTime.Now;
+                    Cryptograph.EncryptObject(CommonAppStateDataHelper.ClientInfoObject, ClientHelper.GetClientInfoFilePath());
+                }
             }
             catch { }
         }

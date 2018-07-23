@@ -28,32 +28,47 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode61 = new System.Windows.Forms.TreeNode("Urdu");
-            System.Windows.Forms.TreeNode treeNode62 = new System.Windows.Forms.TreeNode("First-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode61});
-            System.Windows.Forms.TreeNode treeNode63 = new System.Windows.Forms.TreeNode("First", new System.Windows.Forms.TreeNode[] {
-            treeNode62});
-            System.Windows.Forms.TreeNode treeNode64 = new System.Windows.Forms.TreeNode("Maths");
-            System.Windows.Forms.TreeNode treeNode65 = new System.Windows.Forms.TreeNode("Second-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode64});
-            System.Windows.Forms.TreeNode treeNode66 = new System.Windows.Forms.TreeNode("Hindi");
-            System.Windows.Forms.TreeNode treeNode67 = new System.Windows.Forms.TreeNode("Second-S2", new System.Windows.Forms.TreeNode[] {
-            treeNode66});
-            System.Windows.Forms.TreeNode treeNode68 = new System.Windows.Forms.TreeNode("Second", new System.Windows.Forms.TreeNode[] {
-            treeNode65,
-            treeNode67});
-            System.Windows.Forms.TreeNode treeNode69 = new System.Windows.Forms.TreeNode("English");
-            System.Windows.Forms.TreeNode treeNode70 = new System.Windows.Forms.TreeNode("Third-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode69});
-            System.Windows.Forms.TreeNode treeNode71 = new System.Windows.Forms.TreeNode("Third", new System.Windows.Forms.TreeNode[] {
-            treeNode70});
-            System.Windows.Forms.TreeNode treeNode72 = new System.Windows.Forms.TreeNode("Classes", new System.Windows.Forms.TreeNode[] {
-            treeNode63,
-            treeNode68,
-            treeNode71});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUpCommingVideo));
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Urdu");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("First-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode1});
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("First", new System.Windows.Forms.TreeNode[] {
+            treeNode2});
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Maths");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Second-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode4});
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Hindi");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Second-S2", new System.Windows.Forms.TreeNode[] {
+            treeNode6});
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Second", new System.Windows.Forms.TreeNode[] {
+            treeNode5,
+            treeNode7});
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("English");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Third-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode9});
+            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Third", new System.Windows.Forms.TreeNode[] {
+            treeNode10});
+            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Classes", new System.Windows.Forms.TreeNode[] {
+            treeNode3,
+            treeNode8,
+            treeNode11});
             this.pnlMain = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.btnFullScreen = new System.Windows.Forms.Button();
+            this.btnFastForward = new System.Windows.Forms.Button();
+            this.btnRewind = new System.Windows.Forms.Button();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lblFileName = new System.Windows.Forms.Label();
+            this.pnlVideo = new System.Windows.Forms.Panel();
+            this.pnlUpcomingVideo = new System.Windows.Forms.Panel();
+            this.flowLayoutPanelUpcoming = new System.Windows.Forms.FlowLayoutPanel();
+            this.label3 = new System.Windows.Forms.Label();
+            this.pnlPreviousVideo = new System.Windows.Forms.Panel();
+            this.flowLayoutPanelPrevious = new System.Windows.Forms.FlowLayoutPanel();
+            this.label1 = new System.Windows.Forms.Label();
             this.pnlHeading = new System.Windows.Forms.Panel();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.pnlBottome = new System.Windows.Forms.Panel();
@@ -70,33 +85,18 @@
             this.lblSessionYears = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblContact = new System.Windows.Forms.Label();
-            this.pnlVideo = new System.Windows.Forms.Panel();
-            this.pnlPreviousVideo = new System.Windows.Forms.Panel();
-            this.flowLayoutPanelPrevious = new System.Windows.Forms.FlowLayoutPanel();
-            this.label1 = new System.Windows.Forms.Label();
-            this.pnlUpcomingVideo = new System.Windows.Forms.Panel();
-            this.flowLayoutPanelUpcoming = new System.Windows.Forms.FlowLayoutPanel();
-            this.label3 = new System.Windows.Forms.Label();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lblFileName = new System.Windows.Forms.Label();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.btnFullScreen = new System.Windows.Forms.Button();
-            this.btnFastForward = new System.Windows.Forms.Button();
-            this.btnRewind = new System.Windows.Forms.Button();
-            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.pnlMain.SuspendLayout();
             this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
+            this.panel10.SuspendLayout();
+            this.panel8.SuspendLayout();
+            this.pnlVideo.SuspendLayout();
+            this.pnlUpcomingVideo.SuspendLayout();
+            this.pnlPreviousVideo.SuspendLayout();
             this.pnlHeading.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.pnlVideo.SuspendLayout();
-            this.pnlPreviousVideo.SuspendLayout();
-            this.pnlUpcomingVideo.SuspendLayout();
-            this.panel8.SuspendLayout();
-            this.panel10.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlMain
@@ -128,6 +128,168 @@
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(1029, 653);
             this.panel9.TabIndex = 39;
+            // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(28, 55);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(977, 314);
+            this.axWindowsMediaPlayer1.TabIndex = 68;
+            // 
+            // panel10
+            // 
+            this.panel10.Controls.Add(this.btnFullScreen);
+            this.panel10.Controls.Add(this.btnFastForward);
+            this.panel10.Controls.Add(this.btnRewind);
+            this.panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel10.Location = new System.Drawing.Point(28, 369);
+            this.panel10.Name = "panel10";
+            this.panel10.Size = new System.Drawing.Size(977, 34);
+            this.panel10.TabIndex = 67;
+            // 
+            // btnFullScreen
+            // 
+            this.btnFullScreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnFullScreen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnFullScreen.Image = ((System.Drawing.Image)(resources.GetObject("btnFullScreen.Image")));
+            this.btnFullScreen.Location = new System.Drawing.Point(98, 0);
+            this.btnFullScreen.Name = "btnFullScreen";
+            this.btnFullScreen.Size = new System.Drawing.Size(767, 34);
+            this.btnFullScreen.TabIndex = 5;
+            this.btnFullScreen.UseVisualStyleBackColor = true;
+            // 
+            // btnFastForward
+            // 
+            this.btnFastForward.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnFastForward.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnFastForward.Image = ((System.Drawing.Image)(resources.GetObject("btnFastForward.Image")));
+            this.btnFastForward.Location = new System.Drawing.Point(865, 0);
+            this.btnFastForward.Name = "btnFastForward";
+            this.btnFastForward.Size = new System.Drawing.Size(112, 34);
+            this.btnFastForward.TabIndex = 4;
+            this.btnFastForward.UseVisualStyleBackColor = true;
+            // 
+            // btnRewind
+            // 
+            this.btnRewind.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRewind.BackgroundImage")));
+            this.btnRewind.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnRewind.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnRewind.Image = ((System.Drawing.Image)(resources.GetObject("btnRewind.Image")));
+            this.btnRewind.Location = new System.Drawing.Point(0, 0);
+            this.btnRewind.Margin = new System.Windows.Forms.Padding(0);
+            this.btnRewind.Name = "btnRewind";
+            this.btnRewind.Size = new System.Drawing.Size(98, 34);
+            this.btnRewind.TabIndex = 3;
+            this.btnRewind.UseVisualStyleBackColor = true;
+            // 
+            // panel8
+            // 
+            this.panel8.Controls.Add(this.label6);
+            this.panel8.Controls.Add(this.lblFileName);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel8.Location = new System.Drawing.Point(28, 403);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(977, 38);
+            this.panel8.TabIndex = 66;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.White;
+            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.label6.Location = new System.Drawing.Point(795, 8);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(176, 17);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Watch Count: 32 Times";
+            // 
+            // lblFileName
+            // 
+            this.lblFileName.AutoSize = true;
+            this.lblFileName.BackColor = System.Drawing.Color.White;
+            this.lblFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFileName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.lblFileName.Location = new System.Drawing.Point(5, 8);
+            this.lblFileName.Name = "lblFileName";
+            this.lblFileName.Size = new System.Drawing.Size(85, 24);
+            this.lblFileName.TabIndex = 10;
+            this.lblFileName.Text = "Alphabet";
+            // 
+            // pnlVideo
+            // 
+            this.pnlVideo.Controls.Add(this.pnlUpcomingVideo);
+            this.pnlVideo.Controls.Add(this.pnlPreviousVideo);
+            this.pnlVideo.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlVideo.Location = new System.Drawing.Point(28, 441);
+            this.pnlVideo.Name = "pnlVideo";
+            this.pnlVideo.Size = new System.Drawing.Size(977, 201);
+            this.pnlVideo.TabIndex = 65;
+            // 
+            // pnlUpcomingVideo
+            // 
+            this.pnlUpcomingVideo.Controls.Add(this.flowLayoutPanelUpcoming);
+            this.pnlUpcomingVideo.Controls.Add(this.label3);
+            this.pnlUpcomingVideo.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlUpcomingVideo.Location = new System.Drawing.Point(499, 0);
+            this.pnlUpcomingVideo.Name = "pnlUpcomingVideo";
+            this.pnlUpcomingVideo.Size = new System.Drawing.Size(478, 201);
+            this.pnlUpcomingVideo.TabIndex = 65;
+            // 
+            // flowLayoutPanelUpcoming
+            // 
+            this.flowLayoutPanelUpcoming.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanelUpcoming.Location = new System.Drawing.Point(0, 16);
+            this.flowLayoutPanelUpcoming.Name = "flowLayoutPanelUpcoming";
+            this.flowLayoutPanelUpcoming.Size = new System.Drawing.Size(478, 185);
+            this.flowLayoutPanelUpcoming.TabIndex = 63;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.White;
+            this.label3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.label3.Location = new System.Drawing.Point(0, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(116, 16);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Upcoming Videos";
+            // 
+            // pnlPreviousVideo
+            // 
+            this.pnlPreviousVideo.Controls.Add(this.flowLayoutPanelPrevious);
+            this.pnlPreviousVideo.Controls.Add(this.label1);
+            this.pnlPreviousVideo.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlPreviousVideo.Location = new System.Drawing.Point(0, 0);
+            this.pnlPreviousVideo.Name = "pnlPreviousVideo";
+            this.pnlPreviousVideo.Size = new System.Drawing.Size(499, 201);
+            this.pnlPreviousVideo.TabIndex = 64;
+            // 
+            // flowLayoutPanelPrevious
+            // 
+            this.flowLayoutPanelPrevious.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanelPrevious.Location = new System.Drawing.Point(0, 16);
+            this.flowLayoutPanelPrevious.Name = "flowLayoutPanelPrevious";
+            this.flowLayoutPanelPrevious.Size = new System.Drawing.Size(499, 185);
+            this.flowLayoutPanelPrevious.TabIndex = 63;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.White;
+            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(115, 16);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "Previouse Videos";
             // 
             // pnlHeading
             // 
@@ -203,35 +365,35 @@
             this.treeView1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.treeView1.Location = new System.Drawing.Point(0, 167);
             this.treeView1.Name = "treeView1";
-            treeNode61.Name = "Node12";
-            treeNode61.Text = "Urdu";
-            treeNode62.Name = "Node2";
-            treeNode62.Text = "First-S1";
-            treeNode63.Name = "Node1";
-            treeNode63.Text = "First";
-            treeNode64.Name = "Node11";
-            treeNode64.Text = "Maths";
-            treeNode65.Name = "Node4";
-            treeNode65.Text = "Second-S1";
-            treeNode66.Name = "Node10";
-            treeNode66.Text = "Hindi";
-            treeNode67.Name = "Node5";
-            treeNode67.Text = "Second-S2";
-            treeNode68.Name = "Node3";
-            treeNode68.Text = "Second";
-            treeNode69.Name = "Node9";
-            treeNode69.Text = "English";
-            treeNode70.Name = "Node8";
-            treeNode70.Text = "Third-S1";
-            treeNode71.Name = "Node7";
-            treeNode71.Text = "Third";
-            treeNode72.Name = "Node0";
-            treeNode72.Text = "Classes";
+            treeNode1.Name = "Node12";
+            treeNode1.Text = "Urdu";
+            treeNode2.Name = "Node2";
+            treeNode2.Text = "First-S1";
+            treeNode3.Name = "Node1";
+            treeNode3.Text = "First";
+            treeNode4.Name = "Node11";
+            treeNode4.Text = "Maths";
+            treeNode5.Name = "Node4";
+            treeNode5.Text = "Second-S1";
+            treeNode6.Name = "Node10";
+            treeNode6.Text = "Hindi";
+            treeNode7.Name = "Node5";
+            treeNode7.Text = "Second-S2";
+            treeNode8.Name = "Node3";
+            treeNode8.Text = "Second";
+            treeNode9.Name = "Node9";
+            treeNode9.Text = "English";
+            treeNode10.Name = "Node8";
+            treeNode10.Text = "Third-S1";
+            treeNode11.Name = "Node7";
+            treeNode11.Text = "Third";
+            treeNode12.Name = "Node0";
+            treeNode12.Text = "Classes";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode72});
+            treeNode12});
             this.treeView1.Size = new System.Drawing.Size(318, 484);
             this.treeView1.TabIndex = 4;
-            this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick_1);
+            this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
             // pnlLogo
             // 
@@ -335,168 +497,6 @@
             this.lblContact.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblContact.Click += new System.EventHandler(this.lblContact_Click);
             // 
-            // pnlVideo
-            // 
-            this.pnlVideo.Controls.Add(this.pnlUpcomingVideo);
-            this.pnlVideo.Controls.Add(this.pnlPreviousVideo);
-            this.pnlVideo.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlVideo.Location = new System.Drawing.Point(28, 441);
-            this.pnlVideo.Name = "pnlVideo";
-            this.pnlVideo.Size = new System.Drawing.Size(977, 201);
-            this.pnlVideo.TabIndex = 65;
-            // 
-            // pnlPreviousVideo
-            // 
-            this.pnlPreviousVideo.Controls.Add(this.flowLayoutPanelPrevious);
-            this.pnlPreviousVideo.Controls.Add(this.label1);
-            this.pnlPreviousVideo.Dock = System.Windows.Forms.DockStyle.Left;
-            this.pnlPreviousVideo.Location = new System.Drawing.Point(0, 0);
-            this.pnlPreviousVideo.Name = "pnlPreviousVideo";
-            this.pnlPreviousVideo.Size = new System.Drawing.Size(499, 201);
-            this.pnlPreviousVideo.TabIndex = 64;
-            // 
-            // flowLayoutPanelPrevious
-            // 
-            this.flowLayoutPanelPrevious.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelPrevious.Location = new System.Drawing.Point(0, 16);
-            this.flowLayoutPanelPrevious.Name = "flowLayoutPanelPrevious";
-            this.flowLayoutPanelPrevious.Size = new System.Drawing.Size(499, 185);
-            this.flowLayoutPanelPrevious.TabIndex = 63;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.White;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(115, 16);
-            this.label1.TabIndex = 10;
-            this.label1.Text = "Previouse Videos";
-            // 
-            // pnlUpcomingVideo
-            // 
-            this.pnlUpcomingVideo.Controls.Add(this.flowLayoutPanelUpcoming);
-            this.pnlUpcomingVideo.Controls.Add(this.label3);
-            this.pnlUpcomingVideo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlUpcomingVideo.Location = new System.Drawing.Point(499, 0);
-            this.pnlUpcomingVideo.Name = "pnlUpcomingVideo";
-            this.pnlUpcomingVideo.Size = new System.Drawing.Size(478, 201);
-            this.pnlUpcomingVideo.TabIndex = 65;
-            // 
-            // flowLayoutPanelUpcoming
-            // 
-            this.flowLayoutPanelUpcoming.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelUpcoming.Location = new System.Drawing.Point(0, 16);
-            this.flowLayoutPanelUpcoming.Name = "flowLayoutPanelUpcoming";
-            this.flowLayoutPanelUpcoming.Size = new System.Drawing.Size(478, 185);
-            this.flowLayoutPanelUpcoming.TabIndex = 63;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.White;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.label3.Location = new System.Drawing.Point(0, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(116, 16);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Upcoming Videos";
-            // 
-            // panel8
-            // 
-            this.panel8.Controls.Add(this.label6);
-            this.panel8.Controls.Add(this.lblFileName);
-            this.panel8.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel8.Location = new System.Drawing.Point(28, 403);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(977, 38);
-            this.panel8.TabIndex = 66;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.White;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.label6.Location = new System.Drawing.Point(795, 8);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(176, 17);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Watch Count: 32 Times";
-            // 
-            // lblFileName
-            // 
-            this.lblFileName.AutoSize = true;
-            this.lblFileName.BackColor = System.Drawing.Color.White;
-            this.lblFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFileName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.lblFileName.Location = new System.Drawing.Point(5, 8);
-            this.lblFileName.Name = "lblFileName";
-            this.lblFileName.Size = new System.Drawing.Size(85, 24);
-            this.lblFileName.TabIndex = 10;
-            this.lblFileName.Text = "Alphabet";
-            // 
-            // panel10
-            // 
-            this.panel10.Controls.Add(this.btnFullScreen);
-            this.panel10.Controls.Add(this.btnFastForward);
-            this.panel10.Controls.Add(this.btnRewind);
-            this.panel10.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel10.Location = new System.Drawing.Point(28, 369);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(977, 34);
-            this.panel10.TabIndex = 67;
-            // 
-            // btnFullScreen
-            // 
-            this.btnFullScreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnFullScreen.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnFullScreen.Image = ((System.Drawing.Image)(resources.GetObject("btnFullScreen.Image")));
-            this.btnFullScreen.Location = new System.Drawing.Point(98, 0);
-            this.btnFullScreen.Name = "btnFullScreen";
-            this.btnFullScreen.Size = new System.Drawing.Size(767, 34);
-            this.btnFullScreen.TabIndex = 5;
-            this.btnFullScreen.UseVisualStyleBackColor = true;
-            // 
-            // btnFastForward
-            // 
-            this.btnFastForward.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnFastForward.Dock = System.Windows.Forms.DockStyle.Right;
-            this.btnFastForward.Image = ((System.Drawing.Image)(resources.GetObject("btnFastForward.Image")));
-            this.btnFastForward.Location = new System.Drawing.Point(865, 0);
-            this.btnFastForward.Name = "btnFastForward";
-            this.btnFastForward.Size = new System.Drawing.Size(112, 34);
-            this.btnFastForward.TabIndex = 4;
-            this.btnFastForward.UseVisualStyleBackColor = true;
-            // 
-            // btnRewind
-            // 
-            this.btnRewind.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRewind.BackgroundImage")));
-            this.btnRewind.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btnRewind.Dock = System.Windows.Forms.DockStyle.Left;
-            this.btnRewind.Image = ((System.Drawing.Image)(resources.GetObject("btnRewind.Image")));
-            this.btnRewind.Location = new System.Drawing.Point(0, 0);
-            this.btnRewind.Margin = new System.Windows.Forms.Padding(0);
-            this.btnRewind.Name = "btnRewind";
-            this.btnRewind.Size = new System.Drawing.Size(98, 34);
-            this.btnRewind.TabIndex = 3;
-            this.btnRewind.UseVisualStyleBackColor = true;
-            // 
-            // axWindowsMediaPlayer1
-            // 
-            this.axWindowsMediaPlayer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(28, 55);
-            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
-            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(977, 314);
-            this.axWindowsMediaPlayer1.TabIndex = 68;
-            // 
             // frmUpCommingVideo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -507,9 +507,18 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmUpCommingVideo_FormClosed);
-            this.Load += new System.EventHandler(this.frmDashboard_Load);
+            this.Load += new System.EventHandler(this.frmUpCommingVideo_Load);
             this.pnlMain.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
+            this.panel10.ResumeLayout(false);
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
+            this.pnlVideo.ResumeLayout(false);
+            this.pnlUpcomingVideo.ResumeLayout(false);
+            this.pnlUpcomingVideo.PerformLayout();
+            this.pnlPreviousVideo.ResumeLayout(false);
+            this.pnlPreviousVideo.PerformLayout();
             this.pnlHeading.ResumeLayout(false);
             this.pnlHeading.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -517,15 +526,6 @@
             this.panel4.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            this.pnlVideo.ResumeLayout(false);
-            this.pnlPreviousVideo.ResumeLayout(false);
-            this.pnlPreviousVideo.PerformLayout();
-            this.pnlUpcomingVideo.ResumeLayout(false);
-            this.pnlUpcomingVideo.PerformLayout();
-            this.panel8.ResumeLayout(false);
-            this.panel8.PerformLayout();
-            this.panel10.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.ResumeLayout(false);
 
         }

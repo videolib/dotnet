@@ -18,64 +18,120 @@ namespace LBFVideoLib.Client
         private string _clientInfoFilePath = "";
         public Form ParentFormControl { get; set; }
         public ClientInfo ClientInfoObject { get; set; }
-        public string[] NextVideoFileList
-        {
-            get; set;
-        }
-        
+        public TreeNode SelectedNode { get; set; }
+
+        public List<ThumbnailInfo> PreviousVideoFileList { get; set; }
+
+        public List<ThumbnailInfo> NextVideoFileList { get; set; }
+
+        public ThumbnailInfo CurrentVideo { get; set; }
+
         public bool EncryptedVideo { get; set; }
 
         public Form DashboardFormControl { get; set; }
 
         public string SelectedVideo { get; set; }
 
+        private List<string> tempFileList = new List<string>();
+        private string _lastPlayedVideoFullUrl = "";
+
+
         public frmUpCommingVideo()
         {
             InitializeComponent();
         }
 
-        private void frmDashboard_Load(object sender, EventArgs e)
+        private void frmUpCommingVideo_Load(object sender, EventArgs e)
         {
             _clientRootPath = ClientHelper.GetClientRootPath();
             _clientInfoFilePath = ClientHelper.GetClientInfoFilePath();
             this.ClientInfoObject.LastAccessEndTime = DateTime.UtcNow;
-            this.ClientInfoObject.LastAccessStartTime = DateTime.UtcNow;
+            // this.ClientInfoObject.LastAccessStartTime = DateTime.UtcNow;
             Cryptograph.EncryptObject(this.ClientInfoObject, _clientInfoFilePath);
 
             FillTreeView();
             treeView1.ExpandAll();
 
-            lblSessionYears.Text = ClientHelper.GetSessionString(ClientInfoObject.SessionString);            
+            if (this.SelectedNode != null)
+            {
+                TreeNode[] searchedNode = this.treeView1.Nodes.Find(this.SelectedNode.Name, true);
+                if (searchedNode.Length > 0)
+                {
+                    this.treeView1.SelectedNode = searchedNode[0];
+
+                }
+            }
+            else
+            {
+                this.treeView1.SelectedNode = this.treeView1.Nodes[0];
+            }
+
+            lblSessionYears.Text = ClientHelper.GetSessionString(ClientInfoObject.SessionString);
             lblWelcome.Text = ClientHelper.GetWelcomeString(ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);
             lblExpireDate.Text = ClientHelper.GetExpiryDateString(ClientInfoObject.ExpiryDate);
 
+            //if (this.NextVideoFileList.Count > 0)
+            //{
 
-            if (this.NextVideoFileList.Length > 0)
+            AddPreviousVideoList();
+            AddNextVideoList();
+
+            if (EncryptedVideo)
             {
-
-                if (EncryptedVideo)
-                {
-                    //string tempDirectory = Path.Combine(Path.GetDirectoryName(this.NextVideoFileList[0]), "Temp");
-                    string tempDirectory = Path.Combine(Path.GetTempPath(), "Temp");
-                    System.IO.Directory.CreateDirectory(tempDirectory);
-                    string tempFilePath = Path.Combine(tempDirectory, Path.GetFileName(this.NextVideoFileList[0]));
-                    Cryptograph.DecryptFile(this.NextVideoFileList[0], tempFilePath);
-                    this.axWindowsMediaPlayer1.URL = tempFilePath;
-                }
-                else
-                {
-                    this.axWindowsMediaPlayer1.URL = this.NextVideoFileList[0];
-                }
-
-                this.lblFileName.Text = Path.GetFileNameWithoutExtension(this.NextVideoFileList[0]);
-                //   this.axWindowsMediaPlayer1.URL = this.NextVideoFileList[0];
+                PlayEncryptedVideo(CurrentVideo.VideoFullUrl);
+            }
+            else
+            {
+                this.axWindowsMediaPlayer1.URL = CurrentVideo.VideoFullUrl;
             }
 
-            AddMostWatchesVideos();
+            this.lblFileName.Text = Path.GetFileNameWithoutExtension(CurrentVideo.FileName);
+            //   this.axWindowsMediaPlayer1.URL = this.NextVideoFileList[0];
+            //}
 
-
+            // AddMostWatchesVideos();
         }
 
+        private void PlayEncryptedVideo(string videoUrl)
+        {
+            //string tempDirectory = Path.Combine(Path.GetDirectoryName(this.NextVideoFileList[0]), "Temp");
+            string tempDirectory = Path.Combine(Path.GetTempPath(), "Temp");
+            System.IO.Directory.CreateDirectory(tempDirectory);
+            string tempFilePath = Path.Combine(tempDirectory, Path.GetFileName(videoUrl));
+            tempFileList.Add(tempFilePath);
+            Cryptograph.DecryptFile(videoUrl, tempFilePath);
+            this.axWindowsMediaPlayer1.URL = tempFilePath;
+        }
+
+        private void AddPreviousVideoList()
+        {
+            for (int i = 0; i < PreviousVideoFileList.Count; i++)
+            {
+                CustomeThumbControl ctlThumb = new CustomeThumbControl(CtlThumb_Click);
+                ctlThumb.ThumbName = PreviousVideoFileList[i].FileName;
+                ctlThumb.ThumbUrl = PreviousVideoFileList[i].ThumbnailFilePath; //Path.Combine(thumbnailSubjectPath, "Subjects_ENGLISH.png");
+                ctlThumb.VideoUrl = PreviousVideoFileList[i].VideoFullUrl;
+                //ctlThumb.Click += CtlThumb_Click;
+                ctlThumb.Size = new System.Drawing.Size(120, 120);
+                //ctlThumb
+                flowLayoutPanelPrevious.Controls.Add(ctlThumb);
+            }
+        }
+
+        private void AddNextVideoList()
+        {
+            for (int i = 0; i < NextVideoFileList.Count; i++)
+            {
+                CustomeThumbControl ctlThumb = new CustomeThumbControl(CtlThumb_Click);
+                ctlThumb.ThumbName = NextVideoFileList[i].FileName;
+                ctlThumb.ThumbUrl = NextVideoFileList[i].ThumbnailFilePath; //Path.Combine(thumbnailSubjectPath, "Subjects_ENGLISH.png");
+                ctlThumb.VideoUrl = NextVideoFileList[i].VideoFullUrl;
+                //ctlThumb.Click += CtlThumb_Click;
+                ctlThumb.Size = new System.Drawing.Size(120, 120);
+                //ctlThumb
+                flowLayoutPanelUpcoming.Controls.Add(ctlThumb);
+            }
+        }
 
         private void AddMostWatchesVideos()
         {
@@ -140,25 +196,31 @@ namespace LBFVideoLib.Client
         private void CtlThumb_Click(object sender, EventArgs e)
         {
             CustomeThumbControl ctl = sender as CustomeThumbControl;
-            this.lblFileName.Text = Path.GetFileNameWithoutExtension(ctl.VideoUrl);
-            this.axWindowsMediaPlayer1.URL = ctl.VideoUrl;
-            this.EncryptedVideo = false;
-        }
-
-
-        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            
-            if (e.Node.Tag != null)
+            if (_lastPlayedVideoFullUrl.Equals(ctl.VideoUrl) == true)
             {
-                frmVideoLibrary frmVideoLibrary = new frmVideoLibrary();
-                frmVideoLibrary.ParentFormControl = this;
-                frmVideoLibrary.SelectedNode = e.Node;
-                frmVideoLibrary.ClientInfoObject = this.ClientInfoObject;
-                this.Hide();
-                frmVideoLibrary.Show();
+                return;
             }
+
+            this.axWindowsMediaPlayer1.URL = "";
+            _lastPlayedVideoFullUrl = ctl.VideoUrl;
+            this.lblFileName.Text = Path.GetFileNameWithoutExtension(ctl.ThumbName);
+            this.EncryptedVideo = true;
+            PlayEncryptedVideo(ctl.VideoUrl);
         }
+
+        //private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+        //{
+
+        //    if (e.Node.Tag != null)
+        //    {
+        //        frmVideoLibrary frmVideoLibrary = new frmVideoLibrary();
+        //        frmVideoLibrary.ParentFormControl = this;
+        //        frmVideoLibrary.SelectedNode = e.Node;
+        //        frmVideoLibrary.ClientInfoObject = this.ClientInfoObject;
+        //        this.Hide();
+        //        frmVideoLibrary.Show();
+        //    }
+        //}
 
         #region Private Methods
 
@@ -171,6 +233,7 @@ namespace LBFVideoLib.Client
             for (int i = 0; i < rootDirectoryList.Length; i++)
             {
                 TreeNode rootNode = new TreeNode(Path.GetFileName(rootDirectoryList[i]));
+                rootNode.Name = rootNode.Text;
                 TreeTag treeTag = new TreeTag();
                 treeTag.CurrentDirectoryPath = rootDirectoryList[i];
                 rootNode.Tag = treeTag;
@@ -198,6 +261,7 @@ namespace LBFVideoLib.Client
                 for (int i = 0; i < directoryList.Length; i++)
                 {
                     TreeNode rootNode = new TreeNode(Path.GetFileName(directoryList[i]));
+                    rootNode.Name = rootNode.Text;
                     TreeTag treeTag = new TreeTag();
                     treeTag.CurrentDirectoryPath = directoryList[i];
                     rootNode.Tag = treeTag;
@@ -207,38 +271,16 @@ namespace LBFVideoLib.Client
             }
         }
 
-
         #endregion
-
-        private void myButton12_Click(object sender, EventArgs e)
-        {
-            this.lblFileName.Text = "VID - 20160508 - WA0004";
-            this.axWindowsMediaPlayer1.URL = Path.Combine(ClientHelper.GetClientVideoFilePath(ClientInfoObject.SchoolId, ClientInfoObject.SchoolCity), @"Third\Third-S2\Third-S2-Science\Third-S2-Science-Practical\VID-20160508-WA0004.mp4");
-        }
-
-
-        private void myButton11_Click(object sender, EventArgs e)
-        {
-            this.lblFileName.Text = "VID-20151009-WA0006";
-            this.axWindowsMediaPlayer1.URL = Path.Combine(ClientHelper.GetClientVideoFilePath(ClientInfoObject.SchoolId, ClientInfoObject.SchoolCity), @"Third\Third-S2\Third-S2-Science\Third-S2-Science-Theory\VID-20151009-WA0006.mp4");
-        }
-
-        private void btnFullScreen_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnRewind_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void btnFastForward_Click(object sender, EventArgs e)
-        {
-        }
-
         private void frmUpCommingVideo_FormClosed(object sender, FormClosedEventArgs e)
         {
+            this.axWindowsMediaPlayer1.URL = "";
+
+            for (int i = 0; i < tempFileList.Count; i++)
+            {
+                File.Delete(tempFileList[i]);
+            }
+
             if (this.ParentFormControl.Name == "frmVideoLibrary")
             {
                 this.ParentFormControl.Show();
@@ -258,22 +300,22 @@ namespace LBFVideoLib.Client
             MessageBox.Show(ClientHelper.GetContactMessageString(), "Contact", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void btnRewind_Click_1(object sender, EventArgs e)
+        private void btnRewind_Click(object sender, EventArgs e)
         {
             this.axWindowsMediaPlayer1.Ctlcontrols.currentPosition -= 10;
-
         }
 
-        private void btnFullScreen_Click_1(object sender, EventArgs e)
+        private void btnFullScreen_Click(object sender, EventArgs e)
         {
             if (this.axWindowsMediaPlayer1.fullScreen == false)
+            {
                 this.axWindowsMediaPlayer1.fullScreen = true;
+            }
         }
 
-        private void btnFastForward_Click_1(object sender, EventArgs e)
+        private void btnFastForward_Click(object sender, EventArgs e)
         {
             this.axWindowsMediaPlayer1.Ctlcontrols.currentPosition += 10;
-
         }
 
         private void pnlLogo_Click(object sender, EventArgs e)
@@ -282,10 +324,18 @@ namespace LBFVideoLib.Client
             this.DashboardFormControl.Show();
         }
 
-        private void treeView1_NodeMouseClick_1(object sender, TreeNodeMouseClickEventArgs e)
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
+            //if (e.Node.Tag != null)
+            //{
+            frmVideoLibrary frmVideoLibrary = new frmVideoLibrary();
+            frmVideoLibrary.ParentFormControl = this.DashboardFormControl;
+            frmVideoLibrary.SelectedNode = e.Node;
+            frmVideoLibrary.ClientInfoObject = this.ClientInfoObject;
+            frmVideoLibrary.Show();
             this.Close();
 
+            //}
         }
     }
 }

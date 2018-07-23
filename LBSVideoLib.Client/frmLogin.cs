@@ -30,8 +30,8 @@ namespace LBFVideoLib.Client
                 return;
             }
 
-            TreeViewHelper.ClientInfoObject = Cryptograph.DecryptObject<ClientInfo>(_clientInfoFilePath);
-            _clientInfo = TreeViewHelper.ClientInfoObject;
+            CommonAppStateDataHelper.ClientInfoObject = Cryptograph.DecryptObject<ClientInfo>(_clientInfoFilePath);
+            _clientInfo = CommonAppStateDataHelper.ClientInfoObject;
 
             if (_clientInfo != null)
             {
@@ -74,7 +74,8 @@ namespace LBFVideoLib.Client
                 frmDashboard frm = new frmDashboard();
                 // frm.MdiParent = this.MdiParent;
                 frm.ParentFormControl = this;
-                frm.ClientInfoObject = TreeViewHelper.ClientInfoObject;//_clientInfo
+                frm.ClientInfoObject = CommonAppStateDataHelper.ClientInfoObject;//_clientInfo
+                CommonAppStateDataHelper.PushForm(this);
                 frm.Show();
                 this.Hide();
             }
@@ -106,7 +107,7 @@ namespace LBFVideoLib.Client
         private void lblForgotPwd_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start(string.Format("mailto:info@lbf.in?subject={0}-{1}", _clientInfo.SchoolName, _clientInfo.SchoolId));
-        } 
+        }
         #endregion
     }
 }

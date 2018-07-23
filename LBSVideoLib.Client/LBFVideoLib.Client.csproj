@@ -57,7 +57,8 @@
     <Compile Include="frmLogin.Designer.cs">
       <DependentUpon>frmLogin.cs</DependentUpon>
     </Compile>
-    <Compile Include="TreeViewHelper.cs" />
+    <Compile Include="CommonAppStateDataHelper.cs" />
+    <Compile Include="TreeExtension.cs" />
     <Compile Include="Unsed\frmPlayVideo.cs">
       <SubType>Form</SubType>
     </Compile>

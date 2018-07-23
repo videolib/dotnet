@@ -14,7 +14,9 @@ namespace LBFVideoLib.Client
         //private string _clientInfoFilePath = "";
         public Form ParentFormControl { get; set; }
         public ClientInfo ClientInfoObject { get; set; }
+        public TreeNode SelectedNode { get; set; }
         private Dictionary<string, string> _bookVideoList = new Dictionary<string, string>();
+        private bool _skipNodeSelection = true;
 
         public frmDashboard()
         {
@@ -33,7 +35,8 @@ namespace LBFVideoLib.Client
 
             FillTreeView();
             treeView1.ExpandAll();
-            TreeViewHelper.TreeViewObject = treeView1;
+
+            this.treeView1.SelectedNode = this.treeView1.Nodes[0];
 
             AddRecomVideos();
             AddMostWatchesVideos();
@@ -88,6 +91,8 @@ namespace LBFVideoLib.Client
                 //TreeNode rootNode = new TreeNode(ClientInfoObject.SchoolName);
                 //treeView1.Nodes.Add(rootNode);
                 TreeNode rootNode = new TreeNode(Path.GetFileName(rootDirectoryList[i]));
+                rootNode.Name = rootNode.Text;
+
                 TreeTag treeTag = new TreeTag();
                 treeTag.CurrentDirectoryPath = rootDirectoryList[i];
                 rootNode.Tag = treeTag;
@@ -115,6 +120,8 @@ namespace LBFVideoLib.Client
                 for (int i = 0; i < directoryList.Length; i++)
                 {
                     TreeNode rootNode = new TreeNode(Path.GetFileName(directoryList[i]));
+                    rootNode.Name = rootNode.Text;
+
                     TreeTag treeTag = new TreeTag();
                     treeTag.CurrentDirectoryPath = directoryList[i];
                     rootNode.Tag = treeTag;
@@ -124,25 +131,19 @@ namespace LBFVideoLib.Client
             }
         }
 
-        private void OpenVideoLibrary()
+        private void OpenVideoLibrary(TreeNode selectedNode)
         {
             frmVideoLibrary frmVideoLibrary = new frmVideoLibrary();
             frmVideoLibrary.ParentFormControl = this;
             frmVideoLibrary.DashboardFormControl = this;
             frmVideoLibrary.ClientInfoObject = this.ClientInfoObject;
-            this.Hide();
+            frmVideoLibrary.SelectedNode = selectedNode;
             frmVideoLibrary.Show();
+            CommonAppStateDataHelper.PushForm(this);
+            this.Hide();
         }
 
         #endregion
-
-        private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        {
-            if (e.Node.Tag != null)
-            {
-                OpenVideoLibrary();
-            }
-        }
 
 
 
@@ -159,7 +160,7 @@ namespace LBFVideoLib.Client
             upcomingVideo.ParentFormControl = this;
             upcomingVideo.ClientInfoObject = this.ClientInfoObject;
             upcomingVideo.EncryptedVideo = false;
-            upcomingVideo.NextVideoFileList = new string[] { Path.Combine(ClientHelper.GetClientVideoFilePath(ClientInfoObject.SchoolId, ClientInfoObject.SchoolCity), @"First\First-S1\First-S1-English\First-S1-English-Basic\VID-20150929-WA0005.mp4") };
+            //upcomingVideo.NextVideoFileList = new string[] { Path.Combine(ClientHelper.GetClientVideoFilePath(ClientInfoObject.SchoolId, ClientInfoObject.SchoolCity), @"First\First-S1\First-S1-English\First-S1-English-Basic\VID-20150929-WA0005.mp4") };
             upcomingVideo.Show();
             this.Hide();
         }
@@ -287,11 +288,12 @@ namespace LBFVideoLib.Client
         {
             CustomeThumbControl ctl = sender as CustomeThumbControl;
 
+
             frmUpCommingVideo upcomingVideoForm = new frmUpCommingVideo();
             upcomingVideoForm.ParentFormControl = this;
             upcomingVideoForm.ClientInfoObject = this.ClientInfoObject;
             upcomingVideoForm.EncryptedVideo = false;
-            upcomingVideoForm.NextVideoFileList = new string[] { ctl.VideoUrl };
+            //upcomingVideoForm.NextVideoFileList = new string[] { ctl.VideoUrl };
             upcomingVideoForm.EncryptedVideo = false;
             upcomingVideoForm.DashboardFormControl = this;
             upcomingVideoForm.Show();
@@ -301,6 +303,34 @@ namespace LBFVideoLib.Client
         private void pnlRecomVideo_Paint(object sender, PaintEventArgs e)
         {
 
+        }
+
+        private void frmDashboard_VisibleChanged(object sender, EventArgs e)
+        {
+            if (this.SelectedNode != null && this.Visible)
+            {
+                TreeNode[] searchedNode = this.treeView1.Nodes.Find(this.SelectedNode.Name, true);
+                if (searchedNode.Length > 0)
+                {
+                    this.treeView1.SelectedNode = searchedNode[0];
+
+                }
+            }
+        }
+
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+            if (_skipNodeSelection == false)
+            {
+                if (e.Node.Tag != null)
+                {
+                    OpenVideoLibrary(e.Node);
+                }
+            }
+            else
+            {
+                _skipNodeSelection = false;
+            }
         }
     }
 }
