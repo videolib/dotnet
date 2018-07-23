@@ -19,10 +19,10 @@ namespace LBFVideoLib.Admin
         private string _clientInfoFileName = "";
 
         List<SchoolClass> _classList = new List<SchoolClass>();
-        List<Series> seriesList = new List<Series>();
+        List<Series> _seriesList = new List<Series>();
         List<Subject> _subjectList = new List<Subject>();
-        List<Book> bookList = new List<Book>();
-        List<ClassFB> regInfoFB = new List<ClassFB>();
+        List<Book> _bookList = new List<Book>();
+        List<ClassFB> _regInfoFB = new List<ClassFB>();
         #endregion
 
         public frmSchoolRegistration()
@@ -150,6 +150,7 @@ namespace LBFVideoLib.Admin
                         videoInfo.Subject = selectedBook.SubjectName;
                         videoInfo.Book = selectedBook.BookName;
                         clientTargetVideoPath = Path.Combine(clientTargetVideoPath, Path.GetFileName(selectedBookVideo));
+                        videoInfo.VideoFullUrl = clientTargetVideoPath;
 
                         Cryptograph.EncryptFile(selectedBookVideo, clientTargetVideoPath);
                         videoInfoList.Add(videoInfo);
@@ -285,7 +286,7 @@ namespace LBFVideoLib.Admin
                     series.SeriesId = seriesFolderList[i];
                     series.SeriesName = Path.GetFileName(seriesFolderList[i]);
                     series.ClassName = selectedClass.ClassName;
-                    seriesList.Add(series);
+                    _seriesList.Add(series);
                 }
             }
             else if (checkedState == CheckState.Unchecked)
@@ -295,7 +296,7 @@ namespace LBFVideoLib.Admin
                 SchoolClass selectedClassName = (chkListClass.Items[selectedClassIndex] as SchoolClass);
                 string[] seriesFolderList = Directory.GetDirectories(selectedClassName.ClassId);//Directory.GetDirectories(Path.Combine(_sourceFolderPath, selectedClassName));
 
-                seriesList = seriesList.Where(b =>
+                _seriesList = _seriesList.Where(b =>
                 {
                     if (b.ClassName != selectedClassName.ClassName)
                     {
@@ -312,14 +313,14 @@ namespace LBFVideoLib.Admin
             }
 
        ((ListBox)this.chkListSeries).DataSource = null;
-            ((ListBox)this.chkListSeries).DataSource = seriesList;
+            ((ListBox)this.chkListSeries).DataSource = _seriesList;
             ((ListBox)this.chkListSeries).DisplayMember = "SeriesName";
             ((ListBox)this.chkListSeries).ValueMember = "Selected";
 
 
-            for (int i = 0; i < seriesList.Count; i++)
+            for (int i = 0; i < _seriesList.Count; i++)
             {
-                if (seriesList[i].Selected)
+                if (_seriesList[i].Selected)
                 {
                     this.chkListSeries.SetItemChecked(i, true);
                 }
@@ -424,7 +425,7 @@ namespace LBFVideoLib.Admin
                         book.Selected = true;
                     }
 
-                    bookList.Add(book);
+                    _bookList.Add(book);
                 }
                 selectedSubject.Selected = true;
             }
@@ -434,7 +435,7 @@ namespace LBFVideoLib.Admin
 
                 // remove series
                 string[] bookFolderList = Directory.GetDirectories(Path.Combine(_sourceVideoFolderPath, Path.Combine(Path.Combine(selectedSubject.ClassName, selectedSubject.SeriesName), selectedSubject.SubjectName)));
-                bookList = bookList.Where(b =>
+                _bookList = _bookList.Where(b =>
                 {
                     if (b.SubjectName != selectedSubject.SubjectName)
                     {
@@ -452,14 +453,14 @@ namespace LBFVideoLib.Admin
 
 
               ((ListBox)this.chkListBooks).DataSource = null;
-            ((ListBox)this.chkListBooks).DataSource = bookList;
+            ((ListBox)this.chkListBooks).DataSource = _bookList;
             ((ListBox)this.chkListBooks).DisplayMember = "BookName";
             ((ListBox)this.chkListBooks).ValueMember = "Selected";
 
 
-            for (int i = 0; i < bookList.Count; i++)
+            for (int i = 0; i < _bookList.Count; i++)
             {
-                if (bookList[i].Selected)
+                if (_bookList[i].Selected)
                 {
                     this.chkListBooks.SetItemChecked(i, true);
                 }
@@ -478,6 +479,12 @@ namespace LBFVideoLib.Admin
             txtSchoolName.Text = "";
             cmbSchoolSession.DataSource = LicenseHelper.GetSessionList();
             cmbSchoolSession.SelectedIndex = 0;
+
+            _classList.Clear();
+            _seriesList.Clear();
+            _subjectList.Clear();
+            _bookList.Clear();
+            _regInfoFB.Clear();
 
             // Read all folders to fill classes
             string[] classNameList = Directory.GetDirectories(_sourceVideoFolderPath);
@@ -499,6 +506,8 @@ namespace LBFVideoLib.Admin
             ((ListBox)this.chkListClass).DataSource = _classList;
             ((ListBox)this.chkListClass).DisplayMember = "ClassName";
             ((ListBox)this.chkListClass).ValueMember = "Selected";
+
+
         }
 
         private bool ValidateRegistrationForm()

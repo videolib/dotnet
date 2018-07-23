@@ -8,6 +8,8 @@ namespace LBFVideoLib.Common
     [Serializable()]
     public class VideoInfo
     {
+        public string VideoFullUrl { get; set; }
+
         public string VideoName { get; set; }
 
         public int WatchCount { get; set; }
