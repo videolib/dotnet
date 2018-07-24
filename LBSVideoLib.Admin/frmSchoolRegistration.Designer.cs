@@ -232,6 +232,7 @@
             this.chkListBooks.Size = new System.Drawing.Size(262, 137);
             this.chkListBooks.TabIndex = 28;
             this.chkListBooks.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chkListBook_ItemCheck);
+            this.chkListBooks.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chkListBooks_MouseMove);
             // 
             // chkListSubject
             // 
@@ -242,6 +243,7 @@
             this.chkListSubject.Size = new System.Drawing.Size(262, 137);
             this.chkListSubject.TabIndex = 27;
             this.chkListSubject.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chkListSubject_ItemCheck);
+            this.chkListSubject.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chkListSubject_MouseMove);
             // 
             // chkListSeries
             // 
@@ -252,6 +254,7 @@
             this.chkListSeries.Size = new System.Drawing.Size(262, 137);
             this.chkListSeries.TabIndex = 26;
             this.chkListSeries.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chkListSeries_ItemCheck);
+            this.chkListSeries.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chkListSeries_MouseMove);
             // 
             // chkListClass
             // 
@@ -262,6 +265,7 @@
             this.chkListClass.Size = new System.Drawing.Size(262, 137);
             this.chkListClass.TabIndex = 25;
             this.chkListClass.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.chkListClass_ItemCheck);
+            this.chkListClass.MouseMove += new System.Windows.Forms.MouseEventHandler(this.chkListClass_MouseMove);
             // 
             // label7
             // 

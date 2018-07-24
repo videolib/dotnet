@@ -15,7 +15,7 @@ namespace LBFVideoLib.Client
         private string _clientRootPath = "";
         private string _clientInfoFilePath = "";
         private string _clientVideoRootFilePath = "";
-        private List<ThumbnailInfo> _videoFilePathList = new List<ThumbnailInfo>();
+        private List<ThumbnailInfo> _videoThumbnailFilePathList = new List<ThumbnailInfo>();
         //   private TreeNode _lastSelectedNode = null;
         private bool _searchApplied = false;
         List<ThumbnailInfo> _searchList = new List<ThumbnailInfo>();
@@ -148,7 +148,7 @@ namespace LBFVideoLib.Client
             }
             else
             {
-                CreatePreviousAndNextPlaylist(_videoFilePathList, ctl.VideoUrl, out nextVideoList, out previousVideoList);
+                CreatePreviousAndNextPlaylist(_videoThumbnailFilePathList, ctl.VideoUrl, out nextVideoList, out previousVideoList);
             }
 
             frmUpCommingVideo upcomingVideoForm = new frmUpCommingVideo();
@@ -209,14 +209,14 @@ namespace LBFVideoLib.Client
             {
                 _searchApplied = true;
                 //string searchText = txtSearch.Text.Trim().ToLower();
-                _searchList = _videoFilePathList.Where(item => item.FileName.ToLower().Contains(searchText)).ToList<ThumbnailInfo>();
+                _searchList = _videoThumbnailFilePathList.Where(item => item.FileName.ToLower().Contains(searchText)).ToList<ThumbnailInfo>();
                 AddVideoThumbnailControls(_searchList);
             }
             else if (_searchApplied)
             {
                 _searchApplied = false;
                 _searchList.Clear();
-                AddVideoThumbnailControls(_videoFilePathList);
+                AddVideoThumbnailControls(_videoThumbnailFilePathList);
             }
 
         }
@@ -251,21 +251,21 @@ namespace LBFVideoLib.Client
             //    return;
             //}
             //  _lastSelectedNode = e.Node;
-            _videoFilePathList.Clear();
+            _videoThumbnailFilePathList.Clear();
             if (currentNodeTag.BookVideoList.Count == 0)
             {
                 string[] currentDirectoryList = Directory.GetDirectories(currentNodeTag.CurrentDirectoryPath);
                 for (int i = 0; i < currentDirectoryList.Length; i++)
                 {
-                    GetVideoFileList(currentDirectoryList[i], _videoFilePathList);
+                    GetVideoFileList(currentDirectoryList[i], _videoThumbnailFilePathList);
                 }
             }
             else
             {
-                GetVideoFileList(currentNodeTag.CurrentDirectoryPath, _videoFilePathList);
+                GetVideoFileList(currentNodeTag.CurrentDirectoryPath, _videoThumbnailFilePathList);
             }
 
-            AddVideoThumbnailControls(_videoFilePathList);
+            AddVideoThumbnailControls(_videoThumbnailFilePathList);
         }
 
         private void AddVideoThumbnailControls(List<ThumbnailInfo> thumbnailInfoList)

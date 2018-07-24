@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LBFVideoLib.Common.Entity;
+using System;
 using System.Drawing;
 using System.IO;
 using System.Windows.Forms;
@@ -11,15 +12,16 @@ namespace LBFVideoLib.Client
         PictureBox pict = new PictureBox();
         Label lbl = new Label();
         Panel pnlSpace = new Panel();
+        public ThumbnailInfo ThumbnailInformation { get; set; }
 
         public CustomeThumbControl(Action<object, EventArgs> clickDeligate)
         {
             _clickDeligate = clickDeligate;
-            pict.Click += Pict_Click;                        
+            pict.Click += Pict_Click;
         }
 
         public CustomeThumbControl()
-        {            
+        {
         }
 
         private void Pict_Click(object sender, EventArgs e)
@@ -27,7 +29,7 @@ namespace LBFVideoLib.Client
             _clickDeligate(this, e);
         }
 
-        
+
         public string ThumbUrl
         {
             get; set;

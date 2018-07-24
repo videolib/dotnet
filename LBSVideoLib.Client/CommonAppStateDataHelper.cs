@@ -1,8 +1,6 @@
 ﻿using LBFVideoLib.Common;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace LBFVideoLib.Client
@@ -11,18 +9,18 @@ namespace LBFVideoLib.Client
     {
         static CommonAppStateDataHelper()
         {
-            _applicationFormList = new Stack<Form>();
+            _applicationFormList = new List<Form>();
         }
-        private static Stack<Form> _applicationFormList;
+        private static List<Form> _applicationFormList;
 
-        public static void PushForm(Form currentForm)
+        public static void AddForm(Form currentForm)
         {
-            _applicationFormList.Push(currentForm);
+            _applicationFormList.Add(currentForm);
         }
 
-        public static Form PopForm()
+        public static Form FindFormByFormType(string formName)
         {
-            return _applicationFormList.Pop();
+            return _applicationFormList.FirstOrDefault(k => k.Name.ToLower().Equals(formName.ToLower()));
         }
 
         public static ClientInfo ClientInfoObject { get; set; }
