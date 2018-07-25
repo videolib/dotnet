@@ -9,12 +9,14 @@ namespace LBFVideoLib.Common
 {
     public static class FirebaseHelper
     {
-        private const string URL = "https://lbf-video-content.firebaseio.com/lbf-video-content/registrations-data/{0}/.json";
+        //private const string URL = "https://lbf-video-content.firebaseio.com/registrations-data/{0}/.json";
+        private const string BaseURL = "https://lbf-video-content.firebaseio.com/{0}/.json";
 
 
-        public static void PostData(string requestJson, string schoolcode)
+        public static void PostData(string requestJson,string url)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(string.Format(URL, schoolcode));
+            string requestUrl = string.Format(BaseURL, url);
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestUrl);
             request.Method = "POST";
             request.ContentType = "application/json";
             request.Headers.Add("API-KEY", "");

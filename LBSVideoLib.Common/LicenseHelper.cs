@@ -19,6 +19,14 @@ namespace LBFVideoLib.Common
             sessionList.Add("2018-19", DateTime.ParseExact("04-30-2019 11:59:59 PM", format, provider).ToString());
             sessionList.Add("2019-20", DateTime.ParseExact("04-30-2020 11:59:59 PM", format, provider).ToString());
             sessionList.Add("2020-21", DateTime.ParseExact("04-30-2021 11:59:59 PM", format, provider).ToString());
+            sessionList.Add("2021-22", DateTime.ParseExact("04-30-2022 11:59:59 PM", format, provider).ToString());
+            sessionList.Add("2022-23", DateTime.ParseExact("04-30-2023 11:59:59 PM", format, provider).ToString());
+            sessionList.Add("2023-24", DateTime.ParseExact("04-30-2024 11:59:59 PM", format, provider).ToString());
+            sessionList.Add("2024-25", DateTime.ParseExact("04-30-2025 11:59:59 PM", format, provider).ToString());
+            sessionList.Add("2025-26", DateTime.ParseExact("04-30-2026 11:59:59 PM", format, provider).ToString());
+            sessionList.Add("2026-27", DateTime.ParseExact("04-30-2027 11:59:59 PM", format, provider).ToString());
+            sessionList.Add("2027-28", DateTime.ParseExact("04-30-2028 11:59:59 PM", format, provider).ToString());
+
             //sessionList.Add("2018-19", "30-04-2019 11:59:59 PM");
             //sessionList.Add("2019-20", "30-04-2020 11:59:59 PM");
             //sessionList.Add("2020-21", "30-04-2021 11:59:59 PM");

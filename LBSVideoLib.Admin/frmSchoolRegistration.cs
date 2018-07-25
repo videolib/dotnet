@@ -566,7 +566,7 @@ namespace LBFVideoLib.Admin
             info.Password = txtPwd.Text;
             info.SchoolName = txtSchoolName.Text;
             info.City = txtSchoolCity.Text;
-            info.Session = cmbSchoolSession.SelectedText;
+            info.Session = cmbSchoolSession.Text;
             info.Classes = new List<ClassFB>();
 
             for (int i = 0; i < chkListBooks.CheckedItems.Count; i++)
@@ -605,7 +605,8 @@ namespace LBFVideoLib.Admin
             }
 
             string jsonString1 = JsonHelper.ParseObjectToJSON<RegInfoFB>(info);
-            FirebaseHelper.PostData(jsonString1, txtSchoolCode.Text);
+            string url = string.Format("registrations-data/{0}", txtSchoolCode.Text);
+            FirebaseHelper.PostData(jsonString1, url);
             return info.Classes;
         }
         #endregion
