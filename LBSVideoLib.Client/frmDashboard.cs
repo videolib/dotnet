@@ -312,9 +312,7 @@ namespace LBFVideoLib.Client
         {
             nextVideoList = new List<ThumbnailInfo>();
             previousVideoList = new List<ThumbnailInfo>();
-            int index = -1;
-
-            index = thumbnailList.FindIndex(k => k.VideoFullUrl.Equals(videoUrl));
+            int index = thumbnailList.FindIndex(k => k.VideoFullUrl.Equals(videoUrl));
             for (int i = index + 1; (i < index + 1 + 3) && (i < thumbnailList.Count); i++)
             {
                 nextVideoList.Add(thumbnailList[i]);
@@ -326,34 +324,39 @@ namespace LBFVideoLib.Client
             }
         }
 
-
-        private void pnlRecomVideo_Paint(object sender, PaintEventArgs e)
-        {
-        }
-
         private void frmDashboard_VisibleChanged(object sender, EventArgs e)
         {
-            if (this.SelectedNode != null && this.Visible)
-            {
-                TreeNode[] searchedNode = this.treeView1.Nodes.Find(this.SelectedNode.Name, true);
-                if (searchedNode.Length > 0)
+            
+                if (this.SelectedNode != null && this.Visible)
                 {
-                    this.treeView1.SelectedNode = searchedNode[0];
-
+                    TreeNode[] searchedNode = this.treeView1.Nodes.Find(this.SelectedNode.Name, true);
+                    if (searchedNode.Length > 0)
+                    {
+                        _skipNodeSelection = true;
+                        this.treeView1.SelectedNode = searchedNode[0];
+                        _skipNodeSelection = false;
+                    }
                 }
-            }
+            
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (_skipNodeSelection == false)
+            try
             {
-                if (e.Node.Tag != null)
+                if (_skipNodeSelection == false)
                 {
-                    OpenVideoLibrary(e.Node);
+                    if (e.Node.Tag != null)
+                    {
+                        OpenVideoLibrary(e.Node);
+                    }
+                }
+                else
+                {
+                    _skipNodeSelection = false;
                 }
             }
-            else
+            finally
             {
                 _skipNodeSelection = false;
             }

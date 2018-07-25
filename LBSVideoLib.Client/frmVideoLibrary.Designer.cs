@@ -54,8 +54,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmVideoLibrary));
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pnlLogo = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
+            this.lblPrivacyPolicy = new System.Windows.Forms.Label();
             this.lblExpireDate = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lblContact = new System.Windows.Forms.Label();
@@ -71,8 +73,6 @@
             this.pnlTop = new System.Windows.Forms.Panel();
             this.pnlRight = new System.Windows.Forms.Panel();
             this.pnlLeft = new System.Windows.Forms.Panel();
-            this.pnlLogo = new System.Windows.Forms.Panel();
-            this.lblPrivacyPolicy = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -133,6 +133,18 @@
             this.panel1.Size = new System.Drawing.Size(320, 653);
             this.panel1.TabIndex = 25;
             // 
+            // pnlLogo
+            // 
+            this.pnlLogo.BackColor = System.Drawing.Color.White;
+            this.pnlLogo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlLogo.BackgroundImage")));
+            this.pnlLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.pnlLogo.Location = new System.Drawing.Point(0, 0);
+            this.pnlLogo.Name = "pnlLogo";
+            this.pnlLogo.Size = new System.Drawing.Size(318, 167);
+            this.pnlLogo.TabIndex = 1;
+            this.pnlLogo.Click += new System.EventHandler(this.pnlLogo_Click);
+            // 
             // label11
             // 
             this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -158,6 +170,21 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(1370, 43);
             this.panel4.TabIndex = 24;
+            // 
+            // lblPrivacyPolicy
+            // 
+            this.lblPrivacyPolicy.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblPrivacyPolicy.AutoSize = true;
+            this.lblPrivacyPolicy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrivacyPolicy.ForeColor = System.Drawing.Color.White;
+            this.lblPrivacyPolicy.Location = new System.Drawing.Point(1230, 11);
+            this.lblPrivacyPolicy.Name = "lblPrivacyPolicy";
+            this.lblPrivacyPolicy.Size = new System.Drawing.Size(107, 16);
+            this.lblPrivacyPolicy.TabIndex = 3;
+            this.lblPrivacyPolicy.Text = "Privacy Policy";
+            this.lblPrivacyPolicy.Click += new System.EventHandler(this.lblPrivacyPolicy_Click);
             // 
             // lblExpireDate
             // 
@@ -244,6 +271,8 @@
             // 
             // flowLayoutVideoPanel
             // 
+            this.flowLayoutVideoPanel.AutoScroll = true;
+            this.flowLayoutVideoPanel.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.flowLayoutVideoPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutVideoPanel.Location = new System.Drawing.Point(348, 135);
             this.flowLayoutVideoPanel.Name = "flowLayoutVideoPanel";
@@ -326,33 +355,6 @@
             this.pnlLeft.Name = "pnlLeft";
             this.pnlLeft.Size = new System.Drawing.Size(28, 653);
             this.pnlLeft.TabIndex = 47;
-            // 
-            // pnlLogo
-            // 
-            this.pnlLogo.BackColor = System.Drawing.Color.White;
-            this.pnlLogo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlLogo.BackgroundImage")));
-            this.pnlLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.pnlLogo.Location = new System.Drawing.Point(0, 0);
-            this.pnlLogo.Name = "pnlLogo";
-            this.pnlLogo.Size = new System.Drawing.Size(318, 167);
-            this.pnlLogo.TabIndex = 1;
-            this.pnlLogo.Click += new System.EventHandler(this.pnlLogo_Click);
-            // 
-            // lblPrivacyPolicy
-            // 
-            this.lblPrivacyPolicy.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblPrivacyPolicy.AutoSize = true;
-            this.lblPrivacyPolicy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrivacyPolicy.ForeColor = System.Drawing.Color.White;
-            this.lblPrivacyPolicy.Location = new System.Drawing.Point(1230, 11);
-            this.lblPrivacyPolicy.Name = "lblPrivacyPolicy";
-            this.lblPrivacyPolicy.Size = new System.Drawing.Size(107, 16);
-            this.lblPrivacyPolicy.TabIndex = 3;
-            this.lblPrivacyPolicy.Text = "Privacy Policy";
-            this.lblPrivacyPolicy.Click += new System.EventHandler(this.lblPrivacyPolicy_Click);
             // 
             // frmVideoLibrary
             // 

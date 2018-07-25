@@ -137,6 +137,8 @@
             // 
             // pnlRecomVideo
             // 
+            this.pnlRecomVideo.AutoScroll = true;
+            this.pnlRecomVideo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.pnlRecomVideo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlRecomVideo.Location = new System.Drawing.Point(348, 173);
             this.pnlRecomVideo.Name = "pnlRecomVideo";

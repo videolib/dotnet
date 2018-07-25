@@ -18,6 +18,7 @@ namespace LBFVideoLib.Client
         private List<ThumbnailInfo> _videoThumbnailFilePathList = new List<ThumbnailInfo>();
         //   private TreeNode _lastSelectedNode = null;
         private bool _searchApplied = false;
+        private bool _skipNodeSelection = true;
         List<ThumbnailInfo> _searchList = new List<ThumbnailInfo>();
 
         public Form ParentFormControl { get; set; }
@@ -51,17 +52,25 @@ namespace LBFVideoLib.Client
             FillTreeView();
             treeView1.ExpandAll();
 
-            if (this.SelectedNode != null)
+            try
             {
-                TreeNode[] searchedNode = this.treeView1.Nodes.Find(this.SelectedNode.Name, true);
-                if (searchedNode.Length > 0)
+                _skipNodeSelection = true;
+                if (this.SelectedNode != null)
                 {
-                    this.treeView1.SelectedNode = searchedNode[0];
+                    TreeNode[] searchedNode = this.treeView1.Nodes.Find(this.SelectedNode.Name, true);
+                    if (searchedNode.Length > 0)
+                    {
+                        this.treeView1.SelectedNode = searchedNode[0];
+                    }
+                }
+                else
+                {
+                    this.treeView1.SelectedNode = this.treeView1.Nodes[0];
                 }
             }
-            else
+            finally
             {
-                this.treeView1.SelectedNode = this.treeView1.Nodes[0];
+                _skipNodeSelection = false;
             }
 
 
@@ -157,7 +166,7 @@ namespace LBFVideoLib.Client
             upcomingVideoForm.EncryptedVideo = false;
             upcomingVideoForm.NextVideoFileList = nextVideoList;
             upcomingVideoForm.PreviousVideoFileList = previousVideoList;
-            upcomingVideoForm.CurrentVideo = new ThumbnailInfo() { FileName = ctl.ThumbName, ThumbnailFilePath = ctl.ThumbUrl, VideoFullUrl= ctl.VideoUrl }; 
+            upcomingVideoForm.CurrentVideo = new ThumbnailInfo() { FileName = ctl.ThumbName, ThumbnailFilePath = ctl.ThumbUrl, VideoFullUrl = ctl.VideoUrl };
             upcomingVideoForm.EncryptedVideo = true;
             upcomingVideoForm.SelectedNode = this.treeView1.SelectedNode;
             upcomingVideoForm.DashboardFormControl = this.DashboardFormControl;
@@ -192,7 +201,7 @@ namespace LBFVideoLib.Client
 
         private void pnlLogo_Click(object sender, EventArgs e)
         {
-            this.SelectedNode = this.treeView1.SelectedNode;
+            (this.DashboardFormControl as frmDashboard).SelectedNode = this.treeView1.SelectedNode;
             this.DashboardFormControl.Show();
             this.Close();
         }

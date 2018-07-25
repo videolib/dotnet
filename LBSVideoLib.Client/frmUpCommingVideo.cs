@@ -35,6 +35,7 @@ namespace LBFVideoLib.Client
         private List<string> tempFileList = new List<string>();
         private string _lastPlayedVideoFullUrl = "";
         private bool _skipNodeSelection = true;
+        private Control _hiddenSourceControl = null;
 
         public frmUpCommingVideo()
         {
@@ -75,9 +76,6 @@ namespace LBFVideoLib.Client
             lblWelcome.Text = ClientHelper.GetWelcomeString(ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);
             lblExpireDate.Text = ClientHelper.GetExpiryDateString(ClientInfoObject.ExpiryDate);
 
-            //if (this.NextVideoFileList.Count > 0)
-            //{
-
             AddPreviousVideoList();
             AddNextVideoList();
 
@@ -104,6 +102,8 @@ namespace LBFVideoLib.Client
             tempFileList.Add(tempFilePath);
             Cryptograph.DecryptFile(videoUrl, tempFilePath);
             this.axWindowsMediaPlayer1.URL = tempFilePath;
+            lblWelcome.Text = string.Format("{0}, {1}, [{2}]", currentVideoInfo.ClassName, currentVideoInfo.SeriesName, currentVideoInfo.Subject);
+            lblWatchCount.Text = string.Format("Watch Count: {0} Times", currentVideoInfo.WatchCount);
         }
 
         private void AddPreviousVideoList()
@@ -136,7 +136,7 @@ namespace LBFVideoLib.Client
             }
         }
 
- 
+
 
         private void CtlThumb_Click(object sender, EventArgs e)
         {
@@ -205,17 +205,18 @@ namespace LBFVideoLib.Client
         #endregion
         private void frmUpCommingVideo_FormClosed(object sender, FormClosedEventArgs e)
         {
-                OnFormVisiblityChangeAndClose();
+            OnFormVisiblityChangeAndClose();
         }
 
         private void lblContact_Click(object sender, EventArgs e)
         {
             MessageBox.Show(ClientHelper.GetContactMessageString(), "Contact", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-              
+
 
         private void pnlLogo_Click(object sender, EventArgs e)
         {
+            this._hiddenSourceControl = pnlLogo;
             this.Hide();
             this.DashboardFormControl.Show();
         }
@@ -224,11 +225,12 @@ namespace LBFVideoLib.Client
         {
             if (_skipNodeSelection == false)
             {
-                frmVideoLibrary frmVideoLibrary = new frmVideoLibrary();
-                frmVideoLibrary.ParentFormControl = this.DashboardFormControl;
-                frmVideoLibrary.SelectedNode = e.Node;
-                frmVideoLibrary.ClientInfoObject = this.ClientInfoObject;
-                frmVideoLibrary.Show();
+                //frmVideoLibrary frmVideoLibrary = new frmVideoLibrary();
+                //frmVideoLibrary.ParentFormControl = this.DashboardFormControl;
+                //frmVideoLibrary.SelectedNode = e.Node;
+                //frmVideoLibrary.ClientInfoObject = this.ClientInfoObject;
+                //frmVideoLibrary.Show();
+                _hiddenSourceControl = treeView1;
                 this.Hide();
             }
             else
@@ -243,12 +245,13 @@ namespace LBFVideoLib.Client
             frm.Show();
         }
 
-      
+
 
         private void frmUpCommingVideo_VisibleChanged(object sender, EventArgs e)
         {
             if (this.Visible == false)
             {
+
                 OnFormVisiblityChangeAndClose();
             }
         }
@@ -261,19 +264,40 @@ namespace LBFVideoLib.Client
             {
                 File.Delete(tempFileList[i]);
             }
-
-            if (this.ParentFormControl.Name == "frmVideoLibrary")
+            if (_hiddenSourceControl == null)
             {
                 this.ParentFormControl.Show();
+                return;
             }
-            else
+            switch (_hiddenSourceControl.Name.ToLower())
             {
-                frmVideoLibrary frmVideoLibrary = new frmVideoLibrary();
-                frmVideoLibrary.ParentFormControl = this.DashboardFormControl;
-                frmVideoLibrary.DashboardFormControl = this.DashboardFormControl;
-                frmVideoLibrary.ClientInfoObject = this.ClientInfoObject;
-                frmVideoLibrary.Show();
+                case "treeview1":
+                    if (this.ParentFormControl.Name == "frmVideoLibrary")
+                    {
+                        (this.ParentFormControl as frmVideoLibrary).SelectedNode = this.treeView1.SelectedNode;
+                        this.ParentFormControl.Show();
+                    }
+                    else
+                    {
+                        frmVideoLibrary frmVideoLibrary = new frmVideoLibrary();
+                        frmVideoLibrary.ParentFormControl = this.DashboardFormControl;
+                        frmVideoLibrary.DashboardFormControl = this.DashboardFormControl;
+                        frmVideoLibrary.ClientInfoObject = this.ClientInfoObject;
+                        frmVideoLibrary.SelectedNode = this.treeView1.SelectedNode;
+                        frmVideoLibrary.Show();
+                    }
+                    break;
+                case "pnllogo":
+                    this.DashboardFormControl.Show();
+                    break;
+                case "frmUpCommingVideo":
+                    this.ParentFormControl.Show();
+                    break;
+                default:
+                    this.Visible = true;
+                    break;
             }
+
         }
 
         private void btnFullScreen_Click_1(object sender, EventArgs e)
