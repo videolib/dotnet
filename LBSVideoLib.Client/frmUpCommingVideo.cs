@@ -115,7 +115,7 @@ namespace LBFVideoLib.Client
                 ctlThumb.ThumbUrl = PreviousVideoFileList[i].ThumbnailFilePath; //Path.Combine(thumbnailSubjectPath, "Subjects_ENGLISH.png");
                 ctlThumb.VideoUrl = PreviousVideoFileList[i].VideoFullUrl;
                 //ctlThumb.Click += CtlThumb_Click;
-                ctlThumb.Size = new System.Drawing.Size(120, 120);
+                ctlThumb.Size = new System.Drawing.Size(150, 180);
                 //ctlThumb
                 flowLayoutPanelPrevious.Controls.Add(ctlThumb);
             }
@@ -130,7 +130,7 @@ namespace LBFVideoLib.Client
                 ctlThumb.ThumbUrl = NextVideoFileList[i].ThumbnailFilePath; //Path.Combine(thumbnailSubjectPath, "Subjects_ENGLISH.png");
                 ctlThumb.VideoUrl = NextVideoFileList[i].VideoFullUrl;
                 //ctlThumb.Click += CtlThumb_Click;
-                ctlThumb.Size = new System.Drawing.Size(120, 120);
+                ctlThumb.Size = new System.Drawing.Size(150, 180);
                 //ctlThumb
                 flowLayoutPanelUpcoming.Controls.Add(ctlThumb);
             }
@@ -212,24 +212,7 @@ namespace LBFVideoLib.Client
         {
             MessageBox.Show(ClientHelper.GetContactMessageString(), "Contact", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
-
-        private void btnRewind_Click(object sender, EventArgs e)
-        {
-            this.axWindowsMediaPlayer1.Ctlcontrols.currentPosition -= 10;
-        }
-
-        private void btnFullScreen_Click(object sender, EventArgs e)
-        {
-            if (this.axWindowsMediaPlayer1.fullScreen == false)
-            {
-                this.axWindowsMediaPlayer1.fullScreen = true;
-            }
-        }
-
-        private void btnFastForward_Click(object sender, EventArgs e)
-        {
-            this.axWindowsMediaPlayer1.Ctlcontrols.currentPosition += 10;
-        }
+              
 
         private void pnlLogo_Click(object sender, EventArgs e)
         {
@@ -260,6 +243,8 @@ namespace LBFVideoLib.Client
             frm.Show();
         }
 
+      
+
         private void frmUpCommingVideo_VisibleChanged(object sender, EventArgs e)
         {
             if (this.Visible == false)
@@ -289,6 +274,26 @@ namespace LBFVideoLib.Client
                 frmVideoLibrary.ClientInfoObject = this.ClientInfoObject;
                 frmVideoLibrary.Show();
             }
+        }
+
+        private void btnFullScreen_Click_1(object sender, EventArgs e)
+        {
+            if (this.axWindowsMediaPlayer1.fullScreen == false)
+            {
+                this.axWindowsMediaPlayer1.fullScreen = true;
+            }
+        }
+
+        private void btnRewind_Click(object sender, EventArgs e)
+        {
+            this.axWindowsMediaPlayer1.Ctlcontrols.currentPosition -= 10;
+        }
+
+
+
+        private void btnFastForward_Click(object sender, EventArgs e)
+        {
+            this.axWindowsMediaPlayer1.Ctlcontrols.currentPosition += 10;
         }
     }
 }
