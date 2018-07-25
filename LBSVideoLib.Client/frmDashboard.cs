@@ -5,6 +5,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Collections;
 
 namespace LBFVideoLib.Client
 {
@@ -17,6 +20,12 @@ namespace LBFVideoLib.Client
         public TreeNode SelectedNode { get; set; }
         private Dictionary<string, string> _bookVideoList = new Dictionary<string, string>();
         private bool _skipNodeSelection = true;
+        private List<VideoInfo> _mostWatchedVideos = new List<VideoInfo>();
+        private List<VideoInfo> _mostRecommandedVideos = new List<VideoInfo>();
+
+        private List<ThumbnailInfo> _mostWatchedVideosThumbList = new List<ThumbnailInfo>();
+        private List<ThumbnailInfo> _mostRecommandedVideosThumbList = new List<ThumbnailInfo>();
+
 
         public frmDashboard()
         {
@@ -36,10 +45,13 @@ namespace LBFVideoLib.Client
             FillTreeView();
             treeView1.ExpandAll();
 
-            this.treeView1.SelectedNode = this.treeView1.Nodes[0];
+            //if (this.treeView1.Nodes != null && this.treeView1.Nodes.Count > 0)
+            //{
+            //    this.treeView1.SelectedNode = this.treeView1.Nodes[0];
 
-            AddRecomVideos();
-            AddMostWatchesVideos();
+            AddRecomandatedVideos();
+            AddMostWatchedVideos();
+            //}
         }
 
         private Dictionary<string, string> FillRandomVideoList()
@@ -139,7 +151,7 @@ namespace LBFVideoLib.Client
             frmVideoLibrary.ClientInfoObject = this.ClientInfoObject;
             frmVideoLibrary.SelectedNode = selectedNode;
             frmVideoLibrary.Show();
-            CommonAppStateDataHelper.PushForm(this);
+            CommonAppStateDataHelper.AddForm(this);
             this.Hide();
         }
 
@@ -180,129 +192,143 @@ namespace LBFVideoLib.Client
             MessageBox.Show(ClientHelper.GetContactMessageString(), "Contact", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        private void AddRecomVideos()
+        private void AddRecomandatedVideos()
         {
-            string thumbnailPath = Path.Combine(ClientHelper.GetClientRootPath(), "Thumbnails");
-            string demoVideoPath = Path.Combine(ClientHelper.GetClientRootPath(), "DemoVideos");
+            Random random = new Random();
+            int[] randomVideoIndexList = new int[CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count];
 
+            do
+            {
+                int newRandomNumber = random.Next(0, CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count - 1);
+                if (randomVideoIndexList.Contains(newRandomNumber) == false)
+                {
+                    _mostRecommandedVideos.Add(CommonAppStateDataHelper.ClientInfoObject.VideoInfoList[newRandomNumber]);
+                    randomVideoIndexList[newRandomNumber] = newRandomNumber;
+                }
+            }
+            while (_mostRecommandedVideos.Count < 6);
 
-            CustomeThumbControl ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
-            ctlThumb.ThumbName = "EGBC01F002L01P002";
-            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "EGBC01F002L01P002.mp4");
-            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_ENGLISH.png");
-            ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 180;
-            ctlThumb.Width = 180;
-            pnlRecomVideo.Controls.Add(ctlThumb);
-
-            ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
-            ctlThumb.ThumbName = "HVKC01F002L001P002";
-            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F002L001P002.mp4");
-            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
-            ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 180;
-            ctlThumb.Width = 180;
-            pnlRecomVideo.Controls.Add(ctlThumb);
-
-            ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
-            ctlThumb.ThumbName = "EGBC02F026L07P048";
-            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "EGBC02F026L07P048.mp4");
-            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_ENGLISH.png");
-            ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 180;
-            ctlThumb.Width = 180;
-            pnlRecomVideo.Controls.Add(ctlThumb);
-
-            ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
-            ctlThumb.ThumbName = "HVKC01F006L003P017";
-            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F006L003P017.mp4");
-            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
-            ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 180;
-            ctlThumb.Width = 180;
-            pnlRecomVideo.Controls.Add(ctlThumb);
-
-            ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
-            ctlThumb.ThumbName = "HVKC01F038L016P105";
-            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F038L016P105.mp4");
-            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
-            ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 180;
-            ctlThumb.Width = 180;
-            pnlRecomVideo.Controls.Add(ctlThumb);
-
+            for (int i = 0; _mostRecommandedVideos != null && i < _mostRecommandedVideos.Count - 1; i++)
+            {
+                ThumbnailInfo thumbInfo = new ThumbnailInfo();
+                thumbInfo.FileName = _mostRecommandedVideos[i].VideoName;
+                thumbInfo.ThumbnailFilePath = Path.Combine(ClientHelper.GetClientThumbanailPath(), ThumbnailHelper.GetThumbnailFileName(_mostRecommandedVideos[i].Book));
+                thumbInfo.VideoFullUrl = _mostRecommandedVideos[i].VideoFullUrl;
+                _mostRecommandedVideosThumbList.Add(thumbInfo);
+            }
+            if (_mostRecommandedVideosThumbList != null && _mostRecommandedVideosThumbList.Count > 0)
+            {
+                AddVideoThumbnailControls(pnlRecomVideo, _mostRecommandedVideosThumbList, CtlMostWatchedVideo_Click);
+            }
         }
 
-        private void AddMostWatchesVideos()
+        private void AddMostWatchedVideos()
         {
-            string thumbnailPath = Path.Combine(ClientHelper.GetClientRootPath(), "Thumbnails");
-            string demoVideoPath = Path.Combine(ClientHelper.GetClientRootPath(), "DemoVideos");
+            _mostWatchedVideos = CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.OrderByDescending(k => k.WatchCount).Take(6).ToList<VideoInfo>();
 
-            CustomeThumbControl ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
-            ctlThumb.ThumbName = "EGBC01F002L01P002";
-            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "EGBC01F002L01P002.mp4");
-            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_ENGLISH.png");
-            ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 180;
-            ctlThumb.Width = 180;
-            pnlMostWatchVideo.Controls.Add(ctlThumb);
-
-            ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
-            ctlThumb.ThumbName = "HVKC01F002L001P002";
-            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F002L001P002.mp4");
-            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
-            ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 180;
-            ctlThumb.Width = 180;
-            pnlMostWatchVideo.Controls.Add(ctlThumb);
-
-            ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
-            ctlThumb.ThumbName = "EGBC02F026L07P048";
-            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "EGBC02F026L07P048.mp4");
-            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_ENGLISH.png");
-            ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 180;
-            ctlThumb.Width = 180;
-            pnlMostWatchVideo.Controls.Add(ctlThumb);
-
-            ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
-            ctlThumb.ThumbName = "HVKC01F006L003P017";
-            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F006L003P017.mp4");
-            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
-            ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 180;
-            ctlThumb.Width = 180;
-            pnlMostWatchVideo.Controls.Add(ctlThumb);
-
-            ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
-            ctlThumb.ThumbName = "HVKC01F038L016P105";
-            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F038L016P105.mp4");
-            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
-            ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 180;
-            ctlThumb.Width = 180;
-            pnlMostWatchVideo.Controls.Add(ctlThumb);
+            for (int i = 0; _mostWatchedVideos != null && i < _mostWatchedVideos.Count - 1; i++)
+            {
+                ThumbnailInfo thumbInfo = new ThumbnailInfo();
+                thumbInfo.FileName = _mostWatchedVideos[i].VideoName;
+                thumbInfo.ThumbnailFilePath = Path.Combine(ClientHelper.GetClientThumbanailPath(), ThumbnailHelper.GetThumbnailFileName(_mostWatchedVideos[i].Book));
+                thumbInfo.VideoFullUrl = _mostWatchedVideos[i].VideoFullUrl;
+                _mostWatchedVideosThumbList.Add(thumbInfo);
+            }
+            if (_mostWatchedVideosThumbList != null && _mostWatchedVideosThumbList.Count > 0)
+            {
+                AddVideoThumbnailControls(pnlMostWatchVideo, _mostWatchedVideosThumbList, CtlMostWatchedVideo_Click);
+            }
         }
 
-        private void CtlThumb_Click(object sender, EventArgs e)
+        private void AddVideoThumbnailControls(FlowLayoutPanel flowLayoutPanel, List<ThumbnailInfo> thumbnailInfoList, Action<object, EventArgs> clickDeligate)
+        {
+            pnlMostWatchVideo.Controls.Clear();
+            for (int j = 0; j < thumbnailInfoList.Count; j++)
+            {
+                CustomeThumbControl ctlThumb = new CustomeThumbControl(clickDeligate);
+                ctlThumb.ThumbnailInformation = thumbnailInfoList[j];
+                ctlThumb.ThumbName = thumbnailInfoList[j].FileName;
+                ctlThumb.ThumbUrl = thumbnailInfoList[j].ThumbnailFilePath;
+                ctlThumb.VideoUrl = thumbnailInfoList[j].VideoFullUrl;
+                ctlThumb.Size = new System.Drawing.Size(180, 180);
+                flowLayoutPanel.Controls.Add(ctlThumb);
+            }
+        }
+
+
+        private void CtlRecommanded_Click(object sender, EventArgs e)
         {
             CustomeThumbControl ctl = sender as CustomeThumbControl;
+            // Find index of currently selected video in list.
 
+            List<ThumbnailInfo> nextVideoList = new List<ThumbnailInfo>();
+            List<ThumbnailInfo> previousVideoList = new List<ThumbnailInfo>();
+
+            CreatePreviousAndNextPlaylist(_mostRecommandedVideosThumbList, ctl.VideoUrl, out nextVideoList, out previousVideoList);
 
             frmUpCommingVideo upcomingVideoForm = new frmUpCommingVideo();
             upcomingVideoForm.ParentFormControl = this;
             upcomingVideoForm.ClientInfoObject = this.ClientInfoObject;
             upcomingVideoForm.EncryptedVideo = false;
-            //upcomingVideoForm.NextVideoFileList = new string[] { ctl.VideoUrl };
-            upcomingVideoForm.EncryptedVideo = false;
+            upcomingVideoForm.NextVideoFileList = nextVideoList;
+            upcomingVideoForm.PreviousVideoFileList = previousVideoList;
+            upcomingVideoForm.CurrentVideo = new ThumbnailInfo() { FileName = ctl.ThumbName, ThumbnailFilePath = ctl.ThumbUrl, VideoFullUrl = ctl.VideoUrl };
+            upcomingVideoForm.EncryptedVideo = true;
+            upcomingVideoForm.SelectedNode = this.treeView1.SelectedNode;
             upcomingVideoForm.DashboardFormControl = this;
             upcomingVideoForm.Show();
             this.Hide();
         }
 
+        private void CtlMostWatchedVideo_Click(object sender, EventArgs e)
+        {
+            CustomeThumbControl ctl = sender as CustomeThumbControl;
+            // Find index of currently selected video in list.
+
+            List<ThumbnailInfo> nextVideoList = new List<ThumbnailInfo>();
+            List<ThumbnailInfo> previousVideoList = new List<ThumbnailInfo>();
+
+            CreatePreviousAndNextPlaylist(_mostWatchedVideosThumbList, ctl.VideoUrl, out nextVideoList, out previousVideoList);
+
+            frmUpCommingVideo upcomingVideoForm = (CommonAppStateDataHelper.FindFormByFormType("frmUpCommingVideo") as frmUpCommingVideo);
+            if (upcomingVideoForm == null)
+            {
+                upcomingVideoForm = new frmUpCommingVideo();
+            }
+            upcomingVideoForm.ParentFormControl = this;
+            upcomingVideoForm.ClientInfoObject = this.ClientInfoObject;
+            upcomingVideoForm.EncryptedVideo = false;
+            upcomingVideoForm.NextVideoFileList = nextVideoList;
+            upcomingVideoForm.PreviousVideoFileList = previousVideoList;
+            upcomingVideoForm.CurrentVideo = new ThumbnailInfo() { FileName = ctl.ThumbName, ThumbnailFilePath = ctl.ThumbUrl, VideoFullUrl = ctl.VideoUrl };
+            upcomingVideoForm.EncryptedVideo = true;
+            upcomingVideoForm.SelectedNode = this.treeView1.SelectedNode;
+            upcomingVideoForm.DashboardFormControl = this;
+            upcomingVideoForm.Show();
+            this.Hide();
+        }
+
+        private void CreatePreviousAndNextPlaylist(List<ThumbnailInfo> thumbnailList, string videoUrl, out List<ThumbnailInfo> nextVideoList, out List<ThumbnailInfo> previousVideoList)
+        {
+            nextVideoList = new List<ThumbnailInfo>();
+            previousVideoList = new List<ThumbnailInfo>();
+            int index = -1;
+
+            index = thumbnailList.FindIndex(k => k.VideoFullUrl.Equals(videoUrl));
+            for (int i = index + 1; (i < index + 1 + 3) && (i < thumbnailList.Count); i++)
+            {
+                nextVideoList.Add(thumbnailList[i]);
+            }
+
+            for (int i = index - 1; (i > index - 1 - 3) && (i > -1); i--)
+            {
+                previousVideoList.Add(thumbnailList[i]);
+            }
+        }
+
+
         private void pnlRecomVideo_Paint(object sender, PaintEventArgs e)
         {
-
         }
 
         private void frmDashboard_VisibleChanged(object sender, EventArgs e)

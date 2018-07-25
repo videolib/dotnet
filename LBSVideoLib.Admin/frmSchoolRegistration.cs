@@ -23,6 +23,9 @@ namespace LBFVideoLib.Admin
         List<Subject> _subjectList = new List<Subject>();
         List<Book> _bookList = new List<Book>();
         List<ClassFB> _regInfoFB = new List<ClassFB>();
+
+        ToolTip chkListTooltip = new ToolTip();
+        int toolTipIndex=-1;
         #endregion
 
         public frmSchoolRegistration()
@@ -610,6 +613,74 @@ namespace LBFVideoLib.Admin
             return info.Classes;
         }
         #endregion
+
+        private void chkListClass_MouseMove(object sender, MouseEventArgs e)
+        {
+            showClassCheckBoxToolTip(sender, e);
+        }
+
+        private void showClassCheckBoxToolTip(object sender, MouseEventArgs e)
+        {
+            if (toolTipIndex != this.chkListClass.IndexFromPoint(e.Location))
+            {
+                toolTipIndex = chkListClass.IndexFromPoint(chkListClass.PointToClient(MousePosition));
+                if (toolTipIndex > -1)
+                {
+                    chkListTooltip.SetToolTip(chkListClass, (chkListClass.Items[toolTipIndex] as SchoolClass).ClassName.ToString());
+                }
+            }
+        }
+
+        private void chkListSeries_MouseMove(object sender, MouseEventArgs e)
+        {
+            showSeriesCheckBoxToolTip(sender, e);
+        }
+
+        private void showSeriesCheckBoxToolTip(object sender, MouseEventArgs e)
+        {
+            if (toolTipIndex != this.chkListSeries.IndexFromPoint(e.Location))
+            {
+                toolTipIndex = chkListSeries.IndexFromPoint(chkListSeries.PointToClient(MousePosition));
+                if (toolTipIndex > -1)
+                {
+                    chkListTooltip.SetToolTip(chkListSeries, (chkListSeries.Items[toolTipIndex] as Series).SeriesName.ToString());
+                }
+            }
+        }
+
+        private void chkListSubject_MouseMove(object sender, MouseEventArgs e)
+        {
+            showSubjectCheckBoxToolTip(sender, e);
+        }
+
+        private void showSubjectCheckBoxToolTip(object sender, MouseEventArgs e)
+        {
+            if (toolTipIndex != this.chkListSubject.IndexFromPoint(e.Location))
+            {
+                toolTipIndex = chkListSubject.IndexFromPoint(chkListSubject.PointToClient(MousePosition));
+                if (toolTipIndex > -1)
+                {
+                    chkListTooltip.SetToolTip(chkListSubject, (chkListSubject.Items[toolTipIndex] as Subject).SubjectName.ToString());
+                }
+            }
+        }
+
+        private void chkListBooks_MouseMove(object sender, MouseEventArgs e)
+        {
+            showBookCheckBoxToolTip(sender, e);
+        }
+
+        private void showBookCheckBoxToolTip(object sender, MouseEventArgs e)
+        {
+            if (toolTipIndex != this.chkListBooks.IndexFromPoint(e.Location))
+            {
+                toolTipIndex = chkListBooks.IndexFromPoint(chkListBooks.PointToClient(MousePosition));
+                if (toolTipIndex > -1)
+                {
+                    chkListTooltip.SetToolTip(chkListBooks, (chkListBooks.Items[toolTipIndex] as Book).BookName.ToString());
+                }
+            }
+        }
     }
 }
 

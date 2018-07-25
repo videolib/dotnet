@@ -12,7 +12,7 @@ namespace LBFVideoLib.Common
     {
         private static string password = @"myKey123";
 
-        public static void EncryptObject(Object obj , string outputFile)
+        public static void EncryptObject(Object obj, string outputFile)
         {
             try
             {
@@ -93,26 +93,25 @@ namespace LBFVideoLib.Common
             {
                 UnicodeEncoding UE = new UnicodeEncoding();
                 byte[] key = UE.GetBytes(password);
-
                 string cryptFile = outputFile;
-                FileStream fsCrypt = new FileStream(cryptFile, FileMode.Create);
+                using (FileStream fsCrypt = new FileStream(cryptFile, FileMode.Create))
+                {
+                    RijndaelManaged RMCrypto = new RijndaelManaged();
+                    using (CryptoStream cs = new CryptoStream(fsCrypt, RMCrypto.CreateEncryptor(key, key), CryptoStreamMode.Write))
+                    {
+                        using (FileStream fsIn = new FileStream(inputFile, FileMode.Open))
+                        {
+                            int data;
+                            while ((data = fsIn.ReadByte()) != -1)
+                                cs.WriteByte((byte)data);
 
-                RijndaelManaged RMCrypto = new RijndaelManaged();
-
-                CryptoStream cs = new CryptoStream(fsCrypt,
-                    RMCrypto.CreateEncryptor(key, key),
-                    CryptoStreamMode.Write);
-
-                FileStream fsIn = new FileStream(inputFile, FileMode.Open);
-
-                int data;
-                while ((data = fsIn.ReadByte()) != -1)
-                    cs.WriteByte((byte)data);
-
-
-                fsIn.Close();
-                cs.Close();
-                fsCrypt.Close();
+                            fsIn.Close();
+                        }
+                        cs.Close();
+                    }
+                    fsCrypt.Close();
+                }
+                key = null;
             }
             catch
             {
@@ -120,47 +119,44 @@ namespace LBFVideoLib.Common
                 throw;
             }
         }
+
         ///<summary>
-        /// Steve Lydford - 12/05/2008.
-        ///
         /// Decrypts a file using Rijndael algorithm.
         ///</summary>
-        ///<param name="inputFile"></param>
-        ///<param name="outputFile"></param>
+        ///<param name="inputFile">Input file path.</param>
+        ///<param name="outputFile">Output file path.</param>
         public static void DecryptFile(string inputFile, string outputFile)
         {
-
             try
             {
                 UnicodeEncoding UE = new UnicodeEncoding();
                 byte[] key = UE.GetBytes(password);
-
-                FileStream fsCrypt = new FileStream(inputFile, FileMode.Open);
-
-                RijndaelManaged RMCrypto = new RijndaelManaged();
-
-                CryptoStream cs = new CryptoStream(fsCrypt,
-                    RMCrypto.CreateDecryptor(key, key),
-                    CryptoStreamMode.Read);
-
-                FileStream fsOut = new FileStream(outputFile, FileMode.Create);
-
-                int data;
-                while ((data = cs.ReadByte()) != -1)
-                    fsOut.WriteByte((byte)data);
-
-                fsOut.Close();
-                cs.Close();
-                fsCrypt.Close();
+                using (FileStream fsCrypt = new FileStream(inputFile, FileMode.Open))
+                {
+                    RijndaelManaged RMCrypto = new RijndaelManaged();
+                    using (CryptoStream cs = new CryptoStream(fsCrypt, RMCrypto.CreateDecryptor(key, key), CryptoStreamMode.Read))
+                    {
+                        using (FileStream fsOut = new FileStream(outputFile, FileMode.Create))
+                        {
+                            int data;
+                            while ((data = cs.ReadByte()) != -1)
+                            {
+                                fsOut.WriteByte((byte)data);
+                            }
+                            fsOut.Close();
+                        }
+                        cs.Close();
+                    }
+                    fsCrypt.Close();
+                }
+                key = null;
             }
             catch (System.Exception ex)
             {
-                // log
-                throw;
+                throw ;
             }
-
-
         }
+
     }
 }
 

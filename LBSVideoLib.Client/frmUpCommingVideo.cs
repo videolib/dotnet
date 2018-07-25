@@ -36,13 +36,17 @@ namespace LBFVideoLib.Client
         private string _lastPlayedVideoFullUrl = "";
         private bool _skipNodeSelection = true;
 
-
         public frmUpCommingVideo()
         {
             InitializeComponent();
         }
 
         private void frmUpCommingVideo_Load(object sender, EventArgs e)
+        {
+            InitializeForm();
+        }
+
+        private void InitializeForm()
         {
             _clientRootPath = ClientHelper.GetClientRootPath();
             _clientInfoFilePath = ClientHelper.GetClientInfoFilePath();
@@ -87,10 +91,6 @@ namespace LBFVideoLib.Client
             }
 
             this.lblFileName.Text = Path.GetFileNameWithoutExtension(CurrentVideo.FileName);
-            //   this.axWindowsMediaPlayer1.URL = this.NextVideoFileList[0];
-            //}
-
-            // AddMostWatchesVideos();
         }
 
         private void PlayEncryptedVideo(string videoUrl)
@@ -136,65 +136,7 @@ namespace LBFVideoLib.Client
             }
         }
 
-        private void AddMostWatchesVideos()
-        {
-            string thumbnailPath = Path.Combine(ClientHelper.GetClientRootPath(), "Thumbnails");
-            string demoVideoPath = Path.Combine(ClientHelper.GetClientRootPath(), "DemoVideos");
-
-            CustomeThumbControl ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
-            ctlThumb.ThumbName = "EGBC01F002L01P002";
-            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "EGBC01F002L01P002.mp4");
-            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_ENGLISH.png");
-            ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 180;
-            ctlThumb.Width = 150;
-            flowLayoutPanelUpcoming.Controls.Add(ctlThumb);
-
-            ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
-            ctlThumb.ThumbName = "HVKC01F002L001P002";
-            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F002L001P002.mp4");
-            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
-            ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 180;
-            ctlThumb.Width = 150;
-            flowLayoutPanelUpcoming.Controls.Add(ctlThumb);
-
-            ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
-            ctlThumb.ThumbName = "EGBC02F026L07P048";
-            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "EGBC02F026L07P048.mp4");
-            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_ENGLISH.png");
-            ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 180;
-            ctlThumb.Width = 150;
-            flowLayoutPanelUpcoming.Controls.Add(ctlThumb);
-
-            ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
-            ctlThumb.ThumbName = "HVKC01F006L003P017";
-            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F006L003P017.mp4");
-            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
-            ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 180;
-            ctlThumb.Width = 150;
-            flowLayoutPanelPrevious.Controls.Add(ctlThumb);
-
-            ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
-            ctlThumb.ThumbName = "HVKC01F038L016P105";
-            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F038L016P105.mp4");
-            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
-            ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 180;
-            ctlThumb.Width = 150;
-            flowLayoutPanelPrevious.Controls.Add(ctlThumb);
-
-            ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
-            ctlThumb.ThumbName = "HVKC01F038L016P105";
-            ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F038L016P105.mp4");
-            ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
-            ctlThumb.Click += CtlThumb_Click;
-            ctlThumb.Height = 180;
-            ctlThumb.Width = 150;
-            flowLayoutPanelPrevious.Controls.Add(ctlThumb);
-        }
+ 
 
         private void CtlThumb_Click(object sender, EventArgs e)
         {
@@ -210,20 +152,6 @@ namespace LBFVideoLib.Client
             this.EncryptedVideo = true;
             PlayEncryptedVideo(ctl.VideoUrl);
         }
-
-        //private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
-        //{
-
-        //    if (e.Node.Tag != null)
-        //    {
-        //        frmVideoLibrary frmVideoLibrary = new frmVideoLibrary();
-        //        frmVideoLibrary.ParentFormControl = this;
-        //        frmVideoLibrary.SelectedNode = e.Node;
-        //        frmVideoLibrary.ClientInfoObject = this.ClientInfoObject;
-        //        this.Hide();
-        //        frmVideoLibrary.Show();
-        //    }
-        //}
 
         #region Private Methods
 
@@ -277,25 +205,7 @@ namespace LBFVideoLib.Client
         #endregion
         private void frmUpCommingVideo_FormClosed(object sender, FormClosedEventArgs e)
         {
-            this.axWindowsMediaPlayer1.URL = "";
-
-            for (int i = 0; i < tempFileList.Count; i++)
-            {
-                File.Delete(tempFileList[i]);
-            }
-
-            if (this.ParentFormControl.Name == "frmVideoLibrary")
-            {
-                this.ParentFormControl.Show();
-            }
-            else
-            {
-                frmVideoLibrary frmVideoLibrary = new frmVideoLibrary();
-                frmVideoLibrary.ParentFormControl = this.DashboardFormControl;
-                frmVideoLibrary.DashboardFormControl = this.DashboardFormControl;
-                frmVideoLibrary.ClientInfoObject = this.ClientInfoObject;
-                frmVideoLibrary.Show();
-            }
+                OnFormVisiblityChangeAndClose();
         }
 
         private void lblContact_Click(object sender, EventArgs e)
@@ -323,7 +233,7 @@ namespace LBFVideoLib.Client
 
         private void pnlLogo_Click(object sender, EventArgs e)
         {
-            this.Close();
+            this.Hide();
             this.DashboardFormControl.Show();
         }
 
@@ -336,7 +246,7 @@ namespace LBFVideoLib.Client
                 frmVideoLibrary.SelectedNode = e.Node;
                 frmVideoLibrary.ClientInfoObject = this.ClientInfoObject;
                 frmVideoLibrary.Show();
-                this.Close();
+                this.Hide();
             }
             else
             {
@@ -349,5 +259,109 @@ namespace LBFVideoLib.Client
             frmPrivacyPolicy frm = new frmPrivacyPolicy();
             frm.Show();
         }
+
+        private void frmUpCommingVideo_VisibleChanged(object sender, EventArgs e)
+        {
+            if (this.Visible == false)
+            {
+                OnFormVisiblityChangeAndClose();
+            }
+        }
+
+        private void OnFormVisiblityChangeAndClose()
+        {
+            this.axWindowsMediaPlayer1.URL = "";
+
+            for (int i = 0; i < tempFileList.Count; i++)
+            {
+                File.Delete(tempFileList[i]);
+            }
+
+            if (this.ParentFormControl.Name == "frmVideoLibrary")
+            {
+                this.ParentFormControl.Show();
+            }
+            else
+            {
+                frmVideoLibrary frmVideoLibrary = new frmVideoLibrary();
+                frmVideoLibrary.ParentFormControl = this.DashboardFormControl;
+                frmVideoLibrary.DashboardFormControl = this.DashboardFormControl;
+                frmVideoLibrary.ClientInfoObject = this.ClientInfoObject;
+                frmVideoLibrary.Show();
+            }
+        }
     }
 }
+//private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
+//{
+
+//    if (e.Node.Tag != null)
+//    {
+//        frmVideoLibrary frmVideoLibrary = new frmVideoLibrary();
+//        frmVideoLibrary.ParentFormControl = this;
+//        frmVideoLibrary.SelectedNode = e.Node;
+//        frmVideoLibrary.ClientInfoObject = this.ClientInfoObject;
+//        this.Hide();
+//        frmVideoLibrary.Show();
+//    }
+//}
+
+//private void AddMostWatchesVideos()
+//{
+//    string thumbnailPath = Path.Combine(ClientHelper.GetClientRootPath(), "Thumbnails");
+//    string demoVideoPath = Path.Combine(ClientHelper.GetClientRootPath(), "DemoVideos");
+
+//    CustomeThumbControl ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
+//    ctlThumb.ThumbName = "EGBC01F002L01P002";
+//    ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "EGBC01F002L01P002.mp4");
+//    ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_ENGLISH.png");
+//    ctlThumb.Click += CtlThumb_Click;
+//    ctlThumb.Height = 180;
+//    ctlThumb.Width = 150;
+//    flowLayoutPanelUpcoming.Controls.Add(ctlThumb);
+
+//    ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
+//    ctlThumb.ThumbName = "HVKC01F002L001P002";
+//    ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F002L001P002.mp4");
+//    ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
+//    ctlThumb.Click += CtlThumb_Click;
+//    ctlThumb.Height = 180;
+//    ctlThumb.Width = 150;
+//    flowLayoutPanelUpcoming.Controls.Add(ctlThumb);
+
+//    ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
+//    ctlThumb.ThumbName = "EGBC02F026L07P048";
+//    ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "EGBC02F026L07P048.mp4");
+//    ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_ENGLISH.png");
+//    ctlThumb.Click += CtlThumb_Click;
+//    ctlThumb.Height = 180;
+//    ctlThumb.Width = 150;
+//    flowLayoutPanelUpcoming.Controls.Add(ctlThumb);
+
+//    ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
+//    ctlThumb.ThumbName = "HVKC01F006L003P017";
+//    ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F006L003P017.mp4");
+//    ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
+//    ctlThumb.Click += CtlThumb_Click;
+//    ctlThumb.Height = 180;
+//    ctlThumb.Width = 150;
+//    flowLayoutPanelPrevious.Controls.Add(ctlThumb);
+
+//    ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
+//    ctlThumb.ThumbName = "HVKC01F038L016P105";
+//    ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F038L016P105.mp4");
+//    ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
+//    ctlThumb.Click += CtlThumb_Click;
+//    ctlThumb.Height = 180;
+//    ctlThumb.Width = 150;
+//    flowLayoutPanelPrevious.Controls.Add(ctlThumb);
+
+//    ctlThumb = new CustomeThumbControl(this.CtlThumb_Click);
+//    ctlThumb.ThumbName = "HVKC01F038L016P105";
+//    ctlThumb.VideoUrl = Path.Combine(demoVideoPath, "HVKC01F038L016P105.mp4");
+//    ctlThumb.ThumbUrl = Path.Combine(thumbnailPath, "Subjects_HINDI.png");
+//    ctlThumb.Click += CtlThumb_Click;
+//    ctlThumb.Height = 180;
+//    ctlThumb.Width = 150;
+//    flowLayoutPanelPrevious.Controls.Add(ctlThumb);
+//}

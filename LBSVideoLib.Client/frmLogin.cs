@@ -75,7 +75,7 @@ namespace LBFVideoLib.Client
                 // frm.MdiParent = this.MdiParent;
                 frm.ParentFormControl = this;
                 frm.ClientInfoObject = CommonAppStateDataHelper.ClientInfoObject;//_clientInfo
-                CommonAppStateDataHelper.PushForm(this);
+                CommonAppStateDataHelper.AddForm(this);
                 frm.Show();
                 this.Hide();
             }
