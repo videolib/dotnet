@@ -24,8 +24,11 @@ namespace LBFVideoLib.Admin
         List<Book> _bookList = new List<Book>();
         List<ClassFB> _regInfoFB = new List<ClassFB>();
 
+        private bool _seriesListBindingInProgress = false;
+        private bool _subjectListBindingInProgress = false;
+
         ToolTip chkListTooltip = new ToolTip();
-        int toolTipIndex=-1;
+        int toolTipIndex = -1;
         #endregion
 
         public frmSchoolRegistration()
@@ -256,14 +259,25 @@ namespace LBFVideoLib.Admin
 
         private void chkListBook_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            Book selectedBook = (chkListBooks.Items[e.Index] as Book);
-            if (e.NewValue == CheckState.Checked)
+            try
             {
-                selectedBook.Selected = true;
+                if (_subjectListBindingInProgress == false)
+                {
+                    Book selectedBook = (chkListBooks.Items[e.Index] as Book);
+                    if (e.NewValue == CheckState.Checked)
+                    {
+                        selectedBook.Selected = true;
+                    }
+                    else if (e.NewValue == CheckState.Unchecked)
+                    {
+                        selectedBook.Selected = false;
+                    }
+                }
             }
-            else if (e.NewValue == CheckState.Unchecked)
+            catch (Exception ex)
             {
-                selectedBook.Selected = false;
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw;
             }
         }
 
@@ -275,198 +289,238 @@ namespace LBFVideoLib.Admin
 
         private void updateSeriesListBinding(CheckState checkedState, SchoolClass selectedClass, int selectedClassIndex)
         {
-            List<Series> removedSeriesList = new List<Series>();
-            // On each item check/un-check fill series
-            if (checkedState == CheckState.Checked)
+            try
             {
-                // add series
-                selectedClass.Selected = true;
-                string[] seriesFolderList = Directory.GetDirectories(selectedClass.ClassId);
-                for (int i = 0; i < seriesFolderList.Length; i++)
-                {
-                    //chkListSeries.Items.Add(seriesList[i]);
-                    Series series = new Series();
-                    series.SeriesId = seriesFolderList[i];
-                    series.SeriesName = Path.GetFileName(seriesFolderList[i]);
-                    series.ClassName = selectedClass.ClassName;
-                    _seriesList.Add(series);
-                }
-            }
-            else if (checkedState == CheckState.Unchecked)
-            {
-                selectedClass.Selected = false;
-                // remove series
-                SchoolClass selectedClassName = (chkListClass.Items[selectedClassIndex] as SchoolClass);
-                string[] seriesFolderList = Directory.GetDirectories(selectedClassName.ClassId);//Directory.GetDirectories(Path.Combine(_sourceFolderPath, selectedClassName));
+                _seriesListBindingInProgress = true;
 
-                _seriesList = _seriesList.Where(b =>
+                List<Series> removedSeriesList = new List<Series>();
+                // On each item check/un-check fill series
+                if (checkedState == CheckState.Checked)
                 {
-                    if (b.ClassName != selectedClassName.ClassName)
+                    // add series
+                    selectedClass.Selected = true;
+                    string[] seriesFolderList = Directory.GetDirectories(selectedClass.ClassId);
+                    for (int i = 0; i < seriesFolderList.Length; i++)
                     {
-                        return true;
-                    }
-                    else
-                    {
-                        removedSeriesList.Add(b);
-                        return false;
+                        //chkListSeries.Items.Add(seriesList[i]);
+                        Series series = new Series();
+                        series.SeriesId = seriesFolderList[i];
+                        series.SeriesName = Path.GetFileName(seriesFolderList[i]);
+                        series.ClassName = selectedClass.ClassName;
+                        _seriesList.Add(series);
                     }
                 }
-                ).ToList<Series>();
-
-            }
-
-       ((ListBox)this.chkListSeries).DataSource = null;
-            ((ListBox)this.chkListSeries).DataSource = _seriesList;
-            ((ListBox)this.chkListSeries).DisplayMember = "SeriesName";
-            ((ListBox)this.chkListSeries).ValueMember = "Selected";
-
-
-            for (int i = 0; i < _seriesList.Count; i++)
-            {
-                if (_seriesList[i].Selected)
+                else if (checkedState == CheckState.Unchecked)
                 {
-                    this.chkListSeries.SetItemChecked(i, true);
+                    selectedClass.Selected = false;
+                    // remove series
+                    SchoolClass selectedClassName = (chkListClass.Items[selectedClassIndex] as SchoolClass);
+                    string[] seriesFolderList = Directory.GetDirectories(selectedClassName.ClassId);//Directory.GetDirectories(Path.Combine(_sourceFolderPath, selectedClassName));
+
+                    _seriesList = _seriesList.Where(b =>
+                    {
+                        if (b.ClassName != selectedClassName.ClassName)
+                        {
+                            return true;
+                        }
+                        else
+                        {
+                            removedSeriesList.Add(b);
+                            return false;
+                        }
+                    }
+                    ).ToList<Series>();
+
+                }
+
+                ((ListBox)this.chkListSeries).DataSource = null;
+                ((ListBox)this.chkListSeries).DataSource = _seriesList;
+                ((ListBox)this.chkListSeries).DisplayMember = "SeriesName";
+                ((ListBox)this.chkListSeries).ValueMember = "Selected";
+
+                for (int i = 0; i < _seriesList.Count; i++)
+                {
+                    if (_seriesList[i].Selected)
+                    {
+                        this.chkListSeries.SetItemChecked(i, true);
+                    }
+                }
+                _seriesListBindingInProgress = false;
+                foreach (Series removedSeries in removedSeriesList)
+                {
+                    updateSubjectListBinding(CheckState.Unchecked, removedSeries);
                 }
             }
-
-            foreach (Series removedSeries in removedSeriesList)
+            catch (Exception ex)
             {
-                updateSubjectListBinding(CheckState.Unchecked, removedSeries);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw;
+            }
+            finally
+            {
+                _seriesListBindingInProgress = false;
             }
         }
 
         private void updateSubjectListBinding(CheckState checkedState, Series selectedSeries)
         {
-            List<Subject> removedSubjectList = new List<Subject>();
-            // On each item check/un-check fill series
-            if (checkedState == CheckState.Checked)
+            try
             {
-                // add series
-                string[] subjectFolderList = Directory.GetDirectories(selectedSeries.SeriesId); // Directory.GetDirectories(Path.Combine(_sourceFolderPath, Path.Combine(selectedSeries.ClassName, selectedSeries.SeriesName)));
-                for (int i = 0; i < subjectFolderList.Length; i++)
+                if (_seriesListBindingInProgress == false)
                 {
-                    //chkListSeries.Items.Add(seriesList[i]);
-                    Subject subject = new Subject();
-                    subject.SubjectId = subjectFolderList[i];
-                    subject.SubjectName = Path.GetFileName(subjectFolderList[i]);
-                    subject.SeriesName = selectedSeries.SeriesName;
-                    subject.ClassName = selectedSeries.ClassName;
-                    _subjectList.Add(subject);
-                }
-                selectedSeries.Selected = true;
-
-            }
-            else if (checkedState == CheckState.Unchecked)
-            {
-                selectedSeries.Selected = false;
-
-                // remove series
-                string[] subjectFolderList = Directory.GetDirectories(Path.Combine(_sourceVideoFolderPath, Path.Combine(selectedSeries.ClassName, selectedSeries.SeriesName)));
-                _subjectList = _subjectList.Where(b =>
-                {
-                    if (b.SeriesName != selectedSeries.SeriesName)
+                    _subjectListBindingInProgress = true;
+                    List<Subject> removedSubjectList = new List<Subject>();
+                    // On each item check/un-check fill series
+                    if (checkedState == CheckState.Checked)
                     {
-                        return true;
+                        // add series
+                        string[] subjectFolderList = Directory.GetDirectories(selectedSeries.SeriesId); // Directory.GetDirectories(Path.Combine(_sourceFolderPath, Path.Combine(selectedSeries.ClassName, selectedSeries.SeriesName)));
+                        for (int i = 0; i < subjectFolderList.Length; i++)
+                        {
+                            //chkListSeries.Items.Add(seriesList[i]);
+                            Subject subject = new Subject();
+                            subject.SubjectId = subjectFolderList[i];
+                            subject.SubjectName = Path.GetFileName(subjectFolderList[i]);
+                            subject.SeriesName = selectedSeries.SeriesName;
+                            subject.ClassName = selectedSeries.ClassName;
+                            _subjectList.Add(subject);
+                        }
+                        selectedSeries.Selected = true;
+
                     }
-                    else
+                    else if (checkedState == CheckState.Unchecked)
                     {
-                        removedSubjectList.Add(b);
-                        return false;
+                        selectedSeries.Selected = false;
+
+                        // remove series
+                        string[] subjectFolderList = Directory.GetDirectories(Path.Combine(_sourceVideoFolderPath, Path.Combine(selectedSeries.ClassName, selectedSeries.SeriesName)));
+                        _subjectList = _subjectList.Where(b =>
+                        {
+                            if (b.SeriesName != selectedSeries.SeriesName)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                removedSubjectList.Add(b);
+                                return false;
+                            }
+                        }
+                        ).ToList<Subject>();
                     }
+
+                   ((ListBox)this.chkListSubject).DataSource = null;
+                    ((ListBox)this.chkListSubject).DataSource = _subjectList;
+                    ((ListBox)this.chkListSubject).DisplayMember = "SubjectName";
+                    ((ListBox)this.chkListSubject).ValueMember = "Selected";
+
+                    for (int i = 0; i < _subjectList.Count; i++)
+                    {
+                        if (_subjectList[i].Selected)
+                        {
+                            this.chkListSubject.SetItemChecked(i, true);
+                        }
+                    }
+
+                    _subjectListBindingInProgress = false;
+                    foreach (Subject removedSeries in removedSubjectList)
+                    {
+                        updateBookListBinding(CheckState.Unchecked, removedSeries);
+                    }
+
                 }
-                ).ToList<Subject>();
-
             }
-
-            ((ListBox)this.chkListSubject).DataSource = null;
-            ((ListBox)this.chkListSubject).DataSource = _subjectList;
-            ((ListBox)this.chkListSubject).DisplayMember = "SubjectName";
-            ((ListBox)this.chkListSubject).ValueMember = "Selected";
-
-
-            foreach (Subject removedSeries in removedSubjectList)
+            catch (Exception ex)
             {
-                updateBookListBinding(CheckState.Unchecked, removedSeries);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw;
             }
-
-            for (int i = 0; i < _subjectList.Count; i++)
+            finally
             {
-                if (_subjectList[i].Selected)
-                {
-                    this.chkListSubject.SetItemChecked(i, true);
-                }
+                _subjectListBindingInProgress = false;
             }
-
         }
 
         private void updateBookListBinding(CheckState checkedState, Subject selectedSubject)
         {
-            // On each item check/un-check fill series
-            if (checkedState == CheckState.Checked)
+            try
             {
-                // add series
-                string[] bookFolderList = Directory.GetDirectories(selectedSubject.SubjectId);
-
-                for (int i = 0; i < bookFolderList.Length; i++)
+                if (_subjectListBindingInProgress==false)
                 {
-                    Book book = new Book();
-                    book.BookId = bookFolderList[i];
-                    book.BookName = Path.GetFileName(bookFolderList[i]);
-                    book.SubjectName = selectedSubject.SubjectName;
-                    book.ClassName = selectedSubject.ClassName;
-                    book.SeriesName = selectedSubject.SeriesName;
-
-                    string[] videoList = Directory.GetFiles(bookFolderList[i]);
-
-                    if (videoList.Length > 0)
+                    if (checkedState == CheckState.Checked)
                     {
-                        book.VideoList = videoList;
+                        // add series
+                        string[] bookFolderList = Directory.GetDirectories(selectedSubject.SubjectId);
+
+                        for (int i = 0; i < bookFolderList.Length; i++)
+                        {
+                            Book book = new Book();
+                            book.BookId = bookFolderList[i];
+                            book.BookName = Path.GetFileName(bookFolderList[i]);
+                            book.SubjectName = selectedSubject.SubjectName;
+                            book.ClassName = selectedSubject.ClassName;
+                            book.SeriesName = selectedSubject.SeriesName;
+
+                            string[] videoList = Directory.GetFiles(bookFolderList[i]);
+
+                            if (videoList.Length > 0)
+                            {
+                                book.VideoList = videoList;
+                            }
+
+                            if (bookFolderList.Length == 1)
+                            {
+                                book.Selected = true;
+                            }
+
+                            _bookList.Add(book);
+                        }
+                        selectedSubject.Selected = true;
+                    }
+                    else if (checkedState == CheckState.Unchecked)
+                    {
+                        selectedSubject.Selected = false;
+
+                        // remove series
+                        string[] bookFolderList = Directory.GetDirectories(Path.Combine(_sourceVideoFolderPath, Path.Combine(Path.Combine(selectedSubject.ClassName, selectedSubject.SeriesName), selectedSubject.SubjectName)));
+                        _bookList = _bookList.Where(b =>
+                        {
+                            if (b.SubjectName != selectedSubject.SubjectName)
+                            {
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                        ).ToList<Book>();
+
                     }
 
-                    if (bookFolderList.Length == 1)
-                    {
-                        book.Selected = true;
-                    }
+                          ((ListBox)this.chkListBooks).DataSource = null;
+                    ((ListBox)this.chkListBooks).DataSource = _bookList;
+                    ((ListBox)this.chkListBooks).DisplayMember = "BookName";
+                    ((ListBox)this.chkListBooks).ValueMember = "Selected";
 
-                    _bookList.Add(book);
+
+                    for (int i = 0; i < _bookList.Count; i++)
+                    {
+                        if (_bookList[i].Selected)
+                        {
+                            this.chkListBooks.SetItemChecked(i, true);
+                        }
+                    } 
                 }
-                selectedSubject.Selected = true;
             }
-            else if (checkedState == CheckState.Unchecked)
+            catch (Exception ex)
             {
-                selectedSubject.Selected = false;
-
-                // remove series
-                string[] bookFolderList = Directory.GetDirectories(Path.Combine(_sourceVideoFolderPath, Path.Combine(Path.Combine(selectedSubject.ClassName, selectedSubject.SeriesName), selectedSubject.SubjectName)));
-                _bookList = _bookList.Where(b =>
-                {
-                    if (b.SubjectName != selectedSubject.SubjectName)
-                    {
-                        return true;
-                    }
-                    else
-                    {
-                        return false;
-                    }
-                }
-                ).ToList<Book>();
-
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                throw;
             }
-
-
-
-              ((ListBox)this.chkListBooks).DataSource = null;
-            ((ListBox)this.chkListBooks).DataSource = _bookList;
-            ((ListBox)this.chkListBooks).DisplayMember = "BookName";
-            ((ListBox)this.chkListBooks).ValueMember = "Selected";
-
-
-            for (int i = 0; i < _bookList.Count; i++)
+            finally
             {
-                if (_bookList[i].Selected)
-                {
-                    this.chkListBooks.SetItemChecked(i, true);
-                }
+                _subjectListBindingInProgress = false;
             }
         }
 
