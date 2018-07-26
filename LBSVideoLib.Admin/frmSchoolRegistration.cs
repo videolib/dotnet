@@ -114,14 +114,14 @@ namespace LBFVideoLib.Admin
                     System.IO.File.Copy(Path.Combine(ConfigHelper.ClientDistributionPath, clientDistributionFiles[i]), Path.Combine(clientPacakgeFolderPath, Path.GetFileName(clientDistributionFiles[i])), true);
                 }
 
-                // Create shortcut of exe.
-                WshShellClass shell = new WshShellClass();
-                IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(Path.Combine(clientSchoolCodeFolderPath, "LBSVideoLib.Client.exe.lnk"));
-                shortcut.TargetPath = Path.Combine(clientPacakgeFolderPath, "LBSVideoLib.Client.exe");
-                // add Description of Short cut
-                shortcut.Description = "Run this exe to play LBF Video Library.";
-                // save it / create
-                shortcut.Save();
+                //// Create shortcut of exe.
+                //WshShellClass shell = new WshShellClass();
+                //IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(Path.Combine(clientSchoolCodeFolderPath, "LBSVideoLib.Client.exe.lnk"));
+                //shortcut.TargetPath = Path.Combine(clientPacakgeFolderPath, "LBSVideoLib.Client.exe");
+                //// add Description of Short cut
+                //shortcut.Description = "Run this exe to play LBF Video Library.";
+                //// save it / create
+                //shortcut.Save();
             }
             else
             {
@@ -224,11 +224,11 @@ namespace LBFVideoLib.Admin
             // Generate client info json file and encrypt it.
             Cryptograph.EncryptObject(clientInfo, Path.Combine(clientPacakgeFolderPath, _clientInfoFileName));
 
-            string clientInfoPlainText = Newtonsoft.Json.JsonConvert.SerializeObject(clientInfo);
-            sw = System.IO.File.CreateText(Path.Combine(ClientHelper.GetRegisteredSchoolInfoFilePath(), this.txtSchoolCode.Text.Trim() + "-Plain.txt"));
-            sw.Write(clientInfoPlainText);
-            sw.Flush();
-            sw.Close();
+            //string clientInfoPlainText = Newtonsoft.Json.JsonConvert.SerializeObject(clientInfo);
+            //sw = System.IO.File.CreateText(Path.Combine(ClientHelper.GetRegisteredSchoolInfoFilePath(), this.txtSchoolCode.Text.Trim() + "-Plain.txt"));
+            //sw.Write(clientInfoPlainText);
+            //sw.Flush();
+            //sw.Close();
 
             // Copy client project bin folder to target location.
             MessageBox.Show("Registraion completed sucessfully.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
