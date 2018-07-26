@@ -168,7 +168,7 @@
             this.txtPwd.PasswordChar = '*';
             this.txtPwd.Size = new System.Drawing.Size(283, 24);
             this.txtPwd.TabIndex = 12;
-            this.txtPwd.Text = "a";
+            this.txtPwd.Text = "123";
             // 
             // label4
             // 
@@ -235,7 +235,7 @@
             this.txtEmailId.Name = "txtEmailId";
             this.txtEmailId.Size = new System.Drawing.Size(283, 24);
             this.txtEmailId.TabIndex = 1;
-            this.txtEmailId.Text = "a";
+            this.txtEmailId.Text = "sanjeevkhannaonly@gmail.com";
             // 
             // lblEmail
             // 
@@ -332,6 +332,7 @@
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.panel2);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";

@@ -15,5 +15,11 @@ namespace LBFVideoLib.Client
         {
             InitializeComponent();
         }
+
+
+        private void frmPrivacyPolicy_Load(object sender, EventArgs e)
+        {
+        }
+       
     }
 }

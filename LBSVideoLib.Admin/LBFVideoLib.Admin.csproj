@@ -30,6 +30,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>LBF.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Interop.IWshRuntimeLibrary">
       <HintPath>..\Interop.IWshRuntimeLibrary.dll</HintPath>
@@ -90,6 +93,9 @@
       <Project>{b091d00d-56fe-4a44-a42c-bb4efde2bd11}</Project>
       <Name>LBFVideoLib.Common</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="LBF.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

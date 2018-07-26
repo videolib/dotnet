@@ -30,6 +30,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>LBF.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -154,6 +157,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Icon_-10x.png" />
+    <Content Include="LBF.ico" />
     <Content Include="Thumbnails\Subjects_ENGLISH.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
