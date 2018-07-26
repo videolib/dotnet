@@ -201,7 +201,7 @@ namespace LBFVideoLib.Client
             }
             while ((_mostRecommandedVideos.Count < 6 || _mostRecommandedVideos.Count >= CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count) && noOfIterations > (CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count * 2));
 
-            for (int i = 0; i < 6 && i < CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count; i++)
+            for (int i = 0; i < 5 && i < CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count; i++)
             {
                 // int newRandomNumber = 0;
                 if (randomVideoIndexList[i] <= 0)
@@ -212,7 +212,7 @@ namespace LBFVideoLib.Client
                 }
 
             }
-            for (int i = 0; _mostRecommandedVideos != null && i < _mostRecommandedVideos.Count - 1; i++)
+            for (int i = 0; _mostRecommandedVideos != null && i < _mostRecommandedVideos.Count; i++)
             {
                 ThumbnailInfo thumbInfo = new ThumbnailInfo();
                 thumbInfo.FileName = _mostRecommandedVideos[i].VideoName;
@@ -230,7 +230,7 @@ namespace LBFVideoLib.Client
         {
             _mostWatchedVideos = CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.OrderByDescending(k => k.WatchCount).Take(6).ToList<VideoInfo>();
 
-            for (int i = 0; _mostWatchedVideos != null && i < _mostWatchedVideos.Count - 1; i++)
+            for (int i = 0; _mostWatchedVideos != null && i < _mostWatchedVideos.Count; i++)
             {
                 ThumbnailInfo thumbInfo = new ThumbnailInfo();
                 thumbInfo.FileName = _mostWatchedVideos[i].VideoName;
