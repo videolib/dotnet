@@ -119,6 +119,11 @@ namespace LBFVideoLib.Client
                 //ctlThumb
                 flowLayoutPanelPrevious.Controls.Add(ctlThumb);
             }
+
+            if (PreviousVideoFileList.Count <= 0)
+            {
+                pnlPreviousVideo.Visible = false;
+            }
         }
 
         private void AddNextVideoList()
@@ -133,6 +138,11 @@ namespace LBFVideoLib.Client
                 ctlThumb.Size = new System.Drawing.Size(150, 180);
                 //ctlThumb
                 flowLayoutPanelUpcoming.Controls.Add(ctlThumb);
+            }
+
+            if (NextVideoFileList.Count <= 0)
+            {
+                pnlUpcomingVideo.Visible = false;
             }
         }
 

@@ -227,6 +227,7 @@
             // 
             this.chkListBooks.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkListBooks.FormattingEnabled = true;
+            this.chkListBooks.HorizontalScrollbar = true;
             this.chkListBooks.Location = new System.Drawing.Point(405, 415);
             this.chkListBooks.Name = "chkListBooks";
             this.chkListBooks.Size = new System.Drawing.Size(262, 137);
@@ -238,6 +239,7 @@
             // 
             this.chkListSubject.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkListSubject.FormattingEnabled = true;
+            this.chkListSubject.HorizontalScrollbar = true;
             this.chkListSubject.Location = new System.Drawing.Point(112, 415);
             this.chkListSubject.Name = "chkListSubject";
             this.chkListSubject.Size = new System.Drawing.Size(262, 137);
@@ -249,6 +251,7 @@
             // 
             this.chkListSeries.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkListSeries.FormattingEnabled = true;
+            this.chkListSeries.HorizontalScrollbar = true;
             this.chkListSeries.Location = new System.Drawing.Point(406, 241);
             this.chkListSeries.Name = "chkListSeries";
             this.chkListSeries.Size = new System.Drawing.Size(262, 137);
@@ -260,6 +263,7 @@
             // 
             this.chkListClass.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.chkListClass.FormattingEnabled = true;
+            this.chkListClass.HorizontalScrollbar = true;
             this.chkListClass.Location = new System.Drawing.Point(112, 241);
             this.chkListClass.Name = "chkListClass";
             this.chkListClass.Size = new System.Drawing.Size(262, 137);
