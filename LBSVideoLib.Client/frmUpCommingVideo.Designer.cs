@@ -60,7 +60,7 @@
             this.btnFastForward = new System.Windows.Forms.Button();
             this.btnRewind = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblWatchCount = new System.Windows.Forms.Label();
             this.lblFileName = new System.Windows.Forms.Label();
             this.pnlVideo = new System.Windows.Forms.Panel();
             this.pnlUpcomingVideo = new System.Windows.Forms.Panel();
@@ -191,7 +191,7 @@
             // 
             // panel8
             // 
-            this.panel8.Controls.Add(this.label6);
+            this.panel8.Controls.Add(this.lblWatchCount);
             this.panel8.Controls.Add(this.lblFileName);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel8.Location = new System.Drawing.Point(28, 403);
@@ -199,17 +199,17 @@
             this.panel8.Size = new System.Drawing.Size(977, 38);
             this.panel8.TabIndex = 66;
             // 
-            // label6
+            // lblWatchCount
             // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.White;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.label6.Location = new System.Drawing.Point(795, 8);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(176, 17);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Watch Count: 32 Times";
+            this.lblWatchCount.AutoSize = true;
+            this.lblWatchCount.BackColor = System.Drawing.Color.White;
+            this.lblWatchCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWatchCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.lblWatchCount.Location = new System.Drawing.Point(795, 8);
+            this.lblWatchCount.Name = "lblWatchCount";
+            this.lblWatchCount.Size = new System.Drawing.Size(176, 17);
+            this.lblWatchCount.TabIndex = 11;
+            this.lblWatchCount.Text = "Watch Count: 32 Times";
             // 
             // lblFileName
             // 
@@ -577,7 +577,7 @@
         private System.Windows.Forms.Button btnFastForward;
         private System.Windows.Forms.Button btnRewind;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblWatchCount;
         private System.Windows.Forms.Label lblFileName;
         private System.Windows.Forms.Panel pnlVideo;
         private System.Windows.Forms.Panel pnlUpcomingVideo;

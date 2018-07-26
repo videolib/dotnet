@@ -178,9 +178,7 @@ namespace LBFVideoLib.Client
         {
             nextVideoList = new List<ThumbnailInfo>();
             previousVideoList = new List<ThumbnailInfo>();
-            int index = -1;
-
-            index = thumbnailList.FindIndex(k => k.VideoFullUrl.Equals(videoUrl));
+            int index = thumbnailList.FindIndex(k => k.VideoFullUrl.Equals(videoUrl));
             for (int i = index + 1; (i < index + 1 + 3) && (i < thumbnailList.Count); i++)
             {
                 nextVideoList.Add(thumbnailList[i]);
