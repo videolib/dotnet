@@ -29,29 +29,29 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUpCommingVideo));
-            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Urdu");
-            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("First-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode25});
-            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("First", new System.Windows.Forms.TreeNode[] {
-            treeNode26});
-            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Maths");
-            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("Second-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode28});
-            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("Hindi");
-            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("Second-S2", new System.Windows.Forms.TreeNode[] {
-            treeNode30});
-            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("Second", new System.Windows.Forms.TreeNode[] {
-            treeNode29,
-            treeNode31});
-            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("English");
-            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("Third-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode33});
-            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("Third", new System.Windows.Forms.TreeNode[] {
-            treeNode34});
-            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("Classes", new System.Windows.Forms.TreeNode[] {
-            treeNode27,
-            treeNode32,
-            treeNode35});
+            System.Windows.Forms.TreeNode treeNode73 = new System.Windows.Forms.TreeNode("Urdu");
+            System.Windows.Forms.TreeNode treeNode74 = new System.Windows.Forms.TreeNode("First-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode73});
+            System.Windows.Forms.TreeNode treeNode75 = new System.Windows.Forms.TreeNode("First", new System.Windows.Forms.TreeNode[] {
+            treeNode74});
+            System.Windows.Forms.TreeNode treeNode76 = new System.Windows.Forms.TreeNode("Maths");
+            System.Windows.Forms.TreeNode treeNode77 = new System.Windows.Forms.TreeNode("Second-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode76});
+            System.Windows.Forms.TreeNode treeNode78 = new System.Windows.Forms.TreeNode("Hindi");
+            System.Windows.Forms.TreeNode treeNode79 = new System.Windows.Forms.TreeNode("Second-S2", new System.Windows.Forms.TreeNode[] {
+            treeNode78});
+            System.Windows.Forms.TreeNode treeNode80 = new System.Windows.Forms.TreeNode("Second", new System.Windows.Forms.TreeNode[] {
+            treeNode77,
+            treeNode79});
+            System.Windows.Forms.TreeNode treeNode81 = new System.Windows.Forms.TreeNode("English");
+            System.Windows.Forms.TreeNode treeNode82 = new System.Windows.Forms.TreeNode("Third-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode81});
+            System.Windows.Forms.TreeNode treeNode83 = new System.Windows.Forms.TreeNode("Third", new System.Windows.Forms.TreeNode[] {
+            treeNode82});
+            System.Windows.Forms.TreeNode treeNode84 = new System.Windows.Forms.TreeNode("Classes", new System.Windows.Forms.TreeNode[] {
+            treeNode75,
+            treeNode80,
+            treeNode83});
             this.pnlMain = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
@@ -157,6 +157,8 @@
             this.btnFullScreen.BackColor = System.Drawing.Color.White;
             this.btnFullScreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnFullScreen.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnFullScreen.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnFullScreen.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnFullScreen.Location = new System.Drawing.Point(98, 0);
             this.btnFullScreen.Name = "btnFullScreen";
             this.btnFullScreen.Size = new System.Drawing.Size(767, 34);
@@ -169,6 +171,7 @@
             // 
             this.btnFastForward.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnFastForward.Dock = System.Windows.Forms.DockStyle.Right;
+            this.btnFastForward.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnFastForward.Image = ((System.Drawing.Image)(resources.GetObject("btnFastForward.Image")));
             this.btnFastForward.Location = new System.Drawing.Point(865, 0);
             this.btnFastForward.Name = "btnFastForward";
@@ -182,6 +185,7 @@
             this.btnRewind.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRewind.BackgroundImage")));
             this.btnRewind.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.btnRewind.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnRewind.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.btnRewind.Image = ((System.Drawing.Image)(resources.GetObject("btnRewind.Image")));
             this.btnRewind.Location = new System.Drawing.Point(0, 0);
             this.btnRewind.Margin = new System.Windows.Forms.Padding(0);
@@ -207,7 +211,7 @@
             this.lblWatchCount.BackColor = System.Drawing.Color.White;
             this.lblWatchCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWatchCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.lblWatchCount.Location = new System.Drawing.Point(799, 8);
+            this.lblWatchCount.Location = new System.Drawing.Point(795, 8);
             this.lblWatchCount.Name = "lblWatchCount";
             this.lblWatchCount.Size = new System.Drawing.Size(174, 20);
             this.lblWatchCount.TabIndex = 11;
@@ -382,32 +386,32 @@
             this.treeView1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.treeView1.Location = new System.Drawing.Point(0, 167);
             this.treeView1.Name = "treeView1";
-            treeNode25.Name = "Node12";
-            treeNode25.Text = "Urdu";
-            treeNode26.Name = "Node2";
-            treeNode26.Text = "First-S1";
-            treeNode27.Name = "Node1";
-            treeNode27.Text = "First";
-            treeNode28.Name = "Node11";
-            treeNode28.Text = "Maths";
-            treeNode29.Name = "Node4";
-            treeNode29.Text = "Second-S1";
-            treeNode30.Name = "Node10";
-            treeNode30.Text = "Hindi";
-            treeNode31.Name = "Node5";
-            treeNode31.Text = "Second-S2";
-            treeNode32.Name = "Node3";
-            treeNode32.Text = "Second";
-            treeNode33.Name = "Node9";
-            treeNode33.Text = "English";
-            treeNode34.Name = "Node8";
-            treeNode34.Text = "Third-S1";
-            treeNode35.Name = "Node7";
-            treeNode35.Text = "Third";
-            treeNode36.Name = "Node0";
-            treeNode36.Text = "Classes";
+            treeNode73.Name = "Node12";
+            treeNode73.Text = "Urdu";
+            treeNode74.Name = "Node2";
+            treeNode74.Text = "First-S1";
+            treeNode75.Name = "Node1";
+            treeNode75.Text = "First";
+            treeNode76.Name = "Node11";
+            treeNode76.Text = "Maths";
+            treeNode77.Name = "Node4";
+            treeNode77.Text = "Second-S1";
+            treeNode78.Name = "Node10";
+            treeNode78.Text = "Hindi";
+            treeNode79.Name = "Node5";
+            treeNode79.Text = "Second-S2";
+            treeNode80.Name = "Node3";
+            treeNode80.Text = "Second";
+            treeNode81.Name = "Node9";
+            treeNode81.Text = "English";
+            treeNode82.Name = "Node8";
+            treeNode82.Text = "Third-S1";
+            treeNode83.Name = "Node7";
+            treeNode83.Text = "Third";
+            treeNode84.Name = "Node0";
+            treeNode84.Text = "Classes";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode36});
+            treeNode84});
             this.treeView1.Size = new System.Drawing.Size(318, 484);
             this.treeView1.TabIndex = 4;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -464,6 +468,7 @@
             this.lblExpireDate.Size = new System.Drawing.Size(105, 16);
             this.lblExpireDate.TabIndex = 3;
             this.lblExpireDate.Text = "Expires on {0}";
+            this.lblExpireDate.Visible = false;
             // 
             // label11
             // 

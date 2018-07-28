@@ -321,6 +321,7 @@
             this.lblExpireDate.Size = new System.Drawing.Size(105, 16);
             this.lblExpireDate.TabIndex = 1;
             this.lblExpireDate.Text = "Expires on {0}";
+            this.lblExpireDate.Visible = false;
             // 
             // label11
             // 
