@@ -29,29 +29,29 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUpCommingVideo));
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Urdu");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("First-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode1});
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("First", new System.Windows.Forms.TreeNode[] {
-            treeNode2});
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Maths");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Second-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode4});
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Hindi");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Second-S2", new System.Windows.Forms.TreeNode[] {
-            treeNode6});
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Second", new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode7});
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("English");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Third-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode9});
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Third", new System.Windows.Forms.TreeNode[] {
-            treeNode10});
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Classes", new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode8,
-            treeNode11});
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Urdu");
+            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("First-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode25});
+            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("First", new System.Windows.Forms.TreeNode[] {
+            treeNode26});
+            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Maths");
+            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("Second-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode28});
+            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("Hindi");
+            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("Second-S2", new System.Windows.Forms.TreeNode[] {
+            treeNode30});
+            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("Second", new System.Windows.Forms.TreeNode[] {
+            treeNode29,
+            treeNode31});
+            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("English");
+            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("Third-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode33});
+            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("Third", new System.Windows.Forms.TreeNode[] {
+            treeNode34});
+            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("Classes", new System.Windows.Forms.TreeNode[] {
+            treeNode27,
+            treeNode32,
+            treeNode35});
             this.pnlMain = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
@@ -154,6 +154,7 @@
             // 
             // btnFullScreen
             // 
+            this.btnFullScreen.BackColor = System.Drawing.Color.White;
             this.btnFullScreen.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnFullScreen.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnFullScreen.Location = new System.Drawing.Point(98, 0);
@@ -161,7 +162,7 @@
             this.btnFullScreen.Size = new System.Drawing.Size(767, 34);
             this.btnFullScreen.TabIndex = 5;
             this.btnFullScreen.Text = "Full Screen";
-            this.btnFullScreen.UseVisualStyleBackColor = true;
+            this.btnFullScreen.UseVisualStyleBackColor = false;
             this.btnFullScreen.Click += new System.EventHandler(this.btnFullScreen_Click_1);
             // 
             // btnFastForward
@@ -204,11 +205,11 @@
             // 
             this.lblWatchCount.AutoSize = true;
             this.lblWatchCount.BackColor = System.Drawing.Color.White;
-            this.lblWatchCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWatchCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWatchCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.lblWatchCount.Location = new System.Drawing.Point(844, 4);
+            this.lblWatchCount.Location = new System.Drawing.Point(799, 8);
             this.lblWatchCount.Name = "lblWatchCount";
-            this.lblWatchCount.Size = new System.Drawing.Size(133, 15);
+            this.lblWatchCount.Size = new System.Drawing.Size(174, 20);
             this.lblWatchCount.TabIndex = 11;
             this.lblWatchCount.Text = "Watch Count: 32 Times";
             this.lblWatchCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -217,11 +218,11 @@
             // 
             this.lblFileName.AutoSize = true;
             this.lblFileName.BackColor = System.Drawing.Color.White;
-            this.lblFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFileName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.lblFileName.Location = new System.Drawing.Point(0, 8);
             this.lblFileName.Name = "lblFileName";
-            this.lblFileName.Size = new System.Drawing.Size(85, 24);
+            this.lblFileName.Size = new System.Drawing.Size(73, 20);
             this.lblFileName.TabIndex = 10;
             this.lblFileName.Text = "Alphabet";
             // 
@@ -381,32 +382,32 @@
             this.treeView1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.treeView1.Location = new System.Drawing.Point(0, 167);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "Node12";
-            treeNode1.Text = "Urdu";
-            treeNode2.Name = "Node2";
-            treeNode2.Text = "First-S1";
-            treeNode3.Name = "Node1";
-            treeNode3.Text = "First";
-            treeNode4.Name = "Node11";
-            treeNode4.Text = "Maths";
-            treeNode5.Name = "Node4";
-            treeNode5.Text = "Second-S1";
-            treeNode6.Name = "Node10";
-            treeNode6.Text = "Hindi";
-            treeNode7.Name = "Node5";
-            treeNode7.Text = "Second-S2";
-            treeNode8.Name = "Node3";
-            treeNode8.Text = "Second";
-            treeNode9.Name = "Node9";
-            treeNode9.Text = "English";
-            treeNode10.Name = "Node8";
-            treeNode10.Text = "Third-S1";
-            treeNode11.Name = "Node7";
-            treeNode11.Text = "Third";
-            treeNode12.Name = "Node0";
-            treeNode12.Text = "Classes";
+            treeNode25.Name = "Node12";
+            treeNode25.Text = "Urdu";
+            treeNode26.Name = "Node2";
+            treeNode26.Text = "First-S1";
+            treeNode27.Name = "Node1";
+            treeNode27.Text = "First";
+            treeNode28.Name = "Node11";
+            treeNode28.Text = "Maths";
+            treeNode29.Name = "Node4";
+            treeNode29.Text = "Second-S1";
+            treeNode30.Name = "Node10";
+            treeNode30.Text = "Hindi";
+            treeNode31.Name = "Node5";
+            treeNode31.Text = "Second-S2";
+            treeNode32.Name = "Node3";
+            treeNode32.Text = "Second";
+            treeNode33.Name = "Node9";
+            treeNode33.Text = "English";
+            treeNode34.Name = "Node8";
+            treeNode34.Text = "Third-S1";
+            treeNode35.Name = "Node7";
+            treeNode35.Text = "Third";
+            treeNode36.Name = "Node0";
+            treeNode36.Text = "Classes";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode12});
+            treeNode36});
             this.treeView1.Size = new System.Drawing.Size(318, 484);
             this.treeView1.TabIndex = 4;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -510,9 +511,9 @@
             this.lblAppTitle.ForeColor = System.Drawing.Color.White;
             this.lblAppTitle.Location = new System.Drawing.Point(510, 15);
             this.lblAppTitle.Name = "lblAppTitle";
-            this.lblAppTitle.Size = new System.Drawing.Size(260, 24);
+            this.lblAppTitle.Size = new System.Drawing.Size(97, 24);
             this.lblAppTitle.TabIndex = 5;
-            this.lblAppTitle.Text = "LBF Video Portal {0} {1} {2}";
+            this.lblAppTitle.Text = "{0} {1} {2}";
             this.lblAppTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblContact
