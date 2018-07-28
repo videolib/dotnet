@@ -145,7 +145,7 @@
             this.linklblForgotPwd.Location = new System.Drawing.Point(37, 212);
             this.linklblForgotPwd.Name = "linklblForgotPwd";
             this.linklblForgotPwd.Size = new System.Drawing.Size(122, 15);
-            this.linklblForgotPwd.TabIndex = 14;
+            this.linklblForgotPwd.TabIndex = 5;
             this.linklblForgotPwd.TabStop = true;
             this.linklblForgotPwd.Text = "Forgot Password?";
             this.linklblForgotPwd.Click += new System.EventHandler(this.lblForgotPwd_Click);
@@ -156,7 +156,7 @@
             this.lblShowPwd.Location = new System.Drawing.Point(387, 168);
             this.lblShowPwd.Name = "lblShowPwd";
             this.lblShowPwd.Size = new System.Drawing.Size(42, 15);
-            this.lblShowPwd.TabIndex = 13;
+            this.lblShowPwd.TabIndex = 3;
             this.lblShowPwd.Text = "Show";
             this.lblShowPwd.Click += new System.EventHandler(this.lblShowPwd_Click);
             // 
@@ -167,8 +167,7 @@
             this.txtPwd.Name = "txtPwd";
             this.txtPwd.PasswordChar = '*';
             this.txtPwd.Size = new System.Drawing.Size(283, 24);
-            this.txtPwd.TabIndex = 12;
-            this.txtPwd.Text = "123";
+            this.txtPwd.TabIndex = 2;
             // 
             // label4
             // 
@@ -235,7 +234,6 @@
             this.txtEmailId.Name = "txtEmailId";
             this.txtEmailId.Size = new System.Drawing.Size(283, 24);
             this.txtEmailId.TabIndex = 1;
-            this.txtEmailId.Text = "sanjeevkhannaonly@gmail.com";
             // 
             // lblEmail
             // 
