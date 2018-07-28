@@ -54,14 +54,6 @@ namespace LBFVideoLib.Client
             //}
         }
 
-        private Dictionary<string, string> FillRandomVideoList()
-        {
-            //List<int> randomNumberList = new List<int>();
-            //Random random = new Random();
-            //randomNumberList.Add(random.Next(0, _bookVideoList.Count - 1));
-            return null;
-        }
-
         private void FillVideoList()
         {
             // Fill video list
@@ -207,9 +199,19 @@ namespace LBFVideoLib.Client
                     randomVideoIndexList[newRandomNumber] = newRandomNumber;
                 }
             }
-            while (_mostRecommandedVideos.Count < 6);
+            while ((_mostRecommandedVideos.Count < 6 || _mostRecommandedVideos.Count >= CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count) && noOfIterations > (CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count * 2));
 
-            
+            for (int i = 0; i < 6 && i < CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count; i++)
+            {
+                // int newRandomNumber = 0;
+                if (randomVideoIndexList[i] <= 0)
+                {
+                     
+                _mostRecommandedVideos.Add(CommonAppStateDataHelper.ClientInfoObject.VideoInfoList[i]);
+                    randomVideoIndexList[i] = i;
+                }
+
+            }
             for (int i = 0; _mostRecommandedVideos != null && i < _mostRecommandedVideos.Count - 1; i++)
             {
                 ThumbnailInfo thumbInfo = new ThumbnailInfo();
