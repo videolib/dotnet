@@ -60,7 +60,7 @@ namespace LBFVideoLib.Common
 
         public static string GetRegisteredSchoolTitleString(string schoolName, string schoolCity, string schoolCode)
         {
-            return string.Format("{0}, {1}, [{2}[", schoolName, schoolCity, schoolCode);
+            return string.Format("{0}, {1}, [{2}]", schoolName, schoolCity, schoolCode);
         }
 
         public static string GetExpiryDateString(DateTime expiryDate)
