@@ -49,7 +49,7 @@ namespace LBFVideoLib.Common
             message = "";
 
             //Caes1 => RegDate < CurrentDate & CurrentDate < Exp Date & LastAccessTime > CurrentDate = Show Message
-            if (clientInfo.RegistrationDate.Date.CompareTo(DateTime.Now.Date) < 0 && clientInfo.ExpiryDate.Date.CompareTo(DateTime.Now.Date) > 0 && clientInfo.LastAccessEndTime.Date.CompareTo(DateTime.Now.Date) > 0)
+            if (clientInfo.RegistrationDate.Date.CompareTo(DateTime.Now) <= 0 && clientInfo.ExpiryDate.Date.CompareTo(DateTime.Now) >= 0 && clientInfo.LastAccessEndTime.CompareTo(DateTime.Now) > 0)
             {
                 valid = false;
                 message = "Invalid clock";

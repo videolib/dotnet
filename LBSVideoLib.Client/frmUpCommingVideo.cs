@@ -51,7 +51,7 @@ namespace LBFVideoLib.Client
         {
             _clientRootPath = ClientHelper.GetClientRootPath();
             _clientInfoFilePath = ClientHelper.GetClientInfoFilePath();
-            this.ClientInfoObject.LastAccessEndTime = DateTime.UtcNow;
+            this.ClientInfoObject.LastAccessEndTime = DateTime.Now;
             // this.ClientInfoObject.LastAccessStartTime = DateTime.UtcNow;
             Cryptograph.EncryptObject(this.ClientInfoObject, _clientInfoFilePath);
 
