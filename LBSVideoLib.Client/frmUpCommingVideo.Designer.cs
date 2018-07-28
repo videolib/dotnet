@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUpCommingVideo));
             System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Urdu");
             System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("First-S1", new System.Windows.Forms.TreeNode[] {
             treeNode1});
@@ -51,21 +52,20 @@
             treeNode3,
             treeNode8,
             treeNode11});
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUpCommingVideo));
             this.pnlMain = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.panel10 = new System.Windows.Forms.Panel();
             this.btnFullScreen = new System.Windows.Forms.Button();
             this.btnFastForward = new System.Windows.Forms.Button();
             this.btnRewind = new System.Windows.Forms.Button();
             this.panel8 = new System.Windows.Forms.Panel();
-            this.lblWatchCount = new System.Windows.Forms.Label();
             this.lblFileName = new System.Windows.Forms.Label();
             this.pnlVideo = new System.Windows.Forms.Panel();
             this.pnlSep = new System.Windows.Forms.Panel();
             this.pnlUpcomingVideo = new System.Windows.Forms.Panel();
             this.flowLayoutPanelUpcoming = new System.Windows.Forms.FlowLayoutPanel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblUpcomming = new System.Windows.Forms.Label();
             this.pnlPreviousVideo = new System.Windows.Forms.Panel();
             this.flowLayoutPanelPrevious = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
@@ -86,9 +86,10 @@
             this.lblSessionYears = new System.Windows.Forms.Label();
             this.lblAppTitle = new System.Windows.Forms.Label();
             this.lblContact = new System.Windows.Forms.Label();
-            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
+            this.lblWatchCount = new System.Windows.Forms.Label();
             this.pnlMain.SuspendLayout();
             this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.panel10.SuspendLayout();
             this.panel8.SuspendLayout();
             this.pnlVideo.SuspendLayout();
@@ -98,7 +99,6 @@
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlMain
@@ -130,6 +130,17 @@
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(1029, 653);
             this.panel9.TabIndex = 39;
+            // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(28, 55);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(977, 314);
+            this.axWindowsMediaPlayer1.TabIndex = 68;
+            this.axWindowsMediaPlayer1.KeyDownEvent += new AxWMPLib._WMPOCXEvents_KeyDownEventHandler(this.axWindowsMediaPlayer1_KeyDownEvent);
             // 
             // panel10
             // 
@@ -195,19 +206,6 @@
             this.panel8.Size = new System.Drawing.Size(977, 38);
             this.panel8.TabIndex = 66;
             // 
-            // lblWatchCount
-            // 
-            this.lblWatchCount.AutoSize = true;
-            this.lblWatchCount.BackColor = System.Drawing.Color.White;
-            this.lblWatchCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblWatchCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.lblWatchCount.Location = new System.Drawing.Point(809, 8);
-            this.lblWatchCount.Name = "lblWatchCount";
-            this.lblWatchCount.Size = new System.Drawing.Size(170, 20);
-            this.lblWatchCount.TabIndex = 11;
-            this.lblWatchCount.Text = "Watch Count: 32 times";
-            this.lblWatchCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // lblFileName
             // 
             this.lblFileName.AutoSize = true;
@@ -233,7 +231,7 @@
             // 
             // pnlSep
             // 
-            this.pnlSep.BackColor = System.Drawing.Color.Black;
+            this.pnlSep.BackColor = System.Drawing.Color.LightGray;
             this.pnlSep.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlSep.Location = new System.Drawing.Point(481, 0);
             this.pnlSep.Name = "pnlSep";
@@ -243,7 +241,7 @@
             // pnlUpcomingVideo
             // 
             this.pnlUpcomingVideo.Controls.Add(this.flowLayoutPanelUpcoming);
-            this.pnlUpcomingVideo.Controls.Add(this.label3);
+            this.pnlUpcomingVideo.Controls.Add(this.lblUpcomming);
             this.pnlUpcomingVideo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlUpcomingVideo.Location = new System.Drawing.Point(481, 0);
             this.pnlUpcomingVideo.Name = "pnlUpcomingVideo";
@@ -259,18 +257,18 @@
             this.flowLayoutPanelUpcoming.Size = new System.Drawing.Size(496, 184);
             this.flowLayoutPanelUpcoming.TabIndex = 63;
             // 
-            // label3
+            // lblUpcomming
             // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.White;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.label3.Location = new System.Drawing.Point(0, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(118, 17);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "Upcoming Videos";
+            this.lblUpcomming.BackColor = System.Drawing.Color.White;
+            this.lblUpcomming.Dock = System.Windows.Forms.DockStyle.Top;
+            this.lblUpcomming.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUpcomming.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.lblUpcomming.Location = new System.Drawing.Point(0, 0);
+            this.lblUpcomming.Name = "lblUpcomming";
+            this.lblUpcomming.Size = new System.Drawing.Size(496, 17);
+            this.lblUpcomming.TabIndex = 10;
+            this.lblUpcomming.Text = "Upcoming Videos";
+            this.lblUpcomming.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // pnlPreviousVideo
             // 
@@ -292,16 +290,16 @@
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(118, 17);
+            this.label1.Size = new System.Drawing.Size(481, 17);
             this.label1.TabIndex = 10;
             this.label1.Text = "Previouse Videos";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // pnlHeading
             // 
@@ -526,16 +524,19 @@
             this.lblContact.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblContact.Click += new System.EventHandler(this.lblContact_Click);
             // 
-            // axWindowsMediaPlayer1
+            // lblWatchCount
             // 
-            this.axWindowsMediaPlayer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(28, 55);
-            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
-            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(977, 314);
-            this.axWindowsMediaPlayer1.TabIndex = 68;
-            this.axWindowsMediaPlayer1.KeyDownEvent += new AxWMPLib._WMPOCXEvents_KeyDownEventHandler(this.axWindowsMediaPlayer1_KeyDownEvent);
+            this.lblWatchCount.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblWatchCount.BackColor = System.Drawing.Color.White;
+            this.lblWatchCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWatchCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.lblWatchCount.Location = new System.Drawing.Point(806, 8);
+            this.lblWatchCount.Name = "lblWatchCount";
+            this.lblWatchCount.Size = new System.Drawing.Size(170, 20);
+            this.lblWatchCount.TabIndex = 12;
+            this.lblWatchCount.Text = "Watch Count: 32 times";
+            this.lblWatchCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // frmUpCommingVideo
             // 
@@ -552,14 +553,13 @@
             this.VisibleChanged += new System.EventHandler(this.frmUpCommingVideo_VisibleChanged);
             this.pnlMain.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.panel10.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             this.pnlVideo.ResumeLayout(false);
             this.pnlUpcomingVideo.ResumeLayout(false);
-            this.pnlUpcomingVideo.PerformLayout();
             this.pnlPreviousVideo.ResumeLayout(false);
-            this.pnlPreviousVideo.PerformLayout();
             this.pnlHeading.ResumeLayout(false);
             this.pnlHeading.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -567,7 +567,6 @@
             this.panel4.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -597,16 +596,16 @@
         private System.Windows.Forms.Button btnFastForward;
         private System.Windows.Forms.Button btnRewind;
         private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Label lblWatchCount;
         private System.Windows.Forms.Label lblFileName;
         private System.Windows.Forms.Panel pnlVideo;
         private System.Windows.Forms.Panel pnlUpcomingVideo;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelUpcoming;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblUpcomming;
         private System.Windows.Forms.Panel pnlPreviousVideo;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelPrevious;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblPrivacyPolicy;
         private System.Windows.Forms.Panel pnlSep;
+        private System.Windows.Forms.Label lblWatchCount;
     }
 }

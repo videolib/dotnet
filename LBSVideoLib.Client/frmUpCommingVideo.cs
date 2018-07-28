@@ -155,9 +155,11 @@ namespace LBFVideoLib.Client
                 pnlUpcomingVideo.Visible = false;
                 pnlSep.Visible = false;
             }
+           
             else if (PreviousVideoFileList.Count <= 0)
             {
                 flowLayoutPanelUpcoming.FlowDirection = FlowDirection.LeftToRight;
+                lblUpcomming.TextAlign = ContentAlignment.MiddleLeft;
             }
         }
 
