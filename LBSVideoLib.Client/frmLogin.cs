@@ -41,15 +41,27 @@ namespace LBFVideoLib.Client
             }
 
             // Check license duraion
+            ValidateLicense();
+        }
+
+        private void ValidateLicense()
+        {
             string message = ""; bool deleteVideos = false;
             bool valid = LicenseHelper.CheckLicenseValidity(_clientInfo, out message, out deleteVideos);
 
             if (deleteVideos && valid == false)
             {
-                Directory.Delete(ClientHelper.GetClientVideoFilePath(_clientInfo.SchoolId, _clientInfo.SchoolCity), true);
+                CommonAppStateDataHelper.LicenseError = true;
+                MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                if (Directory.Exists(ClientHelper.GetClientVideoFilePath(_clientInfo.SchoolId, _clientInfo.SchoolCity)))
+                {
+                    Directory.Delete(ClientHelper.GetClientVideoFilePath(_clientInfo.SchoolId, _clientInfo.SchoolCity), true);
+                }
+                this.Close();
             }
             if (valid == false)
             {
+                CommonAppStateDataHelper.LicenseError = true;
                 MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 this.Close();
             }
@@ -66,8 +78,8 @@ namespace LBFVideoLib.Client
             {
                 SessionInfo sessionInfo = new SessionInfo();
                 sessionInfo.StartTime = DateTime.Now;
-                //_clientInfo.LastAccessStartTime = DateTime.UtcNow;
-                //_clientInfo.LastAccessEndTime = DateTime.UtcNow;
+                _clientInfo.LastAccessStartTime = DateTime.Now;
+                _clientInfo.LastAccessEndTime = DateTime.Now;
                 _clientInfo.SessionList.Add(sessionInfo);
                 Cryptograph.EncryptObject(_clientInfo, ClientHelper.GetClientInfoFilePath());
 

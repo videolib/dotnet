@@ -36,7 +36,7 @@ namespace LBFVideoLib.Client
         private void frmDashboard_Load(object sender, EventArgs e)
         {
             // FillVideoList();
-            //FillRandomVideoList();
+            // FillRandomVideoList();
 
             lblSessionYears.Text = ClientHelper.GetSessionString(ClientInfoObject.SessionString);
             lblSchoolWelcome.Text = ClientHelper.GetWelcomeString(ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);
@@ -196,9 +196,10 @@ namespace LBFVideoLib.Client
         {
             Random random = new Random();
             int[] randomVideoIndexList = new int[CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count];
-
+            int noOfIterations = 0;
             do
             {
+                noOfIterations++;
                 int newRandomNumber = random.Next(0, CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count - 1);
                 if (randomVideoIndexList.Contains(newRandomNumber) == false)
                 {
@@ -208,6 +209,7 @@ namespace LBFVideoLib.Client
             }
             while (_mostRecommandedVideos.Count < 6);
 
+            
             for (int i = 0; _mostRecommandedVideos != null && i < _mostRecommandedVideos.Count - 1; i++)
             {
                 ThumbnailInfo thumbInfo = new ThumbnailInfo();
@@ -326,18 +328,18 @@ namespace LBFVideoLib.Client
 
         private void frmDashboard_VisibleChanged(object sender, EventArgs e)
         {
-            
-                if (this.SelectedNode != null && this.Visible)
+
+            if (this.SelectedNode != null && this.Visible)
+            {
+                TreeNode[] searchedNode = this.treeView1.Nodes.Find(this.SelectedNode.Name, true);
+                if (searchedNode.Length > 0)
                 {
-                    TreeNode[] searchedNode = this.treeView1.Nodes.Find(this.SelectedNode.Name, true);
-                    if (searchedNode.Length > 0)
-                    {
-                        _skipNodeSelection = true;
-                        this.treeView1.SelectedNode = searchedNode[0];
-                        _skipNodeSelection = false;
-                    }
+                    _skipNodeSelection = true;
+                    this.treeView1.SelectedNode = searchedNode[0];
+                    _skipNodeSelection = false;
                 }
-            
+            }
+
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)

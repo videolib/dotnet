@@ -238,7 +238,7 @@
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.treeView1.Location = new System.Drawing.Point(0, 167);
+            this.treeView1.Location = new System.Drawing.Point(0, 223);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "Node12";
             treeNode1.Text = "Urdu";
@@ -266,7 +266,7 @@
             treeNode12.Text = "Classes";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode12});
-            this.treeView1.Size = new System.Drawing.Size(318, 476);
+            this.treeView1.Size = new System.Drawing.Size(318, 420);
             this.treeView1.TabIndex = 4;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -278,7 +278,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(318, 167);
+            this.panel5.Size = new System.Drawing.Size(318, 223);
             this.panel5.TabIndex = 1;
             // 
             // panel4

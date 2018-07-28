@@ -179,7 +179,7 @@
             this.label4.Size = new System.Drawing.Size(113, 24);
             this.label4.TabIndex = 11;
             this.label4.Text = "Password:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnLogin
             // 
@@ -245,7 +245,7 @@
             this.lblEmail.Size = new System.Drawing.Size(113, 24);
             this.lblEmail.TabIndex = 0;
             this.lblEmail.Text = "Email Id:";
-            this.lblEmail.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblEmail.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel3
             // 
@@ -307,6 +307,7 @@
             this.lblExpireDate.Size = new System.Drawing.Size(105, 16);
             this.lblExpireDate.TabIndex = 1;
             this.lblExpireDate.Text = "Expires on {0}";
+            this.lblExpireDate.Visible = false;
             // 
             // label11
             // 

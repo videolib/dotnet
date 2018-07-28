@@ -89,7 +89,7 @@
             this.treeView1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.treeView1.HideSelection = false;
             this.treeView1.HotTracking = true;
-            this.treeView1.Location = new System.Drawing.Point(0, 167);
+            this.treeView1.Location = new System.Drawing.Point(0, 223);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "Node12";
             treeNode1.Text = "Urdu";
@@ -117,7 +117,7 @@
             treeNode12.Text = "Classes";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode12});
-            this.treeView1.Size = new System.Drawing.Size(318, 484);
+            this.treeView1.Size = new System.Drawing.Size(318, 428);
             this.treeView1.TabIndex = 4;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -141,7 +141,7 @@
             this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlLogo.Location = new System.Drawing.Point(0, 0);
             this.pnlLogo.Name = "pnlLogo";
-            this.pnlLogo.Size = new System.Drawing.Size(318, 167);
+            this.pnlLogo.Size = new System.Drawing.Size(318, 223);
             this.pnlLogo.TabIndex = 1;
             this.pnlLogo.Click += new System.EventHandler(this.pnlLogo_Click);
             // 

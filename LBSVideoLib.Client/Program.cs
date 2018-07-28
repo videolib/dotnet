@@ -29,25 +29,27 @@ namespace LBFVideoLib.Client
                 if (CommonAppStateDataHelper.ClientInfoObject.SessionList.Count > 0)
                 {
                     int count = CommonAppStateDataHelper.ClientInfoObject.SessionList.Count;
-                    CommonAppStateDataHelper.ClientInfoObject.SessionList[count-1].EndTime = DateTime.Now;
-
+                    CommonAppStateDataHelper.ClientInfoObject.SessionList[count - 1].EndTime = DateTime.Now;
+                    CommonAppStateDataHelper.ClientInfoObject.LastAccessEndTime = DateTime.Now;
                     // update it in firebase database.
                     for (int i = 0; i < count; i++)
                     {
                         SaveSessionOnFireBase(CommonAppStateDataHelper.ClientInfoObject.SchoolId,
                             CommonAppStateDataHelper.ClientInfoObject.SessionList[i].StartTime,
                             CommonAppStateDataHelper.ClientInfoObject.SessionList[i].EndTime);
-                    }                   
-                    
+                    }
+
                     CommonAppStateDataHelper.ClientInfoObject.SessionList.Clear();
                     //}
-                
                 }
             }
             catch { }
             finally
             {
-                CommonAppStateDataHelper.ClientInfoObject.LastAccessEndTime = DateTime.Now;
+                if (CommonAppStateDataHelper.LicenseError == false && CommonAppStateDataHelper.ClientInfoObject != null)
+                {
+                    CommonAppStateDataHelper.ClientInfoObject.LastAccessEndTime = DateTime.Now;
+                }
                 Cryptograph.EncryptObject(CommonAppStateDataHelper.ClientInfoObject, ClientHelper.GetClientInfoFilePath());
             }
         }

@@ -64,7 +64,6 @@ namespace LBFVideoLib.Client
                 if (searchedNode.Length > 0)
                 {
                     this.treeView1.SelectedNode = searchedNode[0];
-
                 }
             }
             else
@@ -75,7 +74,7 @@ namespace LBFVideoLib.Client
             lblSessionYears.Text = ClientHelper.GetSessionString(ClientInfoObject.SessionString);
             lblWelcome.Text = ClientHelper.GetWelcomeString(ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);
             lblExpireDate.Text = ClientHelper.GetExpiryDateString(ClientInfoObject.ExpiryDate);
-            lblAppTitle.Text = string.Format(lblAppTitle.Text, ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);
+            lblAppTitle.Text = ClientHelper.GetRegisteredSchoolTitleString(ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);
 
             AddPreviousVideoList();
             AddNextVideoList();
@@ -91,11 +90,16 @@ namespace LBFVideoLib.Client
 
             this.lblFileName.Text = Path.GetFileNameWithoutExtension(CurrentVideo.FileName);
 
-            
+
         }
 
         private void PlayEncryptedVideo(string videoUrl)
         {
+           if(ValidateLicense()==false)
+            {
+                return;
+            }
+
             VideoInfo currentVideoInfo = this.ClientInfoObject.VideoInfoList.First(i => i.VideoFullUrl.ToLower().Equals(videoUrl.ToLower()));
             currentVideoInfo.WatchCount++;
             //string tempDirectory = Path.Combine(Path.GetDirectoryName(this.NextVideoFileList[0]), "Temp");
@@ -105,7 +109,7 @@ namespace LBFVideoLib.Client
             tempFileList.Add(tempFilePath);
             Cryptograph.DecryptFile(videoUrl, tempFilePath);
             this.axWindowsMediaPlayer1.URL = tempFilePath;
-            lblWelcome.Text = string.Format("{0}, {1}, [{2}]", currentVideoInfo.ClassName, currentVideoInfo.SeriesName, currentVideoInfo.Subject);
+            lblWelcome.Text = string.Format("{0}, {1}, {2}", currentVideoInfo.ClassName, currentVideoInfo.SeriesName, currentVideoInfo.Subject);
             lblWatchCount.Text = string.Format("Watch Count: {0} Times", currentVideoInfo.WatchCount);
 
             SaveWatchedVideoCountOnFireBase(currentVideoInfo.VideoName, currentVideoInfo.WatchCount);
@@ -150,6 +154,10 @@ namespace LBFVideoLib.Client
             {
                 pnlUpcomingVideo.Visible = false;
                 pnlSep.Visible = false;
+            }
+            else if (PreviousVideoFileList.Count <= 0)
+            {
+                flowLayoutPanelUpcoming.FlowDirection = FlowDirection.LeftToRight;
             }
         }
 
@@ -343,12 +351,44 @@ namespace LBFVideoLib.Client
             info.MachineName = Environment.MachineName;
             info.VideoName = videoName;
             info.VideoWatchCount = watchCount;
-            
+
             string jsonString = JsonHelper.ParseObjectToJSON<WatchCountInfoFB>(info);
             string url = string.Format("clientanalytic-data/{0}/videowatchcount", ClientInfoObject.SchoolId);
-            FirebaseHelper.PostData(jsonString, url);            
+            FirebaseHelper.PostData(jsonString, url);
+        }
+
+        private void axWindowsMediaPlayer1_KeyDownEvent(object sender, AxWMPLib._WMPOCXEvents_KeyDownEvent e)
+        {
+            if (e.nKeyCode == (short)Keys.F11)
+            {
+                this.axWindowsMediaPlayer1.fullScreen = !this.axWindowsMediaPlayer1.fullScreen;
+            }
+        }
+
+        private bool ValidateLicense()
+        {
+            string message = ""; bool deleteVideos = false;
+            bool valid = LicenseHelper.CheckLicenseValidity(this.ClientInfoObject, out message, out deleteVideos);
+
+            if (deleteVideos && valid == false)
+            {
+                CommonAppStateDataHelper.LicenseError = true;
+                Directory.Delete(ClientHelper.GetClientVideoFilePath(this.ClientInfoObject.SchoolId, this.ClientInfoObject.SchoolCity), true);
+                this.Close();
+                Application.Exit();
+            }
+            if (valid == false)
+            {
+                CommonAppStateDataHelper.LicenseError = true;
+                MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                Application.Exit();
+            }
+            return valid;
         }
     }
+
+
+
 }
 //private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
 //{

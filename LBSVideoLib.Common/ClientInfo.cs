@@ -40,10 +40,10 @@ namespace LBFVideoLib.Common
 
         public List<VideoInfo> VideoInfoList { get; set; }
 
-        public string GetClientDetail()
-        {
-            return string.Format("Welcome, {0}, {1} [{2}]", this.SchoolName, this.SchoolCity, this.SchoolId);
-        }
+        //public string GetClientDetail()
+        //{
+        //    return string.Format("Welcome, {0}, {1} [{2}]", this.SchoolName, this.SchoolCity, this.SchoolId);
+        //}
 
     }
 }
