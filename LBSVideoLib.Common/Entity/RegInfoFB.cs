@@ -3,110 +3,135 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace LBFVideoLib.Common.Entity {
+namespace LBFVideoLib.Common.Entity
+{
 
-  public class RegInfoFB {
-
-    public RegInfoFB() {
-      Classes = new List<ClassFB>();
-
-    }
-
-    public string RegDate
+    public class RegInfoFB
     {
-      get; set;
-    }
 
-    public string LoginEmail
-    {
-      get; set;
-    }
-    public string Password
-    {
-      get; set;
-    }
+        public RegInfoFB()
+        {
+            Classes = new List<ClassFB>();
 
-    public string SchoolName
-    {
-      get; set;
-    }
+        }
 
-    public string City
-    {
-      get; set;
-    }
+        public string RegDate
+        {
+            get; set;
+        }
 
-    public string SchoolCode
-    {
-      get; set;
-    }
+        public string LoginEmail
+        {
+            get; set;
+        }
+        public string Password
+        {
+            get; set;
+        }
 
-    public string Session
-    {
-      get; set;
-    }
+        public string SchoolName
+        {
+            get; set;
+        }
+
+        public string City
+        {
+            get; set;
+        }
+
+        public string SchoolCode
+        {
+            get; set;
+        }
+
+        public string Session
+        {
+            get; set;
+        }
 
 
-    public List<ClassFB> Classes
-    {
-      get; set;
+        public List<ClassFB> Classes
+        {
+            get; set;
+        }
     }
-  }
 
     [Serializable()]
-    public class ClassFB {
-    public ClassFB() {
-      Series = new List<SeriesFB>();
-    }
-
-    public string Name
+    public class ClassFB
     {
-      get; set;
-    }
+        public ClassFB()
+        {
+            Series = new List<SeriesFB>();
+        }
 
-    public List<SeriesFB> Series
-    {
-      get; set;
+        public string Name
+        {
+            get; set;
+        }
+
+        public List<SeriesFB> Series
+        {
+            get; set;
+        }
     }
-  }
     [Serializable()]
-    public class SeriesFB {
-
-    public SeriesFB() {
-      Subjects = new List<SubjectFB>();
-    }
-
-    public string Name
+    public class SeriesFB
     {
-      get; set;
-    }
-    public List<SubjectFB> Subjects;
-  }
 
-    [Serializable()]
-    public class SubjectFB {
+        public SeriesFB()
+        {
+            Subjects = new List<SubjectFB>();
+        }
 
-    public SubjectFB() {
-      Books = new List<BookFB>();
+        public string Name
+        {
+            get; set;
+        }
+        public List<SubjectFB> Subjects;
     }
-    public string Name
-    {
-      get; set;
-    }
-    public List<BookFB> Books;
-  }
 
     [Serializable()]
-    public class BookFB {
-    public string Name
+    public class SubjectFB
     {
-      get; set;
+
+        public SubjectFB()
+        {
+            Books = new List<BookFB>();
+        }
+        public string Name
+        {
+            get; set;
+        }
+        public List<BookFB> Books;
     }
 
-    public int WatchCount
+    [Serializable()]
+    public class BookFB
     {
-      get; set;
+        public string Name
+        {
+            get; set;
+        }
+
+        public int WatchCount
+        {
+            get; set;
+        }
+
     }
 
-  }
+
+    public class WatchCountInfoFB
+    {
+        public string MachineName { get; set; }
+        public string VideoName { get; set; }
+        public int VideoWatchCount { get; set; }
+    }
+
+    public class SessionInfoFB
+    {
+        public string MachineName { get; set; }
+        public DateTime SessionStartTime { get; set; }
+        public DateTime SessionEndTime { get; set; }
+    }
 }

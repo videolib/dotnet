@@ -63,6 +63,7 @@
             this.lblWatchCount = new System.Windows.Forms.Label();
             this.lblFileName = new System.Windows.Forms.Label();
             this.pnlVideo = new System.Windows.Forms.Panel();
+            this.pnlSep = new System.Windows.Forms.Panel();
             this.pnlUpcomingVideo = new System.Windows.Forms.Panel();
             this.flowLayoutPanelUpcoming = new System.Windows.Forms.FlowLayoutPanel();
             this.label3 = new System.Windows.Forms.Label();
@@ -84,7 +85,7 @@
             this.label11 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lblSessionYears = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.lblAppTitle = new System.Windows.Forms.Label();
             this.lblContact = new System.Windows.Forms.Label();
             this.pnlMain.SuspendLayout();
             this.panel9.SuspendLayout();
@@ -203,13 +204,14 @@
             // 
             this.lblWatchCount.AutoSize = true;
             this.lblWatchCount.BackColor = System.Drawing.Color.White;
-            this.lblWatchCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWatchCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWatchCount.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.lblWatchCount.Location = new System.Drawing.Point(795, 8);
+            this.lblWatchCount.Location = new System.Drawing.Point(844, 4);
             this.lblWatchCount.Name = "lblWatchCount";
-            this.lblWatchCount.Size = new System.Drawing.Size(176, 17);
+            this.lblWatchCount.Size = new System.Drawing.Size(133, 15);
             this.lblWatchCount.TabIndex = 11;
             this.lblWatchCount.Text = "Watch Count: 32 Times";
+            this.lblWatchCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblFileName
             // 
@@ -217,7 +219,7 @@
             this.lblFileName.BackColor = System.Drawing.Color.White;
             this.lblFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFileName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.lblFileName.Location = new System.Drawing.Point(5, 8);
+            this.lblFileName.Location = new System.Drawing.Point(0, 8);
             this.lblFileName.Name = "lblFileName";
             this.lblFileName.Size = new System.Drawing.Size(85, 24);
             this.lblFileName.TabIndex = 10;
@@ -225,6 +227,7 @@
             // 
             // pnlVideo
             // 
+            this.pnlVideo.Controls.Add(this.pnlSep);
             this.pnlVideo.Controls.Add(this.pnlUpcomingVideo);
             this.pnlVideo.Controls.Add(this.pnlPreviousVideo);
             this.pnlVideo.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -233,22 +236,31 @@
             this.pnlVideo.Size = new System.Drawing.Size(977, 201);
             this.pnlVideo.TabIndex = 65;
             // 
+            // pnlSep
+            // 
+            this.pnlSep.BackColor = System.Drawing.Color.Black;
+            this.pnlSep.Dock = System.Windows.Forms.DockStyle.Left;
+            this.pnlSep.Location = new System.Drawing.Point(481, 0);
+            this.pnlSep.Name = "pnlSep";
+            this.pnlSep.Size = new System.Drawing.Size(2, 201);
+            this.pnlSep.TabIndex = 67;
+            // 
             // pnlUpcomingVideo
             // 
             this.pnlUpcomingVideo.Controls.Add(this.flowLayoutPanelUpcoming);
             this.pnlUpcomingVideo.Controls.Add(this.label3);
             this.pnlUpcomingVideo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlUpcomingVideo.Location = new System.Drawing.Point(499, 0);
+            this.pnlUpcomingVideo.Location = new System.Drawing.Point(481, 0);
             this.pnlUpcomingVideo.Name = "pnlUpcomingVideo";
-            this.pnlUpcomingVideo.Size = new System.Drawing.Size(478, 201);
+            this.pnlUpcomingVideo.Size = new System.Drawing.Size(496, 201);
             this.pnlUpcomingVideo.TabIndex = 65;
             // 
             // flowLayoutPanelUpcoming
             // 
             this.flowLayoutPanelUpcoming.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelUpcoming.Location = new System.Drawing.Point(0, 16);
+            this.flowLayoutPanelUpcoming.Location = new System.Drawing.Point(0, 17);
             this.flowLayoutPanelUpcoming.Name = "flowLayoutPanelUpcoming";
-            this.flowLayoutPanelUpcoming.Size = new System.Drawing.Size(478, 185);
+            this.flowLayoutPanelUpcoming.Size = new System.Drawing.Size(496, 184);
             this.flowLayoutPanelUpcoming.TabIndex = 63;
             // 
             // label3
@@ -256,11 +268,11 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.White;
             this.label3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.label3.Location = new System.Drawing.Point(0, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(116, 16);
+            this.label3.Size = new System.Drawing.Size(118, 17);
             this.label3.TabIndex = 10;
             this.label3.Text = "Upcoming Videos";
             // 
@@ -271,15 +283,15 @@
             this.pnlPreviousVideo.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlPreviousVideo.Location = new System.Drawing.Point(0, 0);
             this.pnlPreviousVideo.Name = "pnlPreviousVideo";
-            this.pnlPreviousVideo.Size = new System.Drawing.Size(499, 201);
+            this.pnlPreviousVideo.Size = new System.Drawing.Size(481, 201);
             this.pnlPreviousVideo.TabIndex = 64;
             // 
             // flowLayoutPanelPrevious
             // 
             this.flowLayoutPanelPrevious.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.flowLayoutPanelPrevious.Location = new System.Drawing.Point(0, 16);
+            this.flowLayoutPanelPrevious.Location = new System.Drawing.Point(0, 17);
             this.flowLayoutPanelPrevious.Name = "flowLayoutPanelPrevious";
-            this.flowLayoutPanelPrevious.Size = new System.Drawing.Size(499, 185);
+            this.flowLayoutPanelPrevious.Size = new System.Drawing.Size(481, 184);
             this.flowLayoutPanelPrevious.TabIndex = 63;
             // 
             // label1
@@ -287,11 +299,11 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.White;
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(115, 16);
+            this.label1.Size = new System.Drawing.Size(118, 17);
             this.label1.TabIndex = 10;
             this.label1.Text = "Previouse Videos";
             // 
@@ -470,7 +482,7 @@
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.panel2.Controls.Add(this.lblSessionYears);
-            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.lblAppTitle);
             this.panel2.Controls.Add(this.lblContact);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
@@ -490,18 +502,18 @@
             this.lblSessionYears.Text = "Session {0}";
             this.lblSessionYears.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // label2
+            // lblAppTitle
             // 
-            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(656, 15);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(167, 24);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "LBF Video Portal";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblAppTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblAppTitle.AutoSize = true;
+            this.lblAppTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblAppTitle.ForeColor = System.Drawing.Color.White;
+            this.lblAppTitle.Location = new System.Drawing.Point(510, 15);
+            this.lblAppTitle.Name = "lblAppTitle";
+            this.lblAppTitle.Size = new System.Drawing.Size(260, 24);
+            this.lblAppTitle.TabIndex = 5;
+            this.lblAppTitle.Text = "LBF Video Portal {0} {1} {2}";
+            this.lblAppTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblContact
             // 
@@ -560,7 +572,7 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblAppTitle;
         private System.Windows.Forms.Label lblContact;
         private System.Windows.Forms.Panel panel9;
         private System.Windows.Forms.Label lblExpireDate;
@@ -587,5 +599,6 @@
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanelPrevious;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblPrivacyPolicy;
+        private System.Windows.Forms.Panel pnlSep;
     }
 }

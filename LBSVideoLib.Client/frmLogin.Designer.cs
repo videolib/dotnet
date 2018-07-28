@@ -168,6 +168,7 @@
             this.txtPwd.PasswordChar = '*';
             this.txtPwd.Size = new System.Drawing.Size(283, 24);
             this.txtPwd.TabIndex = 12;
+            this.txtPwd.Text = "123";
             // 
             // label4
             // 
@@ -234,6 +235,7 @@
             this.txtEmailId.Name = "txtEmailId";
             this.txtEmailId.Size = new System.Drawing.Size(283, 24);
             this.txtEmailId.TabIndex = 1;
+            this.txtEmailId.Text = "sanjeevkhannaonly@gmail.com";
             // 
             // lblEmail
             // 

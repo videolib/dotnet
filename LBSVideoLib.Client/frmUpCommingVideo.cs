@@ -75,6 +75,7 @@ namespace LBFVideoLib.Client
             lblSessionYears.Text = ClientHelper.GetSessionString(ClientInfoObject.SessionString);
             lblWelcome.Text = ClientHelper.GetWelcomeString(ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);
             lblExpireDate.Text = ClientHelper.GetExpiryDateString(ClientInfoObject.ExpiryDate);
+            lblAppTitle.Text = string.Format(lblAppTitle.Text, ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);
 
             AddPreviousVideoList();
             AddNextVideoList();
@@ -89,6 +90,8 @@ namespace LBFVideoLib.Client
             }
 
             this.lblFileName.Text = Path.GetFileNameWithoutExtension(CurrentVideo.FileName);
+
+            
         }
 
         private void PlayEncryptedVideo(string videoUrl)
@@ -104,6 +107,8 @@ namespace LBFVideoLib.Client
             this.axWindowsMediaPlayer1.URL = tempFilePath;
             lblWelcome.Text = string.Format("{0}, {1}, [{2}]", currentVideoInfo.ClassName, currentVideoInfo.SeriesName, currentVideoInfo.Subject);
             lblWatchCount.Text = string.Format("Watch Count: {0} Times", currentVideoInfo.WatchCount);
+
+            SaveWatchedVideoCountOnFireBase(currentVideoInfo.VideoName, currentVideoInfo.WatchCount);
         }
 
         private void AddPreviousVideoList()
@@ -123,6 +128,7 @@ namespace LBFVideoLib.Client
             if (PreviousVideoFileList.Count <= 0)
             {
                 pnlPreviousVideo.Visible = false;
+                pnlSep.Visible = false;
             }
         }
 
@@ -143,6 +149,7 @@ namespace LBFVideoLib.Client
             if (NextVideoFileList.Count <= 0)
             {
                 pnlUpcomingVideo.Visible = false;
+                pnlSep.Visible = false;
             }
         }
 
@@ -328,6 +335,18 @@ namespace LBFVideoLib.Client
         private void btnFastForward_Click(object sender, EventArgs e)
         {
             this.axWindowsMediaPlayer1.Ctlcontrols.currentPosition += 10;
+        }
+
+        private void SaveWatchedVideoCountOnFireBase(string videoName, int watchCount)
+        {
+            WatchCountInfoFB info = new WatchCountInfoFB();
+            info.MachineName = Environment.MachineName;
+            info.VideoName = videoName;
+            info.VideoWatchCount = watchCount;
+            
+            string jsonString = JsonHelper.ParseObjectToJSON<WatchCountInfoFB>(info);
+            string url = string.Format("clientanalytic-data/{0}/videowatchcount", ClientInfoObject.SchoolId);
+            FirebaseHelper.PostData(jsonString, url);            
         }
     }
 }

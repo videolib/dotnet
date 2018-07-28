@@ -1,4 +1,5 @@
 ﻿using LBFVideoLib.Common;
+using LBFVideoLib.Common.Entity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,16 +28,40 @@ namespace LBFVideoLib.Client
             {
                 if (CommonAppStateDataHelper.ClientInfoObject.SessionList.Count > 0)
                 {
-                    //if (online)
-                    //{
-                    //    // update it in firebase database.
+                    int count = CommonAppStateDataHelper.ClientInfoObject.SessionList.Count;
+                    CommonAppStateDataHelper.ClientInfoObject.SessionList[count-1].EndTime = DateTime.Now;
+
+                    // update it in firebase database.
+                    for (int i = 0; i < count; i++)
+                    {
+                        SaveSessionOnFireBase(CommonAppStateDataHelper.ClientInfoObject.SchoolId,
+                            CommonAppStateDataHelper.ClientInfoObject.SessionList[i].StartTime,
+                            CommonAppStateDataHelper.ClientInfoObject.SessionList[i].EndTime);
+                    }                   
+                    
                     CommonAppStateDataHelper.ClientInfoObject.SessionList.Clear();
                     //}
-                    CommonAppStateDataHelper.ClientInfoObject.LastAccessEndTime = DateTime.Now;
-                    Cryptograph.EncryptObject(CommonAppStateDataHelper.ClientInfoObject, ClientHelper.GetClientInfoFilePath());
+                
                 }
             }
             catch { }
+            finally
+            {
+                CommonAppStateDataHelper.ClientInfoObject.LastAccessEndTime = DateTime.Now;
+                Cryptograph.EncryptObject(CommonAppStateDataHelper.ClientInfoObject, ClientHelper.GetClientInfoFilePath());
+            }
+        }
+
+        private static void SaveSessionOnFireBase(string schoolCode, DateTime sessionStartTime, DateTime sessionEndTime)
+        {
+            SessionInfoFB info = new SessionInfoFB();
+            info.MachineName = Environment.MachineName;
+            info.SessionStartTime = sessionStartTime;
+            info.SessionEndTime = sessionEndTime;
+
+            string jsonString = JsonHelper.ParseObjectToJSON<SessionInfoFB>(info);
+            string url = string.Format("clientanalytic-data/{0}/session", schoolCode);
+            FirebaseHelper.PostData(jsonString, url);
         }
 
 
