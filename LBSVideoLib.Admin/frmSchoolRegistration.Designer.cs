@@ -56,11 +56,13 @@
             this.txtEmailId = new System.Windows.Forms.TextBox();
             this.lblEmail = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label11 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
+            this.adminBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.pnlMain.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -118,6 +120,7 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.progressBar1);
             this.panel3.Controls.Add(this.cmbSchoolSession);
             this.panel3.Controls.Add(this.btnRegister);
             this.panel3.Controls.Add(this.label13);
@@ -403,6 +406,14 @@
             this.panel1.Size = new System.Drawing.Size(354, 645);
             this.panel1.TabIndex = 26;
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(183, 207);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(310, 28);
+            this.progressBar1.TabIndex = 5;
+            this.progressBar1.Visible = false;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
@@ -459,6 +470,14 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "LBF Video Portal";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // adminBackgroundWorker
+            // 
+            this.adminBackgroundWorker.WorkerReportsProgress = true;
+            this.adminBackgroundWorker.WorkerSupportsCancellation = true;
+            this.adminBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.adminBackgroundWorker_DoWork);
+            this.adminBackgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.adminBackgroundWorker_ProgressChanged);
+            this.adminBackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.adminBackgroundWorker_RunWorkerCompleted);
             // 
             // frmSchoolRegistration
             // 
@@ -522,5 +541,7 @@
         private System.Windows.Forms.CheckedListBox chkListSubject;
         private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.ComboBox cmbSchoolSession;
+        private System.ComponentModel.BackgroundWorker adminBackgroundWorker;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }

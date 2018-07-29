@@ -9,9 +9,12 @@ namespace LBFVideoLib.Common
         #region Client Path Helper Methods
         public static string GetClientRootPath()
         {
-          //  return Directory.GetCurrentDirectory();
-             return @"C:\LBFSetup\Registration\ClientPackages\786\Package";
+
+            //  return Directory.GetCurrentDirectory();
+            return @"D:\School\ClientPackages\c\Package";
         }
+
+
 
         public static string GetClientInfoFilePath()
         {
@@ -37,6 +40,25 @@ namespace LBFVideoLib.Common
         {
             return Path.Combine(Directory.GetCurrentDirectory(), "ClientRegistrationData");
         }
+
+        public static string GetClientRegistrationPackagePath(string schoolCode)
+        {
+            return Path.Combine(ConfigHelper.ClientDistributionTargetRootPath, Path.Combine(schoolCode, "Package"));
+        }
+
+        public static string GetClientRegistratinThumbnailPath(string schoolCode)
+        {
+            return Path.Combine(GetClientRegistrationPackagePath(schoolCode), "Thumbnails");
+        }
+
+        //// This path is use to create client package during registration from admin form.
+        //public static string GetRegisteredClientDistributionRootPath(string schoolCode)
+        //{
+
+        //    //  return Directory.GetCurrentDirectory();
+        //    Path.Combine(ConfigHelper.ClientDistributionTargetRootPath 
+        //    return @"C:\LBFSetup\Registration\ClientPackages\786\Package";
+        //}
 
         #endregion
 

@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="AdminInfo.cs" />
     <Compile Include="Authentication.cs" />
+    <Compile Include="BackgroundProcessData.cs" />
     <Compile Include="PathHelper.cs" />
     <Compile Include="ConfigHelper.cs" />
     <Compile Include="Entity\Book.cs" />

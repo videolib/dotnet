@@ -187,7 +187,7 @@ namespace LBFVideoLib.Client
         private void AddRecomandatedVideos()
         {
             Random random = new Random();
-            int[] randomVideoIndexList = new int[CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count];
+            int[] randomVideoIndexList = Enumerable.Repeat<int>(-1, CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count).ToArray(); //new int[CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count];
             int noOfIterations = 0;
             do
             {
@@ -201,12 +201,13 @@ namespace LBFVideoLib.Client
             }
             while ((_mostRecommandedVideos.Count < 5 && _mostRecommandedVideos.Count <= CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count) && noOfIterations < (CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count * 2));
 
-            if (_mostRecommandedVideos.Count < 5)
+            if (_mostRecommandedVideos.Count < 5 && _mostRecommandedVideos.Count < CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count)
             {
-                for (int i = _mostRecommandedVideos.Count - 1; i < 5 && i < CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count; i++)
+                int intialCounterValue = _mostRecommandedVideos.Count == 0 ? 0 : _mostRecommandedVideos.Count - 1;
+                for (int i = intialCounterValue; i < 5 && i < CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count; i++)
                 {
                     // int newRandomNumber = 0;
-                    if (randomVideoIndexList[i] <= 0)
+                    if (randomVideoIndexList[i] < 0)
                     {
 
                         _mostRecommandedVideos.Add(CommonAppStateDataHelper.ClientInfoObject.VideoInfoList[i]);

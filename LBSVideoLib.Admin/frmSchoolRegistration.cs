@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using IWshRuntimeLibrary;
+using System.Threading;
 
 namespace LBFVideoLib.Admin
 {
@@ -29,6 +30,8 @@ namespace LBFVideoLib.Admin
 
         ToolTip chkListTooltip = new ToolTip();
         int toolTipIndex = -1;
+
+
         #endregion
 
         public frmSchoolRegistration()
@@ -50,6 +53,7 @@ namespace LBFVideoLib.Admin
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
+
             string clientSchoolCodeFolderPath = "";
             try
             {
@@ -58,189 +62,14 @@ namespace LBFVideoLib.Admin
                     return;
                 }
 
-                List<VideoInfo> videoInfoList = new List<VideoInfo>();
-
-                #region Create Folder Structure
-
-                // Copy encrypted client info json file to target location.
-                if (Directory.Exists(_clientDistributionRootPath) == false)
-                {
-                    Directory.CreateDirectory(_clientDistributionRootPath);
-                }
-
-                // Define client pacakge root folder path i.e. school code
-                clientSchoolCodeFolderPath = Path.Combine(_clientDistributionRootPath, txtSchoolCode.Text.Trim());
-                if (Directory.Exists(clientSchoolCodeFolderPath) == false)
-                {
-                    Directory.CreateDirectory(clientSchoolCodeFolderPath);
-                }
-
-                // Delete all old directory and files
-                if (Directory.Exists(clientSchoolCodeFolderPath))
-                {
-                    string[] oldClientFiles = Directory.GetDirectories(clientSchoolCodeFolderPath);
-                    for (int i = 0; i < oldClientFiles.Length - 1; i++)
-                    {
-                        //System.IO.File.Delete(Path.Combine(clientSchoolCodeFolderPath, oldClientFiles[i]));
-                        System.IO.Directory.Delete(oldClientFiles[i], true);
-                    }
-                }
-
-                // Define client pacakge folder path i.e. pacakage
-                string clientPacakgeFolderPath = Path.Combine(clientSchoolCodeFolderPath, "Package");
-                if (Directory.Exists(clientPacakgeFolderPath) == false)
-                {
-                    Directory.CreateDirectory(clientPacakgeFolderPath);
-                }
-
-                // Define client video folder path i.e. SchoolCode_City_LBFVideos
-                string clientVideoFolderPath = Path.Combine(clientSchoolCodeFolderPath, string.Format("{0}_{1}_LBFVideos", txtSchoolCode.Text.Trim(), txtSchoolCity.Text.Trim()));
-                if (Directory.Exists(clientVideoFolderPath) == false)
-                {
-                    Directory.CreateDirectory(clientVideoFolderPath);
-                }
-
-                #endregion
-
-                #region Copy Client Distribution
-
-                if (Directory.Exists(ConfigHelper.ClientDistributionPath))
-                {
-                    // Delete old package folder inside school code
-                    System.IO.Directory.Delete(clientPacakgeFolderPath, true);
-                    // Create new package folder on same path.
-                    System.IO.Directory.CreateDirectory(clientPacakgeFolderPath);
-
-                    string[] clientDistributionFiles = Directory.GetFiles(ConfigHelper.ClientDistributionPath);
-                    for (int i = 0; i < clientDistributionFiles.Length; i++)
-                    {
-                        System.IO.File.Copy(Path.Combine(ConfigHelper.ClientDistributionPath, clientDistributionFiles[i]), Path.Combine(clientPacakgeFolderPath, Path.GetFileName(clientDistributionFiles[i])), true);
-                    }
-
-                    //// Create shortcut of exe.
-                    //WshShellClass shell = new WshShellClass();
-                    //IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(Path.Combine(clientSchoolCodeFolderPath, "LBSVideoLib.Client.exe.lnk"));
-                    //shortcut.TargetPath = Path.Combine(clientPacakgeFolderPath, "LBSVideoLib.Client.exe");
-                    //// add Description of Short cut
-                    //shortcut.Description = "Run this exe to play LBF Video Library.";
-                    //// save it / create
-                    //shortcut.Save();
-                }
-                else
-                {
-                    MessageBox.Show("Client distribution doesn't find on specified path.", "Error", MessageBoxButtons.OK);
-                }
-
-                for (int i = 0; i < chkListBooks.CheckedItems.Count; i++)
-                {
-                    Book selectedBook = (chkListBooks.CheckedItems[i]) as Book;
-
-                    if (selectedBook.VideoList != null)
-                    {
-                        //   string[] selectedBookVideos =  Directory.GetFiles(selectedBook.BookId);
-
-                        foreach (string selectedBookVideo in selectedBook.VideoList)
-                        {
-
-                            string clientTargetVideoPath = Path.Combine(clientVideoFolderPath, selectedBook.ClassName);
-                            clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.SeriesName);
-                            clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.SubjectName);
-                            clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.BookName);
-
-                            if (Directory.Exists(clientTargetVideoPath) == false)
-                            {
-                                Directory.CreateDirectory(clientTargetVideoPath);
-                            }
-
-                            VideoInfo videoInfo = new VideoInfo();
-                            videoInfo.VideoName = Path.GetFileName(selectedBookVideo);
-                            videoInfo.ClassName = selectedBook.ClassName;
-                            videoInfo.SeriesName = selectedBook.SeriesName;
-                            videoInfo.Subject = selectedBook.SubjectName;
-                            videoInfo.Book = selectedBook.BookName;
-                            clientTargetVideoPath = Path.Combine(clientTargetVideoPath, Path.GetFileName(selectedBookVideo));
-                            videoInfo.VideoFullUrl = clientTargetVideoPath;
-
-                            Cryptograph.EncryptFile(selectedBookVideo, clientTargetVideoPath);
-                            videoInfoList.Add(videoInfo);
-                        }
-                    }
-                }
-
-                if (Directory.Exists(Path.Combine(clientPacakgeFolderPath, "Thumbnails")) == false)
-                {
-                    Directory.CreateDirectory(Path.Combine(clientPacakgeFolderPath, "Thumbnails"));
-                }
-
-                string[] subjectThumbnailFiles = Directory.GetFiles(LBFVideoLib.Common.ClientHelper.GetSubjectThumbnailSourcePath());
-                for (int i = 0; i < subjectThumbnailFiles.Length; i++)
-                {
-                    System.IO.File.Copy(subjectThumbnailFiles[i], Path.Combine(Path.Combine(clientPacakgeFolderPath, "Thumbnails"), Path.GetFileName(subjectThumbnailFiles[i])), true);
-                }
+                //BackgroundProcessData bkgroundProcessData = new BackgroundProcessData();
+                //bkgroundProcessData.State = BackgroundAppState.RegisterCliet;
 
 
-                //// Demo Videos
-                //if (Directory.Exists(Path.Combine(clientPacakgeFolderPath, "DemoVideos")) == false)
-                //{
-                //    Directory.CreateDirectory(Path.Combine(clientPacakgeFolderPath, "DemoVideos"));
-                //}
-                //string[] demoVideoFiles = Directory.GetFiles(LBFVideoLib.Common.ClientHelper.GetDemoVideoSourcePath());
-                //for (int i = 0; i < demoVideoFiles.Length; i++)
-                //{
-                //    System.IO.File.Copy(demoVideoFiles[i], Path.Combine(Path.Combine(clientPacakgeFolderPath, "DemoVideos"), Path.GetFileName(demoVideoFiles[i])));
-                //}
-
-                #endregion
-
-
-                // Save data on firebase
-                List<ClassFB> selectedClassList = SaveRegDataOnFireBase();
-
-                string registeredSchoolInfo = Newtonsoft.Json.JsonConvert.SerializeObject(selectedClassList);
-
-                if (Directory.Exists(ClientHelper.GetRegisteredSchoolInfoFilePath()) == false)
-                {
-                    Directory.CreateDirectory(ClientHelper.GetRegisteredSchoolInfoFilePath());
-                }
-                if (System.IO.File.Exists(Path.Combine(ClientHelper.GetRegisteredSchoolInfoFilePath(), this.txtSchoolCode.Text.Trim() + ".txt")))
-                {
-                    System.IO.File.Delete(Path.Combine(ClientHelper.GetRegisteredSchoolInfoFilePath(), this.txtSchoolCode.Text.Trim() + ".txt"));
-                }
-                StreamWriter sw = System.IO.File.CreateText(Path.Combine(ClientHelper.GetRegisteredSchoolInfoFilePath(), this.txtSchoolCode.Text.Trim() + ".txt"));
-                sw.Write(registeredSchoolInfo);
-                sw.Flush();
-                sw.Close();
-
-                // Set client email, password and license date in client info class.
-                ClientInfo clientInfo = new ClientInfo();
-                clientInfo.EmailId = txtEmailId.Text.ToLower().Trim();
-                clientInfo.Password = txtPwd.Text.Trim();
-                clientInfo.RegistrationDate = DateTime.Now;
-                clientInfo.ExpiryDate = LicenseHelper.GetExpiryDateBySessionString(cmbSchoolSession.SelectedItem.ToString());
-                clientInfo.LastAccessEndTime = clientInfo.RegistrationDate;
-                clientInfo.SessionString = cmbSchoolSession.SelectedItem.ToString();
-                clientInfo.SchoolId = this.txtSchoolCode.Text.Trim();
-                clientInfo.SchoolName = this.txtSchoolName.Text.Trim();
-                clientInfo.SchoolCity = txtSchoolCity.Text.Trim();
-                clientInfo.SelectedVideoDetails = selectedClassList;
-                clientInfo.VideoInfoList = videoInfoList;
-
-                // Generate client info json file and encrypt it.
-                Cryptograph.EncryptObject(clientInfo, Path.Combine(clientPacakgeFolderPath, _clientInfoFileName));
-
-                //string clientInfoPlainText = Newtonsoft.Json.JsonConvert.SerializeObject(clientInfo);
-                //sw = System.IO.File.CreateText(Path.Combine(ClientHelper.GetRegisteredSchoolInfoFilePath(), this.txtSchoolCode.Text.Trim() + "-Plain.txt"));
-                //sw.Write(clientInfoPlainText);
-                //sw.Flush();
-                //sw.Close();
-
-                // Copy client project bin folder to target location.
-                MessageBox.Show("Registration completed sucessfully.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                InitializeRegistrationForm();
+                RegisterClientSchoolPackage();
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 // Delete all file on folder
                 if (Directory.Exists(clientSchoolCodeFolderPath))
@@ -250,6 +79,237 @@ namespace LBFVideoLib.Admin
                 }
                 throw;
             }
+        }
+
+        private string RegisterClientSchoolPackage()
+        {
+            string clientSchoolCodeFolderPath;
+            List<VideoInfo> videoInfoList = new List<VideoInfo>();
+
+            #region Create Folder Structure
+
+            // Copy encrypted client info json file to target location.
+            if (Directory.Exists(_clientDistributionRootPath) == false)
+            {
+                Directory.CreateDirectory(_clientDistributionRootPath);
+            }
+
+            // Define client pacakge root folder path i.e. school code
+            clientSchoolCodeFolderPath = Path.Combine(_clientDistributionRootPath, txtSchoolCode.Text.Trim());
+            if (Directory.Exists(clientSchoolCodeFolderPath) == false)
+            {
+                Directory.CreateDirectory(clientSchoolCodeFolderPath);
+            }
+
+            // Delete all old directory and files
+            if (Directory.Exists(clientSchoolCodeFolderPath))
+            {
+                string[] oldClientFiles = Directory.GetDirectories(clientSchoolCodeFolderPath);
+                for (int i = 0; i < oldClientFiles.Length - 1; i++)
+                {
+                    //System.IO.File.Delete(Path.Combine(clientSchoolCodeFolderPath, oldClientFiles[i]));
+                    System.IO.Directory.Delete(oldClientFiles[i], true);
+                }
+            }
+
+            // Define client pacakge folder path i.e. pacakage
+            string clientPacakgeFolderPath = ClientHelper.GetClientRegistrationPackagePath(txtSchoolCode.Text.Trim()); // Path.Combine(clientSchoolCodeFolderPath, "Package");
+            if (Directory.Exists(clientPacakgeFolderPath) == false)
+            {
+                Directory.CreateDirectory(clientPacakgeFolderPath);
+            }
+
+            // Define client video folder path i.e. SchoolCode_City_LBFVideos
+            string clientVideoFolderPath = Path.Combine(clientSchoolCodeFolderPath, string.Format("{0}_{1}_LBFVideos", txtSchoolCode.Text.Trim(), txtSchoolCity.Text.Trim()));
+            if (Directory.Exists(clientVideoFolderPath) == false)
+            {
+                Directory.CreateDirectory(clientVideoFolderPath);
+            }
+
+            // Make client video folder hidden
+            DirectoryInfo clientVideoFolderInfo = new DirectoryInfo(clientVideoFolderPath);
+            clientVideoFolderInfo.Attributes = FileAttributes.Hidden;
+
+
+            #endregion
+
+            #region Copy Client Distribution
+
+            if (Directory.Exists(ConfigHelper.ClientDistributionPath))
+            {
+                // Delete old package folder inside school code
+                System.IO.Directory.Delete(clientPacakgeFolderPath, true);
+                // Create new package folder on same path.
+                System.IO.Directory.CreateDirectory(clientPacakgeFolderPath);
+
+                string[] clientDistributionFiles = Directory.GetFiles(ConfigHelper.ClientDistributionPath);
+                for (int i = 0; i < clientDistributionFiles.Length; i++)
+                {
+                    string targetFilePath = Path.Combine(clientPacakgeFolderPath, Path.GetFileName(clientDistributionFiles[i]));
+                    System.IO.File.Copy(Path.Combine(ConfigHelper.ClientDistributionPath, clientDistributionFiles[i]), targetFilePath, true);
+                    if (Path.GetFileName(targetFilePath).ToLower().Equals("lbsvideolib.client.exe") == false)
+                    {
+                        FileInfo targetFileInfo = new FileInfo(targetFilePath);
+                        targetFileInfo.Attributes = FileAttributes.Hidden;
+                    }
+                }
+
+                //// Create shortcut of exe.
+                //WshShellClass shell = new WshShellClass();
+                //IWshShortcut shortcut = (IWshShortcut)shell.CreateShortcut(Path.Combine(clientSchoolCodeFolderPath, "LBSVideoLib.Client.exe.lnk"));
+                //shortcut.TargetPath = Path.Combine(clientPacakgeFolderPath, "LBSVideoLib.Client.exe");
+                //// add Description of Short cut
+                //shortcut.Description = "Run this exe to play LBF Video Library.";
+                //// save it / create
+                //shortcut.Save();
+            }
+            else
+            {
+                MessageBox.Show("Client distribution doesn't find on specified path.", "Error", MessageBoxButtons.OK);
+            }
+
+            for (int i = 0; i < chkListBooks.CheckedItems.Count; i++)
+            {
+                Book selectedBook = (chkListBooks.CheckedItems[i]) as Book;
+
+                if (selectedBook.VideoList != null)
+                {
+                    //   string[] selectedBookVideos =  Directory.GetFiles(selectedBook.BookId);
+
+                    foreach (string selectedBookVideo in selectedBook.VideoList)
+                    {
+                        string clientTargetVideoPath = Path.Combine(clientVideoFolderPath, selectedBook.ClassName);
+                        if (Directory.Exists(clientTargetVideoPath) == false)
+                        {
+                            Directory.CreateDirectory(clientTargetVideoPath);
+                        }
+                        DirectoryInfo clientTargetVideoPathInfo = new DirectoryInfo(clientTargetVideoPath);
+                        clientTargetVideoPathInfo.Attributes = FileAttributes.Hidden;
+
+                        clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.SeriesName);
+                        if (Directory.Exists(clientTargetVideoPath) == false)
+                        {
+                            Directory.CreateDirectory(clientTargetVideoPath);
+                        }
+                          clientTargetVideoPathInfo = new DirectoryInfo(clientTargetVideoPath);
+                        clientTargetVideoPathInfo.Attributes = FileAttributes.Hidden;
+
+                        clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.SubjectName);
+                        if (Directory.Exists(clientTargetVideoPath) == false)
+                        {
+                            Directory.CreateDirectory(clientTargetVideoPath);
+                        }
+                        clientTargetVideoPathInfo = new DirectoryInfo(clientTargetVideoPath);
+                        clientTargetVideoPathInfo.Attributes = FileAttributes.Hidden;
+
+                        clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.BookName);
+                        if (Directory.Exists(clientTargetVideoPath) == false)
+                        {
+                            Directory.CreateDirectory(clientTargetVideoPath);
+                        }
+                        clientTargetVideoPathInfo = new DirectoryInfo(clientTargetVideoPath);
+                        clientTargetVideoPathInfo.Attributes = FileAttributes.Hidden;
+
+
+                        if (Directory.Exists(clientTargetVideoPath) == false)
+                        {
+                            Directory.CreateDirectory(clientTargetVideoPath);
+                        }
+                        clientTargetVideoPathInfo = new DirectoryInfo(clientTargetVideoPath);
+                        clientTargetVideoPathInfo.Attributes = FileAttributes.Hidden;
+
+                        VideoInfo videoInfo = new VideoInfo();
+                        videoInfo.VideoName = Path.GetFileName(selectedBookVideo);
+                        videoInfo.ClassName = selectedBook.ClassName;
+                        videoInfo.SeriesName = selectedBook.SeriesName;
+                        videoInfo.Subject = selectedBook.SubjectName;
+                        videoInfo.Book = selectedBook.BookName;
+                        clientTargetVideoPath = Path.Combine(clientTargetVideoPath, Path.GetFileName(selectedBookVideo));
+                        videoInfo.VideoFullUrl = clientTargetVideoPath;
+
+                        Cryptograph.EncryptFile(selectedBookVideo, clientTargetVideoPath);
+
+                        FileInfo clientTargetVideoPathFileInfo = new FileInfo(clientTargetVideoPath);
+                        clientTargetVideoPathFileInfo.Attributes = FileAttributes.Hidden;
+
+                        videoInfoList.Add(videoInfo);
+                    }
+                }
+            }
+
+            string clientPackageThumbnailPath = ClientHelper.GetClientRegistratinThumbnailPath(txtSchoolCode.Text.Trim()); // Path.Combine(clientPacakgeFolderPath, "Thumbnails");
+            if (Directory.Exists(clientPackageThumbnailPath) == false)
+            {
+                Directory.CreateDirectory(clientPackageThumbnailPath);
+            }
+            DirectoryInfo clientPackageThumbnailPathDirInfo = new DirectoryInfo(clientPackageThumbnailPath);
+            clientPackageThumbnailPathDirInfo.Attributes = FileAttributes.Hidden;
+
+
+            string[] subjectThumbnailFiles = Directory.GetFiles(LBFVideoLib.Common.ClientHelper.GetSubjectThumbnailSourcePath());
+            for (int i = 0; i < subjectThumbnailFiles.Length; i++)
+            {
+                string thumbnailFilePath = Path.Combine(Path.Combine(clientPacakgeFolderPath, "Thumbnails"), Path.GetFileName(subjectThumbnailFiles[i]));
+                System.IO.File.Copy(subjectThumbnailFiles[i], thumbnailFilePath, true);
+
+                FileInfo thumbnailFilePathFileInfo = new FileInfo(thumbnailFilePath);
+                thumbnailFilePathFileInfo.Attributes = FileAttributes.Hidden;
+            }
+            #endregion
+
+
+            // Save data on firebase
+            List<ClassFB> selectedClassList = SaveRegDataOnFireBase();
+
+            string registeredSchoolInfo = Newtonsoft.Json.JsonConvert.SerializeObject(selectedClassList);
+
+            if (Directory.Exists(ClientHelper.GetRegisteredSchoolInfoFilePath()) == false)
+            {
+                Directory.CreateDirectory(ClientHelper.GetRegisteredSchoolInfoFilePath());
+            }
+
+            if (System.IO.File.Exists(Path.Combine(ClientHelper.GetRegisteredSchoolInfoFilePath(), this.txtSchoolCode.Text.Trim() + ".txt")))
+            {
+                System.IO.File.Delete(Path.Combine(ClientHelper.GetRegisteredSchoolInfoFilePath(), this.txtSchoolCode.Text.Trim() + ".txt"));
+            }
+
+            StreamWriter sw = System.IO.File.CreateText(Path.Combine(ClientHelper.GetRegisteredSchoolInfoFilePath(), this.txtSchoolCode.Text.Trim() + ".txt"));
+            sw.Write(registeredSchoolInfo);
+            sw.Flush();
+            sw.Close();
+
+            // Set client email, password and license date in client info class.
+            ClientInfo clientInfo = new ClientInfo();
+            clientInfo.EmailId = txtEmailId.Text.ToLower().Trim();
+            clientInfo.Password = txtPwd.Text.Trim();
+            clientInfo.RegistrationDate = DateTime.Now;
+            clientInfo.ExpiryDate = LicenseHelper.GetExpiryDateBySessionString(cmbSchoolSession.SelectedItem.ToString());
+            clientInfo.LastAccessEndTime = clientInfo.RegistrationDate;
+            clientInfo.SessionString = cmbSchoolSession.SelectedItem.ToString();
+            clientInfo.SchoolId = this.txtSchoolCode.Text.Trim();
+            clientInfo.SchoolName = this.txtSchoolName.Text.Trim();
+            clientInfo.SchoolCity = txtSchoolCity.Text.Trim();
+            clientInfo.SelectedVideoDetails = selectedClassList;
+            clientInfo.VideoInfoList = videoInfoList;
+
+            // Generate client info json file and encrypt it.
+            string clientInfoFilePath = Path.Combine(clientPacakgeFolderPath, _clientInfoFileName);
+            Cryptograph.EncryptObject(clientInfo, clientInfoFilePath);
+            FileInfo clientInfoFileInfo = new FileInfo(clientInfoFilePath);
+            clientInfoFileInfo.Attributes = FileAttributes.Hidden;
+
+
+            //string clientInfoPlainText = Newtonsoft.Json.JsonConvert.SerializeObject(clientInfo);
+            //sw = System.IO.File.CreateText(Path.Combine(ClientHelper.GetRegisteredSchoolInfoFilePath(), this.txtSchoolCode.Text.Trim() + "-Plain.txt"));
+            //sw.Write(clientInfoPlainText);
+            //sw.Flush();
+            //sw.Close();
+
+            // Copy client project bin folder to target location.
+            MessageBox.Show("Registration completed sucessfully.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+            InitializeRegistrationForm();
+            return clientSchoolCodeFolderPath;
         }
 
         #region Check List Item Check Events
@@ -296,7 +356,7 @@ namespace LBFVideoLib.Admin
             }
         }
 
-        #endregion 
+        #endregion
 
         #endregion
 
@@ -639,7 +699,7 @@ namespace LBFVideoLib.Admin
             info.SchoolName = txtSchoolName.Text;
             info.City = txtSchoolCity.Text;
             info.Session = cmbSchoolSession.Text;
-            info.Classes = new List<ClassFB>();           
+            info.Classes = new List<ClassFB>();
 
             for (int i = 0; i < chkListBooks.CheckedItems.Count; i++)
             {
@@ -760,6 +820,29 @@ namespace LBFVideoLib.Admin
                 }
             }
         }
+        #region Background Worker
+
+        private void adminBackgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            //for (int i = 1; i <= 100; i++)
+            //{
+            //    // Wait 50 milliseconds.  
+            //    Thread.Sleep(50);
+            //    // Report progress.  
+            //    adminBackgroundWorker.ReportProgress(i);
+            //}
+        }
+
+        private void adminBackgroundWorker_ProgressChanged(object sender, System.ComponentModel.ProgressChangedEventArgs e)
+        {
+
+        }
+
+        private void adminBackgroundWorker_RunWorkerCompleted(object sender, System.ComponentModel.RunWorkerCompletedEventArgs e)
+        {
+
+        }
+        #endregion
     }
 }
 

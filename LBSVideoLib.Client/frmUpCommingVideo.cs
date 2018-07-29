@@ -37,6 +37,8 @@ namespace LBFVideoLib.Client
         private bool _skipNodeSelection = true;
         private Control _hiddenSourceControl = null;
 
+        public VideoInfo CurrentVideoInfo { get; set; }
+
         public frmUpCommingVideo()
         {
             InitializeComponent();
@@ -72,7 +74,7 @@ namespace LBFVideoLib.Client
             }
 
             lblSessionYears.Text = ClientHelper.GetSessionString(ClientInfoObject.SessionString);
-            lblWelcome.Text =   ClientHelper.GetWelcomeString(ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);
+            lblWelcome.Text = ClientHelper.GetWelcomeString(ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);
             lblExpireDate.Text = ClientHelper.GetExpiryDateString(ClientInfoObject.ExpiryDate);
             lblAppTitle.Text = ClientHelper.GetRegisteredSchoolTitleString(ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);
 
@@ -95,24 +97,52 @@ namespace LBFVideoLib.Client
 
         private void PlayEncryptedVideo(string videoUrl)
         {
-            if (ValidateLicense() == false)
-            {
-                return;
-            }
 
-            VideoInfo currentVideoInfo = this.ClientInfoObject.VideoInfoList.First(i => i.VideoFullUrl.ToLower().Equals(videoUrl.ToLower()));
-            currentVideoInfo.WatchCount++;
-            //string tempDirectory = Path.Combine(Path.GetDirectoryName(this.NextVideoFileList[0]), "Temp");
-            string tempDirectory = Path.Combine(Path.GetTempPath(), "Temp");
-            Directory.CreateDirectory(tempDirectory);
-            string tempFilePath = Path.Combine(tempDirectory, Path.GetFileName(videoUrl));
-            tempFileList.Add(tempFilePath);
-            Cryptograph.DecryptFile(videoUrl, tempFilePath);
-            this.axWindowsMediaPlayer1.URL = tempFilePath;
-            lblWelcome.Text = string.Format("{0}", currentVideoInfo.Subject);// string.Format("{0}, {1}, {2}", currentVideoInfo.ClassName, currentVideoInfo.SeriesName, currentVideoInfo.Subject);
-            lblWatchCount.Text = string.Format("Watch Count: {0} Times", currentVideoInfo.WatchCount);
-                       
-            SaveWatchedVideoCountOnFireBase(currentVideoInfo.VideoName, currentVideoInfo.WatchCount);
+            try
+            {
+                if (ValidateLicense() == false)
+                {
+                    return;
+                }
+                progressBar1.Visible = true;
+
+                VideoInfo currentVideoInfo = CurrentVideoInfo = this.ClientInfoObject.VideoInfoList.First(i => i.VideoFullUrl.ToLower().Equals(videoUrl.ToLower()));
+
+                BackgroundProcessData backgroundProcessData = new BackgroundProcessData();
+                backgroundProcessData.CurrentVideoInfo = currentVideoInfo;
+                backgroundProcessData.OrignalVideoPath = videoUrl;
+                backgroundProcessData.State = BackgroundAppState.DecryptingVideoToPlay;
+
+                if (backgroundWorker1.IsBusy == true)
+                {
+                    backgroundWorker1.CancelAsync();
+                }
+
+                while (backgroundWorker1.IsBusy == true)
+                {
+                }
+                backgroundWorker1.RunWorkerAsync(backgroundProcessData);
+
+                //VideoInfo currentVideoInfo = this.ClientInfoObject.VideoInfoList.First(i => i.VideoFullUrl.ToLower().Equals(videoUrl.ToLower()));
+                //currentVideoInfo.WatchCount++;
+                ////string tempDirectory = Path.Combine(Path.GetDirectoryName(this.NextVideoFileList[0]), "Temp");
+                //string tempDirectory = Path.Combine(Path.GetTempPath(), "Temp");
+                //Directory.CreateDirectory(tempDirectory);
+                //string tempFilePath = Path.Combine(tempDirectory, Path.GetFileName(videoUrl));
+                //tempFileList.Add(tempFilePath);
+                //Cryptograph.DecryptFile(videoUrl, tempFilePath);
+                //this.axWindowsMediaPlayer1.URL = tempFilePath;
+                //lblWelcome.Text = string.Format("{0}", currentVideoInfo.Subject);// string.Format("{0}, {1}, {2}", currentVideoInfo.ClassName, currentVideoInfo.SeriesName, currentVideoInfo.Subject);
+                //lblWatchCount.Text = string.Format("Watch Count: {0} Times", currentVideoInfo.WatchCount);
+
+                //   backgroundWorker1.RunWorkerAsync(videoUrl);
+            }
+            catch (Exception)
+            {
+                progressBar1.Visible = false;
+
+                throw;
+            }
         }
 
         private void AddPreviousVideoList()
@@ -281,7 +311,6 @@ namespace LBFVideoLib.Client
         {
             if (this.Visible == false)
             {
-
                 OnFormVisiblityChangeAndClose();
             }
         }
@@ -375,7 +404,7 @@ namespace LBFVideoLib.Client
                 {
                     Console.Out.WriteLine("-----------------");
                     Console.Out.WriteLine(e.Message);
-                }                
+                }
             }
 
         }
@@ -415,10 +444,54 @@ namespace LBFVideoLib.Client
             this.Hide();
             this.DashboardFormControl.Show();
         }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            BackgroundProcessData currentData = e.Argument as BackgroundProcessData;
+            if (currentData.CurrentVideoInfo!=null)
+            {
+                VideoInfo currentVideoInfo = currentData.CurrentVideoInfo;
+                currentVideoInfo.WatchCount++;
+                backgroundWorker1.ReportProgress(50, currentData);
+
+                string tempDirectory = Path.Combine(Path.GetTempPath(), "Temp");
+                Directory.CreateDirectory(tempDirectory);
+                backgroundWorker1.ReportProgress(97, currentData);
+
+                string tempFilePath = Path.Combine(tempDirectory, Path.GetFileName(currentData.OrignalVideoPath));
+                tempFileList.Add(tempFilePath);
+                Cryptograph.DecryptFile(currentData.OrignalVideoPath, tempFilePath);
+                currentData.DecryptedVideoPath = tempFilePath;
+                backgroundWorker1.ReportProgress(99, currentData);
+
+                SaveWatchedVideoCountOnFireBase(currentVideoInfo.VideoName, currentVideoInfo.WatchCount);
+                currentData.DecryptedVideoPath = "";
+                backgroundWorker1.ReportProgress(100, currentData); 
+            }
+        }
+
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+                progressBar1.Visible = false;
+        }
+
+        private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            BackgroundProcessData currentData = e.UserState as BackgroundProcessData;
+            // Change the value of the ProgressBar  
+            progressBar1.Value = e.ProgressPercentage;
+            if ( currentData != null && currentData.State == BackgroundAppState.DecryptingVideoToPlay && currentData.DecryptedVideoPath != "")
+            {
+                progressBar1.Visible = false;
+                this.CurrentVideoInfo = currentData.CurrentVideoInfo;
+                this.axWindowsMediaPlayer1.URL = currentData.DecryptedVideoPath;
+                lblWelcome.Text = string.Format("{0}", this.CurrentVideoInfo.Subject);
+                lblWatchCount.Text = string.Format("Watch Count: {0} Times", this.CurrentVideoInfo.WatchCount);
+            }
+        }
     }
 
-
-
+  
 }
 //private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
 //{
