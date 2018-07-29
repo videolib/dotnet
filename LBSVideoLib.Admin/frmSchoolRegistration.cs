@@ -533,10 +533,10 @@ namespace LBFVideoLib.Admin
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
-            finally
-            {
-                _subjectListBindingInProgress = false;
-            }
+            //finally
+            //{
+            //    _subjectListBindingInProgress = false;
+            //}
         }
 
         #endregion
