@@ -217,6 +217,7 @@ namespace LBFVideoLib.Admin
                 clientInfo.Password = txtPwd.Text.Trim();
                 clientInfo.RegistrationDate = DateTime.Now;
                 clientInfo.ExpiryDate = LicenseHelper.GetExpiryDateBySessionString(cmbSchoolSession.SelectedItem.ToString());
+                clientInfo.LastAccessEndTime = clientInfo.RegistrationDate;
                 clientInfo.SessionString = cmbSchoolSession.SelectedItem.ToString();
                 clientInfo.SchoolId = this.txtSchoolCode.Text.Trim();
                 clientInfo.SchoolName = this.txtSchoolName.Text.Trim();
@@ -532,10 +533,10 @@ namespace LBFVideoLib.Admin
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
-            finally
-            {
-                _subjectListBindingInProgress = false;
-            }
+            //finally
+            //{
+            //    _subjectListBindingInProgress = false;
+            //}
         }
 
         #endregion

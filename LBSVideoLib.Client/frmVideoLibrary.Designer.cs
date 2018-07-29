@@ -383,6 +383,7 @@
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmVideoLibrary_FormClosed);
             this.Load += new System.EventHandler(this.frmVideoLibrary_Load);
+            this.VisibleChanged += new System.EventHandler(this.frmVideoLibrary_VisibleChanged);
             this.panel1.ResumeLayout(false);
             this.pnlLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

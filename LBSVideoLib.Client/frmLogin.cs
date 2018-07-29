@@ -39,6 +39,10 @@ namespace LBFVideoLib.Client
                 lblSchoolWelcome.Text = ClientHelper.GetWelcomeString(_clientInfo.SchoolName, _clientInfo.SchoolCity, _clientInfo.SchoolId);
                 lblExpireDate.Text = ClientHelper.GetExpiryDateString(_clientInfo.ExpiryDate);
             }
+            if (_clientInfo.LastAccessEndTime.Equals(DateTime.MinValue))
+            {
+                _clientInfo.LastAccessEndTime = _clientInfo.RegistrationDate;
+            }
 
             // Check license duraion
             ValidateLicense();
@@ -90,6 +94,7 @@ namespace LBFVideoLib.Client
                 CommonAppStateDataHelper.AddForm(this);
                 frm.Show();
                 this.Hide();
+                CommonAppStateDataHelper.LoggedIn = true;
             }
             else
             {
