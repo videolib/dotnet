@@ -62,7 +62,6 @@
             this.label11 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
-            this.adminBackgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.pnlMain.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -412,7 +411,7 @@
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(310, 28);
             this.progressBar1.TabIndex = 5;
-            this.progressBar1.Visible = false;
+            this.progressBar1.Value = 1;
             // 
             // pictureBox1
             // 
@@ -470,14 +469,6 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "LBF Video Portal";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // adminBackgroundWorker
-            // 
-            this.adminBackgroundWorker.WorkerReportsProgress = true;
-            this.adminBackgroundWorker.WorkerSupportsCancellation = true;
-            this.adminBackgroundWorker.DoWork += new System.ComponentModel.DoWorkEventHandler(this.adminBackgroundWorker_DoWork);
-            this.adminBackgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.adminBackgroundWorker_ProgressChanged);
-            this.adminBackgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.adminBackgroundWorker_RunWorkerCompleted);
             // 
             // frmSchoolRegistration
             // 
@@ -541,7 +532,6 @@
         private System.Windows.Forms.CheckedListBox chkListSubject;
         private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.ComboBox cmbSchoolSession;
-        private System.ComponentModel.BackgroundWorker adminBackgroundWorker;
         private System.Windows.Forms.ProgressBar progressBar1;
     }
 }
