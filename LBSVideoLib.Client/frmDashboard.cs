@@ -201,9 +201,9 @@ namespace LBFVideoLib.Client
             }
             while ((_mostRecommandedVideos.Count < 5 && _mostRecommandedVideos.Count <= CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count) && noOfIterations < (CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count * 2));
 
-            if (_mostRecommandedVideos.Count<5)
+            if (_mostRecommandedVideos.Count < 5)
             {
-                for (int i = 0; i < 5 && i < CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count; i++)
+                for (int i = _mostRecommandedVideos.Count - 1; i < 5 && i < CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count; i++)
                 {
                     // int newRandomNumber = 0;
                     if (randomVideoIndexList[i] <= 0)
@@ -212,7 +212,7 @@ namespace LBFVideoLib.Client
                         _mostRecommandedVideos.Add(CommonAppStateDataHelper.ClientInfoObject.VideoInfoList[i]);
                         randomVideoIndexList[i] = i;
                     }
-                } 
+                }
             }
             for (int i = 0; _mostRecommandedVideos != null && i < _mostRecommandedVideos.Count; i++)
             {
@@ -230,7 +230,8 @@ namespace LBFVideoLib.Client
 
         private void AddMostWatchedVideos()
         {
-            _mostWatchedVideos = CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.OrderByDescending(k => k.WatchCount).Take(6).ToList<VideoInfo>();
+            _mostWatchedVideosThumbList.Clear();
+            _mostWatchedVideos = CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.OrderByDescending(k => k.WatchCount).Take(5).ToList<VideoInfo>();
 
             for (int i = 0; _mostWatchedVideos != null && i < _mostWatchedVideos.Count; i++)
             {
@@ -248,7 +249,7 @@ namespace LBFVideoLib.Client
 
         private void AddVideoThumbnailControls(FlowLayoutPanel flowLayoutPanel, List<ThumbnailInfo> thumbnailInfoList, Action<object, EventArgs> clickDeligate)
         {
-            pnlMostWatchVideo.Controls.Clear();
+            flowLayoutPanel.Controls.Clear();
             for (int j = 0; j < thumbnailInfoList.Count; j++)
             {
                 CustomeThumbControl ctlThumb = new CustomeThumbControl(clickDeligate);
@@ -342,6 +343,7 @@ namespace LBFVideoLib.Client
                     this.treeView1.SelectedNode = searchedNode[0];
                     _skipNodeSelection = false;
                 }
+                AddMostWatchedVideos();
             }
 
         }

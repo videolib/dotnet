@@ -26,10 +26,6 @@ namespace LBFVideoLib.Common
             sessionList.Add("2025-26", DateTime.ParseExact("04-30-2026 11:59:59 PM", format, provider).ToString());
             sessionList.Add("2026-27", DateTime.ParseExact("04-30-2027 11:59:59 PM", format, provider).ToString());
             sessionList.Add("2027-28", DateTime.ParseExact("04-30-2028 11:59:59 PM", format, provider).ToString());
-
-            //sessionList.Add("2018-19", "30-04-2019 11:59:59 PM");
-            //sessionList.Add("2019-20", "30-04-2020 11:59:59 PM");
-            //sessionList.Add("2020-21", "30-04-2021 11:59:59 PM");
         }
 
         public static List<string> GetSessionList()
@@ -47,9 +43,11 @@ namespace LBFVideoLib.Common
             bool valid = true;
             deleteVideo = false;
             message = "";
+            DateTime registrationDate = DateTime.Parse(clientInfo.RegistrationDate.AddSeconds(-clientInfo.RegistrationDate.Second).AddMinutes(-clientInfo.RegistrationDate.Minute).ToString("dd-MMM-yyyy hh:00 tt"), CultureInfo.InvariantCulture);
+            DateTime lastAccessTime = DateTime.Parse(clientInfo.LastAccessEndTime.AddSeconds(-clientInfo.LastAccessEndTime.Second).AddMinutes(-clientInfo.LastAccessEndTime.Minute).ToString("dd-MMM-yyyy hh:00 tt"), CultureInfo.InvariantCulture);
 
             //Caes1 => RegDate < CurrentDate & CurrentDate < Exp Date & LastAccessTime > CurrentDate = Show Message
-            if (clientInfo.RegistrationDate.Date.CompareTo(DateTime.Now) <= 0 && clientInfo.ExpiryDate.Date.CompareTo(DateTime.Now) >= 0 && clientInfo.LastAccessEndTime.CompareTo(DateTime.Now) > 0)
+            if (registrationDate.CompareTo(DateTime.Now) <= 0 && clientInfo.ExpiryDate.CompareTo(DateTime.Now) >= 0 && lastAccessTime.CompareTo(DateTime.Now) > 0)
             {
                 valid = false;
                 message = "Invalid clock";

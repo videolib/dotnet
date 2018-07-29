@@ -95,7 +95,7 @@ namespace LBFVideoLib.Client
 
         private void PlayEncryptedVideo(string videoUrl)
         {
-           if(ValidateLicense()==false)
+            if (ValidateLicense() == false)
             {
                 return;
             }
@@ -155,7 +155,7 @@ namespace LBFVideoLib.Client
                 pnlUpcomingVideo.Visible = false;
                 pnlSep.Visible = false;
             }
-           
+
             else if (PreviousVideoFileList.Count <= 0)
             {
                 flowLayoutPanelUpcoming.FlowDirection = FlowDirection.LeftToRight;
@@ -232,7 +232,10 @@ namespace LBFVideoLib.Client
         #endregion
         private void frmUpCommingVideo_FormClosed(object sender, FormClosedEventArgs e)
         {
-            OnFormVisiblityChangeAndClose();
+            if (e.CloseReason != CloseReason.ApplicationExitCall)
+            {
+                OnFormVisiblityChangeAndClose();
+            }
         }
 
         private void lblContact_Click(object sender, EventArgs e)
@@ -302,6 +305,7 @@ namespace LBFVideoLib.Client
                     if (this.ParentFormControl.Name == "frmVideoLibrary")
                     {
                         (this.ParentFormControl as frmVideoLibrary).SelectedNode = this.treeView1.SelectedNode;
+                        (this.ParentFormControl as frmVideoLibrary).UpdateTreeSelectedNode = true;
                         this.ParentFormControl.Show();
                     }
                     else

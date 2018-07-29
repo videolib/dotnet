@@ -25,6 +25,8 @@ namespace LBFVideoLib.Client
         public Form DashboardFormControl { get; set; }
         public ClientInfo ClientInfoObject { get; set; }
         public TreeNode SelectedNode { get; set; }
+        public bool UpdateTreeSelectedNode { get; set; }
+
 
 
         public frmVideoLibrary()
@@ -52,6 +54,13 @@ namespace LBFVideoLib.Client
             FillTreeView();
             treeView1.ExpandAll();
 
+            UpdateTreeNodeSelection();
+            FillVideoLibrary(this.treeView1.SelectedNode.Tag as TreeTag);
+
+        }
+
+        private void UpdateTreeNodeSelection()
+        {
             try
             {
                 _skipNodeSelection = true;
@@ -72,16 +81,15 @@ namespace LBFVideoLib.Client
             {
                 _skipNodeSelection = false;
             }
-
-
-            FillVideoLibrary(this.treeView1.SelectedNode.Tag as TreeTag);
         }
 
         private void frmVideoLibrary_FormClosed(object sender, FormClosedEventArgs e)
         {
-            // Application.Exit();
-            (this.DashboardFormControl as frmDashboard).SelectedNode = treeView1.SelectedNode;
-            this.DashboardFormControl.Show();
+            if (e.CloseReason == CloseReason.ApplicationExitCall)
+            {
+                (this.DashboardFormControl as frmDashboard).SelectedNode = treeView1.SelectedNode;
+                this.DashboardFormControl.Show();
+            }
         }
 
         #endregion
@@ -319,6 +327,17 @@ namespace LBFVideoLib.Client
         {
             frmPrivacyPolicy frm = new frmPrivacyPolicy();
             frm.Show();
+        }
+
+        private void frmVideoLibrary_VisibleChanged(object sender, EventArgs e)
+        {
+            if (UpdateTreeSelectedNode)
+            {
+                UpdateTreeSelectedNode = false;
+                    UpdateTreeNodeSelection();
+                FillVideoLibrary(this.treeView1.SelectedNode.Tag as TreeTag);
+            }
+
         }
     }
 }
