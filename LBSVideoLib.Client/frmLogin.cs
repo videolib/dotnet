@@ -90,6 +90,7 @@ namespace LBFVideoLib.Client
                 CommonAppStateDataHelper.AddForm(this);
                 frm.Show();
                 this.Hide();
+                CommonAppStateDataHelper.LoggedIn = true;
             }
             else
             {

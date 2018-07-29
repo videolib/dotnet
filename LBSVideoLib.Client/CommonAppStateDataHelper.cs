@@ -26,6 +26,7 @@ namespace LBFVideoLib.Client
         public static ClientInfo ClientInfoObject { get; set; }
 
         public static bool LicenseError { get; set; } = false;
+        public static bool LoggedIn { get; set; } = false;
 
     }
 }

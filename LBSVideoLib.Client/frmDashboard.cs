@@ -199,18 +199,20 @@ namespace LBFVideoLib.Client
                     randomVideoIndexList[newRandomNumber] = newRandomNumber;
                 }
             }
-            while ((_mostRecommandedVideos.Count < 6 || _mostRecommandedVideos.Count >= CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count) && noOfIterations > (CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count * 2));
+            while ((_mostRecommandedVideos.Count < 5 && _mostRecommandedVideos.Count <= CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count) && noOfIterations < (CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count * 2));
 
-            for (int i = 0; i < 5 && i < CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count; i++)
+            if (_mostRecommandedVideos.Count<5)
             {
-                // int newRandomNumber = 0;
-                if (randomVideoIndexList[i] <= 0)
+                for (int i = 0; i < 5 && i < CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count; i++)
                 {
-                     
-                _mostRecommandedVideos.Add(CommonAppStateDataHelper.ClientInfoObject.VideoInfoList[i]);
-                    randomVideoIndexList[i] = i;
-                }
+                    // int newRandomNumber = 0;
+                    if (randomVideoIndexList[i] <= 0)
+                    {
 
+                        _mostRecommandedVideos.Add(CommonAppStateDataHelper.ClientInfoObject.VideoInfoList[i]);
+                        randomVideoIndexList[i] = i;
+                    }
+                } 
             }
             for (int i = 0; _mostRecommandedVideos != null && i < _mostRecommandedVideos.Count; i++)
             {

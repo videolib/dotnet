@@ -46,7 +46,8 @@ namespace LBFVideoLib.Client
             catch { }
             finally
             {
-                if (CommonAppStateDataHelper.LicenseError == false && CommonAppStateDataHelper.ClientInfoObject != null)
+                CommonAppStateDataHelper.LoggedIn = false;
+                if (CommonAppStateDataHelper.ClientInfoObject != null && CommonAppStateDataHelper.LoggedIn ==true && CommonAppStateDataHelper.LicenseError == false   )
                 {
                     CommonAppStateDataHelper.ClientInfoObject.LastAccessEndTime = DateTime.Now;
                 }
