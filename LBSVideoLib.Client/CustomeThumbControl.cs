@@ -74,7 +74,7 @@ namespace LBFVideoLib.Client
                 pict.BackgroundImage = new ImageEx(ThumbUrl).Image;
             }
 
-            pict.BackgroundImageLayout = ImageLayout.Center;
+            pict.BackgroundImageLayout = ImageLayout.Stretch;
             //pict.Image = PlayImage;
             this.Controls.Add(pict);
             //this.Controls.SetChildIndex(lbl, 0);

@@ -43,7 +43,9 @@ namespace LBFVideoLib.Client
                     //}
                 }
             }
-            catch { }
+            catch
+            {
+            }
             finally
             {
                 if (CommonAppStateDataHelper.LicenseError == false && CommonAppStateDataHelper.ClientInfoObject != null)
@@ -56,14 +58,34 @@ namespace LBFVideoLib.Client
 
         private static void SaveSessionOnFireBase(string schoolCode, DateTime sessionStartTime, DateTime sessionEndTime)
         {
-            SessionInfoFB info = new SessionInfoFB();
-            info.MachineName = Environment.MachineName;
-            info.SessionStartTime = sessionStartTime;
-            info.SessionEndTime = sessionEndTime;
+            try
+            {
+                string machineName = Environment.MachineName;
+                SessionInfoFB info = new SessionInfoFB();
+                //info.machineName = Environment.MachineName;
+                info.sessionstarttime = sessionStartTime;
+                info.sessionendtime = sessionEndTime;
 
-            string jsonString = JsonHelper.ParseObjectToJSON<SessionInfoFB>(info);
-            string url = string.Format("clientanalytic-data/{0}/session", schoolCode);
-            FirebaseHelper.PostData(jsonString, url);
+                string jsonString = JsonHelper.ParseObjectToJSON<SessionInfoFB>(info);
+
+                string url = string.Format("clientanalytic-data/{0}/{1}/sessions/", schoolCode, machineName);
+
+                //string url = string.Format("clientanalytic-data/{0}/session", schoolCode);
+                FirebaseHelper.PostData(jsonString, url);
+            }
+
+            catch (Exception e)
+            {
+                if (e.Message.Contains("A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond"))
+                {
+                    throw e;
+                }
+                else
+                {
+                    Console.Out.WriteLine("-----------------");
+                    Console.Out.WriteLine(e.Message);
+                }
+            }
         }
 
 

@@ -68,6 +68,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel4 = new System.Windows.Forms.Panel();
             this.lblPrivacyPolicy = new System.Windows.Forms.Label();
             this.lblExpireDate = new System.Windows.Forms.Label();
@@ -81,6 +82,8 @@
             this.panel6.SuspendLayout();
             this.pnlHeading.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -238,7 +241,7 @@
             this.treeView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.treeView1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.treeView1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.treeView1.Location = new System.Drawing.Point(0, 223);
+            this.treeView1.Location = new System.Drawing.Point(0, 267);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "Node12";
             treeNode1.Text = "Urdu";
@@ -266,7 +269,7 @@
             treeNode12.Text = "Classes";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode12});
-            this.treeView1.Size = new System.Drawing.Size(318, 420);
+            this.treeView1.Size = new System.Drawing.Size(318, 376);
             this.treeView1.TabIndex = 4;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -275,11 +278,22 @@
             this.panel5.BackColor = System.Drawing.Color.White;
             this.panel5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel5.BackgroundImage")));
             this.panel5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel5.Controls.Add(this.pictureBox1);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(0, 0);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(318, 223);
+            this.panel5.Size = new System.Drawing.Size(318, 267);
             this.panel5.TabIndex = 1;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(318, 267);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
             // 
             // panel4
             // 
@@ -409,6 +423,8 @@
             this.pnlHeading.ResumeLayout(false);
             this.pnlHeading.PerformLayout();
             this.panel1.ResumeLayout(false);
+            this.panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -443,5 +459,6 @@
         private System.Windows.Forms.Panel pnlHeading;
         private System.Windows.Forms.Label lblSchoolWelcome;
         private System.Windows.Forms.Label lblPrivacyPolicy;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

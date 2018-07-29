@@ -55,6 +55,7 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.pnlLogo = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label11 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.lblPrivacyPolicy = new System.Windows.Forms.Label();
@@ -74,6 +75,8 @@
             this.pnlRight = new System.Windows.Forms.Panel();
             this.pnlLeft = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
+            this.pnlLogo.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pnlMain.SuspendLayout();
@@ -89,7 +92,7 @@
             this.treeView1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.treeView1.HideSelection = false;
             this.treeView1.HotTracking = true;
-            this.treeView1.Location = new System.Drawing.Point(0, 223);
+            this.treeView1.Location = new System.Drawing.Point(0, 267);
             this.treeView1.Name = "treeView1";
             treeNode1.Name = "Node12";
             treeNode1.Text = "Urdu";
@@ -117,7 +120,7 @@
             treeNode12.Text = "Classes";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
             treeNode12});
-            this.treeView1.Size = new System.Drawing.Size(318, 428);
+            this.treeView1.Size = new System.Drawing.Size(318, 384);
             this.treeView1.TabIndex = 4;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -138,12 +141,24 @@
             this.pnlLogo.BackColor = System.Drawing.Color.White;
             this.pnlLogo.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pnlLogo.BackgroundImage")));
             this.pnlLogo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pnlLogo.Controls.Add(this.pictureBox1);
             this.pnlLogo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlLogo.Location = new System.Drawing.Point(0, 0);
             this.pnlLogo.Name = "pnlLogo";
-            this.pnlLogo.Size = new System.Drawing.Size(318, 223);
+            this.pnlLogo.Size = new System.Drawing.Size(318, 267);
             this.pnlLogo.TabIndex = 1;
             this.pnlLogo.Click += new System.EventHandler(this.pnlLogo_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(318, 267);
+            this.pictureBox1.TabIndex = 1;
+            this.pictureBox1.TabStop = false;
+            this.pictureBox1.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
             // label11
             // 
@@ -369,6 +384,8 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmVideoLibrary_FormClosed);
             this.Load += new System.EventHandler(this.frmVideoLibrary_Load);
             this.panel1.ResumeLayout(false);
+            this.pnlLogo.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
             this.panel2.ResumeLayout(false);
@@ -402,5 +419,6 @@
         private System.Windows.Forms.TextBox txtSearch;
         private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.Label lblPrivacyPolicy;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }

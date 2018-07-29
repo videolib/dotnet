@@ -211,9 +211,9 @@
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.Location = new System.Drawing.Point(37, 232);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(330, 15);
+            this.label6.Size = new System.Drawing.Size(321, 15);
             this.label6.TabIndex = 8;
-            this.label6.Text = "Contact info@LBF.in from your registered Email-ID";
+            this.label6.Text = "Contact info@lbf.in from your registered Email-ID";
             // 
             // lblSchoolWelcome
             // 

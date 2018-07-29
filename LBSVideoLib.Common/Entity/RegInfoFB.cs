@@ -123,15 +123,15 @@ namespace LBFVideoLib.Common.Entity
 
     public class WatchCountInfoFB
     {
-        public string MachineName { get; set; }
-        public string VideoName { get; set; }
-        public int VideoWatchCount { get; set; }
+        public string machinename { get; set; }
+        public string videoname { get; set; }
+        public int videowatchcount { get; set; }
     }
 
     public class SessionInfoFB
     {
-        public string MachineName { get; set; }
-        public DateTime SessionStartTime { get; set; }
-        public DateTime SessionEndTime { get; set; }
+        //public string machineName { get; set; }
+        public DateTime sessionstarttime { get; set; }
+        public DateTime sessionendtime { get; set; }
     }
 }

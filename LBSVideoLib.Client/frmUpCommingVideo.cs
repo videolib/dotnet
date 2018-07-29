@@ -72,7 +72,7 @@ namespace LBFVideoLib.Client
             }
 
             lblSessionYears.Text = ClientHelper.GetSessionString(ClientInfoObject.SessionString);
-            lblWelcome.Text = ClientHelper.GetWelcomeString(ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);
+            lblWelcome.Text =   ClientHelper.GetWelcomeString(ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);
             lblExpireDate.Text = ClientHelper.GetExpiryDateString(ClientInfoObject.ExpiryDate);
             lblAppTitle.Text = ClientHelper.GetRegisteredSchoolTitleString(ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);
 
@@ -95,7 +95,7 @@ namespace LBFVideoLib.Client
 
         private void PlayEncryptedVideo(string videoUrl)
         {
-           if(ValidateLicense()==false)
+            if (ValidateLicense() == false)
             {
                 return;
             }
@@ -109,9 +109,9 @@ namespace LBFVideoLib.Client
             tempFileList.Add(tempFilePath);
             Cryptograph.DecryptFile(videoUrl, tempFilePath);
             this.axWindowsMediaPlayer1.URL = tempFilePath;
-            lblWelcome.Text = string.Format("{0}, {1}, {2}", currentVideoInfo.ClassName, currentVideoInfo.SeriesName, currentVideoInfo.Subject);
+            lblWelcome.Text = string.Format("{0}", currentVideoInfo.Subject);// string.Format("{0}, {1}, {2}", currentVideoInfo.ClassName, currentVideoInfo.SeriesName, currentVideoInfo.Subject);
             lblWatchCount.Text = string.Format("Watch Count: {0} Times", currentVideoInfo.WatchCount);
-
+                       
             SaveWatchedVideoCountOnFireBase(currentVideoInfo.VideoName, currentVideoInfo.WatchCount);
         }
 
@@ -124,7 +124,7 @@ namespace LBFVideoLib.Client
                 ctlThumb.ThumbUrl = PreviousVideoFileList[i].ThumbnailFilePath; //Path.Combine(thumbnailSubjectPath, "Subjects_ENGLISH.png");
                 ctlThumb.VideoUrl = PreviousVideoFileList[i].VideoFullUrl;
                 //ctlThumb.Click += CtlThumb_Click;
-                ctlThumb.Size = new System.Drawing.Size(150, 180);
+                ctlThumb.Size = new System.Drawing.Size(130, 130);
                 //ctlThumb
                 flowLayoutPanelPrevious.Controls.Add(ctlThumb);
             }
@@ -145,7 +145,7 @@ namespace LBFVideoLib.Client
                 ctlThumb.ThumbUrl = NextVideoFileList[i].ThumbnailFilePath; //Path.Combine(thumbnailSubjectPath, "Subjects_ENGLISH.png");
                 ctlThumb.VideoUrl = NextVideoFileList[i].VideoFullUrl;
                 //ctlThumb.Click += CtlThumb_Click;
-                ctlThumb.Size = new System.Drawing.Size(150, 180);
+                ctlThumb.Size = new System.Drawing.Size(130, 130);
                 //ctlThumb
                 flowLayoutPanelUpcoming.Controls.Add(ctlThumb);
             }
@@ -155,7 +155,7 @@ namespace LBFVideoLib.Client
                 pnlUpcomingVideo.Visible = false;
                 pnlSep.Visible = false;
             }
-           
+
             else if (PreviousVideoFileList.Count <= 0)
             {
                 flowLayoutPanelUpcoming.FlowDirection = FlowDirection.LeftToRight;
@@ -349,14 +349,31 @@ namespace LBFVideoLib.Client
 
         private void SaveWatchedVideoCountOnFireBase(string videoName, int watchCount)
         {
-            WatchCountInfoFB info = new WatchCountInfoFB();
-            info.MachineName = Environment.MachineName;
-            info.VideoName = videoName;
-            info.VideoWatchCount = watchCount;
+            try
+            {
+                videoName = videoName.Remove(videoName.LastIndexOf("."));
+                string machineName = Environment.MachineName;
+                //List<WatchCountInfoFB> watchCountInfoList = new List<WatchCountInfoFB>();
+                //WatchCountInfoFB info = new WatchCountInfoFB();
+                //info.machinename = Environment.MachineName;
+                //info.videoname = videoName;
+                //info.videowatchcount = watchCount;
+                //watchCountInfoList.Add(info);
+                //string jsonString = JsonHelper.ParseObjectToJSON<List<WatchCountInfoFB>>(watchCountInfoList);
 
-            string jsonString = JsonHelper.ParseObjectToJSON<WatchCountInfoFB>(info);
-            string url = string.Format("clientanalytic-data/{0}/videowatchcount", ClientInfoObject.SchoolId);
-            FirebaseHelper.PostData(jsonString, url);
+                string jsonString = watchCount.ToString();
+                string url = string.Format("clientanalytic-data/{0}/{1}/videowatchcount/{2}/Count", ClientInfoObject.SchoolId, machineName, videoName);
+                FirebaseHelper.PostData(jsonString, url);
+            }
+            catch (Exception e)
+            {
+                if (e.Message.Contains("A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond"))
+                {
+                    Console.Out.WriteLine("-----------------");
+                    Console.Out.WriteLine(e.Message);
+                }                
+            }
+
         }
 
         private void axWindowsMediaPlayer1_KeyDownEvent(object sender, AxWMPLib._WMPOCXEvents_KeyDownEvent e)
@@ -386,6 +403,13 @@ namespace LBFVideoLib.Client
                 Application.Exit();
             }
             return valid;
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            this._hiddenSourceControl = pnlLogo;
+            this.Hide();
+            this.DashboardFormControl.Show();
         }
     }
 

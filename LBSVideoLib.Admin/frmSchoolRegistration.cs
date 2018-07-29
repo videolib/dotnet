@@ -638,7 +638,7 @@ namespace LBFVideoLib.Admin
             info.SchoolName = txtSchoolName.Text;
             info.City = txtSchoolCity.Text;
             info.Session = cmbSchoolSession.Text;
-            info.Classes = new List<ClassFB>();
+            info.Classes = new List<ClassFB>();           
 
             for (int i = 0; i < chkListBooks.CheckedItems.Count; i++)
             {
@@ -672,12 +672,22 @@ namespace LBFVideoLib.Admin
                 BookFB selectedFBBook = new BookFB();
                 selectedFBBook.Name = selectedBook.BookName;
                 selectedFBSubject.Books.Add(selectedFBBook);
-
             }
 
-            string jsonString1 = JsonHelper.ParseObjectToJSON<RegInfoFB>(info);
-            string url = string.Format("registrations-data/{0}", txtSchoolCode.Text);
-            FirebaseHelper.PostData(jsonString1, url);
+            try
+            {
+                string jsonString1 = JsonHelper.ParseObjectToJSON<RegInfoFB>(info);
+                string url = string.Format("registrations-data/{0}", txtSchoolCode.Text);
+                FirebaseHelper.PostData(jsonString1, url);
+            }
+            catch (Exception e)
+            {
+                if (e.Message.Contains("A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond"))
+                {
+                    Console.Out.WriteLine("-----------------");
+                    Console.Out.WriteLine(e.Message);
+                }
+            }
             return info.Classes;
         }
         #endregion

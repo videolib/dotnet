@@ -13,7 +13,7 @@ namespace LBFVideoLib.Common
         private const string BaseURL = "https://lbf-video-content.firebaseio.com/{0}/.json";
 
 
-        public static void PostData(string requestJson,string url)
+        public static void PostData(string requestJson, string url)
         {
             string requestUrl = string.Format(BaseURL, url);
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestUrl);
@@ -24,21 +24,13 @@ namespace LBFVideoLib.Common
             StreamWriter requestWriter = new StreamWriter(request.GetRequestStream(), System.Text.Encoding.ASCII);
             requestWriter.Write(requestJson);
             requestWriter.Close();
-            try
-            {
-                WebResponse webResponse = request.GetResponse();
-                Stream webStream = webResponse.GetResponseStream();
-                StreamReader responseReader = new StreamReader(webStream);
-                string response = responseReader.ReadToEnd();
-                Console.Out.WriteLine(response);
-                responseReader.Close();
-            }
-            catch (Exception e)
-            {
-                Console.Out.WriteLine("-----------------");
-                Console.Out.WriteLine(e.Message);
-            }
 
+            WebResponse webResponse = request.GetResponse();
+            Stream webStream = webResponse.GetResponseStream();
+            StreamReader responseReader = new StreamReader(webStream);
+            string response = responseReader.ReadToEnd();
+            Console.Out.WriteLine(response);
+            responseReader.Close();
         }
     }
 }

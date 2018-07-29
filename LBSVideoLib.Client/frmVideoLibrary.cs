@@ -320,6 +320,13 @@ namespace LBFVideoLib.Client
             frmPrivacyPolicy frm = new frmPrivacyPolicy();
             frm.Show();
         }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            (this.DashboardFormControl as frmDashboard).SelectedNode = this.treeView1.SelectedNode;
+            this.DashboardFormControl.Show();
+            this.Close();
+        }
     }
 }
 
