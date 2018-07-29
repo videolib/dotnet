@@ -158,6 +158,16 @@
   <ItemGroup>
     <None Include="Resources\Icon_-10x.png" />
     <Content Include="LBF.ico" />
+    <Content Include="Thumbnails\English Cover Class 1st.jpg" />
+    <Content Include="Thumbnails\English Cover Class 2nd.jpg" />
+    <Content Include="Thumbnails\English Cover Class 3rd.jpg" />
+    <Content Include="Thumbnails\English Cover Class 4th.jpg" />
+    <Content Include="Thumbnails\English Cover Class 5th.jpg" />
+    <Content Include="Thumbnails\Hindi Cover Class 1st.jpg" />
+    <Content Include="Thumbnails\Hindi Cover Class 2nd.jpg" />
+    <Content Include="Thumbnails\Hindi Cover Class 3rd.jpg" />
+    <Content Include="Thumbnails\Hindi Cover Class 4th.jpg" />
+    <Content Include="Thumbnails\Hindi Cover Class 5th.jpg" />
     <Content Include="Thumbnails\Subjects_ENGLISH.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

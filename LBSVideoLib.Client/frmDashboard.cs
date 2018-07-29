@@ -219,7 +219,7 @@ namespace LBFVideoLib.Client
             {
                 ThumbnailInfo thumbInfo = new ThumbnailInfo();
                 thumbInfo.FileName = _mostRecommandedVideos[i].VideoName;
-                thumbInfo.ThumbnailFilePath = Path.Combine(ClientHelper.GetClientThumbanailPath(), ThumbnailHelper.GetThumbnailFileName(_mostRecommandedVideos[i].Book));
+                thumbInfo.ThumbnailFilePath = Path.Combine(ClientHelper.GetClientThumbanailPath(), ThumbnailHelper.GetThumbnailFileName(_mostRecommandedVideos[i].ClassName, _mostRecommandedVideos[i].Book));
                 thumbInfo.VideoFullUrl = _mostRecommandedVideos[i].VideoFullUrl;
                 _mostRecommandedVideosThumbList.Add(thumbInfo);
             }
@@ -238,7 +238,7 @@ namespace LBFVideoLib.Client
             {
                 ThumbnailInfo thumbInfo = new ThumbnailInfo();
                 thumbInfo.FileName = _mostWatchedVideos[i].VideoName;
-                thumbInfo.ThumbnailFilePath = Path.Combine(ClientHelper.GetClientThumbanailPath(), ThumbnailHelper.GetThumbnailFileName(_mostWatchedVideos[i].Book));
+                thumbInfo.ThumbnailFilePath = Path.Combine(ClientHelper.GetClientThumbanailPath(), ThumbnailHelper.GetThumbnailFileName(_mostWatchedVideos[i].ClassName, _mostWatchedVideos[i].Book));
                 thumbInfo.VideoFullUrl = _mostWatchedVideos[i].VideoFullUrl;
                 _mostWatchedVideosThumbList.Add(thumbInfo);
             }
