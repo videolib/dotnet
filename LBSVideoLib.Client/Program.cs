@@ -66,7 +66,7 @@ namespace LBFVideoLib.Client
         {
             try
             {
-                string machineName = Environment.MachineName;
+                string machineName = MacAddressHelper.GetMacAddress();// Environment.MachineName;
                 SessionInfoFB info = new SessionInfoFB();
                 //info.machineName = Environment.MachineName;
                 info.sessionstarttime = sessionStartTime;

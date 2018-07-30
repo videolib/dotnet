@@ -321,7 +321,7 @@ namespace LBFVideoLib.Admin
                 //sw.Close();
 
                 // Copy client project bin folder to target location.
-                MessageBox.Show("Registration completed sucessfully.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Registration completed successfully.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 InitializeRegistrationForm();
                 progressBar1.Value = 100;

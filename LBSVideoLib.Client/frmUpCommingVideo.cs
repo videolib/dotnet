@@ -392,7 +392,7 @@ namespace LBFVideoLib.Client
             try
             {
                 videoName = videoName.Remove(videoName.LastIndexOf("."));
-                string machineName = Environment.MachineName;
+                string machineName = MacAddressHelper.GetMacAddress(); // Environment.MachineName
                 //List<WatchCountInfoFB> watchCountInfoList = new List<WatchCountInfoFB>();
                 //WatchCountInfoFB info = new WatchCountInfoFB();
                 //info.machinename = Environment.MachineName;
