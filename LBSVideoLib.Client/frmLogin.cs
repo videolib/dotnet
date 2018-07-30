@@ -39,10 +39,10 @@ namespace LBFVideoLib.Client
                 lblSchoolWelcome.Text = ClientHelper.GetWelcomeString(_clientInfo.SchoolName, _clientInfo.SchoolCity, _clientInfo.SchoolId);
                 lblExpireDate.Text = ClientHelper.GetExpiryDateString(_clientInfo.ExpiryDate);
             }
-            if (_clientInfo.LastAccessEndTime.Equals(DateTime.MinValue))
-            {
-                _clientInfo.LastAccessEndTime = _clientInfo.RegistrationDate;
-            }
+            //if (_clientInfo.LastAccessEndTime.Equals(DateTime.MinValue))
+            //{
+            //    _clientInfo.LastAccessEndTime = _clientInfo.RegistrationDate;
+            //}
 
             // Check license duraion
             ValidateLicense();
@@ -51,10 +51,21 @@ namespace LBFVideoLib.Client
         private void ValidateLicense()
         {
             string message = ""; bool deleteVideos = false;
-            bool valid = LicenseHelper.CheckLicenseValidity(_clientInfo, out message, out deleteVideos);
-
-            if (deleteVideos && valid == false)
+            LicenseValidationState licenseState = LicenseValidationState.None;
+            if (CommonAppStateDataHelper.ClientInfoObject.Expired)
             {
+                deleteVideos = true;
+                message = LicenseHelper.licenseExpiredMessage;
+                licenseState = LicenseValidationState.Expired;
+            }
+            else
+            {
+                licenseState = LicenseHelper.CheckLicenseState(_clientInfo, out message, out deleteVideos);
+            }
+
+            if (deleteVideos && licenseState == LicenseValidationState.Expired)
+            {
+                CommonAppStateDataHelper.ClientInfoObject.Expired = true;
                 CommonAppStateDataHelper.LicenseError = true;
                 MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                 if (Directory.Exists(ClientHelper.GetClientVideoFilePath(_clientInfo.SchoolId, _clientInfo.SchoolCity)))
@@ -63,7 +74,7 @@ namespace LBFVideoLib.Client
                 }
                 this.Close();
             }
-            if (valid == false)
+            else if (licenseState != LicenseValidationState.Valid)
             {
                 CommonAppStateDataHelper.LicenseError = true;
                 MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
@@ -74,6 +85,7 @@ namespace LBFVideoLib.Client
         #endregion
 
         #region Control Events
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
             bool authenticated = Authentication.AuthenticateClient(txtEmailId.Text.Trim(), txtPwd.Text.Trim());
@@ -90,7 +102,7 @@ namespace LBFVideoLib.Client
                 // this.ClientInfoObject.LastAccessStartTime = DateTime.UtcNow;
                 Cryptograph.EncryptObject(_clientInfo, ClientHelper.GetClientInfoFilePath());
                 clientInfoFileInfo.Attributes |= FileAttributes.Hidden;
-               
+
 
                 frmDashboard frm = new frmDashboard();
                 // frm.MdiParent = this.MdiParent;

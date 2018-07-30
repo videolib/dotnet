@@ -34,6 +34,8 @@ namespace LBFVideoLib.Common
 
         public DateTime RegistrationDate { get; set; }
 
+        public bool Expired { get; set; } = false;
+
         public List<ClassFB> SelectedVideoDetails { get; set; }
 
         public List<SessionInfo> SessionList { get; set; }
