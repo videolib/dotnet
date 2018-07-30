@@ -89,7 +89,7 @@ namespace LBFVideoLib.Client
 
         private void frmVideoLibrary_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (e.CloseReason == CloseReason.ApplicationExitCall)
+            if (e.CloseReason != CloseReason.ApplicationExitCall)
             {
                 (this.DashboardFormControl as frmDashboard).SelectedNode = treeView1.SelectedNode;
                 this.DashboardFormControl.Show();
@@ -313,7 +313,7 @@ namespace LBFVideoLib.Client
                     ThumbnailInfo thumbnailInfo = new ThumbnailInfo();
                     thumbnailInfo.VideoFullUrl = fileList[i];
                     thumbnailInfo.FileName = Path.GetFileName(fileList[i]);
-                    thumbnailInfo.ThumbnailFilePath = Path.Combine(ClientHelper.GetClientThumbanailPath(), ThumbnailHelper.GetThumbnailFileName(currentPath));
+                    thumbnailInfo.ThumbnailFilePath = Path.Combine(ClientHelper.GetClientThumbanailPath(), ThumbnailHelper.GetThumbnailFileName("",currentPath));
                     videFilePathList.Add(thumbnailInfo);
                 }
             }
