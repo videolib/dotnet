@@ -31,7 +31,7 @@ namespace LBFVideoLib.Admin
         ToolTip chkListTooltip = new ToolTip();
         int toolTipIndex = -1;
         private bool _wip = false;
-
+        private string[] _nonHiddenFiles = { "lbsvideolib.client.exe","clientinfo.txt" };
 
         #endregion
 
@@ -155,7 +155,7 @@ namespace LBFVideoLib.Admin
                     {
                         string targetFilePath = Path.Combine(clientPacakgeFolderPath, Path.GetFileName(clientDistributionFiles[i]));
                         System.IO.File.Copy(Path.Combine(ConfigHelper.ClientDistributionPath, clientDistributionFiles[i]), targetFilePath, true);
-                        if (Path.GetFileName(targetFilePath).ToLower().Equals("lbsvideolib.client.exe") == false)
+                        if (_nonHiddenFiles.Contains(Path.GetFileName(targetFilePath).ToLower())  == true)
                         {
                             FileInfo targetFileInfo = new FileInfo(targetFilePath);
                             targetFileInfo.Attributes = FileAttributes.Hidden;
@@ -853,7 +853,7 @@ namespace LBFVideoLib.Admin
                 }
             }
         }
-      
+
     }
 }
 

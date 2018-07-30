@@ -43,7 +43,11 @@ namespace LBFVideoLib.Client
             //Cryptograph.EncryptObject(this.ClientInfoObject, _clientInfoFilePath);
 
             CommonAppStateDataHelper.ClientInfoObject.LastAccessEndTime = this.ClientInfoObject.LastAccessEndTime = DateTime.Now;
+ 
+            FileInfo clientInfoFileInfo = new FileInfo(ClientHelper.GetClientInfoFilePath());
+            clientInfoFileInfo.Attributes &= ~FileAttributes.Hidden;
             Cryptograph.EncryptObject(this.ClientInfoObject, _clientInfoFilePath);
+            clientInfoFileInfo.Attributes |= FileAttributes.Hidden;
 
             _clientRootPath = ClientHelper.GetClientRootPath();
             _clientVideoRootFilePath = ClientHelper.GetClientVideoFilePath(this.ClientInfoObject.SchoolId, this.ClientInfoObject.SchoolCity);

@@ -54,8 +54,11 @@ namespace LBFVideoLib.Client
             _clientRootPath = ClientHelper.GetClientRootPath();
             _clientInfoFilePath = ClientHelper.GetClientInfoFilePath();
             this.ClientInfoObject.LastAccessEndTime = DateTime.Now;
+            FileInfo clientInfoFileInfo = new FileInfo(ClientHelper.GetClientInfoFilePath());
+            clientInfoFileInfo.Attributes &= ~FileAttributes.Hidden;
             // this.ClientInfoObject.LastAccessStartTime = DateTime.UtcNow;
             Cryptograph.EncryptObject(this.ClientInfoObject, _clientInfoFilePath);
+            clientInfoFileInfo.Attributes |= FileAttributes.Hidden;
 
             FillTreeView();
             treeView1.ExpandAll();
@@ -90,9 +93,6 @@ namespace LBFVideoLib.Client
                 this.axWindowsMediaPlayer1.URL = CurrentVideo.VideoFullUrl;
             }
 
-            this.lblFileName.Text = Path.GetFileNameWithoutExtension(CurrentVideo.FileName);
-
-
         }
 
         private void PlayEncryptedVideo(string videoUrl)
@@ -100,10 +100,12 @@ namespace LBFVideoLib.Client
 
             try
             {
-                if (ValidateLicense() == false)
+                if (ValidateLicense() == false || backgroundWorker1.IsBusy)
                 {
                     return;
                 }
+                this.axWindowsMediaPlayer1.URL = "";
+
                 progressBar1.Visible = true;
 
                 VideoInfo currentVideoInfo = CurrentVideoInfo = this.ClientInfoObject.VideoInfoList.First(i => i.VideoFullUrl.ToLower().Equals(videoUrl.ToLower()));
@@ -120,6 +122,7 @@ namespace LBFVideoLib.Client
 
                 while (backgroundWorker1.IsBusy == true)
                 {
+                   // backgroundWorker1.CancelAsync();
                 }
                 backgroundWorker1.RunWorkerAsync(backgroundProcessData);
 
@@ -203,9 +206,9 @@ namespace LBFVideoLib.Client
                 return;
             }
 
-            this.axWindowsMediaPlayer1.URL = "";
-            _lastPlayedVideoFullUrl = ctl.VideoUrl;
-            this.lblFileName.Text = Path.GetFileNameWithoutExtension(ctl.ThumbName);
+            //this.axWindowsMediaPlayer1.URL = "";
+            //_lastPlayedVideoFullUrl = ctl.VideoUrl;
+            //this.lblFileName.Text = Path.GetFileNameWithoutExtension(ctl.ThumbName);
             this.EncryptedVideo = true;
             PlayEncryptedVideo(ctl.VideoUrl);
         }
@@ -317,6 +320,10 @@ namespace LBFVideoLib.Client
 
         private void OnFormVisiblityChangeAndClose()
         {
+            if (backgroundWorker1.IsBusy == true)
+            {
+                backgroundWorker1.CancelAsync();
+            }
             this.axWindowsMediaPlayer1.URL = "";
 
             for (int i = 0; i < tempFileList.Count; i++)
@@ -448,7 +455,7 @@ namespace LBFVideoLib.Client
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             BackgroundProcessData currentData = e.Argument as BackgroundProcessData;
-            if (currentData.CurrentVideoInfo!=null)
+            if (currentData.CurrentVideoInfo != null)
             {
                 VideoInfo currentVideoInfo = currentData.CurrentVideoInfo;
                 currentVideoInfo.WatchCount++;
@@ -464,15 +471,16 @@ namespace LBFVideoLib.Client
                 currentData.DecryptedVideoPath = tempFilePath;
                 backgroundWorker1.ReportProgress(99, currentData);
 
+
                 SaveWatchedVideoCountOnFireBase(currentVideoInfo.VideoName, currentVideoInfo.WatchCount);
                 currentData.DecryptedVideoPath = "";
-                backgroundWorker1.ReportProgress(100, currentData); 
+                backgroundWorker1.ReportProgress(100, currentData);
             }
         }
 
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-                progressBar1.Visible = false;
+            progressBar1.Visible = false;
         }
 
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -480,18 +488,22 @@ namespace LBFVideoLib.Client
             BackgroundProcessData currentData = e.UserState as BackgroundProcessData;
             // Change the value of the ProgressBar  
             progressBar1.Value = e.ProgressPercentage;
-            if ( currentData != null && currentData.State == BackgroundAppState.DecryptingVideoToPlay && currentData.DecryptedVideoPath != "")
+            if (currentData != null && currentData.State == BackgroundAppState.DecryptingVideoToPlay && currentData.DecryptedVideoPath != "")
             {
                 progressBar1.Visible = false;
                 this.CurrentVideoInfo = currentData.CurrentVideoInfo;
                 this.axWindowsMediaPlayer1.URL = currentData.DecryptedVideoPath;
                 lblWelcome.Text = string.Format("{0}", this.CurrentVideoInfo.Subject);
-                lblWatchCount.Text = string.Format("Watch Count: {0} Times", this.CurrentVideoInfo.WatchCount);
+                lblWatchCount.Text = string.Format("Watch Count: {0} Times", currentData.CurrentVideoInfo.WatchCount);
+                this.lblFileName.Text = Path.GetFileNameWithoutExtension(currentData.CurrentVideoInfo.VideoFullUrl);
+                _lastPlayedVideoFullUrl = currentData.CurrentVideoInfo.VideoFullUrl;
+                
+
             }
         }
     }
 
-  
+
 }
 //private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
 //{

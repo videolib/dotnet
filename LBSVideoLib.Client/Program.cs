@@ -2,6 +2,7 @@
 using LBFVideoLib.Common.Entity;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -53,7 +54,11 @@ namespace LBFVideoLib.Client
                 {
                     CommonAppStateDataHelper.ClientInfoObject.LastAccessEndTime = DateTime.Now;
                 }
+
+                FileInfo clientInfoFileInfo = new FileInfo(ClientHelper.GetClientInfoFilePath());
+                clientInfoFileInfo.Attributes &= ~FileAttributes.Hidden;
                 Cryptograph.EncryptObject(CommonAppStateDataHelper.ClientInfoObject, ClientHelper.GetClientInfoFilePath());
+                clientInfoFileInfo.Attributes |= FileAttributes.Hidden;
             }
         }
 
