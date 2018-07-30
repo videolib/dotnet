@@ -270,7 +270,7 @@ namespace LBFVideoLib.Admin
 
 
                 // Save data on firebase
-                List<ClassFB> selectedClassList = SaveRegDataOnFireBase();
+                RegInfoFB selectedClassList = SaveRegDataOnFireBase();
 
                 string registeredSchoolInfo = Newtonsoft.Json.JsonConvert.SerializeObject(selectedClassList);
 
@@ -303,7 +303,7 @@ namespace LBFVideoLib.Admin
                 clientInfo.SchoolId = this.txtSchoolCode.Text.Trim();
                 clientInfo.SchoolName = this.txtSchoolName.Text.Trim();
                 clientInfo.SchoolCity = txtSchoolCity.Text.Trim();
-                clientInfo.SelectedVideoDetails = selectedClassList;
+                clientInfo.SelectedVideoDetails =  selectedClassList.Classes;
                 clientInfo.VideoInfoList = videoInfoList;
 
                 // Generate client info json file and encrypt it.
@@ -723,7 +723,7 @@ namespace LBFVideoLib.Admin
 
         }
 
-        private List<ClassFB> SaveRegDataOnFireBase()
+        private RegInfoFB SaveRegDataOnFireBase()
         {
             RegInfoFB info = new RegInfoFB();
             info.RegDate = DateTime.Now.ToString();
@@ -782,7 +782,7 @@ namespace LBFVideoLib.Admin
                     Console.Out.WriteLine(e.Message);
                 }
             }
-            return info.Classes;
+            return info;
         }
         #endregion
 
