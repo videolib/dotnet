@@ -12,6 +12,8 @@ namespace LBFVideoLib.Common
         private static Dictionary<string, string> sessionList = new Dictionary<string, string>();
         public static string licenseExpiredMessage = "Contact to renew the Video Portal on: info@lbf.in";
         public static string invalidClockMessage = "Invalid Clock";
+        public static string invalidLicenseMessage = "Invalid License";
+
         static LicenseHelper()
         {
             var provider = CultureInfo.InvariantCulture;
@@ -34,7 +36,12 @@ namespace LBFVideoLib.Common
             return sessionList.Keys.ToList<string>();
         }
 
-        public static DateTime GetExpiryDateBySessionString(string session)
+        public static DateTime GetSessionStartDateBySessionString(string session)
+        {
+            return Convert.ToDateTime(sessionList[session]).AddMonths(-12).AddDays(-29).Date;
+        }
+
+        public static DateTime GetSessionEndDateBySessionString(string session)
         {
             return Convert.ToDateTime(sessionList[session]);
         }
@@ -48,7 +55,7 @@ namespace LBFVideoLib.Common
             DateTime lastAccessTime = DateTime.Parse(clientInfo.LastAccessEndTime.AddSeconds(-clientInfo.LastAccessEndTime.Second).AddMinutes(-clientInfo.LastAccessEndTime.Minute).ToString("dd-MMM-yyyy hh:00 tt"), CultureInfo.InvariantCulture);
 
             //Caes1 => RegDate < CurrentDate & CurrentDate < Exp Date & LastAccessTime > CurrentDate = Show Message
-            if (registrationDate.CompareTo(DateTime.Now) <= 0 && clientInfo.ExpiryDate.CompareTo(DateTime.Now) >= 0 && lastAccessTime.CompareTo(DateTime.Now) > 0)
+            if (registrationDate.CompareTo(DateTime.Now) <= 0 && clientInfo.SessionEndDate.CompareTo(DateTime.Now) >= 0 && lastAccessTime.CompareTo(DateTime.Now) > 0)
             {
                 valid = false;
                 message = "Invalid clock";
@@ -61,7 +68,7 @@ namespace LBFVideoLib.Common
                 message = "Invalid clock";
             }
             //Caes3 => 	RegDate < CurrentDate & CurrentDate > Exp Date = Del Video Folder
-            else if (clientInfo.ExpiryDate.Date.CompareTo(DateTime.Now.Date) < 0)
+            else if (clientInfo.SessionEndDate.Date.CompareTo(DateTime.Now.Date) < 0)
             {
                 valid = false;
                 // message = "Your subscription has expired. To renew please\nContact:info@lbf.in or Call on +91 0 9109138808";
@@ -84,42 +91,62 @@ namespace LBFVideoLib.Common
         public static LicenseValidationState CheckLicenseState(ClientInfo clientInfo, out string message, out bool deleteVideo)
         {
             LicenseValidationState currentState = LicenseValidationState.Valid;
-            bool valid = true;
+            //    bool valid = true;
             deleteVideo = false;
             message = "";
-            DateTime registrationDate = DateTime.Parse(clientInfo.RegistrationDate.AddSeconds(-clientInfo.RegistrationDate.Second).AddMinutes(-clientInfo.RegistrationDate.Minute).ToString("dd-MMM-yyyy hh:00 tt"), CultureInfo.InvariantCulture);
-            DateTime lastAccessTime = DateTime.Parse(clientInfo.LastAccessEndTime.AddSeconds(-clientInfo.LastAccessEndTime.Second).AddMinutes(-clientInfo.LastAccessEndTime.Minute).ToString("dd-MMM-yyyy hh:00 tt"), CultureInfo.InvariantCulture);
+            DateTime sessionStartDate = new DateTime();
+            DateTime lastAccessTime = new DateTime();
             DateTime currentDateTime = DateTime.Now;
 
-            // First Time Login Case -> Valid
-            if (lastAccessTime.Equals(clientInfo.RegistrationDate) && (registrationDate < currentDateTime && currentDateTime < clientInfo.ExpiryDate))
+            // if registration date is between SessionStart and SessionEnd date
+            if (clientInfo.SessionStartDate.CompareTo(clientInfo.RegistrationDate) < 0 && clientInfo.SessionEndDate.CompareTo(clientInfo.RegistrationDate) > 0)
             {
-                currentState = LicenseValidationState.Valid;
+                sessionStartDate = DateTime.Parse(clientInfo.RegistrationDate.AddSeconds(-clientInfo.RegistrationDate.Second).AddMinutes(-clientInfo.RegistrationDate.Minute).ToString("dd-MMM-yyyy hh:00 tt"), CultureInfo.InvariantCulture);
             }
-            // Normal Case -> Valid
-            else if (lastAccessTime <= currentDateTime && (registrationDate < currentDateTime && currentDateTime < clientInfo.ExpiryDate))
+            else if (clientInfo.SessionStartDate.CompareTo(clientInfo.RegistrationDate) > 0)
             {
-                currentState = LicenseValidationState.Valid;
+                sessionStartDate = clientInfo.SessionStartDate;
             }
+            else if (clientInfo.SessionEndDate.CompareTo(clientInfo.RegistrationDate) < 0)
+            {
+                deleteVideo = true;
+                currentState = LicenseValidationState.Expired;
+                message = licenseExpiredMessage;
+                return currentState;
+            }
+
+            lastAccessTime = sessionStartDate;
+
+            //RegDate > CurrentDate
+            if (sessionStartDate.CompareTo(currentDateTime) > 0)
+            {
+                currentState = LicenseValidationState.InvalidLicense;
+                message = invalidLicenseMessage;
+            }
+            // License is expired - Delete All Videos
+            else if (clientInfo.SessionEndDate < currentDateTime)
+            {
+                deleteVideo = true;
+                currentState = LicenseValidationState.Expired;
+                message = licenseExpiredMessage;
+            }          
             // Clock time is back from current time -> Invalid Clock
             else if (lastAccessTime > currentDateTime) // && (registrationDate < currentDateTime && currentDateTime > clientInfo.ExpiryDate))
             {
                 currentState = LicenseValidationState.InvalidClock;
                 message = invalidClockMessage;
             }
-            //RegDate > CurrentDate
-            else if (registrationDate.CompareTo(currentDateTime) > 0)
-            {
-                currentState = LicenseValidationState.InvalidClock;
-                message = invalidClockMessage;
-            }
-            //License is expired - Delete All Videos
-            else if (clientInfo.ExpiryDate < currentDateTime)
-            {
-                deleteVideo = true;
-                currentState = LicenseValidationState.Expired;
-                message = licenseExpiredMessage;
-            }
+
+            //// First Time Login Case -> Valid
+            //if (lastAccessTime.Equals(clientInfo.RegistrationDate) && (registrationDate < currentDateTime && currentDateTime < clientInfo.ExpiryDate))
+            //{
+            //    currentState = LicenseValidationState.Valid;
+            //}
+            //// Normal Case -> Valid
+            //else if (lastAccessTime <= currentDateTime && (registrationDate < currentDateTime && currentDateTime < clientInfo.ExpiryDate))
+            //{
+            //    currentState = LicenseValidationState.Valid;
+            //}
 
             return currentState;
         }

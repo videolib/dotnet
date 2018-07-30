@@ -18,7 +18,11 @@ namespace LBFVideoLib.Common
 
         public string Password { get; set; }
 
-        public DateTime ExpiryDate { get; set; }
+        public DateTime RegistrationDate { get; set; }
+
+        public DateTime SessionStartDate { get; set; }
+
+        public DateTime SessionEndDate { get; set; }
 
         public DateTime LastAccessStartTime { get; set; }
 
@@ -32,8 +36,6 @@ namespace LBFVideoLib.Common
 
         public string SessionString { get; set; }
 
-        public DateTime RegistrationDate { get; set; }
-
         public bool Expired { get; set; } = false;
 
         public List<ClassFB> SelectedVideoDetails { get; set; }
@@ -41,11 +43,6 @@ namespace LBFVideoLib.Common
         public List<SessionInfo> SessionList { get; set; }
 
         public List<VideoInfo> VideoInfoList { get; set; }
-
-        //public string GetClientDetail()
-        //{
-        //    return string.Format("Welcome, {0}, {1} [{2}]", this.SchoolName, this.SchoolCity, this.SchoolId);
-        //}
 
     }
 }

@@ -37,7 +37,7 @@ namespace LBFVideoLib.Client
             {
                 lblSessionYears.Text = ClientHelper.GetSessionString(_clientInfo.SessionString);
                 lblSchoolWelcome.Text = ClientHelper.GetWelcomeString(_clientInfo.SchoolName, _clientInfo.SchoolCity, _clientInfo.SchoolId);
-                lblExpireDate.Text = ClientHelper.GetExpiryDateString(_clientInfo.ExpiryDate);
+                lblExpireDate.Text = ClientHelper.GetExpiryDateString(_clientInfo.SessionEndDate);
             }
             //if (_clientInfo.LastAccessEndTime.Equals(DateTime.MinValue))
             //{
@@ -67,11 +67,14 @@ namespace LBFVideoLib.Client
             {
                 CommonAppStateDataHelper.ClientInfoObject.Expired = true;
                 CommonAppStateDataHelper.LicenseError = true;
-                MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
                 if (Directory.Exists(ClientHelper.GetClientVideoFilePath(_clientInfo.SchoolId, _clientInfo.SchoolCity)))
                 {
                     Directory.Delete(ClientHelper.GetClientVideoFilePath(_clientInfo.SchoolId, _clientInfo.SchoolCity), true);
                 }
+
+                MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+             
                 this.Close();
             }
             else if (licenseState != LicenseValidationState.Valid)
@@ -97,12 +100,12 @@ namespace LBFVideoLib.Client
                 _clientInfo.LastAccessStartTime = DateTime.Now;
                 _clientInfo.LastAccessEndTime = DateTime.Now;
                 _clientInfo.SessionList.Add(sessionInfo);
+                
                 FileInfo clientInfoFileInfo = new FileInfo(ClientHelper.GetClientInfoFilePath());
                 clientInfoFileInfo.Attributes &= ~FileAttributes.Hidden;
                 // this.ClientInfoObject.LastAccessStartTime = DateTime.UtcNow;
                 Cryptograph.EncryptObject(_clientInfo, ClientHelper.GetClientInfoFilePath());
                 clientInfoFileInfo.Attributes |= FileAttributes.Hidden;
-
 
                 frmDashboard frm = new frmDashboard();
                 // frm.MdiParent = this.MdiParent;

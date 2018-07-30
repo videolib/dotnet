@@ -31,7 +31,7 @@ namespace LBFVideoLib.Admin
         ToolTip chkListTooltip = new ToolTip();
         int toolTipIndex = -1;
         private bool _wip = false;
-        private string[] _nonHiddenFiles = { "lbsvideolib.client.exe","clientinfo.txt" };
+        private string[] _nonHiddenFiles = { "lbsvideolib.client.exe", "clientinfo.txt" };
 
         #endregion
 
@@ -63,10 +63,6 @@ namespace LBFVideoLib.Admin
                     return;
                 }
 
-                //BackgroundProcessData bkgroundProcessData = new BackgroundProcessData();
-                //bkgroundProcessData.State = BackgroundAppState.RegisterCliet;
-
-
                 RegisterClientSchoolPackage();
 
             }
@@ -80,9 +76,13 @@ namespace LBFVideoLib.Admin
                 }
                 throw;
             }
+            finally
+            {
+                InitializeRegistrationForm();
+            }
         }
 
-        private string RegisterClientSchoolPackage()
+        private void RegisterClientSchoolPackage()
         {
             try
             {
@@ -155,7 +155,7 @@ namespace LBFVideoLib.Admin
                     {
                         string targetFilePath = Path.Combine(clientPacakgeFolderPath, Path.GetFileName(clientDistributionFiles[i]));
                         System.IO.File.Copy(Path.Combine(ConfigHelper.ClientDistributionPath, clientDistributionFiles[i]), targetFilePath, true);
-                        if (_nonHiddenFiles.Contains(Path.GetFileName(targetFilePath).ToLower())  == true)
+                        if (_nonHiddenFiles.Contains(Path.GetFileName(targetFilePath).ToLower()) == true)
                         {
                             FileInfo targetFileInfo = new FileInfo(targetFilePath);
                             targetFileInfo.Attributes = FileAttributes.Hidden;
@@ -266,6 +266,7 @@ namespace LBFVideoLib.Admin
                     thumbnailFilePathFileInfo.Attributes = FileAttributes.Hidden;
                 }
                 #endregion
+
                 progressBar1.Value = 70;
 
 
@@ -297,13 +298,14 @@ namespace LBFVideoLib.Admin
                 clientInfo.EmailId = txtEmailId.Text.ToLower().Trim();
                 clientInfo.Password = txtPwd.Text.Trim();
                 clientInfo.RegistrationDate = DateTime.Now;
-                clientInfo.ExpiryDate = LicenseHelper.GetExpiryDateBySessionString(cmbSchoolSession.SelectedItem.ToString());
-                clientInfo.LastAccessEndTime = clientInfo.RegistrationDate;
+                clientInfo.SessionStartDate = LicenseHelper.GetSessionStartDateBySessionString(cmbSchoolSession.SelectedItem.ToString());
+                clientInfo.SessionEndDate = LicenseHelper.GetSessionEndDateBySessionString(cmbSchoolSession.SelectedItem.ToString());
+                clientInfo.LastAccessEndTime = clientInfo.SessionStartDate;
                 clientInfo.SessionString = cmbSchoolSession.SelectedItem.ToString();
                 clientInfo.SchoolId = this.txtSchoolCode.Text.Trim();
                 clientInfo.SchoolName = this.txtSchoolName.Text.Trim();
                 clientInfo.SchoolCity = txtSchoolCity.Text.Trim();
-                clientInfo.SelectedVideoDetails =  selectedClassList.Classes;
+                clientInfo.SelectedVideoDetails = selectedClassList.Classes;
                 clientInfo.VideoInfoList = videoInfoList;
 
                 // Generate client info json file and encrypt it.
@@ -327,19 +329,16 @@ namespace LBFVideoLib.Admin
                 progressBar1.Value = 100;
                 progressBar1.Visible = false;
                 _wip = false;
-                return clientSchoolCodeFolderPath;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
-
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
             finally
             {
                 _wip = false;
                 progressBar1.Visible = false;
-
             }
         }
 

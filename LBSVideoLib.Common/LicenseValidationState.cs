@@ -10,7 +10,9 @@ namespace LBFVideoLib.Common
         None = 0,
         Valid = 1,
         InvalidClock = 2,
-        Expired = 3,
+        InvalidLicense = 3,
+        Expired = 4,
+
 
     }
 }
