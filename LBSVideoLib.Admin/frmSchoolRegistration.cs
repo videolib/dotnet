@@ -309,8 +309,8 @@ namespace LBFVideoLib.Admin
                 // Generate client info json file and encrypt it.
                 string clientInfoFilePath = Path.Combine(clientPacakgeFolderPath, _clientInfoFileName);
                 Cryptograph.EncryptObject(clientInfo, clientInfoFilePath);
-                FileInfo clientInfoFileInfo = new FileInfo(clientInfoFilePath);
-                clientInfoFileInfo.Attributes = FileAttributes.Hidden;
+                //FileInfo clientInfoFileInfo = new FileInfo(clientInfoFilePath);
+                //clientInfoFileInfo.Attributes = FileAttributes.Hidden;
 
                 progressBar1.Value = 99;
 
