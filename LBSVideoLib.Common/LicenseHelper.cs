@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net;
 using System.Text;
 
 namespace LBFVideoLib.Common
@@ -9,12 +10,12 @@ namespace LBFVideoLib.Common
     public class LicenseHelper
     {
         private static Dictionary<string, string> sessionList = new Dictionary<string, string>();
-
+        public static string licenseExpiredMessage = "Contact to renew the Video Portal on: info@lbf.in";
+        public static string invalidClockMessage = "Invalid Clock";
         static LicenseHelper()
         {
             var provider = CultureInfo.InvariantCulture;
             var format = "MM-dd-yyyy hh:mm:ss tt";
-
 
             sessionList.Add("2018-19", DateTime.ParseExact("04-30-2019 11:59:59 PM", format, provider).ToString());
             sessionList.Add("2019-20", DateTime.ParseExact("04-30-2020 11:59:59 PM", format, provider).ToString());
@@ -79,5 +80,66 @@ namespace LBFVideoLib.Common
             //}
             return valid;
         }
+
+        public static LicenseValidationState CheckLicenseState(ClientInfo clientInfo, out string message, out bool deleteVideo)
+        {
+            LicenseValidationState currentState = LicenseValidationState.Valid;
+            bool valid = true;
+            deleteVideo = false;
+            message = "";
+            DateTime registrationDate = DateTime.Parse(clientInfo.RegistrationDate.AddSeconds(-clientInfo.RegistrationDate.Second).AddMinutes(-clientInfo.RegistrationDate.Minute).ToString("dd-MMM-yyyy hh:00 tt"), CultureInfo.InvariantCulture);
+            DateTime lastAccessTime = DateTime.Parse(clientInfo.LastAccessEndTime.AddSeconds(-clientInfo.LastAccessEndTime.Second).AddMinutes(-clientInfo.LastAccessEndTime.Minute).ToString("dd-MMM-yyyy hh:00 tt"), CultureInfo.InvariantCulture);
+            DateTime currentDateTime = DateTime.Now;
+
+            // First Time Login Case -> Valid
+            if (lastAccessTime.Equals(clientInfo.RegistrationDate) && (registrationDate < currentDateTime && currentDateTime < clientInfo.ExpiryDate))
+            {
+                currentState = LicenseValidationState.Valid;
+            }
+            // Normal Case -> Valid
+            else if (lastAccessTime <= currentDateTime && (registrationDate < currentDateTime && currentDateTime < clientInfo.ExpiryDate))
+            {
+                currentState = LicenseValidationState.Valid;
+            }
+            // Clock time is back from current time -> Invalid Clock
+            else if (lastAccessTime > currentDateTime) // && (registrationDate < currentDateTime && currentDateTime > clientInfo.ExpiryDate))
+            {
+                currentState = LicenseValidationState.InvalidClock;
+                message = invalidClockMessage;
+            }
+            //RegDate > CurrentDate
+            else if (registrationDate.CompareTo(currentDateTime) > 0)
+            {
+                currentState = LicenseValidationState.InvalidClock;
+                message = invalidClockMessage;
+            }
+            //License is expired - Delete All Videos
+            else if (clientInfo.ExpiryDate < currentDateTime)
+            {
+                deleteVideo = true;
+                currentState = LicenseValidationState.Expired;
+                message = licenseExpiredMessage;
+            }
+
+            return currentState;
+        }
+
+        public static bool CheckForInternetConnection()
+        {
+            try
+            {
+                using (var client = new WebClient())
+                using (client.OpenRead("http://clients3.google.com/generate_204"))
+                {
+                    return true;
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+
     }
 }

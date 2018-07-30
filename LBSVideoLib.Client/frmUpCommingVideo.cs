@@ -122,7 +122,7 @@ namespace LBFVideoLib.Client
 
                 while (backgroundWorker1.IsBusy == true)
                 {
-                   // backgroundWorker1.CancelAsync();
+                    // backgroundWorker1.CancelAsync();
                 }
                 backgroundWorker1.RunWorkerAsync(backgroundProcessData);
 
@@ -369,22 +369,38 @@ namespace LBFVideoLib.Client
 
         private void btnFullScreen_Click_1(object sender, EventArgs e)
         {
-            if (this.axWindowsMediaPlayer1.fullScreen == false)
+            try
             {
-                this.axWindowsMediaPlayer1.fullScreen = true;
+                if (this.axWindowsMediaPlayer1.fullScreen == false)
+                {
+                    this.axWindowsMediaPlayer1.fullScreen = true;
+                }
+            }
+            catch (Exception)
+            {
             }
         }
 
         private void btnRewind_Click(object sender, EventArgs e)
         {
-            this.axWindowsMediaPlayer1.Ctlcontrols.currentPosition -= 10;
+            try
+            {
+                this.axWindowsMediaPlayer1.Ctlcontrols.currentPosition -= 10;
+            }
+            catch (Exception)
+            {
+            }
         }
-
-
-
+        
         private void btnFastForward_Click(object sender, EventArgs e)
         {
-            this.axWindowsMediaPlayer1.Ctlcontrols.currentPosition += 10;
+            try
+            {
+                this.axWindowsMediaPlayer1.Ctlcontrols.currentPosition += 10;
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private void SaveWatchedVideoCountOnFireBase(string videoName, int watchCount)
@@ -497,7 +513,7 @@ namespace LBFVideoLib.Client
                 lblWatchCount.Text = string.Format("Watch Count: {0} Times", currentData.CurrentVideoInfo.WatchCount);
                 this.lblFileName.Text = Path.GetFileNameWithoutExtension(currentData.CurrentVideoInfo.VideoFullUrl);
                 _lastPlayedVideoFullUrl = currentData.CurrentVideoInfo.VideoFullUrl;
-                
+
 
             }
         }
