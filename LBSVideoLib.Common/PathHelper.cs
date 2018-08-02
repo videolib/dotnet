@@ -11,7 +11,7 @@ namespace LBFVideoLib.Common
         {
 
             //return Directory.GetCurrentDirectory();
-            return @"C:\LBFSetup\ClientPackages\786\Package";
+            return @"D:\School\ClientPackages\a\Package";
         }
 
 
@@ -31,6 +31,10 @@ namespace LBFVideoLib.Common
         public static string GetClientThumbanailPath()
         {
             return Path.Combine(GetClientRootPath(), "Thumbnails");
+        }
+
+        public static string GetClassNameFromFullPath(string fullBookDirectoryPath) {
+            return Directory.GetParent(fullBookDirectoryPath).Parent.Parent.Name;            
         }
         #endregion
 

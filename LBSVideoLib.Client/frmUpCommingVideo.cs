@@ -20,11 +20,12 @@ namespace LBFVideoLib.Client
         public ClientInfo ClientInfoObject { get; set; }
         public TreeNode SelectedNode { get; set; }
 
-        public List<ThumbnailInfo> PreviousVideoFileList { get; set; }
+        public List<VideoInfo> PreviousVideoFileList { get; set; }
 
-        public List<ThumbnailInfo> NextVideoFileList { get; set; }
+        public List<VideoInfo> NextVideoFileList { get; set; }
 
-        public ThumbnailInfo CurrentVideo { get; set; }
+        // public VideoInfo CurrentVideo { get; set; }
+        public VideoInfo CurrentVideoInfo { get; set; }
 
         public bool EncryptedVideo { get; set; }
 
@@ -37,7 +38,6 @@ namespace LBFVideoLib.Client
         private bool _skipNodeSelection = true;
         private Control _hiddenSourceControl = null;
 
-        public VideoInfo CurrentVideoInfo { get; set; }
 
         public frmUpCommingVideo()
         {
@@ -86,11 +86,11 @@ namespace LBFVideoLib.Client
 
             if (EncryptedVideo)
             {
-                PlayEncryptedVideo(CurrentVideo.VideoFullUrl);
+                PlayEncryptedVideo(CurrentVideoInfo.VideoFullUrl);
             }
             else
             {
-                this.axWindowsMediaPlayer1.URL = CurrentVideo.VideoFullUrl;
+                this.axWindowsMediaPlayer1.URL = CurrentVideoInfo.VideoFullUrl;
             }
 
         }
@@ -153,12 +153,11 @@ namespace LBFVideoLib.Client
             for (int i = 0; i < PreviousVideoFileList.Count; i++)
             {
                 CustomeThumbControl ctlThumb = new CustomeThumbControl(CtlThumb_Click);
-                ctlThumb.ThumbName = PreviousVideoFileList[i].FileName;
+                ctlThumb.ThumbName = PreviousVideoFileList[i].VideoName;
                 ctlThumb.ThumbUrl = PreviousVideoFileList[i].ThumbnailFilePath; //Path.Combine(thumbnailSubjectPath, "Subjects_ENGLISH.png");
                 ctlThumb.VideoUrl = PreviousVideoFileList[i].VideoFullUrl;
-                //ctlThumb.Click += CtlThumb_Click;
+                ctlThumb.ThumbnailInformation = PreviousVideoFileList[i];
                 ctlThumb.Size = new System.Drawing.Size(130, 130);
-                //ctlThumb
                 flowLayoutPanelPrevious.Controls.Add(ctlThumb);
             }
 
@@ -174,12 +173,10 @@ namespace LBFVideoLib.Client
             for (int i = 0; i < NextVideoFileList.Count; i++)
             {
                 CustomeThumbControl ctlThumb = new CustomeThumbControl(CtlThumb_Click);
-                ctlThumb.ThumbName = NextVideoFileList[i].FileName;
+                ctlThumb.ThumbName = NextVideoFileList[i].VideoName;
                 ctlThumb.ThumbUrl = NextVideoFileList[i].ThumbnailFilePath; //Path.Combine(thumbnailSubjectPath, "Subjects_ENGLISH.png");
                 ctlThumb.VideoUrl = NextVideoFileList[i].VideoFullUrl;
-                //ctlThumb.Click += CtlThumb_Click;
                 ctlThumb.Size = new System.Drawing.Size(130, 130);
-                //ctlThumb
                 flowLayoutPanelUpcoming.Controls.Add(ctlThumb);
             }
 

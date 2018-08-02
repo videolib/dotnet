@@ -1,86 +1,129 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
 namespace LBFVideoLib.Common
 {
-  public  class ThumbnailHelper
+    public class ThumbnailHelper
     {
         const string Class1String = "class 1";
         const string Class2String = "class 2";
         const string Class3String = "class 3";
         const string Class4String = "class 4";
-        const string Class5String = "class 5";        
-        
+        const string Class5String = "class 5";
+
         const string EnglishSubjectString = "english";
         const string HindiSubjectString = "hindi";
         const string EVSSubjectString = "evs";
         const string MathsSubjectString = "maths";
+        const string GKSubjectString = "gk";
 
-        public static string GetThumbnailFileName(string classString, string subjectString)
+        public static string GetThumbnailFileName(string thumbnailDirectoryPath, string classString, string subjectString)
         {
-            if (Class1String.ToLower().Contains(classString) && EnglishSubjectString.ToLower().Contains(subjectString))
+            string subject = "", onlySubjectThumbnail = "";
+            if (subjectString.ToLower().Contains(EnglishSubjectString))
             {
-                return "English Cover Class 1st.jpg";
-            }
-            if (Class2String.ToLower().Contains(classString) && EnglishSubjectString.ToLower().Contains(subjectString))
-            {
-                return "English Cover Class 2nd.jpg";
-            }
-            if (Class3String.ToLower().Contains(classString) && EnglishSubjectString.ToLower().Contains(subjectString))
-            {
-                return "English Cover Class 3rd.jpg";
-            }
-            if (Class4String.ToLower().Contains(classString) && EnglishSubjectString.ToLower().Contains(subjectString))
-            {
-                return "English Cover Class 4th.jpg";
-            }
-            else if (Class5String.ToLower().Contains(classString) && EnglishSubjectString.ToLower().Contains(subjectString))
-            {
-                return "English Cover Class 5th.jpg";
-            }
-
-
-            else if (Class1String.ToLower().Contains(classString) && HindiSubjectString.ToLower().Contains(subjectString))
-            {
-                return "Hindi Cover Class 1st.jpg";
-            }
-            if (Class2String.ToLower().Contains(classString) && HindiSubjectString.ToLower().Contains(subjectString))
-            {
-                return "Hindi Cover Class 2nd.jpg";
-            }
-            if (Class3String.ToLower().Contains(classString) && HindiSubjectString.ToLower().Contains(subjectString))
-            {
-                return "Hindi Cover Class 3rd.jpg";
-            }
-            if (Class4String.ToLower().Contains(classString) && HindiSubjectString.ToLower().Contains(subjectString))
-            {
-                return "Hindi Cover Class 4th.jpg";
-            }
-            else if (Class5String.ToLower().Contains(classString) && HindiSubjectString.ToLower().Contains(subjectString))
-            {
-                return "Hindi Cover Class 5th.jpg";
-            }
-
-
-            else if (subjectString.ToLower().Contains(EnglishSubjectString))
-            {
-                return "Subjects_English.png";
+                subject = EnglishSubjectString;
+                onlySubjectThumbnail = "Subjects_English.png";
             }
             else if (subjectString.ToLower().Contains(HindiSubjectString))
             {
-                return "Subjects_Hindi.png";
+                //return "Subjects_Hindi.png";
+                subject = HindiSubjectString;
+                onlySubjectThumbnail = "Subjects_Hindi.png";
             }
             else if (subjectString.ToLower().Contains(EVSSubjectString))
             {
-                return "Subjects_EVS.png";
+                subject = EVSSubjectString;
+                onlySubjectThumbnail = "Subjects_EVS.png";
+                //return "Subjects_EVS.png";
             }
             else if (subjectString.ToLower().Contains(MathsSubjectString))
             {
-                return "Subjects_Maths.png";
+                subject = MathsSubjectString;
+                onlySubjectThumbnail = "Subjects_Maths";  //return "Subjects_Maths.png";
             }
-            return "Subjects_English.png";
+            else if (subjectString.ToLower().Contains(GKSubjectString))
+            {
+                subject = GKSubjectString;
+                onlySubjectThumbnail = "default.jpg";
+            }
+            else
+            {
+                return "default.jpg";
+            }
+            string expectedThumbnailName = string.Format("{0}_{1}.jpg", classString.ToLower(), subject);
+
+            if (File.Exists(Path.Combine(thumbnailDirectoryPath, expectedThumbnailName)))
+            {
+                return expectedThumbnailName;
+            }
+            else
+            {
+                return onlySubjectThumbnail;
+            }
+
+            //if (Class1String.ToLower().Contains(classString) && EnglishSubjectString.ToLower().Contains(subjectString))
+            //{
+            //    return "English Cover Class 1st.jpg";
+            //}
+            //if (Class2String.ToLower().Contains(classString) && EnglishSubjectString.ToLower().Contains(subjectString))
+            //{
+            //    return "English Cover Class 2nd.jpg";
+            //}
+            //if (Class3String.ToLower().Contains(classString) && EnglishSubjectString.ToLower().Contains(subjectString))
+            //{
+            //    return "English Cover Class 3rd.jpg";
+            //}
+            //if (Class4String.ToLower().Contains(classString) && EnglishSubjectString.ToLower().Contains(subjectString))
+            //{
+            //    return "English Cover Class 4th.jpg";
+            //}
+            //else if (Class5String.ToLower().Contains(classString) && EnglishSubjectString.ToLower().Contains(subjectString))
+            //{
+            //    return "English Cover Class 5th.jpg";
+            //}
+
+            //else if (Class1String.ToLower().Contains(classString) && HindiSubjectString.ToLower().Contains(subjectString))
+            //{
+            //    return "Hindi Cover Class 1st.jpg";
+            //}
+            //if (Class2String.ToLower().Contains(classString) && HindiSubjectString.ToLower().Contains(subjectString))
+            //{
+            //    return "Hindi Cover Class 2nd.jpg";
+            //}
+            //if (Class3String.ToLower().Contains(classString) && HindiSubjectString.ToLower().Contains(subjectString))
+            //{
+            //    return "Hindi Cover Class 3rd.jpg";
+            //}
+            //if (Class4String.ToLower().Contains(classString) && HindiSubjectString.ToLower().Contains(subjectString))
+            //{
+            //    return "Hindi Cover Class 4th.jpg";
+            //}
+            //else if (Class5String.ToLower().Contains(classString) && HindiSubjectString.ToLower().Contains(subjectString))
+            //{
+            //    return "Hindi Cover Class 5th.jpg";
+            //}
+
+            //  if (subjectString.ToLower().Contains(EnglishSubjectString))
+            //{
+            //    return "Subjects_English.png";
+            //}
+            //else if (subjectString.ToLower().Contains(HindiSubjectString))
+            //{
+            //    return "Subjects_Hindi.png";
+            //}
+            //else if (subjectString.ToLower().Contains(EVSSubjectString))
+            //{
+            //    return "Subjects_EVS.png";
+            //}
+            //else if (subjectString.ToLower().Contains(MathsSubjectString))
+            //{
+            //    return "Subjects_Maths.png";
+            //}
+            //return "Subjects_English.png";
         }
     }
 }

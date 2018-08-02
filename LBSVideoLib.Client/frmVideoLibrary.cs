@@ -15,11 +15,11 @@ namespace LBFVideoLib.Client
         private string _clientRootPath = "";
         private string _clientInfoFilePath = "";
         private string _clientVideoRootFilePath = "";
-        private List<ThumbnailInfo> _videoThumbnailFilePathList = new List<ThumbnailInfo>();
+        private List<VideoInfo> _videoThumbnailFilePathList = new List<VideoInfo>();
         //   private TreeNode _lastSelectedNode = null;
         private bool _searchApplied = false;
         private bool _skipNodeSelection = true;
-        List<ThumbnailInfo> _searchList = new List<ThumbnailInfo>();
+        List<VideoInfo> _searchList = new List<VideoInfo>();
 
         public Form ParentFormControl { get; set; }
         public Form DashboardFormControl { get; set; }
@@ -150,19 +150,13 @@ namespace LBFVideoLib.Client
 
         #endregion
 
-
-        private void myButton1_Click(object sender, EventArgs e)
-        {
-            OpenUpcomingVideoForm(null);
-        }
-
         private void CtlThumb_Click(object sender, EventArgs e)
         {
             CustomeThumbControl ctl = sender as CustomeThumbControl;
             // Find index of currently selected video in list.
 
-            List<ThumbnailInfo> nextVideoList = new List<ThumbnailInfo>();
-            List<ThumbnailInfo> previousVideoList = new List<ThumbnailInfo>();
+            List<VideoInfo> nextVideoList = new List<VideoInfo>();
+            List<VideoInfo> previousVideoList = new List<VideoInfo>();
             if (_searchApplied)
             {
                 CreatePreviousAndNextPlaylist(_searchList, ctl.VideoUrl, out nextVideoList, out previousVideoList);
@@ -175,10 +169,9 @@ namespace LBFVideoLib.Client
             frmUpCommingVideo upcomingVideoForm = new frmUpCommingVideo();
             upcomingVideoForm.ParentFormControl = this;
             upcomingVideoForm.ClientInfoObject = this.ClientInfoObject;
-            upcomingVideoForm.EncryptedVideo = false;
             upcomingVideoForm.NextVideoFileList = nextVideoList;
             upcomingVideoForm.PreviousVideoFileList = previousVideoList;
-            upcomingVideoForm.CurrentVideo = new ThumbnailInfo() { FileName = ctl.ThumbName, ThumbnailFilePath = ctl.ThumbUrl, VideoFullUrl = ctl.VideoUrl };
+            upcomingVideoForm.CurrentVideoInfo = ctl.ThumbnailInformation;// new VideoInfo() { VideoName = ctl.ThumbnailInformation.VideoName, ThumbnailFilePath = ctl.ThumbnailInformation.ThumbnailFilePath, VideoFullUrl = ctl.ThumbnailInformation.VideoFullUrl};
             upcomingVideoForm.EncryptedVideo = true;
             upcomingVideoForm.SelectedNode = this.treeView1.SelectedNode;
             upcomingVideoForm.DashboardFormControl = this.DashboardFormControl;
@@ -186,10 +179,10 @@ namespace LBFVideoLib.Client
             this.Hide();
         }
 
-        private void CreatePreviousAndNextPlaylist(List<ThumbnailInfo> thumbnailList, string videoUrl, out List<ThumbnailInfo> nextVideoList, out List<ThumbnailInfo> previousVideoList)
+        private void CreatePreviousAndNextPlaylist(List<VideoInfo> thumbnailList, string videoUrl, out List<VideoInfo> nextVideoList, out List<VideoInfo> previousVideoList)
         {
-            nextVideoList = new List<ThumbnailInfo>();
-            previousVideoList = new List<ThumbnailInfo>();
+            nextVideoList = new List<VideoInfo>();
+            previousVideoList = new List<VideoInfo>();
             int index = thumbnailList.FindIndex(k => k.VideoFullUrl.Equals(videoUrl));
             for (int i = index + 1; (i < index + 1 + 3) && (i < thumbnailList.Count); i++)
             {
@@ -200,8 +193,6 @@ namespace LBFVideoLib.Client
             {
                 previousVideoList.Add(thumbnailList[i]);
             }
-
-
         }
 
         private void lblContact_Click(object sender, EventArgs e)
@@ -228,7 +219,7 @@ namespace LBFVideoLib.Client
             {
                 _searchApplied = true;
                 //string searchText = txtSearch.Text.Trim().ToLower();
-                _searchList = _videoThumbnailFilePathList.Where(item => item.FileName.ToLower().Contains(searchText)).ToList<ThumbnailInfo>();
+                _searchList = _videoThumbnailFilePathList.Where(item => item.VideoName.ToLower().Contains(searchText)).ToList<VideoInfo>();
                 AddVideoThumbnailControls(_searchList);
             }
             else if (_searchApplied)
@@ -264,12 +255,6 @@ namespace LBFVideoLib.Client
 
         private void FillVideoLibrary(TreeTag currentNodeTag)
         {
-            //TreeTag currentNodeTag = ((e.Node as TreeNode).Tag as TreeTag);
-            //if (_lastSelectedNode != null && e.Node.Text.Equals(_lastSelectedNode.Text))
-            //{
-            //    return;
-            //}
-            //  _lastSelectedNode = e.Node;
             _videoThumbnailFilePathList.Clear();
             if (currentNodeTag.BookVideoList.Count == 0)
             {
@@ -287,15 +272,16 @@ namespace LBFVideoLib.Client
             AddVideoThumbnailControls(_videoThumbnailFilePathList);
         }
 
-        private void AddVideoThumbnailControls(List<ThumbnailInfo> thumbnailInfoList)
+        private void AddVideoThumbnailControls(List<VideoInfo> thumbnailInfoList)
         {
             flowLayoutVideoPanel.Controls.Clear();
             for (int j = 0; j < thumbnailInfoList.Count; j++)
             {
                 CustomeThumbControl ctlThumb = new CustomeThumbControl(CtlThumb_Click);
-                ctlThumb.ThumbName = thumbnailInfoList[j].FileName;
+                ctlThumb.ThumbName = thumbnailInfoList[j].VideoName;
                 ctlThumb.ThumbUrl = thumbnailInfoList[j].ThumbnailFilePath; //Path.Combine(thumbnailSubjectPath, "Subjects_ENGLISH.png");
                 ctlThumb.VideoUrl = thumbnailInfoList[j].VideoFullUrl;
+                ctlThumb.ThumbnailInformation = thumbnailInfoList[j];
                 //ctlThumb.Click += CtlThumb_Click;
                 ctlThumb.Size = new System.Drawing.Size(180, 180);
                 //ctlThumb
@@ -303,18 +289,18 @@ namespace LBFVideoLib.Client
             }
         }
 
-        private void GetVideoFileList(string currentPath, List<ThumbnailInfo> videFilePathList)
+        private void GetVideoFileList(string currentPath, List<VideoInfo> videoFilePathList)
         {
             if (Directory.GetFiles(currentPath).Length > 0)
             {
                 string[] fileList = Directory.GetFiles(currentPath);
                 for (int i = 0; i < fileList.Length; i++)
                 {
-                    ThumbnailInfo thumbnailInfo = new ThumbnailInfo();
+                    VideoInfo thumbnailInfo = new VideoInfo();
                     thumbnailInfo.VideoFullUrl = fileList[i];
-                    thumbnailInfo.FileName = Path.GetFileName(fileList[i]);
-                    thumbnailInfo.ThumbnailFilePath = Path.Combine(ClientHelper.GetClientThumbanailPath(), ThumbnailHelper.GetThumbnailFileName("",currentPath));
-                    videFilePathList.Add(thumbnailInfo);
+                    thumbnailInfo.VideoName = Path.GetFileName(fileList[i]);
+                    thumbnailInfo.ThumbnailFilePath = Path.Combine(ClientHelper.GetClientThumbanailPath(), ThumbnailHelper.GetThumbnailFileName(ClientHelper.GetClientThumbanailPath(), ClientHelper.GetClassNameFromFullPath(currentPath), currentPath));
+                    videoFilePathList.Add(thumbnailInfo);
                 }
             }
             else
@@ -322,7 +308,7 @@ namespace LBFVideoLib.Client
                 string[] currentDirectoryList = Directory.GetDirectories(currentPath);
                 for (int i = 0; i < currentDirectoryList.Length; i++)
                 {
-                    GetVideoFileList(currentDirectoryList[i], videFilePathList);
+                    GetVideoFileList(currentDirectoryList[i], videoFilePathList);
                 }
             }
         }
