@@ -23,8 +23,8 @@ namespace LBFVideoLib.Client
         private List<VideoInfo> _mostWatchedVideos = new List<VideoInfo>();
         private List<VideoInfo> _mostRecommandedVideos = new List<VideoInfo>();
 
-        private List<ThumbnailInfo> _mostWatchedVideosThumbList = new List<ThumbnailInfo>();
-        private List<ThumbnailInfo> _mostRecommandedVideosThumbList = new List<ThumbnailInfo>();
+        //private List<ThumbnailInfo> _mostWatchedVideosThumbList = new List<ThumbnailInfo>();
+        //private List<ThumbnailInfo> _mostRecommandedVideosThumbList = new List<ThumbnailInfo>();
 
 
         public frmDashboard()
@@ -35,9 +35,6 @@ namespace LBFVideoLib.Client
 
         private void frmDashboard_Load(object sender, EventArgs e)
         {
-            // FillVideoList();
-            // FillRandomVideoList();
-
             lblSessionYears.Text = ClientHelper.GetSessionString(ClientInfoObject.SessionString);
             lblSchoolWelcome.Text = ClientHelper.GetWelcomeString(ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);
             lblExpireDate.Text = ClientHelper.GetExpiryDateString(ClientInfoObject.SessionEndDate);
@@ -45,13 +42,8 @@ namespace LBFVideoLib.Client
             FillTreeView();
             treeView1.ExpandAll();
 
-            //if (this.treeView1.Nodes != null && this.treeView1.Nodes.Count > 0)
-            //{
-            //    this.treeView1.SelectedNode = this.treeView1.Nodes[0];
-
             AddRecomandatedVideos();
             AddMostWatchedVideos();
-            //}
         }
 
         private void FillVideoList()
@@ -186,6 +178,7 @@ namespace LBFVideoLib.Client
 
         private void AddRecomandatedVideos()
         {
+            _mostRecommandedVideos.Clear();
             Random random = new Random();
             int[] randomVideoIndexList = Enumerable.Repeat<int>(-1, CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count).ToArray(); //new int[CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.Count];
             int noOfIterations = 0;
@@ -217,45 +210,47 @@ namespace LBFVideoLib.Client
             }
             for (int i = 0; _mostRecommandedVideos != null && i < _mostRecommandedVideos.Count; i++)
             {
-                ThumbnailInfo thumbInfo = new ThumbnailInfo();
-                thumbInfo.FileName = _mostRecommandedVideos[i].VideoName;
-                thumbInfo.ThumbnailFilePath = Path.Combine(ClientHelper.GetClientThumbanailPath(), ThumbnailHelper.GetThumbnailFileName(_mostRecommandedVideos[i].ClassName, _mostRecommandedVideos[i].Book));
-                thumbInfo.VideoFullUrl = _mostRecommandedVideos[i].VideoFullUrl;
-                _mostRecommandedVideosThumbList.Add(thumbInfo);
+                //ThumbnailInfo thumbInfo = new ThumbnailInfo();
+                //thumbInfo.FileName = _mostRecommandedVideos[i].VideoName;
+                //thumbInfo.ThumbnailFilePath = Path.Combine(ClientHelper.GetClientThumbanailPath(), ThumbnailHelper.GetThumbnailFileName(ClientHelper.GetClientThumbanailPath(),_mostRecommandedVideos[i].ClassName, _mostRecommandedVideos[i].Book));
+                //thumbInfo.VideoFullUrl = _mostRecommandedVideos[i].VideoFullUrl;
+                //_mostRecommandedVideosThumbList.Add(thumbInfo);
+                _mostRecommandedVideos[i].ThumbnailFilePath = Path.Combine(ClientHelper.GetClientThumbanailPath(), ThumbnailHelper.GetThumbnailFileName(ClientHelper.GetClientThumbanailPath(), _mostRecommandedVideos[i].ClassName, _mostRecommandedVideos[i].Book));
             }
-            if (_mostRecommandedVideosThumbList != null && _mostRecommandedVideosThumbList.Count > 0)
+            if (_mostRecommandedVideos != null && _mostRecommandedVideos.Count > 0)
             {
-                AddVideoThumbnailControls(pnlRecomVideo, _mostRecommandedVideosThumbList, CtlMostWatchedVideo_Click);
+                AddVideoThumbnailControls(pnlRecomVideo, _mostRecommandedVideos, CtlMostWatchedVideo_Click);
             }
         }
 
         private void AddMostWatchedVideos()
         {
-            _mostWatchedVideosThumbList.Clear();
+            _mostWatchedVideos.Clear();
             _mostWatchedVideos = CommonAppStateDataHelper.ClientInfoObject.VideoInfoList.OrderByDescending(k => k.WatchCount).Take(5).ToList<VideoInfo>();
 
             for (int i = 0; _mostWatchedVideos != null && i < _mostWatchedVideos.Count; i++)
             {
-                ThumbnailInfo thumbInfo = new ThumbnailInfo();
-                thumbInfo.FileName = _mostWatchedVideos[i].VideoName;
-                thumbInfo.ThumbnailFilePath = Path.Combine(ClientHelper.GetClientThumbanailPath(), ThumbnailHelper.GetThumbnailFileName(_mostWatchedVideos[i].ClassName, _mostWatchedVideos[i].Book));
-                thumbInfo.VideoFullUrl = _mostWatchedVideos[i].VideoFullUrl;
-                _mostWatchedVideosThumbList.Add(thumbInfo);
+                //ThumbnailInfo thumbInfo = new ThumbnailInfo();
+                //thumbInfo.FileName = _mostWatchedVideos[i].VideoName;
+                //thumbInfo.ThumbnailFilePath = Path.Combine(ClientHelper.GetClientThumbanailPath(), ThumbnailHelper.GetThumbnailFileName(ClientHelper.GetClientThumbanailPath(),_mostWatchedVideos[i].ClassName, _mostWatchedVideos[i].Book));
+                //thumbInfo.VideoFullUrl = _mostWatchedVideos[i].VideoFullUrl;
+                //_mostWatchedVideosThumbList.Add(thumbInfo);
+                _mostWatchedVideos[i].ThumbnailFilePath = Path.Combine(ClientHelper.GetClientThumbanailPath(), ThumbnailHelper.GetThumbnailFileName(ClientHelper.GetClientThumbanailPath(), _mostWatchedVideos[i].ClassName, _mostWatchedVideos[i].Book));
             }
-            if (_mostWatchedVideosThumbList != null && _mostWatchedVideosThumbList.Count > 0)
+            if (_mostWatchedVideos != null && _mostWatchedVideos.Count > 0)
             {
-                AddVideoThumbnailControls(pnlMostWatchVideo, _mostWatchedVideosThumbList, CtlMostWatchedVideo_Click);
+                AddVideoThumbnailControls(pnlMostWatchVideo, _mostWatchedVideos, CtlMostWatchedVideo_Click);
             }
         }
 
-        private void AddVideoThumbnailControls(FlowLayoutPanel flowLayoutPanel, List<ThumbnailInfo> thumbnailInfoList, Action<object, EventArgs> clickDeligate)
+        private void AddVideoThumbnailControls(FlowLayoutPanel flowLayoutPanel, List<VideoInfo> thumbnailInfoList, Action<object, EventArgs> clickDeligate)
         {
             flowLayoutPanel.Controls.Clear();
             for (int j = 0; j < thumbnailInfoList.Count; j++)
             {
                 CustomeThumbControl ctlThumb = new CustomeThumbControl(clickDeligate);
                 ctlThumb.ThumbnailInformation = thumbnailInfoList[j];
-                ctlThumb.ThumbName = thumbnailInfoList[j].FileName;
+                ctlThumb.ThumbName = thumbnailInfoList[j].VideoName;
                 ctlThumb.ThumbUrl = thumbnailInfoList[j].ThumbnailFilePath;
                 ctlThumb.VideoUrl = thumbnailInfoList[j].VideoFullUrl;
                 ctlThumb.Size = new System.Drawing.Size(180, 180);
@@ -269,10 +264,10 @@ namespace LBFVideoLib.Client
             CustomeThumbControl ctl = sender as CustomeThumbControl;
             // Find index of currently selected video in list.
 
-            List<ThumbnailInfo> nextVideoList = new List<ThumbnailInfo>();
-            List<ThumbnailInfo> previousVideoList = new List<ThumbnailInfo>();
+            List<VideoInfo> nextVideoList = new List<VideoInfo>();
+            List<VideoInfo> previousVideoList = new List<VideoInfo>();
 
-            CreatePreviousAndNextPlaylist(_mostRecommandedVideosThumbList, ctl.VideoUrl, out nextVideoList, out previousVideoList);
+            CreatePreviousAndNextPlaylist(_mostRecommandedVideos, ctl.VideoUrl, out nextVideoList, out previousVideoList);
 
             frmUpCommingVideo upcomingVideoForm = new frmUpCommingVideo();
             upcomingVideoForm.ParentFormControl = this;
@@ -280,7 +275,7 @@ namespace LBFVideoLib.Client
             upcomingVideoForm.EncryptedVideo = false;
             upcomingVideoForm.NextVideoFileList = nextVideoList;
             upcomingVideoForm.PreviousVideoFileList = previousVideoList;
-            upcomingVideoForm.CurrentVideo = new ThumbnailInfo() { FileName = ctl.ThumbName, ThumbnailFilePath = ctl.ThumbUrl, VideoFullUrl = ctl.VideoUrl };
+            upcomingVideoForm.CurrentVideoInfo = ctl.ThumbnailInformation;//new VideoInfo() { FileName = ctl.ThumbnailInformation.VideoName, ThumbnailFilePath = ctl.ThumbUrl, VideoFullUrl = ctl.VideoUrl };
             upcomingVideoForm.EncryptedVideo = true;
             upcomingVideoForm.SelectedNode = this.treeView1.SelectedNode;
             upcomingVideoForm.DashboardFormControl = this;
@@ -293,10 +288,10 @@ namespace LBFVideoLib.Client
             CustomeThumbControl ctl = sender as CustomeThumbControl;
             // Find index of currently selected video in list.
 
-            List<ThumbnailInfo> nextVideoList = new List<ThumbnailInfo>();
-            List<ThumbnailInfo> previousVideoList = new List<ThumbnailInfo>();
+            List<VideoInfo> nextVideoList = new List<VideoInfo>();
+            List<VideoInfo> previousVideoList = new List<VideoInfo>();
 
-            CreatePreviousAndNextPlaylist(_mostWatchedVideosThumbList, ctl.VideoUrl, out nextVideoList, out previousVideoList);
+            CreatePreviousAndNextPlaylist(_mostWatchedVideos, ctl.VideoUrl, out nextVideoList, out previousVideoList);
 
             frmUpCommingVideo upcomingVideoForm = (CommonAppStateDataHelper.FindFormByFormType("frmUpCommingVideo") as frmUpCommingVideo);
             if (upcomingVideoForm == null)
@@ -308,7 +303,7 @@ namespace LBFVideoLib.Client
             upcomingVideoForm.EncryptedVideo = false;
             upcomingVideoForm.NextVideoFileList = nextVideoList;
             upcomingVideoForm.PreviousVideoFileList = previousVideoList;
-            upcomingVideoForm.CurrentVideo = new ThumbnailInfo() { FileName = ctl.ThumbName, ThumbnailFilePath = ctl.ThumbUrl, VideoFullUrl = ctl.VideoUrl };
+            upcomingVideoForm.CurrentVideoInfo = ctl.ThumbnailInformation; //  new VideoInfo() { VideoName = ctl.ThumbnailInformation.VideoName, ThumbnailFilePath = ctl.ThumbnailInformation.ThumbnailFilePath, VideoFullUrl = ctl.ThumbnailInformation.VideoFullUrl };
             upcomingVideoForm.EncryptedVideo = true;
             upcomingVideoForm.SelectedNode = this.treeView1.SelectedNode;
             upcomingVideoForm.DashboardFormControl = this;
@@ -316,10 +311,10 @@ namespace LBFVideoLib.Client
             this.Hide();
         }
 
-        private void CreatePreviousAndNextPlaylist(List<ThumbnailInfo> thumbnailList, string videoUrl, out List<ThumbnailInfo> nextVideoList, out List<ThumbnailInfo> previousVideoList)
+        private void CreatePreviousAndNextPlaylist(List<VideoInfo> thumbnailList, string videoUrl, out List<VideoInfo> nextVideoList, out List<VideoInfo> previousVideoList)
         {
-            nextVideoList = new List<ThumbnailInfo>();
-            previousVideoList = new List<ThumbnailInfo>();
+            nextVideoList = new List<VideoInfo>();
+            previousVideoList = new List<VideoInfo>();
             int index = thumbnailList.FindIndex(k => k.VideoFullUrl.Equals(videoUrl));
             for (int i = index + 1; (i < index + 1 + 3) && (i < thumbnailList.Count); i++)
             {

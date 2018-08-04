@@ -7,7 +7,6 @@ namespace LBFVideoLib.Common.Entity
 {
     public class TreeTag
     {
-
         public TreeTag()
         {
             BookVideoList = new List<string>();

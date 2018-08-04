@@ -158,46 +158,27 @@
   <ItemGroup>
     <None Include="Resources\Icon_-10x.png" />
     <Content Include="LBF.ico" />
-    <Content Include="Thumbnails\English Cover Class 1st.jpg">
+    <Content Include="Thumbnails\class 1_english.jpg" />
+    <Content Include="Thumbnails\class 2_english.jpg" />
+    <Content Include="Thumbnails\class 3_english.jpg" />
+    <Content Include="Thumbnails\class 4_english.jpg" />
+    <Content Include="Thumbnails\class 5_english.jpg" />
+    <Content Include="Thumbnails\class 1_hindi.jpg" />
+    <Content Include="Thumbnails\class 2_hindi.jpg" />
+    <Content Include="Thumbnails\class 3_hindi.jpg" />
+    <Content Include="Thumbnails\class 4_hindi.jpg" />
+    <Content Include="Thumbnails\class 5_hindi.jpg" />
+    <Content Include="Thumbnails\default.jpg" />
+    <Content Include="Thumbnails\subjects_english.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Thumbnails\English Cover Class 2nd.jpg">
+    <Content Include="Thumbnails\subjects_evs.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Thumbnails\English Cover Class 3rd.jpg">
+    <Content Include="Thumbnails\subjects_hindi.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Thumbnails\English Cover Class 4th.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Thumbnails\English Cover Class 5th.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Thumbnails\Hindi Cover Class 1st.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Thumbnails\Hindi Cover Class 2nd.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Thumbnails\Hindi Cover Class 3rd.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Thumbnails\Hindi Cover Class 4th.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Thumbnails\Hindi Cover Class 5th.jpg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Thumbnails\Subjects_ENGLISH.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Thumbnails\Subjects_EVS.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Thumbnails\Subjects_HINDI.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Thumbnails\Subjects_MATHS.png">
+    <Content Include="Thumbnails\subjects_maths.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

@@ -22,5 +22,9 @@ namespace LBFVideoLib.Common
 
         public string Book { get; set; }
 
+        //public string FileName { get; set; }
+
+        public string ThumbnailFilePath { get; set; }
+
     }
 }

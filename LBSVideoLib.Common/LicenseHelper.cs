@@ -91,7 +91,6 @@ namespace LBFVideoLib.Common
         public static LicenseValidationState CheckLicenseState(ClientInfo clientInfo, out string message, out bool deleteVideo)
         {
             LicenseValidationState currentState = LicenseValidationState.Valid;
-            //    bool valid = true;
             deleteVideo = false;
             message = "";
             DateTime sessionStartDate = new DateTime();
@@ -129,14 +128,13 @@ namespace LBFVideoLib.Common
                 deleteVideo = true;
                 currentState = LicenseValidationState.Expired;
                 message = licenseExpiredMessage;
-            }          
+            }
             // Clock time is back from current time -> Invalid Clock
             else if (lastAccessTime > currentDateTime) // && (registrationDate < currentDateTime && currentDateTime > clientInfo.ExpiryDate))
             {
                 currentState = LicenseValidationState.InvalidClock;
                 message = invalidClockMessage;
             }
-
             //// First Time Login Case -> Valid
             //if (lastAccessTime.Equals(clientInfo.RegistrationDate) && (registrationDate < currentDateTime && currentDateTime < clientInfo.ExpiryDate))
             //{
