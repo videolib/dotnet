@@ -8,10 +8,11 @@ namespace LBFVideoLib.Common.Entity
 
     public class RegInfoFB
     {
-
+                
         public RegInfoFB()
         {
             Classes = new List<ClassFB>();
+            MacAddresses = new List<string>();
 
         }
 
@@ -48,12 +49,16 @@ namespace LBFVideoLib.Common.Entity
         {
             get; set;
         }
-
+               
 
         public List<ClassFB> Classes
         {
             get; set;
         }
+
+        public int NoOfPcs { get; set; }
+
+        public List<string> MacAddresses { get; set; }
     }
 
     [Serializable()]
