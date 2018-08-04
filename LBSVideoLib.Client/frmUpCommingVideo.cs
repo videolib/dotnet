@@ -506,6 +506,7 @@ namespace LBFVideoLib.Client
                 progressBar1.Visible = false;
                 this.CurrentVideoInfo = currentData.CurrentVideoInfo;
                 this.axWindowsMediaPlayer1.URL = currentData.DecryptedVideoPath;
+                this.axWindowsMediaPlayer1.stretchToFit = true;
                 lblWelcome.Text = string.Format("{0}", this.CurrentVideoInfo.Subject);
                 lblWatchCount.Text = string.Format("Watch Count: {0} Times", currentData.CurrentVideoInfo.WatchCount);
                 this.lblFileName.Text = Path.GetFileNameWithoutExtension(currentData.CurrentVideoInfo.VideoFullUrl);

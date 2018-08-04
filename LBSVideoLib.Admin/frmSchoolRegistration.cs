@@ -778,7 +778,7 @@ namespace LBFVideoLib.Admin
             {
                 string jsonString1 = JsonHelper.ParseObjectToJSON<RegInfoFB>(info);
                 string url = string.Format("registrations-data/{0}-{1}", txtSchoolCode.Text, cmbSchoolSession.Text);
-                FirebaseHelper.PatchData(jsonString1, url);
+               FirebaseHelper.PatchData(jsonString1, url);
             }
             catch (Exception ex)
             {               

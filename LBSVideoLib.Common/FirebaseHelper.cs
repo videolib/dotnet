@@ -21,7 +21,7 @@ namespace LBFVideoLib.Common
             request.ContentType = "application/json";
             request.Headers.Add("API-KEY", "");
             request.KeepAlive = false;
-            request.Timeout = 1500;
+            request.Timeout = -1;
             request.ContentLength = requestJson.Length;
             using (var requestWriter = new StreamWriter(request.GetRequestStream(), System.Text.Encoding.ASCII))
             {
@@ -67,7 +67,7 @@ namespace LBFVideoLib.Common
             request.ContentType = "application/json";
             request.Headers.Add("API-KEY", "");
             request.KeepAlive = false;
-            request.Timeout = 1500;
+            request.Timeout = -1;
             request.ContentLength = requestJson.Length;
             using (var requestWriter = new StreamWriter(request.GetRequestStream(), System.Text.Encoding.ASCII))
             {

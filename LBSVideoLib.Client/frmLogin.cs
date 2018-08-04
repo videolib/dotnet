@@ -40,7 +40,7 @@ namespace LBFVideoLib.Client
                 lblSchoolWelcome.Text = ClientHelper.GetWelcomeString(_clientInfo.SchoolName, _clientInfo.SchoolCity, _clientInfo.SchoolId);
                 lblExpireDate.Text = ClientHelper.GetExpiryDateString(_clientInfo.SessionEndDate);
 
-                ValidateNoOfLicense();
+               // ValidateNoOfLicense();
             }
             //if (_clientInfo.LastAccessEndTime.Equals(DateTime.MinValue))
             //{
