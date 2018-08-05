@@ -58,6 +58,8 @@ namespace LBFVideoLib.Common.Entity
 
         public int NoOfPcs { get; set; }
 
+        public DateTime ExpiryDate { get; set; }
+
         public List<string> MacAddresses { get; set; }
     }
 
