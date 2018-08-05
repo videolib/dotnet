@@ -158,17 +158,39 @@
   <ItemGroup>
     <None Include="Resources\Icon_-10x.png" />
     <Content Include="LBF.ico" />
-    <Content Include="Thumbnails\class 1_english.jpg" />
-    <Content Include="Thumbnails\class 2_english.jpg" />
-    <Content Include="Thumbnails\class 3_english.jpg" />
-    <Content Include="Thumbnails\class 4_english.jpg" />
-    <Content Include="Thumbnails\class 5_english.jpg" />
-    <Content Include="Thumbnails\class 1_hindi.jpg" />
-    <Content Include="Thumbnails\class 2_hindi.jpg" />
-    <Content Include="Thumbnails\class 3_hindi.jpg" />
-    <Content Include="Thumbnails\class 4_hindi.jpg" />
-    <Content Include="Thumbnails\class 5_hindi.jpg" />
-    <Content Include="Thumbnails\default.jpg" />
+    <Content Include="Thumbnails\class 1_english.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Thumbnails\class 2_english.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Thumbnails\class 3_english.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Thumbnails\class 4_english.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Thumbnails\class 5_english.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Thumbnails\class 1_hindi.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Thumbnails\class 2_hindi.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Thumbnails\class 3_hindi.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Thumbnails\class 4_hindi.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Thumbnails\class 5_hindi.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Thumbnails\default.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Thumbnails\subjects_english.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

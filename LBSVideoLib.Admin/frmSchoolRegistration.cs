@@ -112,7 +112,7 @@ namespace LBFVideoLib.Admin
                 else if (Directory.Exists(clientSchoolCodePath))
                 {
                     string[] oldClientFiles = Directory.GetDirectories(clientSchoolCodePath);
-                    for (int i = 0; i < oldClientFiles.Length - 1; i++)
+                    for (int i = 0; i < oldClientFiles.Length; i++)
                     {
                         //System.IO.File.Delete(Path.Combine(clientSchoolCodeFolderPath, oldClientFiles[i]));
                         System.IO.Directory.Delete(oldClientFiles[i], true);
@@ -340,7 +340,7 @@ namespace LBFVideoLib.Admin
             {
                 if (System.IO.File.Exists(ClientHelper.GetMemoNumberFilePath()))
                 {
-                    Cryptograph.DecryptObject<int>(ClientHelper.GetMemoNumberFilePath());
+                    counter = Cryptograph.DecryptObject<int>(ClientHelper.GetMemoNumberFilePath());
 
                     // Increment memo number and store it
                     counter += 1;
@@ -367,7 +367,9 @@ namespace LBFVideoLib.Admin
             Int16 existingFileCounter = 0;
             for (int i = 0; i < existingFiles.Length; i++)
             {
-                if (existingFiles[i].ToLower().Equals(fileName.ToLower()))
+                string existingFileName = Path.GetFileNameWithoutExtension(existingFiles[i]).ToLower();
+
+                if (existingFileName.StartsWith(fileName.ToLower()))
                 {
                     existingFileCounter++;
                 }
@@ -765,7 +767,7 @@ namespace LBFVideoLib.Admin
                 MessageBox.Show("Please select atleast one book.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            
+
 
             return true;
 
@@ -822,10 +824,10 @@ namespace LBFVideoLib.Admin
             {
                 string jsonString1 = JsonHelper.ParseObjectToJSON<RegInfoFB>(info);
                 string url = string.Format("registrations-data/{0}-{1}", txtSchoolCode.Text, cmbSchoolSession.Text);
-               FirebaseHelper.PatchData(jsonString1, url);
+                FirebaseHelper.PatchData(jsonString1, url);
             }
             catch (Exception ex)
-            {               
+            {
                 throw new Exception("Internet connectivity issue.");
             }
             return info;
@@ -900,7 +902,7 @@ namespace LBFVideoLib.Admin
             }
         }
 
-      
+
     }
 }
 
