@@ -72,12 +72,12 @@ namespace LBFVideoLib.Admin
                     // Delete created package folder inside school code
                     System.IO.Directory.Delete(clientSchoolCodeFolderPath, true);
                 }
-                throw;
+                //throw;
             }
-            finally
-            {
-                InitializeRegistrationForm();
-            }
+            //finally
+            //{
+            //    InitializeRegistrationForm();
+            //}
         }
 
         private void CreateClientSchoolPackage()
@@ -684,6 +684,7 @@ namespace LBFVideoLib.Admin
             txtSchoolCity.Text = "";
             txtSchoolCode.Text = "";
             txtSchoolName.Text = "";
+            txtNoOfPcs.Text = "";
             cmbSchoolSession.DataSource = LicenseHelper.GetSessionList();
             cmbSchoolSession.SelectedIndex = 0;
 
@@ -747,6 +748,12 @@ namespace LBFVideoLib.Admin
                 return false;
             }
 
+            if (Convert.ToInt32(txtNoOfPcs.Text) <= 0)
+            {
+                MessageBox.Show("Number of pc's is required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
             if (cmbSchoolSession.SelectedIndex < 0)
             {
                 MessageBox.Show("Please select a valid session.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -758,6 +765,7 @@ namespace LBFVideoLib.Admin
                 MessageBox.Show("Please select atleast one book.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+            
 
             return true;
 
@@ -772,6 +780,7 @@ namespace LBFVideoLib.Admin
             info.SchoolName = txtSchoolName.Text;
             info.City = txtSchoolCity.Text;
             info.Session = cmbSchoolSession.Text;
+            info.NoOfPcs = Convert.ToInt32(txtNoOfPcs.Text);
             info.Classes = new List<ClassFB>();
             info.MemoNumber = newMemoNumber;
 
@@ -812,16 +821,12 @@ namespace LBFVideoLib.Admin
             try
             {
                 string jsonString1 = JsonHelper.ParseObjectToJSON<RegInfoFB>(info);
-                string url = string.Format("registrations-data/{0}", txtSchoolCode.Text);
-                FirebaseHelper.PostData(jsonString1, url);
+                string url = string.Format("registrations-data/{0}-{1}", txtSchoolCode.Text, cmbSchoolSession.Text);
+               FirebaseHelper.PatchData(jsonString1, url);
             }
-            catch (Exception e)
-            {
-                if (e.Message.Contains("A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond"))
-                {
-                    Console.Out.WriteLine("-----------------");
-                    Console.Out.WriteLine(e.Message);
-                }
+            catch (Exception ex)
+            {               
+                throw new Exception("Internet connectivity issue.");
             }
             return info;
         }
@@ -895,6 +900,7 @@ namespace LBFVideoLib.Admin
             }
         }
 
+      
     }
 }
 

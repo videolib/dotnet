@@ -50,7 +50,7 @@ namespace LBFVideoLib.Client
             finally
             {
                 CommonAppStateDataHelper.LoggedIn = false;
-                if (CommonAppStateDataHelper.ClientInfoObject != null && CommonAppStateDataHelper.LoggedIn ==true && CommonAppStateDataHelper.LicenseError == false   )
+                if (CommonAppStateDataHelper.ClientInfoObject != null && CommonAppStateDataHelper.LoggedIn == true && CommonAppStateDataHelper.LicenseError == false)
                 {
                     CommonAppStateDataHelper.ClientInfoObject.LastAccessEndTime = DateTime.Now;
                 }
@@ -93,7 +93,6 @@ namespace LBFVideoLib.Client
                 }
             }
         }
-
-
+  
     }
 }

@@ -1,4 +1,5 @@
 ﻿using LBFVideoLib.Common;
+using LBFVideoLib.Common.Entity;
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -38,6 +39,8 @@ namespace LBFVideoLib.Client
                 lblSessionYears.Text = ClientHelper.GetSessionString(_clientInfo.SessionString);
                 lblSchoolWelcome.Text = ClientHelper.GetWelcomeString(_clientInfo.SchoolName, _clientInfo.SchoolCity, _clientInfo.SchoolId);
                 lblExpireDate.Text = ClientHelper.GetExpiryDateString(_clientInfo.SessionEndDate);
+
+               // ValidateNoOfLicense();
             }
             //if (_clientInfo.LastAccessEndTime.Equals(DateTime.MinValue))
             //{
@@ -46,6 +49,28 @@ namespace LBFVideoLib.Client
 
             // Check license duraion
             ValidateLicense();
+        }
+
+
+        private void ValidateNoOfLicense()
+        {
+            string macAddress = MacAddressHelper.GetMacAddress();
+            RegInfoFB regInfo = GetRegInfoFromFirebase(_clientInfo.SchoolId, _clientInfo.SessionString);
+            
+            if (!regInfo.MacAddresses.Contains(macAddress)){
+
+                if (regInfo.MacAddresses.Count >= regInfo.NoOfPcs)
+                {
+
+                    MessageBox.Show("Number of licenses exceeded", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    return;
+                }
+                else
+                {
+                    regInfo.MacAddresses.Add(macAddress);
+                    UpdateRegInfo(regInfo);
+                }
+            }
         }
 
         private void ValidateLicense()
@@ -74,7 +99,7 @@ namespace LBFVideoLib.Client
                 }
 
                 MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-             
+
                 this.Close();
             }
             else if (licenseState != LicenseValidationState.Valid)
@@ -161,6 +186,22 @@ namespace LBFVideoLib.Client
         {
             frmPrivacyPolicy frm = new frmPrivacyPolicy();
             frm.Show();
+        }
+
+
+        private static RegInfoFB GetRegInfoFromFirebase(string schoolCode, string sessionYear)
+        {
+            string url = string.Format("registrations-data/{0}-{1}", schoolCode, sessionYear);
+            string jsonString = FirebaseHelper.GetData(url);
+            return JsonHelper.ParseJsonToObject<RegInfoFB>(jsonString) as RegInfoFB;
+        }
+
+
+        private void UpdateRegInfo(RegInfoFB info)
+        {
+            string jsonString1 = JsonHelper.ParseObjectToJSON<RegInfoFB>(info);
+            string url = string.Format("registrations-data/{0}-{1}", _clientInfo.SchoolId, _clientInfo.SessionString);
+            FirebaseHelper.PatchData(jsonString1, url);
         }
     }
 }
