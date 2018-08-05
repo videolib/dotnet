@@ -38,6 +38,8 @@ namespace LBFVideoLib.Common
 
         public bool Expired { get; set; } = false;
 
+        public string MemoNumber { get; set; } = "";
+
         public List<ClassFB> SelectedVideoDetails { get; set; }
 
         public List<SessionInfo> SessionList { get; set; }

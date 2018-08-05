@@ -9,12 +9,9 @@ namespace LBFVideoLib.Common
         #region Client Path Helper Methods
         public static string GetClientRootPath()
         {
-
             //return Directory.GetCurrentDirectory();
             return @"C:\LBFSetup\ClientPackages\1\Package";
         }
-
-
 
         public static string GetClientInfoFilePath()
         {
@@ -23,9 +20,10 @@ namespace LBFVideoLib.Common
 
         public static string GetClientVideoFilePath(string schoolCode, string schoolCity)
         {
-            string parentPath = Directory.GetParent(GetClientRootPath()).FullName;
+            //string parentPath = Directory.GetParent(GetClientRootPath()).FullName;
 
-            return Path.Combine(parentPath, string.Format("{0}_{1}_{2}", schoolCode, schoolCity, "LBFVideos"));
+            //return Path.Combine(parentPath, string.Format("{0}_{1}_{2}", schoolCode, schoolCity, "LBFVideos"));
+            return Path.Combine(GetClientRootPath(), string.Format("{0}_{1}_{2}", schoolCode, schoolCity, "LBFVideos"));
         }
 
         public static string GetClientThumbanailPath()
@@ -33,27 +31,51 @@ namespace LBFVideoLib.Common
             return Path.Combine(GetClientRootPath(), "Thumbnails");
         }
 
-        public static string GetClassNameFromFullPath(string fullBookDirectoryPath) {
-            return Directory.GetParent(fullBookDirectoryPath).Parent.Parent.Name;            
+        public static string GetClassNameFromFullPath(string fullBookDirectoryPath)
+        {
+            return Directory.GetParent(fullBookDirectoryPath).Parent.Parent.Name;
         }
         #endregion
 
         #region Admin Path Helper Methods
 
-        public static string GetRegisteredSchoolInfoFilePath()
+        public static string GetRegisteredSchoolPackageTargetRootPath()
+        {
+            return ConfigHelper.ClientDistributionTargetRootPath;
+        }
+
+        public static string GetRegisteredSchoolPackagePath(string schoolCode)
+        {
+            //return Path.Combine(ConfigHelper.ClientDistributionTargetRootPath, Path.Combine(schoolCode, "Package"));
+            return Path.Combine(GetRegisteredSchoolPackageTargetRootPath(), schoolCode);
+        }
+
+        public static string GetRegisteredSchoolPackageThumbnailPath(string schoolCode)
+        {
+            return Path.Combine(GetRegisteredSchoolPackagePath(schoolCode), "Thumbnails");
+        }
+
+        public static string GetRegisteredSchoolPackageVideoPath(string schoolCode, string schoolCity)
+        {
+            return Path.Combine(GetRegisteredSchoolPackagePath(schoolCode), string.Format("{0}_{1}_{2}", schoolCode, schoolCity, "LBFVideos"));
+        }
+
+        public static string NewRegisteredSchoolInfoFilePath()
         {
             return Path.Combine(Directory.GetCurrentDirectory(), "ClientRegistrationData");
         }
 
-        public static string GetClientRegistrationPackagePath(string schoolCode)
+        public static string GetMemoNumberFilePath()
         {
-            return Path.Combine(ConfigHelper.ClientDistributionTargetRootPath, Path.Combine(schoolCode, "Package"));
+            return Path.Combine(Directory.GetCurrentDirectory(), MemoNumberFileName());
         }
 
-        public static string GetClientRegistratinThumbnailPath(string schoolCode)
+        public static string MemoNumberFileName()
         {
-            return Path.Combine(GetClientRegistrationPackagePath(schoolCode), "Thumbnails");
+            return "LBFVideoLibMemoNumber.txt";
         }
+
+
 
         //// This path is use to create client package during registration from admin form.
         //public static string GetRegisteredClientDistributionRootPath(string schoolCode)
