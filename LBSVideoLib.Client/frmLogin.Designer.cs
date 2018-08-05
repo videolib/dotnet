@@ -38,10 +38,10 @@
             this.linklblForgotPwd = new System.Windows.Forms.LinkLabel();
             this.lblShowPwd = new System.Windows.Forms.Label();
             this.txtPwd = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.lblPassword = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblShowContact = new System.Windows.Forms.Label();
             this.lblSchoolWelcome = new System.Windows.Forms.Label();
             this.txtEmailId = new System.Windows.Forms.TextBox();
             this.lblEmail = new System.Windows.Forms.Label();
@@ -51,6 +51,7 @@
             this.lblPrivacyPolicy = new System.Windows.Forms.Label();
             this.lblExpireDate = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -125,13 +126,14 @@
             this.panel1.Controls.Add(this.linklblForgotPwd);
             this.panel1.Controls.Add(this.lblShowPwd);
             this.panel1.Controls.Add(this.txtPwd);
-            this.panel1.Controls.Add(this.label4);
+            this.panel1.Controls.Add(this.lblPassword);
             this.panel1.Controls.Add(this.btnLogin);
             this.panel1.Controls.Add(this.lblStatus);
-            this.panel1.Controls.Add(this.label6);
-            this.panel1.Controls.Add(this.lblSchoolWelcome);
+            this.panel1.Controls.Add(this.lblShowContact);
             this.panel1.Controls.Add(this.txtEmailId);
             this.panel1.Controls.Add(this.lblEmail);
+            this.panel1.Controls.Add(this.progressBar1);
+            this.panel1.Controls.Add(this.lblSchoolWelcome);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel1.Location = new System.Drawing.Point(508, 0);
@@ -148,6 +150,7 @@
             this.linklblForgotPwd.TabIndex = 5;
             this.linklblForgotPwd.TabStop = true;
             this.linklblForgotPwd.Text = "Forgot Password?";
+            this.linklblForgotPwd.Visible = false;
             this.linklblForgotPwd.Click += new System.EventHandler(this.lblForgotPwd_Click);
             // 
             // lblShowPwd
@@ -158,6 +161,7 @@
             this.lblShowPwd.Size = new System.Drawing.Size(42, 15);
             this.lblShowPwd.TabIndex = 3;
             this.lblShowPwd.Text = "Show";
+            this.lblShowPwd.Visible = false;
             this.lblShowPwd.Click += new System.EventHandler(this.lblShowPwd_Click);
             // 
             // txtPwd
@@ -168,18 +172,20 @@
             this.txtPwd.PasswordChar = '*';
             this.txtPwd.Size = new System.Drawing.Size(283, 24);
             this.txtPwd.TabIndex = 2;
+            this.txtPwd.Visible = false;
             // 
-            // label4
+            // lblPassword
             // 
-            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.White;
-            this.label4.Location = new System.Drawing.Point(37, 164);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(113, 24);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Password:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblPassword.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.lblPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPassword.ForeColor = System.Drawing.Color.White;
+            this.lblPassword.Location = new System.Drawing.Point(37, 164);
+            this.lblPassword.Name = "lblPassword";
+            this.lblPassword.Size = new System.Drawing.Size(113, 24);
+            this.lblPassword.TabIndex = 11;
+            this.lblPassword.Text = "Password:";
+            this.lblPassword.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblPassword.Visible = false;
             // 
             // btnLogin
             // 
@@ -192,6 +198,7 @@
             this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
+            this.btnLogin.Visible = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             // 
             // lblStatus
@@ -204,16 +211,18 @@
             this.lblStatus.Size = new System.Drawing.Size(208, 15);
             this.lblStatus.TabIndex = 10;
             this.lblStatus.Text = "                                                                   ";
+            this.lblStatus.Visible = false;
             // 
-            // label6
+            // lblShowContact
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(37, 232);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(321, 15);
-            this.label6.TabIndex = 8;
-            this.label6.Text = "Contact info@lbf.in from your registered Email-ID";
+            this.lblShowContact.AutoSize = true;
+            this.lblShowContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShowContact.Location = new System.Drawing.Point(37, 232);
+            this.lblShowContact.Name = "lblShowContact";
+            this.lblShowContact.Size = new System.Drawing.Size(321, 15);
+            this.lblShowContact.TabIndex = 8;
+            this.lblShowContact.Text = "Contact info@lbf.in from your registered Email-ID";
+            this.lblShowContact.Visible = false;
             // 
             // lblSchoolWelcome
             // 
@@ -234,6 +243,7 @@
             this.txtEmailId.Name = "txtEmailId";
             this.txtEmailId.Size = new System.Drawing.Size(283, 24);
             this.txtEmailId.TabIndex = 1;
+            this.txtEmailId.Visible = false;
             // 
             // lblEmail
             // 
@@ -246,6 +256,7 @@
             this.lblEmail.TabIndex = 0;
             this.lblEmail.Text = "Email Id:";
             this.lblEmail.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblEmail.Visible = false;
             // 
             // panel3
             // 
@@ -323,6 +334,13 @@
             this.label11.TabIndex = 0;
             this.label11.Text = "LBF Publications Pvt. Ltd. |  All Rights Reserved";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(37, 141);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(396, 24);
+            this.progressBar1.TabIndex = 12;
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -337,6 +355,7 @@
             this.Text = "Login";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmLogin_Load);
+            this.Shown += new System.EventHandler(this.frmLogin_Shown);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.panel5.ResumeLayout(false);
@@ -356,10 +375,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txtPwd;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Label lblStatus;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblShowContact;
         private System.Windows.Forms.Label lblSchoolWelcome;
         private System.Windows.Forms.TextBox txtEmailId;
         private System.Windows.Forms.Label lblEmail;
@@ -371,5 +390,6 @@
     private System.Windows.Forms.Label label11;
         private System.Windows.Forms.LinkLabel linklblForgotPwd;
         private System.Windows.Forms.Label lblPrivacyPolicy;
+        private System.Windows.Forms.ProgressBar progressBar1;
     }
 }

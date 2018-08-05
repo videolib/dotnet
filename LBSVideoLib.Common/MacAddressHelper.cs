@@ -20,11 +20,11 @@ namespace LBFVideoLib.Common
                     //macAddresses = System.Environment.MachineName;
                     continue;
                 }
-                if (nic.OperationalStatus == OperationalStatus.Up)
-                {
+                //if (nic.OperationalStatus == OperationalStatus.Up)
+                //{
                     macAddresses += nic.GetPhysicalAddress().ToString();
                     break;
-                }
+                //}
             }
             return macAddresses;
 

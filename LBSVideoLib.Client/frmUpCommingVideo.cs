@@ -143,7 +143,6 @@ namespace LBFVideoLib.Client
             catch (Exception)
             {
                 progressBar1.Visible = false;
-
                 throw;
             }
         }

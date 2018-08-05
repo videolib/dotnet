@@ -11,6 +11,9 @@ namespace LBFVideoLib.Client
         private string _clientInfoFilePath = "";
         // Check license duraion
         private ClientInfo _clientInfo = null;
+        private bool _validLicense = false;
+        private bool _showLoginForm = true;
+        private string _currentMacAddress = "";
 
         public frmLogin()
         {
@@ -21,6 +24,9 @@ namespace LBFVideoLib.Client
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
+            this.progressBar1.Visible = true;
+            this.progressBar1.Enabled = true;
+            this.progressBar1.Value = 10;
             //ClientHelper.GetClientThumbanailPath();
 
             _clientInfoFilePath = ClientHelper.GetClientInfoFilePath();
@@ -30,47 +36,105 @@ namespace LBFVideoLib.Client
                 this.Close();
                 return;
             }
+            this.progressBar1.Value = 30;
 
             CommonAppStateDataHelper.ClientInfoObject = Cryptograph.DecryptObject<ClientInfo>(_clientInfoFilePath);
             _clientInfo = CommonAppStateDataHelper.ClientInfoObject;
-
+            this.progressBar1.Value = 70;
             if (_clientInfo != null)
             {
                 lblSessionYears.Text = ClientHelper.GetSessionString(_clientInfo.SessionString);
                 lblSchoolWelcome.Text = ClientHelper.GetWelcomeString(_clientInfo.SchoolName, _clientInfo.SchoolCity, _clientInfo.SchoolId);
                 lblExpireDate.Text = ClientHelper.GetExpiryDateString(_clientInfo.SessionEndDate);
 
-               // ValidateNoOfLicense();
+                _currentMacAddress = MacAddressHelper.GetMacAddress();
+
+                _validLicense = ValidateNoOfLicense(_currentMacAddress);
+
+                this.progressBar1.Value = 75;
+
+                // update mac address in local client info file
+                if (_validLicense)
+                {
+                    this.progressBar1.Value = 90;
+                    if (string.IsNullOrEmpty(CommonAppStateDataHelper.ClientInfoObject.MacAddress))
+                    {
+                        _showLoginForm = true;
+                    }
+                    else
+                    {
+                        _showLoginForm = false;
+                    }
+                }
+                else
+                {
+                    this.progressBar1.Value = 100;
+                    Application.Exit();
+                }
             }
             //if (_clientInfo.LastAccessEndTime.Equals(DateTime.MinValue))
             //{
             //    _clientInfo.LastAccessEndTime = _clientInfo.RegistrationDate;
             //}
 
+
             // Check license duraion
             ValidateLicense();
         }
 
 
-        private void ValidateNoOfLicense()
+        private bool ValidateNoOfLicense(string currentMacAddress)
         {
-            string macAddress = MacAddressHelper.GetMacAddress();
+
+            //RegInfoFB regInfo = GetRegInfoFromFirebase(_clientInfo.SchoolId, _clientInfo.SessionString);
+
+            //if (!regInfo.MacAddresses.Contains(currentMacAddress)){
+
+            //    if (regInfo.MacAddresses.Count >= regInfo.NoOfPcs)
+            //    {
+
+            //        MessageBox.Show("Number of licenses exceeded", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            //        return;
+            //    }
+            //    else
+            //    {
+            //        regInfo.MacAddresses.Add(currentMacAddress);
+            //        UpdateRegInfo(regInfo);
+            //    }
+            //}
+
+            bool validLicense = false;
             RegInfoFB regInfo = GetRegInfoFromFirebase(_clientInfo.SchoolId, _clientInfo.SessionString);
-            
-            if (!regInfo.MacAddresses.Contains(macAddress)){
+
+            if (!regInfo.MacAddresses.Contains(currentMacAddress))
+            {
 
                 if (regInfo.MacAddresses.Count >= regInfo.NoOfPcs)
                 {
-
+                    validLicense = false;
                     MessageBox.Show("Number of licenses exceeded", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                    return;
                 }
                 else
                 {
-                    regInfo.MacAddresses.Add(macAddress);
+                    regInfo.MacAddresses.Add(currentMacAddress);
                     UpdateRegInfo(regInfo);
+                    validLicense = true;
                 }
             }
+            else
+            {
+                if (regInfo.MacAddresses.Count >= regInfo.NoOfPcs)
+                {
+                    validLicense = false;
+                    MessageBox.Show("Number of licenses exceeded", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                }
+                else
+                {
+                    validLicense = true;
+                }
+
+            }
+            return validLicense;
         }
 
         private void ValidateLicense()
@@ -120,41 +184,51 @@ namespace LBFVideoLib.Client
 
             if (authenticated)
             {
-                SessionInfo sessionInfo = new SessionInfo();
-                sessionInfo.StartTime = DateTime.Now;
-                _clientInfo.LastAccessStartTime = DateTime.Now;
-                _clientInfo.LastAccessEndTime = DateTime.Now;
-                _clientInfo.SessionList.Add(sessionInfo);
-                FileInfo clientInfoFileInfo = new FileInfo(ClientHelper.GetClientInfoFilePath());
-                try
-                {
-                    clientInfoFileInfo.Attributes &= ~FileAttributes.Hidden;
-                    // this.ClientInfoObject.LastAccessStartTime = DateTime.UtcNow;
-                    Cryptograph.EncryptObject(_clientInfo, ClientHelper.GetClientInfoFilePath());
-                    clientInfoFileInfo.Attributes |= FileAttributes.Hidden;
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-                finally
-                {
-                    clientInfoFileInfo.Attributes |= FileAttributes.Hidden;
-                }
-
-                frmDashboard frm = new frmDashboard();
-                // frm.MdiParent = this.MdiParent;
-                frm.ParentFormControl = this;
-                frm.ClientInfoObject = CommonAppStateDataHelper.ClientInfoObject;//_clientInfo
-                CommonAppStateDataHelper.AddForm(this);
-                frm.Show();
-                this.Hide();
-                CommonAppStateDataHelper.LoggedIn = true;
+                OnAfterAuthentication();
             }
             else
             {
                 lblStatus.Text = "Invalid Email Id or Password!!";
             }
+        }
+
+        private void OnAfterAuthentication()
+        {
+            SessionInfo sessionInfo = new SessionInfo();
+            sessionInfo.StartTime = DateTime.Now;
+            _clientInfo.LastAccessStartTime = DateTime.Now;
+            _clientInfo.LastAccessEndTime = DateTime.Now;
+            _clientInfo.SessionList.Add(sessionInfo);
+            if (string.IsNullOrEmpty(_clientInfo.MacAddress))
+            {
+                _clientInfo.MacAddress = _currentMacAddress;
+            }
+
+            FileInfo clientInfoFileInfo = new FileInfo(ClientHelper.GetClientInfoFilePath());
+            try
+            {
+                clientInfoFileInfo.Attributes &= ~FileAttributes.Hidden;
+                // this.ClientInfoObject.LastAccessStartTime = DateTime.UtcNow;
+                Cryptograph.EncryptObject(_clientInfo, ClientHelper.GetClientInfoFilePath());
+                clientInfoFileInfo.Attributes |= FileAttributes.Hidden;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            finally
+            {
+                clientInfoFileInfo.Attributes |= FileAttributes.Hidden;
+            }
+
+            frmDashboard frm = new frmDashboard();
+            // frm.MdiParent = this.MdiParent;
+            frm.ParentFormControl = this;
+            frm.ClientInfoObject = CommonAppStateDataHelper.ClientInfoObject;
+            CommonAppStateDataHelper.AddForm(this);
+            frm.Show();
+            this.Hide();
+            CommonAppStateDataHelper.LoggedIn = true;
         }
 
         private void lblShowPwd_Click(object sender, EventArgs e)
@@ -202,6 +276,30 @@ namespace LBFVideoLib.Client
             string jsonString1 = JsonHelper.ParseObjectToJSON<RegInfoFB>(info);
             string url = string.Format("registrations-data/{0}-{1}", _clientInfo.SchoolId, _clientInfo.SessionString);
             FirebaseHelper.PatchData(jsonString1, url);
+        }
+
+        private void frmLogin_Shown(object sender, EventArgs e)
+        {
+            this.progressBar1.Value = 100;
+
+            if (_showLoginForm == false)
+            {
+                OnAfterAuthentication();
+            }
+            else
+            {
+                btnLogin.Visible = true;
+                lblEmail.Visible = true;
+                txtEmailId.Visible = true;
+                lblPassword.Visible = true;
+                lblShowPwd.Visible = true;
+                txtPwd.Visible = true;
+                linklblForgotPwd.Visible = true;
+                lblShowContact.Visible = true;
+                progressBar1.Visible = false;
+            }
+
+
         }
     }
 }
