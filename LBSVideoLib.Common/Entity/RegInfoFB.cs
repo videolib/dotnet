@@ -49,6 +49,10 @@ namespace LBFVideoLib.Common.Entity
             get; set;
         }
 
+        public string MemoNumber
+        {
+            get; set;
+        }
 
         public List<ClassFB> Classes
         {

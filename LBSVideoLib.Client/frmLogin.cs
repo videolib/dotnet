@@ -100,12 +100,22 @@ namespace LBFVideoLib.Client
                 _clientInfo.LastAccessStartTime = DateTime.Now;
                 _clientInfo.LastAccessEndTime = DateTime.Now;
                 _clientInfo.SessionList.Add(sessionInfo);
-                
                 FileInfo clientInfoFileInfo = new FileInfo(ClientHelper.GetClientInfoFilePath());
-                clientInfoFileInfo.Attributes &= ~FileAttributes.Hidden;
-                // this.ClientInfoObject.LastAccessStartTime = DateTime.UtcNow;
-                Cryptograph.EncryptObject(_clientInfo, ClientHelper.GetClientInfoFilePath());
-                clientInfoFileInfo.Attributes |= FileAttributes.Hidden;
+                try
+                {
+                    clientInfoFileInfo.Attributes &= ~FileAttributes.Hidden;
+                    // this.ClientInfoObject.LastAccessStartTime = DateTime.UtcNow;
+                    Cryptograph.EncryptObject(_clientInfo, ClientHelper.GetClientInfoFilePath());
+                    clientInfoFileInfo.Attributes |= FileAttributes.Hidden;
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+                finally
+                {
+                    clientInfoFileInfo.Attributes |= FileAttributes.Hidden;
+                }
 
                 frmDashboard frm = new frmDashboard();
                 // frm.MdiParent = this.MdiParent;

@@ -103,14 +103,8 @@ namespace LBFVideoLib.Client
             string[] fileList = Directory.GetFiles(currentDirectoryPath);
             if (fileList.Length > 0)
             {
-                //for (int i = 0; i < fileList.Length; i++)
-                //{
-                //    TreeNode rootNode = new TreeNode(fileList[i]);
-                //    parentNode.Nodes.Add(rootNode);                    
-                //}
                 parentNode.Tag = fileList;
             }
-
             else
             {
                 for (int i = 0; i < directoryList.Length; i++)
@@ -146,7 +140,6 @@ namespace LBFVideoLib.Client
         private void myButton1_Click(object sender, EventArgs e)
         {
             PlayVideo();
-            // OpenVideoLibrary();
         }
 
         private void PlayVideo()
@@ -202,7 +195,6 @@ namespace LBFVideoLib.Client
                     // int newRandomNumber = 0;
                     if (randomVideoIndexList[i] < 0)
                     {
-
                         _mostRecommandedVideos.Add(CommonAppStateDataHelper.ClientInfoObject.VideoInfoList[i]);
                         randomVideoIndexList[i] = i;
                     }

@@ -10,7 +10,7 @@ namespace LBFVideoLib.Common
 {
     public class Cryptograph
     {
-        private static string password = @"myKey123";
+        private static string password = @"myLBF123";
 
         public static void EncryptObject(Object obj, string outputFile)
         {
@@ -151,7 +151,7 @@ namespace LBFVideoLib.Common
                 }
                 key = null;
             }
-            catch (System.Exception ex)
+            catch (Exception)
             {
                 throw ;
             }
