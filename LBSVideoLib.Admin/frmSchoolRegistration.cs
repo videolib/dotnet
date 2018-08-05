@@ -785,6 +785,7 @@ namespace LBFVideoLib.Admin
             info.NoOfPcs = Convert.ToInt32(txtNoOfPcs.Text);
             info.Classes = new List<ClassFB>();
             info.MemoNumber = newMemoNumber;
+            info.ExpiryDate = info.ExpiryDate = LicenseHelper.GetSessionEndDateBySessionString(cmbSchoolSession.SelectedItem.ToString());
 
             for (int i = 0; i < chkListBooks.CheckedItems.Count; i++)
             {
