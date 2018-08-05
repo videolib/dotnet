@@ -42,6 +42,8 @@ namespace LBFVideoLib.Common
 
         public string MacAddress { get; set; } = "";
 
+        public int MaxNumberOfPCs { get; set; } = 0;
+
         public List<ClassFB> SelectedVideoDetails { get; set; }
 
         public List<SessionInfo> SessionList { get; set; }

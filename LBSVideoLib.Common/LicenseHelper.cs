@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LBFVideoLib.Common.Entity;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -149,6 +150,59 @@ namespace LBFVideoLib.Common
             return currentState;
         }
 
+
+        public static LicenseValidationState CheckLicenseStateNew(DateTime registrationDate, DateTime sessionStartDate, DateTime sessionEndDate, out string message, out bool deleteVideo)
+        {
+            LicenseValidationState currentState = LicenseValidationState.Valid;
+            deleteVideo = false;
+            message = "";
+            DateTime startDate = new DateTime();
+            DateTime lastAccessTime = new DateTime();
+            DateTime currentDateTime = DateTime.Now;
+
+            // if registration date is between SessionStart and SessionEnd date
+            if (sessionStartDate.CompareTo(registrationDate) < 0 && sessionEndDate.CompareTo(registrationDate) > 0)
+            {
+                startDate = DateTime.Parse(registrationDate.AddSeconds(-registrationDate.Second).AddMinutes(-registrationDate.Minute).ToString("dd-MMM-yyyy hh:00 tt"), CultureInfo.InvariantCulture);
+            }
+            // Future registration date
+            else if (sessionStartDate.CompareTo(registrationDate) > 0)
+            {
+                startDate = sessionStartDate;
+            }
+            // Expired license
+            else if (sessionEndDate.CompareTo(registrationDate) < 0)
+            {
+                deleteVideo = true;
+                currentState = LicenseValidationState.Expired;
+                message = licenseExpiredMessage;
+                return currentState;
+            }
+
+            lastAccessTime = startDate;
+
+            // RegDate > CurrentDate
+            if (startDate.CompareTo(currentDateTime) > 0)
+            {
+                currentState = LicenseValidationState.InvalidLicense;
+                message = invalidLicenseMessage;
+            }
+            // License is expired - Delete All Videos
+            else if (sessionEndDate < currentDateTime)
+            {
+                deleteVideo = true;
+                currentState = LicenseValidationState.Expired;
+                message = licenseExpiredMessage;
+            }
+            // Clock time is back from current time -> Invalid Clock
+            else if (lastAccessTime > currentDateTime) // && (registrationDate < currentDateTime && currentDateTime > clientInfo.ExpiryDate))
+            {
+                currentState = LicenseValidationState.InvalidClock;
+                message = invalidClockMessage;
+            }
+            return currentState;
+        }
+
         public static bool CheckForInternetConnection()
         {
             try
@@ -165,6 +219,106 @@ namespace LBFVideoLib.Common
             }
         }
 
+        public static LicenseValidationState ValidateMacAddress(RegInfoFB firebaseRegistrationInfo, ClientInfo localClientInfo, string localMacAddress, out string message, out bool deleteVideo, out bool skipLoginScreen)
+        {
+            //bool firebaseLicenseValidation = false;
+
+            LicenseValidationState licenseState = LicenseValidationState.None;
+            skipLoginScreen = false;
+            deleteVideo = false;
+            message = "";
+
+            // Device is online
+            if (firebaseRegistrationInfo != null)
+            {
+                //1) 	localClientInfo.MacAddress <> '' AND localClientInfo.MacAddress is in FirebaseMacAddressList == True
+                //          Allow to login without authentication
+                if (string.IsNullOrEmpty(localClientInfo.MacAddress) == false)
+                {
+                    // If local mac address is not matching with saved mac address.
+                    if (localClientInfo.MacAddress.ToLower().Equals(localMacAddress.ToLower()) == false)
+                    {
+                        licenseState = LicenseValidationState.SavedMacAddressMismatched;
+                        skipLoginScreen = false;
+                        message = "Invalid License";
+                        deleteVideo = true;
+                    }
+
+                    else if (firebaseRegistrationInfo.MacAddresses.Contains(localClientInfo.MacAddress) == true)
+                    {
+                        // maxlicense is valid and user already authenticated
+                        skipLoginScreen = true;
+                        licenseState = LicenseValidationState.Valid;
+                    }
+                    else if (firebaseRegistrationInfo.MacAddresses.Contains(localClientInfo.MacAddress) == false)
+                    {
+                        // 2.1) If FirebaseMacAddressList.Count >= MaxLicenseCount
+                        //        Raise Error and Exit Application
+                        if (firebaseRegistrationInfo.MacAddresses.Count >= firebaseRegistrationInfo.NoOfPcs)
+                        {
+                            licenseState = LicenseValidationState.MaxMacAddressLimitExceed;
+                            skipLoginScreen = false;
+                            message = "Maximun allowed licenses already occupied";
+                            deleteVideo = true;
+                        }
+
+                        // 2.2) IF FirebaseMacAddressList.Count < MaxLicenseCount
+                        //        Add current macaddress in FirebaseMacAddressList and allow login
+                        if (firebaseRegistrationInfo.MacAddresses.Count < firebaseRegistrationInfo.NoOfPcs)
+                        {
+                            licenseState = LicenseValidationState.Valid;
+                            // Add current macaddress in FirebaseMacAddressList 
+                            //_addMacAddressInFirebase = true;
+                            skipLoginScreen = false;
+                        }
+                    }
+                }
+                // 3) 	If localClientInfo.MacAddress == '' Then
+                else if (string.IsNullOrEmpty(localClientInfo.MacAddress))
+                {
+                    //    3.1) If FirebaseMacAddressList.Count >= MaxLicenseCount
+                    //        Raise Error and Exit Application
+                    if (firebaseRegistrationInfo.MacAddresses.Count >= firebaseRegistrationInfo.NoOfPcs)
+                    {
+                        licenseState = LicenseValidationState.MaxMacAddressLimitExceed;
+                        skipLoginScreen = false;
+                        message = "Maximun allowed licenses already occupied";
+                        deleteVideo = true;
+                    }
+                    // 3.2) If FirebaseMacAddressList.Count < MaxLicenseCount
+                    else if (firebaseRegistrationInfo.MacAddresses.Count < firebaseRegistrationInfo.NoOfPcs)
+                    {
+                        licenseState = LicenseValidationState.Valid;
+
+                        //      On sucessful authentication, save local mac address to Firebase.
+                        //      Save local mac address to local client info file
+                        //_addMacAddressInFirebase = true;
+                        //      Ask user to enter login credentials
+                        skipLoginScreen = false;
+
+                    }
+                }
+            }
+            // Device is offline
+            else
+            {
+                // 1) localClientInfo.MacAddress == ''
+                //      Ask user for autentication
+                if (string.IsNullOrEmpty(localClientInfo.MacAddress))
+                {
+                    skipLoginScreen = false;
+                }
+                //    2) localClientInfo.MacAddress <> ''
+                //            Allow user to use application without authentication
+                else if (string.IsNullOrEmpty(localClientInfo.MacAddress) == false)
+                {
+                    skipLoginScreen = true;
+                    // Validate license date;
+                }
+            }
+
+            return licenseState;
+        }
 
     }
 }

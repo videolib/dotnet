@@ -12,7 +12,10 @@ namespace LBFVideoLib.Common
         InvalidClock = 2,
         InvalidLicense = 3,
         Expired = 4,
-
+        MacAddressLicenseError = 5,
+        MaxMacAddressLimitExceed = 6,
+        SavedMacAddressMismatched = 7,
+        EmptyMacAddress = 8,
 
     }
 }

@@ -95,34 +95,41 @@ namespace LBFVideoLib.Common
 
         public static string GetData(string url)
         {
-            string response = "";
-            string requestUrl = string.Format(BaseURL, url);
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestUrl);
-            request.Method = "GET";
-            request.ContentType = "application/json";
-            request.Headers.Add("API-KEY", "");
-            request.KeepAlive = false;
-            request.Timeout = -1;
-
-            using (var webResponse = (HttpWebResponse)request.GetResponse())
+            try
             {
-                //if (webResponse.ContentLength == 0 && webResponse.StatusCode == HttpStatusCode.NoContent)
-                //{
-                //Connection to internet available
-                Stream webStream = webResponse.GetResponseStream();
-                StreamReader responseReader = new StreamReader(webStream);
-                response = responseReader.ReadToEnd();
-                responseReader.Close();
-                //}
-                //else
-                //{
-                //    //Connection to internet not available
-                //    //throw new Exception("Internet connection is not available");
+                string response = "";
+                string requestUrl = string.Format(BaseURL, url);
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestUrl);
+                request.Method = "GET";
+                request.ContentType = "application/json";
+                request.Headers.Add("API-KEY", "");
+                request.KeepAlive = false;
+                request.Timeout = -1;
 
-                //}
+                using (var webResponse = (HttpWebResponse)request.GetResponse())
+                {
+                    //if (webResponse.ContentLength == 0 && webResponse.StatusCode == HttpStatusCode.NoContent)
+                    //{
+                    //Connection to internet available
+                    Stream webStream = webResponse.GetResponseStream();
+                    StreamReader responseReader = new StreamReader(webStream);
+                    response = responseReader.ReadToEnd();
+                    responseReader.Close();
+                    //}
+                    //else
+                    //{
+                    //    //Connection to internet not available
+                    //    //throw new Exception("Internet connection is not available");
+
+                    //}
+                }
+
+                return response;
             }
-
-            return response;
+            catch (Exception WebException)
+            {
+                return string.Empty;
+            }
         }
 
     }

@@ -11,9 +11,10 @@ namespace LBFVideoLib.Client
         private string _clientInfoFilePath = "";
         // Check license duraion
         private ClientInfo _clientInfo = null;
-        private bool _validLicense = false;
         private bool _showLoginForm = true;
         private string _currentMacAddress = "";
+        private bool _addMacAddressInFirebase = false;
+        private RegInfoFB _firebaseRegInfo = null;
 
         public frmLogin()
         {
@@ -30,17 +31,21 @@ namespace LBFVideoLib.Client
             //ClientHelper.GetClientThumbanailPath();
 
             _clientInfoFilePath = ClientHelper.GetClientInfoFilePath();
+
             if (!File.Exists(_clientInfoFilePath))
             {
                 MessageBox.Show("Invalid Configuration", "Configuration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 this.Close();
                 return;
             }
+
             this.progressBar1.Value = 30;
 
             CommonAppStateDataHelper.ClientInfoObject = Cryptograph.DecryptObject<ClientInfo>(_clientInfoFilePath);
             _clientInfo = CommonAppStateDataHelper.ClientInfoObject;
+
             this.progressBar1.Value = 70;
+
             if (_clientInfo != null)
             {
                 lblSessionYears.Text = ClientHelper.GetSessionString(_clientInfo.SessionString);
@@ -48,93 +53,51 @@ namespace LBFVideoLib.Client
                 lblExpireDate.Text = ClientHelper.GetExpiryDateString(_clientInfo.SessionEndDate);
 
                 _currentMacAddress = MacAddressHelper.GetMacAddress();
+                _currentMacAddress = "B82A72A780B7";
+                _firebaseRegInfo = GetFirebaseRegistrationInformation();
 
-                _validLicense = ValidateNoOfLicense(_currentMacAddress);
+                string errorMessage = "";
+                bool deleteVideos = false;
+                bool skipLoginScreen = false;
+                // Check license session duraion
+                LicenseValidationState licenseState = ValidateLicenseNew(_firebaseRegInfo, _clientInfo, _currentMacAddress, out errorMessage, out deleteVideos, out skipLoginScreen);
 
-                this.progressBar1.Value = 75;
-
-                // update mac address in local client info file
-                if (_validLicense)
+                if (licenseState != LicenseValidationState.Valid)
                 {
-                    this.progressBar1.Value = 90;
-                    if (string.IsNullOrEmpty(CommonAppStateDataHelper.ClientInfoObject.MacAddress))
-                    {
-                        _showLoginForm = true;
-                    }
-                    else
-                    {
-                        _showLoginForm = false;
-                    }
+                    OnAfterLicesseValidation(errorMessage, deleteVideos, licenseState);
                 }
-                else
-                {
-                    this.progressBar1.Value = 100;
-                    Application.Exit();
-                }
+
+                _showLoginForm = !skipLoginScreen;
+
+                this.progressBar1.Value = 100;
+
+                //// update mac address in local client info file
+                //if (licenseState == LicenseValidationState.Valid)
+                //{
+                //    this.progressBar1.Value = 90;
+                //    //if (string.IsNullOrEmpty(CommonAppStateDataHelper.ClientInfoObject.MacAddress))
+                //    //{
+                //    //    _showLoginForm = true;
+                //    //}
+                //    //else
+                //    //{
+                //    //    _showLoginForm = false;
+                //    //}
+                //}
+                //else
+                //{
+                //    this.progressBar1.Value = 100;
+                //    Application.Exit();
+                //}
             }
-            //if (_clientInfo.LastAccessEndTime.Equals(DateTime.MinValue))
-            //{
-            //    _clientInfo.LastAccessEndTime = _clientInfo.RegistrationDate;
-            //}
-
-
-            // Check license duraion
-            ValidateLicense();
         }
 
 
-        private bool ValidateNoOfLicense(string currentMacAddress)
+
+
+        private RegInfoFB GetFirebaseRegistrationInformation()
         {
-
-            //RegInfoFB regInfo = GetRegInfoFromFirebase(_clientInfo.SchoolId, _clientInfo.SessionString);
-
-            //if (!regInfo.MacAddresses.Contains(currentMacAddress)){
-
-            //    if (regInfo.MacAddresses.Count >= regInfo.NoOfPcs)
-            //    {
-
-            //        MessageBox.Show("Number of licenses exceeded", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-            //        return;
-            //    }
-            //    else
-            //    {
-            //        regInfo.MacAddresses.Add(currentMacAddress);
-            //        UpdateRegInfo(regInfo);
-            //    }
-            //}
-
-            bool validLicense = false;
-            RegInfoFB regInfo = GetRegInfoFromFirebase(_clientInfo.SchoolId, _clientInfo.SessionString);
-
-            if (!regInfo.MacAddresses.Contains(currentMacAddress))
-            {
-
-                if (regInfo.MacAddresses.Count >= regInfo.NoOfPcs)
-                {
-                    validLicense = false;
-                    MessageBox.Show("Number of licenses exceeded", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                else
-                {
-                    regInfo.MacAddresses.Add(currentMacAddress);
-                    UpdateRegInfo(regInfo);
-                    validLicense = true;
-                }
-            }
-            else
-            {
-                if (regInfo.MacAddresses.Count >= regInfo.NoOfPcs)
-                {
-                    validLicense = false;
-                    MessageBox.Show("Number of licenses exceeded", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                }
-                else
-                {
-                    validLicense = true;
-                }
-
-            }
-            return validLicense;
+            return GetRegInfoFromFirebase(_clientInfo.SchoolId, _clientInfo.SessionString);
         }
 
         private void ValidateLicense()
@@ -152,6 +115,67 @@ namespace LBFVideoLib.Client
                 licenseState = LicenseHelper.CheckLicenseState(_clientInfo, out message, out deleteVideos);
             }
 
+            if (deleteVideos && licenseState == LicenseValidationState.Expired)
+            {
+                CommonAppStateDataHelper.ClientInfoObject.Expired = true;
+                CommonAppStateDataHelper.LicenseError = true;
+
+                if (Directory.Exists(ClientHelper.GetClientVideoFilePath(_clientInfo.SchoolId, _clientInfo.SchoolCity)))
+                {
+                    Directory.Delete(ClientHelper.GetClientVideoFilePath(_clientInfo.SchoolId, _clientInfo.SchoolCity), true);
+                }
+
+                MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                this.Close();
+            }
+            else if (licenseState != LicenseValidationState.Valid)
+            {
+                CommonAppStateDataHelper.LicenseError = true;
+                MessageBox.Show(message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                this.Close();
+            }
+        }
+
+        private LicenseValidationState ValidateLicenseNew(RegInfoFB firebaseRegistrationInfo, ClientInfo localClientInfo, string localMACAddress, out string errorMessage, out bool deleteVideos, out bool skipLoginScreen)
+        {
+            errorMessage = ""; deleteVideos = false; skipLoginScreen = false;
+            LicenseValidationState licenseState = LicenseValidationState.None;
+            // Licese already expired
+            if (CommonAppStateDataHelper.ClientInfoObject.Expired)
+            {
+                deleteVideos = true;
+                errorMessage = LicenseHelper.licenseExpiredMessage;
+                licenseState = LicenseValidationState.Expired;
+            }
+            else if (string.IsNullOrEmpty(localMACAddress) == true)
+            {
+                errorMessage = LicenseHelper.invalidLicenseMessage;
+                licenseState = LicenseValidationState.EmptyMacAddress;
+            }
+            else
+            {
+                DateTime sessionEndDate = localClientInfo.SessionEndDate;
+
+                if (firebaseRegistrationInfo != null)
+                {
+                    sessionEndDate = firebaseRegistrationInfo.ExpiryDate;
+                }
+
+                licenseState = LicenseHelper.CheckLicenseStateNew(localClientInfo.RegistrationDate, localClientInfo.SessionStartDate, sessionEndDate, out errorMessage, out deleteVideos);
+
+                // Validate Firebase MacAddress Check
+                if (licenseState == LicenseValidationState.Valid)
+                {
+                    licenseState = LicenseHelper.ValidateMacAddress(firebaseRegistrationInfo, localClientInfo, localMACAddress, out errorMessage, out deleteVideos, out skipLoginScreen);
+                }
+            }
+            return licenseState;
+
+        }
+
+        private void OnAfterLicesseValidation(string message, bool deleteVideos, LicenseValidationState licenseState)
+        {
             if (deleteVideos && licenseState == LicenseValidationState.Expired)
             {
                 CommonAppStateDataHelper.ClientInfoObject.Expired = true;
@@ -194,11 +218,19 @@ namespace LBFVideoLib.Client
 
         private void OnAfterAuthentication()
         {
+            // Add mac address in firebase database.
+            if (_firebaseRegInfo.MacAddresses.Contains(_currentMacAddress) == false)
+            {
+                _firebaseRegInfo.MacAddresses.Add(_currentMacAddress);
+                UpdateRegInfo(_firebaseRegInfo);
+            }
+
             SessionInfo sessionInfo = new SessionInfo();
             sessionInfo.StartTime = DateTime.Now;
             _clientInfo.LastAccessStartTime = DateTime.Now;
             _clientInfo.LastAccessEndTime = DateTime.Now;
             _clientInfo.SessionList.Add(sessionInfo);
+
             if (string.IsNullOrEmpty(_clientInfo.MacAddress))
             {
                 _clientInfo.MacAddress = _currentMacAddress;
@@ -220,6 +252,8 @@ namespace LBFVideoLib.Client
             {
                 clientInfoFileInfo.Attributes |= FileAttributes.Hidden;
             }
+
+
 
             frmDashboard frm = new frmDashboard();
             // frm.MdiParent = this.MdiParent;
@@ -303,3 +337,78 @@ namespace LBFVideoLib.Client
         }
     }
 }
+
+//private bool ValidateNoOfLicense(string currentMacAddress)
+//{
+
+//    //RegInfoFB regInfo = GetRegInfoFromFirebase(_clientInfo.SchoolId, _clientInfo.SessionString);
+
+//    //if (!regInfo.MacAddresses.Contains(currentMacAddress)){
+
+//    //    if (regInfo.MacAddresses.Count >= regInfo.NoOfPcs)
+//    //    {
+
+//    //        MessageBox.Show("Number of licenses exceeded", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+//    //        return;
+//    //    }
+//    //    else
+//    //    {
+//    //        regInfo.MacAddresses.Add(currentMacAddress);
+//    //        UpdateRegInfo(regInfo);
+//    //    }
+//    //}
+
+//    bool validLicense = false;
+//    RegInfoFB regInfo = GetFirebaseRegistrationInformation();
+
+//    // If device is offline
+//    // 1)     And local mac address is empty
+//    //          doesn not allow to login
+//    // 2)     And local mac address is not empty
+//    //          Allow to login
+//    // If device is online
+//    //      Get totoal mac address count registerd on firebase 
+//    //      Get all registered mac address registered on firebase
+//    //      Get local client info mac address
+
+//    // 1) If firebase registered mac address count > max allowed registration
+//    //        Raise Error and exit application
+//    //
+//    // 2) If firebase registered mac address count == max allowed registration And local client info mac address is not in registered mac address list
+//    //        Raise Error and exit application
+//    //
+//    // 3) If firebase registered mac address count == max allowed registration And local client info mac address is in registered mac address list
+//    //        Allow to login
+//    // 4) If loca client info 
+
+//    if (!regInfo.MacAddresses.Contains(currentMacAddress))
+//    {
+
+//        if (regInfo.MacAddresses.Count >= regInfo.NoOfPcs)
+//        {
+//            validLicense = false;
+//            MessageBox.Show("Number of licenses exceeded", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+//        }
+//        else
+//        {
+//            regInfo.MacAddresses.Add(currentMacAddress);
+//            UpdateRegInfo(regInfo);
+//            validLicense = true;
+//        }
+//    }
+//    else
+//    {
+//        if (regInfo.MacAddresses.Count >= regInfo.NoOfPcs)
+//        {
+//            validLicense = false;
+//            MessageBox.Show("Number of licenses exceeded", "Error", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+//        }
+//        else
+//        {
+//            validLicense = true;
+//        }
+
+//    }
+//    return validLicense;
+//}
+
