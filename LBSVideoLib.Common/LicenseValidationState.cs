@@ -16,6 +16,7 @@ namespace LBFVideoLib.Common
         MaxMacAddressLimitExceed = 6,
         SavedMacAddressMismatched = 7,
         EmptyMacAddress = 8,
+        ConnectivityRequiredForValidation=9
 
     }
 }

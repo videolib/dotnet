@@ -53,7 +53,7 @@ namespace LBFVideoLib.Admin
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-            string clientSchoolCodeFolderPath = "";
+           // string clientSchoolCodeFolderPath = "";
             try
             {
                 if (ValidateRegistrationForm() == false)
@@ -64,15 +64,15 @@ namespace LBFVideoLib.Admin
                 CreateClientSchoolPackage();
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                // Delete all file on folder
-                if (Directory.Exists(clientSchoolCodeFolderPath))
-                {
-                    // Delete created package folder inside school code
-                    System.IO.Directory.Delete(clientSchoolCodeFolderPath, true);
-                }
-                //throw;
+                //// Delete all file on folder
+                //if (Directory.Exists(clientSchoolCodeFolderPath))
+                //{
+                //    // Delete created package folder inside school code
+                //    System.IO.Directory.Delete(clientSchoolCodeFolderPath, true);
+                //}
+                ////throw;
             }
             //finally
             //{
@@ -82,13 +82,14 @@ namespace LBFVideoLib.Admin
 
         private void CreateClientSchoolPackage()
         {
+            string clientSchoolCodePath = "";
             try
             {
                 progressBar1.Visible = true;
                 progressBar1.Value = 10;
 
                 string schoolCode = txtSchoolCode.Text.Trim();
-                string clientSchoolCodePath = Path.Combine(_clientDistributionRootPath, schoolCode);
+                  clientSchoolCodePath = Path.Combine(_clientDistributionRootPath, schoolCode);
                 string clientVideoPath = ClientHelper.GetRegisteredSchoolPackageVideoPath(schoolCode, txtSchoolCity.Text.Trim());
                 string clientThumbnailPath = ClientHelper.GetRegisteredSchoolPackageThumbnailPath(schoolCode); // Path.Combine(clientPacakgeFolderPath, "Thumbnails");
 
@@ -322,6 +323,13 @@ namespace LBFVideoLib.Admin
             }
             catch (Exception ex)
             {
+
+                // Delete all file on folder
+                if (Directory.Exists(clientSchoolCodePath))
+                {
+                    // Delete created package folder inside school code
+                    System.IO.Directory.Delete(clientSchoolCodePath, true);
+                }
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw;
             }
@@ -749,8 +757,14 @@ namespace LBFVideoLib.Admin
                 MessageBox.Show("School name is required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+            int noOfPCs = 0;
+            if (int.TryParse(txtNoOfPcs.Text, out noOfPCs) == false)
+            {
+                MessageBox.Show("Invalid field value Number of pc's.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
 
-            if (Convert.ToInt32(txtNoOfPcs.Text) <= 0)
+            if (noOfPCs <= 0)
             {
                 MessageBox.Show("Number of pc's is required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;

@@ -53,7 +53,7 @@ namespace LBFVideoLib.Client
                 lblExpireDate.Text = ClientHelper.GetExpiryDateString(_clientInfo.SessionEndDate);
 
                 _currentMacAddress = MacAddressHelper.GetMacAddress();
-                _currentMacAddress = "B82A72A780B7";
+                //_currentMacAddress = "B82A72A780B7";
                 _firebaseRegInfo = GetFirebaseRegistrationInformation();
 
                 string errorMessage = "";
@@ -148,6 +148,11 @@ namespace LBFVideoLib.Client
                 errorMessage = LicenseHelper.licenseExpiredMessage;
                 licenseState = LicenseValidationState.Expired;
             }
+            else if (firebaseRegistrationInfo == null && string.IsNullOrEmpty(localClientInfo.MacAddress) == true)
+            {
+                errorMessage = LicenseHelper.onlineConnectivityIsMust;
+                licenseState = LicenseValidationState.ConnectivityRequiredForValidation;
+            }
             else if (string.IsNullOrEmpty(localMACAddress) == true)
             {
                 errorMessage = LicenseHelper.invalidLicenseMessage;
@@ -219,7 +224,7 @@ namespace LBFVideoLib.Client
         private void OnAfterAuthentication()
         {
             // Add mac address in firebase database.
-            if (_firebaseRegInfo.MacAddresses.Contains(_currentMacAddress) == false)
+            if (_firebaseRegInfo != null && _firebaseRegInfo.MacAddresses.Contains(_currentMacAddress) == false)
             {
                 _firebaseRegInfo.MacAddresses.Add(_currentMacAddress);
                 UpdateRegInfo(_firebaseRegInfo);

@@ -14,6 +14,7 @@ namespace LBFVideoLib.Common
         public static string licenseExpiredMessage = "Contact to renew the Video Portal on: info@lbf.in";
         public static string invalidClockMessage = "Invalid Clock";
         public static string invalidLicenseMessage = "Invalid License";
+        public static string onlineConnectivityIsMust = "Your system seems offline, please check your connect and try again.";
 
         static LicenseHelper()
         {

@@ -322,9 +322,17 @@ namespace LBFVideoLib.Client
             }
             this.axWindowsMediaPlayer1.URL = "";
 
-            for (int i = 0; i < tempFileList.Count; i++)
+            try
             {
-                File.Delete(tempFileList[i]);
+                for (int i = 0; i < tempFileList.Count; i++)
+                {
+                    File.Delete(tempFileList[i]);
+                }
+            }
+            // if file is already decrypting and we are trying to delete it.
+            catch (Exception)
+            {
+                
             }
             if (_hiddenSourceControl == null)
             {
@@ -512,6 +520,14 @@ namespace LBFVideoLib.Client
                 _lastPlayedVideoFullUrl = currentData.CurrentVideoInfo.VideoFullUrl;
 
 
+            }
+        }
+
+        private void frmUpCommingVideo_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (progressBar1.Value != 100)
+            {
+                e.Cancel = true;
             }
         }
     }
