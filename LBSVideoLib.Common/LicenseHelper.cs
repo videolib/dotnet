@@ -313,6 +313,7 @@ namespace LBFVideoLib.Common
                 else if (string.IsNullOrEmpty(localClientInfo.MacAddress) == false)
                 {
                     skipLoginScreen = true;
+                    licenseState = LicenseValidationState.Valid;
                     // Validate license date;
                 }
             }

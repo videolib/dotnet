@@ -15,13 +15,6 @@ D:\TestProject\C#\dotnet\LBSVideoLib.Common\obj\Debug\LBFVideoLib.Common.csproj.
 D:\TestProject\C#\dotnet\LBSVideoLib.Common\obj\Debug\LBFVideoLib.Common.csproj.CopyComplete
 D:\TestProject\C#\dotnet\LBSVideoLib.Common\obj\Debug\LBFVideoLib.Common.dll
 D:\TestProject\C#\dotnet\LBSVideoLib.Common\obj\Debug\LBFVideoLib.Common.pdb
-D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Common\bin\Debug\LBFVideoLib.Common.dll
-D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Common\bin\Debug\LBFVideoLib.Common.pdb
-D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Common\bin\Debug\Newtonsoft.Json.dll
-D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Common\bin\Debug\Newtonsoft.Json.xml
-D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Common\obj\Debug\LBFVideoLib.Common.dll
-D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Common\obj\Debug\LBFVideoLib.Common.pdb
-D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Common\obj\Debug\LBFVideoLib.Common.csprojResolveAssemblyReference.cache
 D:\School\dotnet\LBSVideoLib.Common\bin\Debug\LBFVideoLib.Common.dll
 D:\School\dotnet\LBSVideoLib.Common\bin\Debug\LBFVideoLib.Common.pdb
 D:\School\dotnet\LBSVideoLib.Common\bin\Debug\Newtonsoft.Json.dll
@@ -31,3 +24,9 @@ D:\School\dotnet\LBSVideoLib.Common\obj\Debug\LBFVideoLib.Common.csproj.CoreComp
 D:\School\dotnet\LBSVideoLib.Common\obj\Debug\LBFVideoLib.Common.csproj.CopyComplete
 D:\School\dotnet\LBSVideoLib.Common\obj\Debug\LBFVideoLib.Common.dll
 D:\School\dotnet\LBSVideoLib.Common\obj\Debug\LBFVideoLib.Common.pdb
+D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Common\bin\Debug\LBFVideoLib.Common.dll
+D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Common\bin\Debug\LBFVideoLib.Common.pdb
+D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Common\bin\Debug\Newtonsoft.Json.dll
+D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Common\bin\Debug\Newtonsoft.Json.xml
+D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Common\obj\Debug\LBFVideoLib.Common.dll
+D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Common\obj\Debug\LBFVideoLib.Common.pdb
