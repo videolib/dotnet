@@ -487,11 +487,11 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(621, 14);
+            this.label2.Location = new System.Drawing.Point(652, 14);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(212, 24);
+            this.label2.Size = new System.Drawing.Size(144, 24);
             this.label2.TabIndex = 5;
-            this.label2.Text = "LBF Hi-Tech Teacher";
+            this.label2.Text = "LBF AR Books";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmSchoolRegistration
@@ -503,7 +503,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmSchoolRegistration";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "LBF Hi-Tech Teacher - School Registration";
+            this.Text = "LBF AR Books - School Registration";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmSchoolRegistration_Load);
             this.pnlMain.ResumeLayout(false);

@@ -259,7 +259,7 @@ namespace LBFVideoLib.Common
                         {
                             licenseState = LicenseValidationState.MaxMacAddressLimitExceed;
                             skipLoginScreen = false;
-                            message = "Maximun allowed licenses already occupied";
+                            message = "Maximum allowed licenses already occupied";
                             deleteVideo = true;
                         }
 
@@ -283,7 +283,7 @@ namespace LBFVideoLib.Common
                     {
                         licenseState = LicenseValidationState.MaxMacAddressLimitExceed;
                         skipLoginScreen = false;
-                        message = "Maximun allowed licenses already occupied";
+                        message = "Maximum allowed licenses already occupied";
                         deleteVideo = true;
                     }
                     // 3.2) If FirebaseMacAddressList.Count < MaxLicenseCount

@@ -42,16 +42,16 @@
             this.btnLogin = new System.Windows.Forms.Button();
             this.lblStatus = new System.Windows.Forms.Label();
             this.lblShowContact = new System.Windows.Forms.Label();
-            this.lblSchoolWelcome = new System.Windows.Forms.Label();
             this.txtEmailId = new System.Windows.Forms.TextBox();
             this.lblEmail = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.lblSchoolWelcome = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.lblPrivacyPolicy = new System.Windows.Forms.Label();
             this.lblExpireDate = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -76,11 +76,11 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(689, 15);
+            this.label2.Location = new System.Drawing.Point(712, 15);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(167, 24);
+            this.label2.Size = new System.Drawing.Size(144, 24);
             this.label2.TabIndex = 5;
-            this.label2.Text = "LBF Video Portal";
+            this.label2.Text = "LBF AR Books";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblContact
@@ -224,18 +224,6 @@
             this.lblShowContact.Text = "Contact info@lbf.in from your registered Email-ID";
             this.lblShowContact.Visible = false;
             // 
-            // lblSchoolWelcome
-            // 
-            this.lblSchoolWelcome.AutoSize = true;
-            this.lblSchoolWelcome.BackColor = System.Drawing.Color.White;
-            this.lblSchoolWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSchoolWelcome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.lblSchoolWelcome.Location = new System.Drawing.Point(37, 45);
-            this.lblSchoolWelcome.Name = "lblSchoolWelcome";
-            this.lblSchoolWelcome.Size = new System.Drawing.Size(282, 29);
-            this.lblSchoolWelcome.TabIndex = 6;
-            this.lblSchoolWelcome.Text = "Welcome, {0}, {1}, [{2}]";
-            // 
             // txtEmailId
             // 
             this.txtEmailId.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -257,6 +245,25 @@
             this.lblEmail.Text = "Email Id:";
             this.lblEmail.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.lblEmail.Visible = false;
+            // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(37, 141);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(396, 24);
+            this.progressBar1.TabIndex = 12;
+            // 
+            // lblSchoolWelcome
+            // 
+            this.lblSchoolWelcome.AutoSize = true;
+            this.lblSchoolWelcome.BackColor = System.Drawing.Color.White;
+            this.lblSchoolWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSchoolWelcome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.lblSchoolWelcome.Location = new System.Drawing.Point(37, 45);
+            this.lblSchoolWelcome.Name = "lblSchoolWelcome";
+            this.lblSchoolWelcome.Size = new System.Drawing.Size(282, 29);
+            this.lblSchoolWelcome.TabIndex = 6;
+            this.lblSchoolWelcome.Text = "Welcome, {0}, {1}, [{2}]";
             // 
             // panel3
             // 
@@ -334,13 +341,6 @@
             this.label11.TabIndex = 0;
             this.label11.Text = "LBF Publications Pvt. Ltd. |  All Rights Reserved";
             // 
-            // progressBar1
-            // 
-            this.progressBar1.Location = new System.Drawing.Point(37, 141);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(396, 24);
-            this.progressBar1.TabIndex = 12;
-            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -352,7 +352,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Login";
+            this.Text = "LBF AR Books - Login";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmLogin_Load);
             this.Shown += new System.EventHandler(this.frmLogin_Shown);
