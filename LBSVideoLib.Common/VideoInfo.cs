@@ -10,6 +10,8 @@ namespace LBFVideoLib.Common
     {
         public string VideoFullUrl { get; set; }
 
+        public string VideoRelativeUrl { get; set; }
+
         public string VideoName { get; set; }
 
         public int WatchCount { get; set; }

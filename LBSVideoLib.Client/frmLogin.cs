@@ -241,6 +241,14 @@ namespace LBFVideoLib.Client
                 _clientInfo.MacAddress = _currentMacAddress;
             }
 
+            for (int i = 0; i < _clientInfo.VideoInfoList.Count; i++)
+            {
+                if (Path.Combine(ClientHelper.GetClientRootPath(), _clientInfo.VideoInfoList[i].VideoRelativeUrl).Equals(_clientInfo.VideoInfoList[i].VideoFullUrl) == false)
+                {
+                    _clientInfo.VideoInfoList[i].VideoFullUrl = Path.Combine(ClientHelper.GetClientRootPath(), _clientInfo.VideoInfoList[i].VideoRelativeUrl);
+                }
+            }
+
             FileInfo clientInfoFileInfo = new FileInfo(ClientHelper.GetClientInfoFilePath());
             try
             {

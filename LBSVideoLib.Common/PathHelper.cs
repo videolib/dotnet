@@ -11,7 +11,7 @@ namespace LBFVideoLib.Common
         {
             return Directory.GetCurrentDirectory();
           // return @"C:\LBFSetup\ClientPackages\6";
-           // return @"D:\School\ClientPackages\a";
+        //   return @"D:\School\ClientPackages\a";
         }
 
         public static string GetClientInfoFilePath()
