@@ -47,6 +47,9 @@
     <Compile Include="AdminInfo.cs" />
     <Compile Include="Authentication.cs" />
     <Compile Include="BackgroundProcessData.cs" />
+    <Compile Include="Exception\ExceptionFormatter.cs" />
+    <Compile Include="Exception\ExceptionHandler.cs" />
+    <Compile Include="Exception\TextFileLogger.cs" />
     <Compile Include="LicenseValidationState.cs" />
     <Compile Include="MacAddressHelper.cs" />
     <Compile Include="PathHelper.cs" />

@@ -43,17 +43,24 @@ namespace LBFVideoLib.Admin
 
         private void frmSchoolRegistration_Load(object sender, EventArgs e)
         {
-            // read configuration information
-            _sourceVideoFolderPath = ConfigHelper.SourceVideoFolderPath;
-            _clientDistributionRootPath = ConfigHelper.ClientDistributionTargetRootPath;
-            _clientInfoFileName = ConfigHelper.ClientInfoFileName;
+            try
+            {               
+                // read configuration information
+                _sourceVideoFolderPath = ConfigHelper.SourceVideoFolderPath;
+                _clientDistributionRootPath = ConfigHelper.ClientDistributionTargetRootPath;
+                _clientInfoFileName = ConfigHelper.ClientInfoFileName;
 
-            InitializeRegistrationForm();
+                InitializeRegistrationForm();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex);
+            }
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-           // string clientSchoolCodeFolderPath = "";
+            // string clientSchoolCodeFolderPath = "";
             try
             {
                 if (ValidateRegistrationForm() == false)
@@ -64,20 +71,11 @@ namespace LBFVideoLib.Admin
                 CreateClientSchoolPackage();
 
             }
+
             catch (Exception ex)
             {
-                //// Delete all file on folder
-                //if (Directory.Exists(clientSchoolCodeFolderPath))
-                //{
-                //    // Delete created package folder inside school code
-                //    System.IO.Directory.Delete(clientSchoolCodeFolderPath, true);
-                //}
-                ////throw;
+                ExceptionHandler.HandleException(ex);
             }
-            //finally
-            //{
-            //    InitializeRegistrationForm();
-            //}
         }
 
         private void CreateClientSchoolPackage()
@@ -88,10 +86,10 @@ namespace LBFVideoLib.Admin
                 progressBar1.Visible = true;
                 progressBar1.Value = 10;
 
-                string schoolCode = txtSchoolCode.Text.Trim();                
+                string schoolCode = txtSchoolCode.Text.Trim();
                 clientSchoolCodePath = Path.Combine(_clientDistributionRootPath, schoolCode);
                 string clientVideoPath = ClientHelper.GetRegisteredSchoolPackageVideoPath(schoolCode, txtSchoolCity.Text.Trim());
-                
+
                 string clientThumbnailPath = ClientHelper.GetRegisteredSchoolPackageThumbnailPath(schoolCode); // Path.Combine(clientPacakgeFolderPath, "Thumbnails");
 
                 List<VideoInfo> videoInfoList = new List<VideoInfo>();
@@ -324,7 +322,6 @@ namespace LBFVideoLib.Admin
             }
             catch (Exception ex)
             {
-
                 // Delete all file on folder
                 if (Directory.Exists(clientSchoolCodePath))
                 {
@@ -332,7 +329,8 @@ namespace LBFVideoLib.Admin
                     System.IO.Directory.Delete(clientSchoolCodePath, true);
                 }
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw;
+
+                ExceptionHandler.HandleException(ex, "", false);
             }
             finally
             {
@@ -357,6 +355,10 @@ namespace LBFVideoLib.Admin
                     System.IO.File.Delete(ClientHelper.GetMemoNumberFilePath());
                 }
             }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex, "", false);
+            }
             finally
             {
                 Cryptograph.EncryptObject(counter, ClientHelper.GetMemoNumberFilePath());
@@ -366,54 +368,82 @@ namespace LBFVideoLib.Admin
 
         private void CreateRegisteredSchoolInfoFile(string registeredSchoolInfo, string schoolCode, string schoolCity)
         {
-            string fileName = string.Format("{0}-{1}", schoolCode, schoolCity);
-            if (Directory.Exists(ClientHelper.NewRegisteredSchoolInfoFilePath()) == false)
+            try
             {
-                Directory.CreateDirectory(ClientHelper.NewRegisteredSchoolInfoFilePath());
-            }
-
-            string[] existingFiles = Directory.GetFiles(ClientHelper.NewRegisteredSchoolInfoFilePath());
-            Int16 existingFileCounter = 0;
-            for (int i = 0; i < existingFiles.Length; i++)
-            {
-                string existingFileName = Path.GetFileNameWithoutExtension(existingFiles[i]).ToLower();
-
-                if (existingFileName.StartsWith(fileName.ToLower()))
+                string fileName = string.Format("{0}-{1}", schoolCode, schoolCity);
+                if (Directory.Exists(ClientHelper.NewRegisteredSchoolInfoFilePath()) == false)
                 {
-                    existingFileCounter++;
+                    Directory.CreateDirectory(ClientHelper.NewRegisteredSchoolInfoFilePath());
                 }
-            }
 
-            if (existingFileCounter > 0)
+                string[] existingFiles = Directory.GetFiles(ClientHelper.NewRegisteredSchoolInfoFilePath());
+                Int16 existingFileCounter = 0;
+                for (int i = 0; i < existingFiles.Length; i++)
+                {
+                    string existingFileName = Path.GetFileNameWithoutExtension(existingFiles[i]).ToLower();
+
+                    if (existingFileName.StartsWith(fileName.ToLower()))
+                    {
+                        existingFileCounter++;
+                    }
+                }
+
+                if (existingFileCounter > 0)
+                {
+                    fileName = string.Format("{0}-{1}", fileName, existingFileCounter);
+                }
+
+
+                StreamWriter sw = System.IO.File.CreateText(Path.Combine(ClientHelper.NewRegisteredSchoolInfoFilePath(), fileName + ".txt"));
+                sw.Write(registeredSchoolInfo);
+                sw.Flush();
+                sw.Close();
+            }
+            catch (Exception ex)
             {
-                fileName = string.Format("{0}-{1}", fileName, existingFileCounter);
+                ExceptionHandler.HandleException(ex, "", false);
             }
-
-
-            StreamWriter sw = System.IO.File.CreateText(Path.Combine(ClientHelper.NewRegisteredSchoolInfoFilePath(), fileName + ".txt"));
-            sw.Write(registeredSchoolInfo);
-            sw.Flush();
-            sw.Close();
         }
 
         #region Check List Item Check Events
 
         private void chkListClass_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            SchoolClass selectedClass = (chkListClass.Items[e.Index] as SchoolClass);
-            updateSeriesListBinding(e.NewValue, selectedClass, e.Index);
+            try
+            {
+                SchoolClass selectedClass = (chkListClass.Items[e.Index] as SchoolClass);
+                updateSeriesListBinding(e.NewValue, selectedClass, e.Index);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex);
+            }
         }
 
         private void chkListSeries_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            Series selectedSeries = (chkListSeries.Items[e.Index] as Series);
-            updateSubjectListBinding(e.NewValue, selectedSeries);
+            try
+            {
+                Series selectedSeries = (chkListSeries.Items[e.Index] as Series);
+                updateSubjectListBinding(e.NewValue, selectedSeries);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex);
+            }
         }
 
         private void chkListSubject_ItemCheck(object sender, ItemCheckEventArgs e)
         {
-            Subject selectedSubject = (chkListSubject.Items[e.Index] as Subject);
-            updateBookListBinding(e.NewValue, selectedSubject);
+            try
+            {
+                Subject selectedSubject = (chkListSubject.Items[e.Index] as Subject);
+                updateBookListBinding(e.NewValue, selectedSubject);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex);
+            }
         }
 
         private void chkListBook_ItemCheck(object sender, ItemCheckEventArgs e)
@@ -436,7 +466,7 @@ namespace LBFVideoLib.Admin
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw;
+                ExceptionHandler.HandleException(ex);
             }
         }
 
@@ -513,7 +543,7 @@ namespace LBFVideoLib.Admin
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw;
+                ExceptionHandler.HandleException(ex, "", false);
             }
             finally
             {
@@ -592,7 +622,7 @@ namespace LBFVideoLib.Admin
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw;
+                ExceptionHandler.HandleException(ex, "", false);
             }
             finally
             {
@@ -675,7 +705,7 @@ namespace LBFVideoLib.Admin
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                throw;
+                ExceptionHandler.HandleException(ex, "", false);
             }
             //finally
             //{
@@ -688,101 +718,114 @@ namespace LBFVideoLib.Admin
         #region Private Methods
         private void InitializeRegistrationForm()
         {
-            progressBar1.Visible = false;
-
-            txtEmailId.Text = "";
-            txtPwd.Text = "";
-            txtSchoolCity.Text = "";
-            txtSchoolCode.Text = "";
-            txtSchoolName.Text = "";
-            txtNoOfPcs.Text = "";
-            cmbSchoolSession.DataSource = LicenseHelper.GetSessionList();
-            cmbSchoolSession.SelectedIndex = 0;
-
-            _classList.Clear();
-            _seriesList.Clear();
-            _subjectList.Clear();
-            _bookList.Clear();
-            _regInfoFB.Clear();
-
-            // Read all folders to fill classes
-            string[] classNameList = Directory.GetDirectories(_sourceVideoFolderPath);
-
-            for (int i = 0; i < classNameList.Length; i++)
+            try
             {
-                SchoolClass schoolClass = new SchoolClass();
-                schoolClass.ClassId = classNameList[i];
-                schoolClass.ClassName = Path.GetFileName(classNameList[i]);
-                _classList.Add(schoolClass);
+                progressBar1.Visible = false;
+
+                txtEmailId.Text = "";
+                txtPwd.Text = "";
+                txtSchoolCity.Text = "";
+                txtSchoolCode.Text = "";
+                txtSchoolName.Text = "";
+                txtNoOfPcs.Text = "";
+                cmbSchoolSession.DataSource = LicenseHelper.GetSessionList();
+                cmbSchoolSession.SelectedIndex = 0;
+
+                _classList.Clear();
+                _seriesList.Clear();
+                _subjectList.Clear();
+                _bookList.Clear();
+                _regInfoFB.Clear();
+
+                // Read all folders to fill classes
+                string[] classNameList = Directory.GetDirectories(_sourceVideoFolderPath);
+
+                for (int i = 0; i < classNameList.Length; i++)
+                {
+                    SchoolClass schoolClass = new SchoolClass();
+                    schoolClass.ClassId = classNameList[i];
+                    schoolClass.ClassName = Path.GetFileName(classNameList[i]);
+                    _classList.Add(schoolClass);
+                }
+
+                chkListClass.DataSource = null;
+                chkListSeries.DataSource = null;
+                chkListSubject.DataSource = null;
+                chkListBooks.DataSource = null;
+
+                // Fill list box with class list.
+                ((ListBox)this.chkListClass).DataSource = _classList;
+                ((ListBox)this.chkListClass).DisplayMember = "ClassName";
+                ((ListBox)this.chkListClass).ValueMember = "Selected";
             }
-
-            chkListClass.DataSource = null;
-            chkListSeries.DataSource = null;
-            chkListSubject.DataSource = null;
-            chkListBooks.DataSource = null;
-
-            // Fill list box with class list.
-            ((ListBox)this.chkListClass).DataSource = _classList;
-            ((ListBox)this.chkListClass).DisplayMember = "ClassName";
-            ((ListBox)this.chkListClass).ValueMember = "Selected";
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex, "", false);
+            }
         }
 
         private bool ValidateRegistrationForm()
         {
-            if (txtEmailId.Text.Trim() == string.Empty)
+            try
             {
-                MessageBox.Show("Email Id is required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+                if (txtEmailId.Text.Trim() == string.Empty)
+                {
+                    MessageBox.Show("Email Id is required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
 
-            if (txtPwd.Text.Trim() == string.Empty)
-            {
-                MessageBox.Show("Password is required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+                if (txtPwd.Text.Trim() == string.Empty)
+                {
+                    MessageBox.Show("Password is required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
 
-            if (txtSchoolCity.Text.Trim() == string.Empty)
-            {
-                MessageBox.Show("School city is required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+                if (txtSchoolCity.Text.Trim() == string.Empty)
+                {
+                    MessageBox.Show("School city is required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
 
-            if (txtSchoolCode.Text.Trim() == string.Empty)
-            {
-                MessageBox.Show("School code is required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+                if (txtSchoolCode.Text.Trim() == string.Empty)
+                {
+                    MessageBox.Show("School code is required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
 
-            if (txtSchoolName.Text.Trim() == string.Empty)
-            {
-                MessageBox.Show("School name is required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            int noOfPCs = 0;
-            if (int.TryParse(txtNoOfPcs.Text, out noOfPCs) == false)
-            {
-                MessageBox.Show("Invalid field value Number of pc's.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+                if (txtSchoolName.Text.Trim() == string.Empty)
+                {
+                    MessageBox.Show("School name is required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+                int noOfPCs = 0;
+                if (int.TryParse(txtNoOfPcs.Text, out noOfPCs) == false)
+                {
+                    MessageBox.Show("Invalid field value Number of pc's.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
 
-            if (noOfPCs <= 0)
-            {
-                MessageBox.Show("Number of pc's is required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+                if (noOfPCs <= 0)
+                {
+                    MessageBox.Show("Number of pc's is required.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
 
-            if (cmbSchoolSession.SelectedIndex < 0)
-            {
-                MessageBox.Show("Please select a valid session.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
+                if (cmbSchoolSession.SelectedIndex < 0)
+                {
+                    MessageBox.Show("Please select a valid session.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
 
-            if (chkListBooks.CheckedItems.Count < 1)
-            {
-                MessageBox.Show("Please select atleast one book.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                if (chkListBooks.CheckedItems.Count < 1)
+                {
+                    MessageBox.Show("Please select atleast one book.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
             }
-
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex, "", false);
+            }
 
             return true;
 
@@ -790,6 +833,7 @@ namespace LBFVideoLib.Admin
 
         private RegInfoFB SaveRegDataOnFireBase(string newMemoNumber)
         {
+
             RegInfoFB info = new RegInfoFB();
             info.RegDate = DateTime.Now.ToString();
             info.LoginEmail = txtEmailId.Text;
@@ -844,6 +888,7 @@ namespace LBFVideoLib.Admin
             }
             catch (Exception ex)
             {
+                ExceptionHandler.HandleException(ex);
                 throw new Exception("Internet connectivity issue.");
             }
             return info;
@@ -852,69 +897,125 @@ namespace LBFVideoLib.Admin
 
         private void chkListClass_MouseMove(object sender, MouseEventArgs e)
         {
-            showClassCheckBoxToolTip(sender, e);
+            try
+            {
+                showClassCheckBoxToolTip(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex);
+            }
         }
 
         private void showClassCheckBoxToolTip(object sender, MouseEventArgs e)
         {
-            if (toolTipIndex != this.chkListClass.IndexFromPoint(e.Location))
+            try
             {
-                toolTipIndex = chkListClass.IndexFromPoint(chkListClass.PointToClient(MousePosition));
-                if (toolTipIndex > -1)
+                if (toolTipIndex != this.chkListClass.IndexFromPoint(e.Location))
                 {
-                    chkListTooltip.SetToolTip(chkListClass, (chkListClass.Items[toolTipIndex] as SchoolClass).ClassName.ToString());
+                    toolTipIndex = chkListClass.IndexFromPoint(chkListClass.PointToClient(MousePosition));
+                    if (toolTipIndex > -1)
+                    {
+                        chkListTooltip.SetToolTip(chkListClass, (chkListClass.Items[toolTipIndex] as SchoolClass).ClassName.ToString());
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex);
             }
         }
 
         private void chkListSeries_MouseMove(object sender, MouseEventArgs e)
         {
-            showSeriesCheckBoxToolTip(sender, e);
+            try
+            {
+                showSeriesCheckBoxToolTip(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex);
+            }
         }
 
         private void showSeriesCheckBoxToolTip(object sender, MouseEventArgs e)
         {
-            if (toolTipIndex != this.chkListSeries.IndexFromPoint(e.Location))
+            try
             {
-                toolTipIndex = chkListSeries.IndexFromPoint(chkListSeries.PointToClient(MousePosition));
-                if (toolTipIndex > -1)
+                if (toolTipIndex != this.chkListSeries.IndexFromPoint(e.Location))
                 {
-                    chkListTooltip.SetToolTip(chkListSeries, (chkListSeries.Items[toolTipIndex] as Series).SeriesName.ToString());
+                    toolTipIndex = chkListSeries.IndexFromPoint(chkListSeries.PointToClient(MousePosition));
+                    if (toolTipIndex > -1)
+                    {
+                        chkListTooltip.SetToolTip(chkListSeries, (chkListSeries.Items[toolTipIndex] as Series).SeriesName.ToString());
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex);
             }
         }
 
         private void chkListSubject_MouseMove(object sender, MouseEventArgs e)
         {
-            showSubjectCheckBoxToolTip(sender, e);
+            try
+            {
+                showSubjectCheckBoxToolTip(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex);
+            }
         }
 
         private void showSubjectCheckBoxToolTip(object sender, MouseEventArgs e)
         {
-            if (toolTipIndex != this.chkListSubject.IndexFromPoint(e.Location))
+            try
             {
-                toolTipIndex = chkListSubject.IndexFromPoint(chkListSubject.PointToClient(MousePosition));
-                if (toolTipIndex > -1)
+                if (toolTipIndex != this.chkListSubject.IndexFromPoint(e.Location))
                 {
-                    chkListTooltip.SetToolTip(chkListSubject, (chkListSubject.Items[toolTipIndex] as Subject).SubjectName.ToString());
+                    toolTipIndex = chkListSubject.IndexFromPoint(chkListSubject.PointToClient(MousePosition));
+                    if (toolTipIndex > -1)
+                    {
+                        chkListTooltip.SetToolTip(chkListSubject, (chkListSubject.Items[toolTipIndex] as Subject).SubjectName.ToString());
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex);
             }
         }
 
         private void chkListBooks_MouseMove(object sender, MouseEventArgs e)
         {
-            showBookCheckBoxToolTip(sender, e);
+            try
+            {
+                showBookCheckBoxToolTip(sender, e);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex);
+            }
         }
 
         private void showBookCheckBoxToolTip(object sender, MouseEventArgs e)
         {
-            if (toolTipIndex != this.chkListBooks.IndexFromPoint(e.Location))
+            try
             {
-                toolTipIndex = chkListBooks.IndexFromPoint(chkListBooks.PointToClient(MousePosition));
-                if (toolTipIndex > -1)
+                if (toolTipIndex != this.chkListBooks.IndexFromPoint(e.Location))
                 {
-                    chkListTooltip.SetToolTip(chkListBooks, (chkListBooks.Items[toolTipIndex] as Book).BookName.ToString());
+                    toolTipIndex = chkListBooks.IndexFromPoint(chkListBooks.PointToClient(MousePosition));
+                    if (toolTipIndex > -1)
+                    {
+                        chkListTooltip.SetToolTip(chkListBooks, (chkListBooks.Items[toolTipIndex] as Book).BookName.ToString());
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex);
             }
         }
 
