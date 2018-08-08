@@ -9,8 +9,8 @@ namespace LBFVideoLib.Common
         #region Client Path Helper Methods
         public static string GetClientRootPath()
         {
-          //  return Directory.GetCurrentDirectory();
-          // return @"C:\LBFSetup\ClientPackages\6";
+            //  return Directory.GetCurrentDirectory();
+            // return @"C:\LBFSetup\ClientPackages\6";
             return @"D:\School\ClientPackages\a";
         }
 
@@ -58,7 +58,7 @@ namespace LBFVideoLib.Common
 
         public static string GetRegisteredSchoolPackageVideoPath(string schoolCode, string schoolCity)
         {
-            return Path.Combine(GetRegisteredSchoolPackagePath(schoolCode), string.Format("{0}_{1}_{2}", schoolCode, schoolCity, "LBFVideos"));
+            return Path.Combine(GetRegisteredSchoolPackagePath(schoolCode), GetClientVideoFolderName(schoolCode, schoolCity));
         }
 
         public static string NewRegisteredSchoolInfoFilePath()
@@ -74,6 +74,11 @@ namespace LBFVideoLib.Common
         public static string MemoNumberFileName()
         {
             return "LBFVideoLibMemoNumber.txt";
+        }
+
+        public static string GetClientVideoFolderName(string schoolCode, string schoolCity)
+        {
+            return string.Format("{0}_{1}_{2}", schoolCode, schoolCity, "LBFVideos");
         }
 
 
