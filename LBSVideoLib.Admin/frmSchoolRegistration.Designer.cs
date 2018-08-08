@@ -489,9 +489,9 @@
             this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Location = new System.Drawing.Point(621, 14);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(167, 24);
+            this.label2.Size = new System.Drawing.Size(212, 24);
             this.label2.TabIndex = 5;
-            this.label2.Text = "LBF Video Portal";
+            this.label2.Text = "LBF Hi-Tech Teacher";
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // frmSchoolRegistration
@@ -503,7 +503,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmSchoolRegistration";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "LBF Video Portal School Registration";
+            this.Text = "LBF Hi-Tech Teacher - School Registration";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmSchoolRegistration_Load);
             this.pnlMain.ResumeLayout(false);

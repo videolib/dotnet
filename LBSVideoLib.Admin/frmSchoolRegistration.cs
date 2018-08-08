@@ -88,9 +88,10 @@ namespace LBFVideoLib.Admin
                 progressBar1.Visible = true;
                 progressBar1.Value = 10;
 
-                string schoolCode = txtSchoolCode.Text.Trim();
-                  clientSchoolCodePath = Path.Combine(_clientDistributionRootPath, schoolCode);
+                string schoolCode = txtSchoolCode.Text.Trim();                
+                clientSchoolCodePath = Path.Combine(_clientDistributionRootPath, schoolCode);
                 string clientVideoPath = ClientHelper.GetRegisteredSchoolPackageVideoPath(schoolCode, txtSchoolCity.Text.Trim());
+                
                 string clientThumbnailPath = ClientHelper.GetRegisteredSchoolPackageThumbnailPath(schoolCode); // Path.Combine(clientPacakgeFolderPath, "Thumbnails");
 
                 List<VideoInfo> videoInfoList = new List<VideoInfo>();
