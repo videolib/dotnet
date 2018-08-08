@@ -25,70 +25,79 @@ namespace LBFVideoLib.Client
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            this.progressBar1.Visible = true;
-            this.progressBar1.Enabled = true;
-            this.progressBar1.Value = 10;
-            //ClientHelper.GetClientThumbanailPath();
-
-            _clientInfoFilePath = ClientHelper.GetClientInfoFilePath();
-
-            if (!File.Exists(_clientInfoFilePath))
+            try
             {
-                MessageBox.Show("Invalid Configuration", "Configuration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                this.Close();
-                return;
-            }
+                this.progressBar1.Visible = true;
+                this.progressBar1.Enabled = true;
+                this.progressBar1.Value = 10;
+                //ClientHelper.GetClientThumbanailPath();
 
-            this.progressBar1.Value = 30;
+                _clientInfoFilePath = ClientHelper.GetClientInfoFilePath();
 
-            CommonAppStateDataHelper.ClientInfoObject = Cryptograph.DecryptObject<ClientInfo>(_clientInfoFilePath);
-            _clientInfo = CommonAppStateDataHelper.ClientInfoObject;
-
-            this.progressBar1.Value = 70;
-
-            if (_clientInfo != null)
-            {
-                lblSessionYears.Text = ClientHelper.GetSessionString(_clientInfo.SessionString);
-                lblSchoolWelcome.Text = ClientHelper.GetWelcomeString(_clientInfo.SchoolName, _clientInfo.SchoolCity, _clientInfo.SchoolId);
-                lblExpireDate.Text = ClientHelper.GetExpiryDateString(_clientInfo.SessionEndDate);
-
-                _currentMacAddress = MacAddressHelper.GetMacAddress();
-                //_currentMacAddress = "B82A72A780B7";
-                _firebaseRegInfo = GetFirebaseRegistrationInformation();
-
-                string errorMessage = "";
-                bool deleteVideos = false;
-                bool skipLoginScreen = false;
-                // Check license session duraion
-                LicenseValidationState licenseState = ValidateLicenseNew(_firebaseRegInfo, _clientInfo, _currentMacAddress, out errorMessage, out deleteVideos, out skipLoginScreen);
-
-                if (licenseState != LicenseValidationState.Valid)
+                if (!File.Exists(_clientInfoFilePath))
                 {
-                    OnAfterLicesseValidation(errorMessage, deleteVideos, licenseState);
+                    MessageBox.Show("Invalid Configuration", "Configuration Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Close();
+                    return;
                 }
 
-                _showLoginForm = !skipLoginScreen;
+                this.progressBar1.Value = 30;
 
-                this.progressBar1.Value = 100;
+                CommonAppStateDataHelper.ClientInfoObject = Cryptograph.DecryptObject<ClientInfo>(_clientInfoFilePath);
+                _clientInfo = CommonAppStateDataHelper.ClientInfoObject;
 
-                //// update mac address in local client info file
-                //if (licenseState == LicenseValidationState.Valid)
-                //{
-                //    this.progressBar1.Value = 90;
-                //    //if (string.IsNullOrEmpty(CommonAppStateDataHelper.ClientInfoObject.MacAddress))
-                //    //{
-                //    //    _showLoginForm = true;
-                //    //}
-                //    //else
-                //    //{
-                //    //    _showLoginForm = false;
-                //    //}
-                //}
-                //else
-                //{
-                //    this.progressBar1.Value = 100;
-                //    Application.Exit();
-                //}
+                this.progressBar1.Value = 70;
+
+                if (_clientInfo != null)
+                {
+                    lblSessionYears.Text = ClientHelper.GetSessionString(_clientInfo.SessionString);
+                    lblSchoolWelcome.Text = ClientHelper.GetWelcomeString(_clientInfo.SchoolName, _clientInfo.SchoolCity, _clientInfo.SchoolId);
+                    lblExpireDate.Text = ClientHelper.GetExpiryDateString(_clientInfo.SessionEndDate);
+
+                    _currentMacAddress = MacAddressHelper.GetMacAddress();
+                    //_currentMacAddress = "B82A72A780B7";
+                    _firebaseRegInfo = GetFirebaseRegistrationInformation();
+
+                    string errorMessage = "";
+                    bool deleteVideos = false;
+                    bool skipLoginScreen = false;
+                    // Check license session duraion
+                    LicenseValidationState licenseState = ValidateLicenseNew(_firebaseRegInfo, _clientInfo, _currentMacAddress, out errorMessage, out deleteVideos, out skipLoginScreen);
+
+                    TextFileLogger.Log("License State" + licenseState.ToString());
+
+                    if (licenseState != LicenseValidationState.Valid)
+                    {
+                        OnAfterLicesseValidation(errorMessage, deleteVideos, licenseState);
+                    }
+
+                    _showLoginForm = !skipLoginScreen;
+
+                    this.progressBar1.Value = 100;
+
+                    //// update mac address in local client info file
+                    //if (licenseState == LicenseValidationState.Valid)
+                    //{
+                    //    this.progressBar1.Value = 90;
+                    //    //if (string.IsNullOrEmpty(CommonAppStateDataHelper.ClientInfoObject.MacAddress))
+                    //    //{
+                    //    //    _showLoginForm = true;
+                    //    //}
+                    //    //else
+                    //    //{
+                    //    //    _showLoginForm = false;
+                    //    //}
+                    //}
+                    //else
+                    //{
+                    //    this.progressBar1.Value = 100;
+                    //    Application.Exit();
+                    //}
+                }
+            }
+            catch(Exception ex)
+            {
+                ExceptionHandler.HandleException(ex);
             }
         }
 
@@ -209,16 +218,23 @@ namespace LBFVideoLib.Client
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            bool authenticated = Authentication.AuthenticateClient(txtEmailId.Text.Trim(), txtPwd.Text.Trim());
+            try
+            {
+                bool authenticated = Authentication.AuthenticateClient(txtEmailId.Text.Trim(), txtPwd.Text.Trim());
 
-            if (authenticated)
-            {
-                OnAfterAuthentication();
+                if (authenticated)
+                {
+                    OnAfterAuthentication();
+                }
+                else
+                {
+                    lblStatus.Text = "Invalid Email Id or Password!!";
+                }
             }
-            else
+            catch (Exception ex)
             {
-                lblStatus.Text = "Invalid Email Id or Password!!";
-            }
+                ExceptionHandler.HandleException(ex);
+            }        
         }
 
         private void OnAfterAuthentication()

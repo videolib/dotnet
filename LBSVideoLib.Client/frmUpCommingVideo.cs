@@ -46,7 +46,15 @@ namespace LBFVideoLib.Client
 
         private void frmUpCommingVideo_Load(object sender, EventArgs e)
         {
-            InitializeForm();
+            try
+            {
+                InitializeForm();
+            }
+
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex);
+            }
         }
 
         private void InitializeForm()
@@ -140,10 +148,10 @@ namespace LBFVideoLib.Client
 
                 //   backgroundWorker1.RunWorkerAsync(videoUrl);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 progressBar1.Visible = false;
-                throw;
+                ExceptionHandler.HandleException(ex,"", false);                
             }
         }
 
@@ -332,7 +340,7 @@ namespace LBFVideoLib.Client
             // if file is already decrypting and we are trying to delete it.
             catch (Exception)
             {
-                
+
             }
             if (_hiddenSourceControl == null)
             {
@@ -395,7 +403,7 @@ namespace LBFVideoLib.Client
             {
             }
         }
-        
+
         private void btnFastForward_Click(object sender, EventArgs e)
         {
             try
