@@ -15,6 +15,7 @@ namespace LBFVideoLib.Common
         public static string invalidClockMessage = "Invalid Clock";
         public static string invalidLicenseMessage = "Invalid License";
         public static string onlineConnectivityIsMust = "Your system seems offline, please check your connect and try again.";
+        public static string maxLicenseOccupiedMessage = "Maximum allowed licenses already occupied";
 
         static LicenseHelper()
         {
@@ -60,21 +61,21 @@ namespace LBFVideoLib.Common
             if (registrationDate.CompareTo(DateTime.Now) <= 0 && clientInfo.SessionEndDate.CompareTo(DateTime.Now) >= 0 && lastAccessTime.CompareTo(DateTime.Now) > 0)
             {
                 valid = false;
-                message = "Invalid clock";
+                message = invalidClockMessage;
             }
             // Clock time is behind
             //Caes2 => RegDate > CurrentDate & CurrentDate < Exp Date = Show Message
             else if (clientInfo.RegistrationDate.Date.CompareTo(DateTime.Now.Date) > 0)
             {
                 valid = false;
-                message = "Invalid clock";
+                message = invalidClockMessage;
             }
             //Caes3 => 	RegDate < CurrentDate & CurrentDate > Exp Date = Del Video Folder
             else if (clientInfo.SessionEndDate.Date.CompareTo(DateTime.Now.Date) < 0)
             {
                 valid = false;
                 // message = "Your subscription has expired. To renew please\nContact:info@lbf.in or Call on +91 0 9109138808";
-                message = "Contact to renew the Video Portal on: info@lbf.in";
+                message = licenseExpiredMessage;
                 deleteVideo = true;
             }
             //if (DateTime.Now < clientInfo.LastAccessStartTime || DateTime.Now < clientInfo.LastAccessEndTime)
@@ -241,7 +242,7 @@ namespace LBFVideoLib.Common
                     {
                         licenseState = LicenseValidationState.SavedMacAddressMismatched;
                         skipLoginScreen = false;
-                        message = "Invalid License";
+                        message = invalidLicenseMessage;
                         deleteVideo = true;
                     }
 
@@ -259,7 +260,7 @@ namespace LBFVideoLib.Common
                         {
                             licenseState = LicenseValidationState.MaxMacAddressLimitExceed;
                             skipLoginScreen = false;
-                            message = "Maximum allowed licenses already occupied";
+                            message = maxLicenseOccupiedMessage;
                             deleteVideo = true;
                         }
 
@@ -283,7 +284,7 @@ namespace LBFVideoLib.Common
                     {
                         licenseState = LicenseValidationState.MaxMacAddressLimitExceed;
                         skipLoginScreen = false;
-                        message = "Maximum allowed licenses already occupied";
+                        message = maxLicenseOccupiedMessage;
                         deleteVideo = true;
                     }
                     // 3.2) If FirebaseMacAddressList.Count < MaxLicenseCount
