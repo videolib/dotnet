@@ -89,8 +89,8 @@ namespace LBFVideoLib.Admin
                 string schoolCode = txtSchoolCode.Text.Trim();
                 clientSchoolCodePath = Path.Combine(_clientDistributionRootPath, schoolCode);
                 string clientVideoPath = ClientHelper.GetRegisteredSchoolPackageVideoPath(schoolCode, txtSchoolCity.Text.Trim());
-
                 string clientThumbnailPath = ClientHelper.GetRegisteredSchoolPackageThumbnailPath(schoolCode); // Path.Combine(clientPacakgeFolderPath, "Thumbnails");
+                string clientVideoFolderName = ClientHelper.GetClientVideoFolderName(schoolCode, txtSchoolCity.Text.Trim());
 
                 List<VideoInfo> videoInfoList = new List<VideoInfo>();
 
@@ -198,14 +198,19 @@ namespace LBFVideoLib.Admin
                         foreach (string selectedBookVideo in selectedBook.VideoList)
                         {
                             string clientTargetVideoPath = Path.Combine(clientVideoPath, selectedBook.ClassName);
+                            string clientVideoRelativePath = Path.Combine(clientVideoFolderName, selectedBook.ClassName);
+
                             if (Directory.Exists(clientTargetVideoPath) == false)
                             {
                                 Directory.CreateDirectory(clientTargetVideoPath);
                             }
+
                             DirectoryInfo clientTargetVideoPathInfo = new DirectoryInfo(clientTargetVideoPath);
                             clientTargetVideoPathInfo.Attributes = FileAttributes.Hidden;
 
                             clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.SeriesName);
+                            clientVideoRelativePath = Path.Combine(clientVideoRelativePath, selectedBook.SeriesName);
+
                             if (Directory.Exists(clientTargetVideoPath) == false)
                             {
                                 Directory.CreateDirectory(clientTargetVideoPath);
@@ -214,6 +219,8 @@ namespace LBFVideoLib.Admin
                             clientTargetVideoPathInfo.Attributes = FileAttributes.Hidden;
 
                             clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.SubjectName);
+                            clientVideoRelativePath = Path.Combine(clientVideoRelativePath, selectedBook.SubjectName);
+
                             if (Directory.Exists(clientTargetVideoPath) == false)
                             {
                                 Directory.CreateDirectory(clientTargetVideoPath);
@@ -222,6 +229,8 @@ namespace LBFVideoLib.Admin
                             clientTargetVideoPathInfo.Attributes = FileAttributes.Hidden;
 
                             clientTargetVideoPath = Path.Combine(clientTargetVideoPath, selectedBook.BookName);
+                            clientVideoRelativePath = Path.Combine(clientVideoRelativePath, selectedBook.BookName);
+
                             if (Directory.Exists(clientTargetVideoPath) == false)
                             {
                                 Directory.CreateDirectory(clientTargetVideoPath);
@@ -244,7 +253,10 @@ namespace LBFVideoLib.Admin
                             videoInfo.Subject = selectedBook.SubjectName;
                             videoInfo.Book = selectedBook.BookName;
                             clientTargetVideoPath = Path.Combine(clientTargetVideoPath, Path.GetFileName(selectedBookVideo));
-                            videoInfo.VideoFullUrl = clientTargetVideoPath;
+                            clientVideoRelativePath = Path.Combine(clientVideoRelativePath, Path.GetFileName(selectedBookVideo));
+                            //videoInfo.VideoFullUrl = clientTargetVideoPath;
+                            videoInfo.VideoFullUrl = clientVideoRelativePath;
+                            videoInfo.VideoRelativeUrl = clientVideoRelativePath;
 
                             Cryptograph.EncryptFile(selectedBookVideo, clientTargetVideoPath);
 
@@ -322,6 +334,7 @@ namespace LBFVideoLib.Admin
             }
             catch (Exception ex)
             {
+
                 // Delete all file on folder
                 if (Directory.Exists(clientSchoolCodePath))
                 {
@@ -329,8 +342,7 @@ namespace LBFVideoLib.Admin
                     System.IO.Directory.Delete(clientSchoolCodePath, true);
                 }
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                ExceptionHandler.HandleException(ex, "", false);
+                throw;
             }
             finally
             {
