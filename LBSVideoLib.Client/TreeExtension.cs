@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LBFVideoLib.Common.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,10 +21,23 @@ namespace LBFVideoLib.Client
             return nodes.SelectMany(x => Descendants(x)).Concat(nodes).ToList();
         }
 
-        public static IEnumerable<TreeNode> FindByFullPath(this TreeView tree,string searchKey)
+        public static IEnumerable<TreeNode> FindByFullPath(this TreeView tree, string searchKey)
         {
-        return tree.Descendants().Where(x => (x.Name as string) == searchKey);
-            
+
+            return tree.Descendants().Where((x) =>
+            {
+                string[] treeTag = x.Tag as string[];
+                if (treeTag != null)
+                {
+                    if (treeTag.Contains(searchKey))
+                    {
+                        return true;
+                    }
+                }
+                // (x.Name as string) == searchKey;
+                return false;
+            });
+
         }
 
     }

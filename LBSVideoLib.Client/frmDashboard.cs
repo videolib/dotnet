@@ -22,7 +22,7 @@ namespace LBFVideoLib.Client
         private bool _skipNodeSelection = true;
         private List<VideoInfo> _mostWatchedVideos = new List<VideoInfo>();
         private List<VideoInfo> _mostRecommandedVideos = new List<VideoInfo>();
-
+        private bool _formLoaded = false;
         //private List<ThumbnailInfo> _mostWatchedVideosThumbList = new List<ThumbnailInfo>();
         //private List<ThumbnailInfo> _mostRecommandedVideosThumbList = new List<ThumbnailInfo>();
 
@@ -35,12 +35,13 @@ namespace LBFVideoLib.Client
 
         private void frmDashboard_Load(object sender, EventArgs e)
         {
+            _formLoaded = true;
             lblSessionYears.Text = ClientHelper.GetSessionString(ClientInfoObject.SessionString);
             lblSchoolWelcome.Text = ClientHelper.GetWelcomeString(ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);
             lblExpireDate.Text = ClientHelper.GetExpiryDateString(ClientInfoObject.SessionEndDate);
 
             FillTreeView();
-            treeView1.ExpandAll();
+            treeView1.CollapseAll();
 
             AddRecomandatedVideos();
             AddMostWatchedVideos();
@@ -253,56 +254,79 @@ namespace LBFVideoLib.Client
 
         private void CtlRecommanded_Click(object sender, EventArgs e)
         {
-            CustomeThumbControl ctl = sender as CustomeThumbControl;
-            // Find index of currently selected video in list.
+            try
+            {
+                _skipNodeSelection = true;
+                CustomeThumbControl ctl = sender as CustomeThumbControl;
 
-            List<VideoInfo> nextVideoList = new List<VideoInfo>();
-            List<VideoInfo> previousVideoList = new List<VideoInfo>();
+                this.treeView1.SelectedNode = this.SelectedNode = treeView1.FindByFullPath(ctl.VideoUrl).FirstOrDefault();
 
-            CreatePreviousAndNextPlaylist(_mostRecommandedVideos, ctl.VideoUrl, out nextVideoList, out previousVideoList);
+                List<VideoInfo> nextVideoList = new List<VideoInfo>();
+                List<VideoInfo> previousVideoList = new List<VideoInfo>();
 
-            frmUpCommingVideo upcomingVideoForm = new frmUpCommingVideo();
-            upcomingVideoForm.ParentFormControl = this;
-            upcomingVideoForm.ClientInfoObject = this.ClientInfoObject;
-            upcomingVideoForm.EncryptedVideo = false;
-            upcomingVideoForm.NextVideoFileList = nextVideoList;
-            upcomingVideoForm.PreviousVideoFileList = previousVideoList;
-            upcomingVideoForm.CurrentVideoInfo = ctl.ThumbnailInformation;//new VideoInfo() { FileName = ctl.ThumbnailInformation.VideoName, ThumbnailFilePath = ctl.ThumbUrl, VideoFullUrl = ctl.VideoUrl };
-            upcomingVideoForm.EncryptedVideo = true;
-            upcomingVideoForm.SelectedNode = this.treeView1.SelectedNode;
-            upcomingVideoForm.DashboardFormControl = this;
-            upcomingVideoForm.Show();
-            this.Hide();
+                CreatePreviousAndNextPlaylist(_mostRecommandedVideos, ctl.VideoUrl, out nextVideoList, out previousVideoList);
+
+                frmUpCommingVideo upcomingVideoForm = new frmUpCommingVideo();
+                upcomingVideoForm.ParentFormControl = this;
+                upcomingVideoForm.ClientInfoObject = this.ClientInfoObject;
+                upcomingVideoForm.EncryptedVideo = false;
+                upcomingVideoForm.NextVideoFileList = nextVideoList;
+                upcomingVideoForm.PreviousVideoFileList = previousVideoList;
+                upcomingVideoForm.CurrentVideoInfo = ctl.ThumbnailInformation;//new VideoInfo() { FileName = ctl.ThumbnailInformation.VideoName, ThumbnailFilePath = ctl.ThumbUrl, VideoFullUrl = ctl.VideoUrl };
+                upcomingVideoForm.EncryptedVideo = true;
+                upcomingVideoForm.SelectedNode = this.treeView1.SelectedNode;
+                upcomingVideoForm.DashboardFormControl = this;
+                upcomingVideoForm.Show();
+                this.Hide();
+            }
+            finally
+            {
+                _skipNodeSelection = false;
+            }
         }
 
         private void CtlMostWatchedVideo_Click(object sender, EventArgs e)
         {
-            CustomeThumbControl ctl = sender as CustomeThumbControl;
-            // Find index of currently selected video in list.
-
-            List<VideoInfo> nextVideoList = new List<VideoInfo>();
-            List<VideoInfo> previousVideoList = new List<VideoInfo>();
-
-            CreatePreviousAndNextPlaylist(_mostWatchedVideos, ctl.VideoUrl, out nextVideoList, out previousVideoList);
-
-            frmUpCommingVideo upcomingVideoForm = (CommonAppStateDataHelper.FindFormByFormType("frmUpCommingVideo") as frmUpCommingVideo);
-            if (upcomingVideoForm == null)
+            try
             {
-                upcomingVideoForm = new frmUpCommingVideo();
+                _skipNodeSelection = true;
+                CustomeThumbControl ctl = sender as CustomeThumbControl;
+                // Find index of currently selected video in list.
+                List<VideoInfo> nextVideoList = new List<VideoInfo>();
+                List<VideoInfo> previousVideoList = new List<VideoInfo>();
+
+                this.treeView1.SelectedNode = this.SelectedNode = FindVideoParentTreeNode(ctl.VideoUrl);
+
+                CreatePreviousAndNextPlaylist(_mostWatchedVideos, ctl.VideoUrl, out nextVideoList, out previousVideoList);
+
+                frmUpCommingVideo upcomingVideoForm = (CommonAppStateDataHelper.FindFormByFormType("frmUpCommingVideo") as frmUpCommingVideo);
+                if (upcomingVideoForm == null)
+                {
+                    upcomingVideoForm = new frmUpCommingVideo();
+                }
+                upcomingVideoForm.ParentFormControl = this;
+                upcomingVideoForm.ClientInfoObject = this.ClientInfoObject;
+                upcomingVideoForm.EncryptedVideo = false;
+                upcomingVideoForm.NextVideoFileList = nextVideoList;
+                upcomingVideoForm.PreviousVideoFileList = previousVideoList;
+                upcomingVideoForm.CurrentVideoInfo = ctl.ThumbnailInformation; //  new VideoInfo() { VideoName = ctl.ThumbnailInformation.VideoName, ThumbnailFilePath = ctl.ThumbnailInformation.ThumbnailFilePath, VideoFullUrl = ctl.ThumbnailInformation.VideoFullUrl };
+                upcomingVideoForm.EncryptedVideo = true;
+                upcomingVideoForm.SelectedNode = this.treeView1.SelectedNode;
+                upcomingVideoForm.DashboardFormControl = this;
+                upcomingVideoForm.Show();
+                this.Hide();
             }
-            upcomingVideoForm.ParentFormControl = this;
-            upcomingVideoForm.ClientInfoObject = this.ClientInfoObject;
-            upcomingVideoForm.EncryptedVideo = false;
-            upcomingVideoForm.NextVideoFileList = nextVideoList;
-            upcomingVideoForm.PreviousVideoFileList = previousVideoList;
-            upcomingVideoForm.CurrentVideoInfo = ctl.ThumbnailInformation; //  new VideoInfo() { VideoName = ctl.ThumbnailInformation.VideoName, ThumbnailFilePath = ctl.ThumbnailInformation.ThumbnailFilePath, VideoFullUrl = ctl.ThumbnailInformation.VideoFullUrl };
-            upcomingVideoForm.EncryptedVideo = true;
-            upcomingVideoForm.SelectedNode = this.treeView1.SelectedNode;
-            upcomingVideoForm.DashboardFormControl = this;
-            upcomingVideoForm.Show();
-            this.Hide();
+            finally
+            {
+                _skipNodeSelection = false;
+            }
         }
 
+
+        private TreeNode FindVideoParentTreeNode(string videoFullUrl)
+        {
+            return treeView1.FindByFullPath(videoFullUrl).FirstOrDefault();
+        }
         private void CreatePreviousAndNextPlaylist(List<VideoInfo> thumbnailList, string videoUrl, out List<VideoInfo> nextVideoList, out List<VideoInfo> previousVideoList)
         {
             nextVideoList = new List<VideoInfo>();
@@ -321,6 +345,11 @@ namespace LBFVideoLib.Client
 
         private void frmDashboard_VisibleChanged(object sender, EventArgs e)
         {
+            if(this.Visible && this._formLoaded)
+            {
+                this.SelectedNode = treeView1.Nodes[0];
+                treeView1.CollapseAll();
+            }
 
             if (this.SelectedNode != null && this.Visible)
             {

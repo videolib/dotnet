@@ -69,7 +69,7 @@ namespace LBFVideoLib.Client
             clientInfoFileInfo.Attributes |= FileAttributes.Hidden;
 
             FillTreeView();
-            treeView1.ExpandAll();
+            treeView1.CollapseAll();
 
             if (this.SelectedNode != null)
             {
@@ -151,7 +151,7 @@ namespace LBFVideoLib.Client
             catch (Exception ex)
             {
                 progressBar1.Visible = false;
-                ExceptionHandler.HandleException(ex,"", false);                
+                ExceptionHandler.HandleException(ex,"", false);
             }
         }
 
@@ -475,6 +475,7 @@ namespace LBFVideoLib.Client
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
+            this.SelectedNode = null;
             this._hiddenSourceControl = pnlLogo;
             this.Hide();
             this.DashboardFormControl.Show();

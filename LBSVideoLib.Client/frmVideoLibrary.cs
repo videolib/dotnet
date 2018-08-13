@@ -53,10 +53,11 @@ namespace LBFVideoLib.Client
             _clientVideoRootFilePath = ClientHelper.GetClientVideoFilePath(this.ClientInfoObject.SchoolId, this.ClientInfoObject.SchoolCity);
             lblSessionYears.Text = ClientHelper.GetSessionString(ClientInfoObject.SessionString);
             lblSchoolWelcome.Text = ClientHelper.GetWelcomeString(ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);
+            // lblSchoolWelcome.Text = "Welcome, Only demo purpose only testing for demo, Indor, [0755-2549529]";
             lblExpireDate.Text = ClientHelper.GetExpiryDateString(ClientInfoObject.SessionEndDate);
 
             FillTreeView();
-            treeView1.ExpandAll();
+            treeView1.CollapseAll();
 
             UpdateTreeNodeSelection();
             FillVideoLibrary(this.treeView1.SelectedNode.Tag as TreeTag);
