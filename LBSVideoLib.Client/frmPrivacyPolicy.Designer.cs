@@ -64,7 +64,7 @@
             this.MaximizeBox = false;
             this.Name = "frmPrivacyPolicy";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "LBF AR Books - Privacy Policy";
+            this.Text = "LBF Hi-Tech Teacher - Privacy Policy";
             this.Load += new System.EventHandler(this.frmPrivacyPolicy_Load);
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);

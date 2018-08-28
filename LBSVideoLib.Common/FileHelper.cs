@@ -16,7 +16,8 @@ namespace LBFVideoLib.Common
         public static void CreateFile(string filePath, string content)
         {
             //write string to file
-            System.IO.File.WriteAllText(@filePath, content);
+            System.IO.File.WriteAllText(@filePath, content); 
+
         }
     }
 }

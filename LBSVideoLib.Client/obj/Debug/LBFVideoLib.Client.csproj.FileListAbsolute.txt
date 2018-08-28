@@ -76,3 +76,41 @@ D:\School\dotnet\LBSVideoLib.Client\obj\Debug\LBFVideoLib.Client.csproj.CoreComp
 D:\School\dotnet\LBSVideoLib.Client\obj\Debug\LBFVideoLib.Client.csproj.CopyComplete
 D:\School\dotnet\LBSVideoLib.Client\obj\Debug\LBFVideoLib.Client.exe
 D:\School\dotnet\LBSVideoLib.Client\obj\Debug\LBFVideoLib.Client.pdb
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\bin\Debug\Thumbnails\class 1_english.jpg
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\bin\Debug\Thumbnails\class 2_english.jpg
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\bin\Debug\Thumbnails\class 3_english.jpg
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\bin\Debug\Thumbnails\class 4_english.jpg
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\bin\Debug\Thumbnails\class 5_english.jpg
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\bin\Debug\Thumbnails\class 1_hindi.jpg
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\bin\Debug\Thumbnails\class 2_hindi.jpg
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\bin\Debug\Thumbnails\class 3_hindi.jpg
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\bin\Debug\Thumbnails\class 4_hindi.jpg
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\bin\Debug\Thumbnails\class 5_hindi.jpg
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\bin\Debug\Thumbnails\default.jpg
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\bin\Debug\Thumbnails\subjects_english.png
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\bin\Debug\Thumbnails\subjects_evs.png
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\bin\Debug\Thumbnails\subjects_hindi.png
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\bin\Debug\Thumbnails\subjects_maths.png
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\bin\Debug\LBFVideoLib.Client.exe.config
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\bin\Debug\LBFVideoLib.Client.exe
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\bin\Debug\LBFVideoLib.Client.pdb
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\bin\Debug\LBFVideoLib.Common.dll
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\bin\Debug\Newtonsoft.Json.dll
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\bin\Debug\LBFVideoLib.Common.pdb
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\bin\Debug\Newtonsoft.Json.xml
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\bin\Debug\Interop.WMPLib.dll
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\bin\Debug\AxInterop.WMPLib.dll
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\obj\Debug\LBFVideoLib.Client.csprojResolveAssemblyReference.cache
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\obj\Debug\Interop.WMPLib.dll
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\obj\Debug\AxInterop.WMPLib.dll
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\obj\Debug\LBFVideoLib.Client.csproj.ResolveComReference.cache
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\obj\Debug\LBFVideoLib.Client.frmDashboard.resources
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\obj\Debug\LBFVideoLib.Client.frmLogin.resources
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\obj\Debug\LBFVideoLib.Client.frmPrivacyPolicy.resources
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\obj\Debug\LBSVideoLib.frmPlayVideo.resources
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\obj\Debug\LBFVideoLib.Client.frmUpCommingVideo.resources
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\obj\Debug\LBFVideoLib.Client.frmVideoLibrary.resources
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\obj\Debug\LBFVideoLib.Client.Properties.Resources.resources
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\obj\Debug\LBFVideoLib.Client.csproj.GenerateResource.Cache
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\obj\Debug\LBFVideoLib.Client.exe
+D:\Development\School\Source\LBFHiTechTeacher\dotnet\LBSVideoLib.Client\obj\Debug\LBFVideoLib.Client.pdb
