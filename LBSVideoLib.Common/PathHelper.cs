@@ -98,7 +98,7 @@ namespace LBFVideoLib.Common
 
         public static string GetContactMessageString()
         {
-            return "In case of any query, feedback or if you have forgot your password\nContact: info@lbf or call on +91 0 9109138808";
+            return "In case of any query, feedback or if you forgot your password\nContact: info@lbf.in or call 9109 138808";
         }
 
         public static string GetSessionString(string sessionString)

@@ -28,33 +28,34 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Urdu");
-            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("First-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode13});
-            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("First", new System.Windows.Forms.TreeNode[] {
-            treeNode14});
-            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Maths");
-            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Second-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode16});
-            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Hindi");
-            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Second-S2", new System.Windows.Forms.TreeNode[] {
-            treeNode18});
-            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Second", new System.Windows.Forms.TreeNode[] {
-            treeNode17,
-            treeNode19});
-            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("English");
-            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Third-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode21});
-            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Third", new System.Windows.Forms.TreeNode[] {
-            treeNode22});
-            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Classes", new System.Windows.Forms.TreeNode[] {
-            treeNode15,
-            treeNode20,
-            treeNode23});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUpCommingVideo));
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Urdu");
+            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("First-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode25});
+            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("First", new System.Windows.Forms.TreeNode[] {
+            treeNode26});
+            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Maths");
+            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("Second-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode28});
+            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("Hindi");
+            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("Second-S2", new System.Windows.Forms.TreeNode[] {
+            treeNode30});
+            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("Second", new System.Windows.Forms.TreeNode[] {
+            treeNode29,
+            treeNode31});
+            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("English");
+            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("Third-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode33});
+            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("Third", new System.Windows.Forms.TreeNode[] {
+            treeNode34});
+            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("Classes", new System.Windows.Forms.TreeNode[] {
+            treeNode27,
+            treeNode32,
+            treeNode35});
             this.pnlMain = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.panel10 = new System.Windows.Forms.Panel();
             this.btnFullScreen = new System.Windows.Forms.Button();
             this.btnFastForward = new System.Windows.Forms.Button();
@@ -89,9 +90,9 @@
             this.lblAppTitle = new System.Windows.Forms.Label();
             this.lblContact = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.axWindowsMediaPlayer1 = new AxWMPLib.AxWindowsMediaPlayer();
             this.pnlMain.SuspendLayout();
             this.panel9.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.panel10.SuspendLayout();
             this.panel8.SuspendLayout();
             this.pnlVideo.SuspendLayout();
@@ -103,7 +104,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlMain
@@ -143,6 +143,17 @@
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(237, 26);
             this.progressBar1.TabIndex = 7;
+            // 
+            // axWindowsMediaPlayer1
+            // 
+            this.axWindowsMediaPlayer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.axWindowsMediaPlayer1.Enabled = true;
+            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(28, 43);
+            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
+            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
+            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(977, 366);
+            this.axWindowsMediaPlayer1.TabIndex = 68;
+            this.axWindowsMediaPlayer1.KeyDownEvent += new AxWMPLib._WMPOCXEvents_KeyDownEventHandler(this.axWindowsMediaPlayer1_KeyDownEvent);
             // 
             // panel10
             // 
@@ -219,7 +230,7 @@
             this.lblWatchCount.Name = "lblWatchCount";
             this.lblWatchCount.Size = new System.Drawing.Size(170, 20);
             this.lblWatchCount.TabIndex = 12;
-            this.lblWatchCount.Text = "Watch Time ";
+            this.lblWatchCount.Text = "Watch Count";
             this.lblWatchCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // lblFileName
@@ -230,9 +241,9 @@
             this.lblFileName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.lblFileName.Location = new System.Drawing.Point(0, 13);
             this.lblFileName.Name = "lblFileName";
-            this.lblFileName.Size = new System.Drawing.Size(81, 20);
+            this.lblFileName.Size = new System.Drawing.Size(19, 20);
             this.lblFileName.TabIndex = 10;
-            this.lblFileName.Text = "Alphabet";
+            this.lblFileName.Text = "  ";
             // 
             // pnlVideo
             // 
@@ -337,7 +348,7 @@
             this.lblWelcome.Name = "lblWelcome";
             this.lblWelcome.Size = new System.Drawing.Size(971, 32);
             this.lblWelcome.TabIndex = 7;
-            this.lblWelcome.Text = "Welcome, {0}, {1}, [{2}]";
+            this.lblWelcome.Text = "  ";
             // 
             // pnlBottome
             // 
@@ -392,32 +403,32 @@
             this.treeView1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.treeView1.Location = new System.Drawing.Point(0, 267);
             this.treeView1.Name = "treeView1";
-            treeNode13.Name = "Node12";
-            treeNode13.Text = "Urdu";
-            treeNode14.Name = "Node2";
-            treeNode14.Text = "First-S1";
-            treeNode15.Name = "Node1";
-            treeNode15.Text = "First";
-            treeNode16.Name = "Node11";
-            treeNode16.Text = "Maths";
-            treeNode17.Name = "Node4";
-            treeNode17.Text = "Second-S1";
-            treeNode18.Name = "Node10";
-            treeNode18.Text = "Hindi";
-            treeNode19.Name = "Node5";
-            treeNode19.Text = "Second-S2";
-            treeNode20.Name = "Node3";
-            treeNode20.Text = "Second";
-            treeNode21.Name = "Node9";
-            treeNode21.Text = "English";
-            treeNode22.Name = "Node8";
-            treeNode22.Text = "Third-S1";
-            treeNode23.Name = "Node7";
-            treeNode23.Text = "Third";
-            treeNode24.Name = "Node0";
-            treeNode24.Text = "Classes";
+            treeNode25.Name = "Node12";
+            treeNode25.Text = "Urdu";
+            treeNode26.Name = "Node2";
+            treeNode26.Text = "First-S1";
+            treeNode27.Name = "Node1";
+            treeNode27.Text = "First";
+            treeNode28.Name = "Node11";
+            treeNode28.Text = "Maths";
+            treeNode29.Name = "Node4";
+            treeNode29.Text = "Second-S1";
+            treeNode30.Name = "Node10";
+            treeNode30.Text = "Hindi";
+            treeNode31.Name = "Node5";
+            treeNode31.Text = "Second-S2";
+            treeNode32.Name = "Node3";
+            treeNode32.Text = "Second";
+            treeNode33.Name = "Node9";
+            treeNode33.Text = "English";
+            treeNode34.Name = "Node8";
+            treeNode34.Text = "Third-S1";
+            treeNode35.Name = "Node7";
+            treeNode35.Text = "Third";
+            treeNode36.Name = "Node0";
+            treeNode36.Text = "Classes";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode24});
+            treeNode36});
             this.treeView1.Size = new System.Drawing.Size(318, 389);
             this.treeView1.TabIndex = 4;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -530,11 +541,11 @@
             this.lblAppTitle.AutoEllipsis = true;
             this.lblAppTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAppTitle.ForeColor = System.Drawing.Color.White;
-            this.lblAppTitle.Location = new System.Drawing.Point(493, 13);
+            this.lblAppTitle.Location = new System.Drawing.Point(318, 13);
             this.lblAppTitle.Name = "lblAppTitle";
             this.lblAppTitle.Size = new System.Drawing.Size(745, 24);
             this.lblAppTitle.TabIndex = 5;
-            this.lblAppTitle.Text = "{0}, {1}, [{2}]";
+            this.lblAppTitle.Text = "  ";
             this.lblAppTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblContact
@@ -559,17 +570,6 @@
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
-            // axWindowsMediaPlayer1
-            // 
-            this.axWindowsMediaPlayer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.axWindowsMediaPlayer1.Enabled = true;
-            this.axWindowsMediaPlayer1.Location = new System.Drawing.Point(28, 43);
-            this.axWindowsMediaPlayer1.Name = "axWindowsMediaPlayer1";
-            this.axWindowsMediaPlayer1.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("axWindowsMediaPlayer1.OcxState")));
-            this.axWindowsMediaPlayer1.Size = new System.Drawing.Size(977, 366);
-            this.axWindowsMediaPlayer1.TabIndex = 68;
-            this.axWindowsMediaPlayer1.KeyDownEvent += new AxWMPLib._WMPOCXEvents_KeyDownEventHandler(this.axWindowsMediaPlayer1_KeyDownEvent);
-            // 
             // frmUpCommingVideo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -587,6 +587,7 @@
             this.VisibleChanged += new System.EventHandler(this.frmUpCommingVideo_VisibleChanged);
             this.pnlMain.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.panel10.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
@@ -601,7 +602,6 @@
             this.panel4.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).EndInit();
             this.ResumeLayout(false);
 
         }

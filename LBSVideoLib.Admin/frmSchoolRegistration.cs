@@ -857,6 +857,7 @@ namespace LBFVideoLib.Admin
             info.Classes = new List<ClassFB>();
             info.MemoNumber = newMemoNumber;
             info.ExpiryDate = info.ExpiryDate = LicenseHelper.GetSessionEndDateBySessionString(cmbSchoolSession.SelectedItem.ToString());
+            info.SchoolCode = txtSchoolCode.Text.Trim();
 
             for (int i = 0; i < chkListBooks.CheckedItems.Count; i++)
             {
