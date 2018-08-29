@@ -314,8 +314,17 @@ namespace LBFVideoLib.Common
                 //            Allow user to use application without authentication
                 else if (string.IsNullOrEmpty(localClientInfo.MacAddress) == false)
                 {
-                    skipLoginScreen = true;
-                    licenseState = LicenseValidationState.Valid;
+                    if (localClientInfo.MacAddress.ToLower().Equals(localMacAddress.ToLower()))
+                    {
+                        skipLoginScreen = true;
+                        licenseState = LicenseValidationState.Valid;
+                    }else
+                    {
+                        skipLoginScreen = false;
+                        licenseState = LicenseValidationState.ConnectivityRequiredForValidation;
+                        message = invalidLicenseMessage;
+                    }
+                   
                     // Validate license date;
                 }
             }
