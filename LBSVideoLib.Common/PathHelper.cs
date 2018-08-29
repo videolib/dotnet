@@ -9,8 +9,8 @@ namespace LBFVideoLib.Common
         #region Client Path Helper Methods
         public static string GetClientRootPath()
         {
-            return Directory.GetCurrentDirectory();
-            // return @"C:\LBFSetup\ClientPackages\33";
+             return Directory.GetCurrentDirectory();
+           //  return @"C:\LBFARBooksSetup\ClientPackages\33";
             //return @"D:\School\ClientPackages\a1";
         }
 
@@ -98,7 +98,7 @@ namespace LBFVideoLib.Common
 
         public static string GetContactMessageString()
         {
-            return "In case of any query, feedback or if you forgot your password\nContact: info@lbf.in or call 9109 138808";
+            return "In case of any query, feedback or if you forgot your password\nContact: info@lbf.in or call 91091 38808";
         }
 
         public static string GetSessionString(string sessionString)

@@ -257,7 +257,7 @@
             // 
             this.lblSchoolWelcome.AutoEllipsis = true;
             this.lblSchoolWelcome.BackColor = System.Drawing.Color.White;
-            this.lblSchoolWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSchoolWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSchoolWelcome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.lblSchoolWelcome.Location = new System.Drawing.Point(37, 45);
             this.lblSchoolWelcome.Name = "lblSchoolWelcome";

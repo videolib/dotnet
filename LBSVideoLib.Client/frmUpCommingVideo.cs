@@ -85,7 +85,8 @@ namespace LBFVideoLib.Client
             }
 
             lblSessionYears.Text = ClientHelper.GetSessionString(ClientInfoObject.SessionString);
-            lblWelcome.Text = ClientHelper.GetWelcomeString(ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);
+            //lblWelcome.Text = ClientHelper.GetWelcomeString(ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);
+
             lblExpireDate.Text = ClientHelper.GetExpiryDateString(ClientInfoObject.SessionEndDate);
             lblAppTitle.Text = ClientHelper.GetRegisteredSchoolTitleString(ClientInfoObject.SchoolName, ClientInfoObject.SchoolCity, ClientInfoObject.SchoolId);
 
@@ -164,7 +165,7 @@ namespace LBFVideoLib.Client
                 ctlThumb.ThumbUrl = PreviousVideoFileList[i].ThumbnailFilePath; //Path.Combine(thumbnailSubjectPath, "Subjects_ENGLISH.png");
                 ctlThumb.VideoUrl = PreviousVideoFileList[i].VideoFullUrl;
                 ctlThumb.ThumbnailInformation = PreviousVideoFileList[i];
-                ctlThumb.Size = new System.Drawing.Size(130, 130);
+                ctlThumb.Size = new System.Drawing.Size(80, 80);
                 flowLayoutPanelPrevious.Controls.Add(ctlThumb);
             }
 
@@ -183,7 +184,7 @@ namespace LBFVideoLib.Client
                 ctlThumb.ThumbName = NextVideoFileList[i].VideoName;
                 ctlThumb.ThumbUrl = NextVideoFileList[i].ThumbnailFilePath; //Path.Combine(thumbnailSubjectPath, "Subjects_ENGLISH.png");
                 ctlThumb.VideoUrl = NextVideoFileList[i].VideoFullUrl;
-                ctlThumb.Size = new System.Drawing.Size(130, 130);
+                ctlThumb.Size = new System.Drawing.Size(80, 80);
                 flowLayoutPanelUpcoming.Controls.Add(ctlThumb);
             }
 
@@ -269,10 +270,11 @@ namespace LBFVideoLib.Client
         #endregion
         private void frmUpCommingVideo_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (e.CloseReason != CloseReason.ApplicationExitCall)
-            {
-                OnFormVisiblityChangeAndClose();
-            }
+            //if (e.CloseReason != CloseReason.ApplicationExitCall)
+            //{
+            //    OnFormVisiblityChangeAndClose();
+            //}
+            Application.Exit();
         }
 
         private void lblContact_Click(object sender, EventArgs e)
@@ -523,7 +525,9 @@ namespace LBFVideoLib.Client
                 this.CurrentVideoInfo = currentData.CurrentVideoInfo;
                 this.axWindowsMediaPlayer1.URL = currentData.DecryptedVideoPath;
                 this.axWindowsMediaPlayer1.stretchToFit = true;
-                lblWelcome.Text = string.Format("{0}", this.CurrentVideoInfo.Subject);
+                //lblWelcome.Text = string.Format("{0}", this.CurrentVideoInfo.Subject);
+                lblWelcome.Text = string.Format("{0}", this.CurrentVideoInfo.Book);                
+
                 lblWatchCount.Text = string.Format("Watch Count: {0} Times", currentData.CurrentVideoInfo.WatchCount);
                 this.lblFileName.Text = Path.GetFileNameWithoutExtension(currentData.CurrentVideoInfo.VideoFullUrl);
                 _lastPlayedVideoFullUrl = currentData.CurrentVideoInfo.VideoFullUrl;

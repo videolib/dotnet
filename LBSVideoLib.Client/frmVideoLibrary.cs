@@ -90,11 +90,12 @@ namespace LBFVideoLib.Client
 
         private void frmVideoLibrary_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (e.CloseReason != CloseReason.ApplicationExitCall)
-            {
-                (this.DashboardFormControl as frmDashboard).SelectedNode = treeView1.SelectedNode;
-                this.DashboardFormControl.Show();
-            }
+            //if (e.CloseReason != CloseReason.ApplicationExitCall)
+            //{
+            //    (this.DashboardFormControl as frmDashboard).SelectedNode = treeView1.SelectedNode;
+            //    this.DashboardFormControl.Show();
+            //}
+            Application.Exit();
         }
 
         #endregion
