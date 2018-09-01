@@ -28,29 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Urdu");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("First-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode1});
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("First", new System.Windows.Forms.TreeNode[] {
-            treeNode2});
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Maths");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Second-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode4});
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Hindi");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Second-S2", new System.Windows.Forms.TreeNode[] {
-            treeNode6});
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Second", new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode7});
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("English");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Third-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode9});
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Third", new System.Windows.Forms.TreeNode[] {
-            treeNode10});
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Classes", new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode8,
-            treeNode11});
+            System.Windows.Forms.TreeNode treeNode13 = new System.Windows.Forms.TreeNode("Urdu");
+            System.Windows.Forms.TreeNode treeNode14 = new System.Windows.Forms.TreeNode("First-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode13});
+            System.Windows.Forms.TreeNode treeNode15 = new System.Windows.Forms.TreeNode("First", new System.Windows.Forms.TreeNode[] {
+            treeNode14});
+            System.Windows.Forms.TreeNode treeNode16 = new System.Windows.Forms.TreeNode("Maths");
+            System.Windows.Forms.TreeNode treeNode17 = new System.Windows.Forms.TreeNode("Second-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode16});
+            System.Windows.Forms.TreeNode treeNode18 = new System.Windows.Forms.TreeNode("Hindi");
+            System.Windows.Forms.TreeNode treeNode19 = new System.Windows.Forms.TreeNode("Second-S2", new System.Windows.Forms.TreeNode[] {
+            treeNode18});
+            System.Windows.Forms.TreeNode treeNode20 = new System.Windows.Forms.TreeNode("Second", new System.Windows.Forms.TreeNode[] {
+            treeNode17,
+            treeNode19});
+            System.Windows.Forms.TreeNode treeNode21 = new System.Windows.Forms.TreeNode("English");
+            System.Windows.Forms.TreeNode treeNode22 = new System.Windows.Forms.TreeNode("Third-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode21});
+            System.Windows.Forms.TreeNode treeNode23 = new System.Windows.Forms.TreeNode("Third", new System.Windows.Forms.TreeNode[] {
+            treeNode22});
+            System.Windows.Forms.TreeNode treeNode24 = new System.Windows.Forms.TreeNode("Classes", new System.Windows.Forms.TreeNode[] {
+            treeNode15,
+            treeNode20,
+            treeNode23});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDashboard));
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlMostWatchVideo = new System.Windows.Forms.FlowLayoutPanel();
@@ -77,6 +77,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblContact = new System.Windows.Forms.Label();
             this.lblSessionYears = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.pnlMain.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -243,32 +244,32 @@
             this.treeView1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.treeView1.Location = new System.Drawing.Point(0, 267);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "Node12";
-            treeNode1.Text = "Urdu";
-            treeNode2.Name = "Node2";
-            treeNode2.Text = "First-S1";
-            treeNode3.Name = "Node1";
-            treeNode3.Text = "First";
-            treeNode4.Name = "Node11";
-            treeNode4.Text = "Maths";
-            treeNode5.Name = "Node4";
-            treeNode5.Text = "Second-S1";
-            treeNode6.Name = "Node10";
-            treeNode6.Text = "Hindi";
-            treeNode7.Name = "Node5";
-            treeNode7.Text = "Second-S2";
-            treeNode8.Name = "Node3";
-            treeNode8.Text = "Second";
-            treeNode9.Name = "Node9";
-            treeNode9.Text = "English";
-            treeNode10.Name = "Node8";
-            treeNode10.Text = "Third-S1";
-            treeNode11.Name = "Node7";
-            treeNode11.Text = "Third";
-            treeNode12.Name = "Node0";
-            treeNode12.Text = "Classes";
+            treeNode13.Name = "Node12";
+            treeNode13.Text = "Urdu";
+            treeNode14.Name = "Node2";
+            treeNode14.Text = "First-S1";
+            treeNode15.Name = "Node1";
+            treeNode15.Text = "First";
+            treeNode16.Name = "Node11";
+            treeNode16.Text = "Maths";
+            treeNode17.Name = "Node4";
+            treeNode17.Text = "Second-S1";
+            treeNode18.Name = "Node10";
+            treeNode18.Text = "Hindi";
+            treeNode19.Name = "Node5";
+            treeNode19.Text = "Second-S2";
+            treeNode20.Name = "Node3";
+            treeNode20.Text = "Second";
+            treeNode21.Name = "Node9";
+            treeNode21.Text = "English";
+            treeNode22.Name = "Node8";
+            treeNode22.Text = "Third-S1";
+            treeNode23.Name = "Node7";
+            treeNode23.Text = "Third";
+            treeNode24.Name = "Node0";
+            treeNode24.Text = "Classes";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode12});
+            treeNode24});
             this.treeView1.Size = new System.Drawing.Size(318, 376);
             this.treeView1.TabIndex = 4;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -298,6 +299,7 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.lblPrivacyPolicy);
             this.panel4.Controls.Add(this.lblExpireDate);
             this.panel4.Controls.Add(this.label11);
@@ -343,7 +345,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(594, 11);
+            this.label11.Location = new System.Drawing.Point(579, 11);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(337, 16);
             this.label11.TabIndex = 0;
@@ -367,7 +369,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(697, 15);
+            this.label2.Location = new System.Drawing.Point(685, 15);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(144, 24);
             this.label2.TabIndex = 5;
@@ -399,6 +401,18 @@
             this.lblSessionYears.TabIndex = 3;
             this.lblSessionYears.Text = "Session {0}";
             this.lblSessionYears.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(38, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(129, 16);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "Version 1.0";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // frmDashboard
             // 
@@ -458,5 +472,6 @@
         private System.Windows.Forms.Label lblSchoolWelcome;
         private System.Windows.Forms.Label lblPrivacyPolicy;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label label3;
     }
 }

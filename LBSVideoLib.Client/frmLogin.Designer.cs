@@ -52,6 +52,7 @@
             this.lblPrivacyPolicy = new System.Windows.Forms.Label();
             this.lblExpireDate = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel2.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -216,12 +217,12 @@
             // lblShowContact
             // 
             this.lblShowContact.AutoSize = true;
-            this.lblShowContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblShowContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblShowContact.Location = new System.Drawing.Point(37, 232);
             this.lblShowContact.Name = "lblShowContact";
-            this.lblShowContact.Size = new System.Drawing.Size(321, 15);
+            this.lblShowContact.Size = new System.Drawing.Size(262, 15);
             this.lblShowContact.TabIndex = 8;
-            this.lblShowContact.Text = "Contact info@lbf.in from your registered Email-ID";
+            this.lblShowContact.Text = "Please Contact info@lbf.in or call 91091 38808";
             this.lblShowContact.Visible = false;
             // 
             // txtEmailId
@@ -288,6 +289,7 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.lblPrivacyPolicy);
             this.panel4.Controls.Add(this.lblExpireDate);
             this.panel4.Controls.Add(this.label11);
@@ -339,6 +341,18 @@
             this.label11.TabIndex = 0;
             this.label11.Text = "LBF Publications Pvt. Ltd. |  All Rights Reserved";
             // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(38, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(129, 16);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "Version 1.0";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // frmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -389,5 +403,6 @@
         private System.Windows.Forms.LinkLabel linklblForgotPwd;
         private System.Windows.Forms.Label lblPrivacyPolicy;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label label3;
     }
 }

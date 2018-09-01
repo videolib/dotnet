@@ -76,3 +76,15 @@ D:\School\dotnet\LBSVideoLib.Client\obj\Debug\LBFVideoLib.Client.csproj.CoreComp
 D:\School\dotnet\LBSVideoLib.Client\obj\Debug\LBFVideoLib.Client.csproj.CopyComplete
 D:\School\dotnet\LBSVideoLib.Client\obj\Debug\LBFVideoLib.Client.exe
 D:\School\dotnet\LBSVideoLib.Client\obj\Debug\LBFVideoLib.Client.pdb
+D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Client\bin\Debug\Thumbnails\class 1_english.jpg
+D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Client\bin\Debug\Thumbnails\class 2_english.jpg
+D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Client\bin\Debug\Thumbnails\class 3_english.jpg
+D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Client\bin\Debug\Thumbnails\class 4_english.jpg
+D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Client\bin\Debug\Thumbnails\class 5_english.jpg
+D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Client\bin\Debug\Thumbnails\class 1_hindi.jpg
+D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Client\bin\Debug\Thumbnails\class 2_hindi.jpg
+D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Client\bin\Debug\Thumbnails\class 3_hindi.jpg
+D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Client\bin\Debug\Thumbnails\class 4_hindi.jpg
+D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Client\bin\Debug\Thumbnails\class 5_hindi.jpg
+D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Client\bin\Debug\Thumbnails\default.jpg
+D:\Development\School\Source\LBSVideoLib\LBSVideoLib.Client\obj\Debug\LBFVideoLib.Client.frmPrivacyPolicy.resources

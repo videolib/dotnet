@@ -528,7 +528,7 @@ namespace LBFVideoLib.Client
                 //lblWelcome.Text = string.Format("{0}", this.CurrentVideoInfo.Subject);
                 lblWelcome.Text = string.Format("{0}", this.CurrentVideoInfo.Book);                
 
-                lblWatchCount.Text = string.Format("Watch Count: {0} Times", currentData.CurrentVideoInfo.WatchCount);
+                lblWatchCount.Text = string.Format("Watch Count: {0} Times",  currentData.CurrentVideoInfo.WatchCount);
                 this.lblFileName.Text = Path.GetFileNameWithoutExtension(currentData.CurrentVideoInfo.VideoFullUrl);
                 _lastPlayedVideoFullUrl = currentData.CurrentVideoInfo.VideoFullUrl;
 

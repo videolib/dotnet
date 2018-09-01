@@ -29,29 +29,29 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmUpCommingVideo));
-            System.Windows.Forms.TreeNode treeNode37 = new System.Windows.Forms.TreeNode("Urdu");
-            System.Windows.Forms.TreeNode treeNode38 = new System.Windows.Forms.TreeNode("First-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode37});
-            System.Windows.Forms.TreeNode treeNode39 = new System.Windows.Forms.TreeNode("First", new System.Windows.Forms.TreeNode[] {
-            treeNode38});
-            System.Windows.Forms.TreeNode treeNode40 = new System.Windows.Forms.TreeNode("Maths");
-            System.Windows.Forms.TreeNode treeNode41 = new System.Windows.Forms.TreeNode("Second-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode40});
-            System.Windows.Forms.TreeNode treeNode42 = new System.Windows.Forms.TreeNode("Hindi");
-            System.Windows.Forms.TreeNode treeNode43 = new System.Windows.Forms.TreeNode("Second-S2", new System.Windows.Forms.TreeNode[] {
-            treeNode42});
-            System.Windows.Forms.TreeNode treeNode44 = new System.Windows.Forms.TreeNode("Second", new System.Windows.Forms.TreeNode[] {
-            treeNode41,
-            treeNode43});
-            System.Windows.Forms.TreeNode treeNode45 = new System.Windows.Forms.TreeNode("English");
-            System.Windows.Forms.TreeNode treeNode46 = new System.Windows.Forms.TreeNode("Third-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode45});
-            System.Windows.Forms.TreeNode treeNode47 = new System.Windows.Forms.TreeNode("Third", new System.Windows.Forms.TreeNode[] {
-            treeNode46});
-            System.Windows.Forms.TreeNode treeNode48 = new System.Windows.Forms.TreeNode("Classes", new System.Windows.Forms.TreeNode[] {
-            treeNode39,
-            treeNode44,
-            treeNode47});
+            System.Windows.Forms.TreeNode treeNode121 = new System.Windows.Forms.TreeNode("Urdu");
+            System.Windows.Forms.TreeNode treeNode122 = new System.Windows.Forms.TreeNode("First-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode121});
+            System.Windows.Forms.TreeNode treeNode123 = new System.Windows.Forms.TreeNode("First", new System.Windows.Forms.TreeNode[] {
+            treeNode122});
+            System.Windows.Forms.TreeNode treeNode124 = new System.Windows.Forms.TreeNode("Maths");
+            System.Windows.Forms.TreeNode treeNode125 = new System.Windows.Forms.TreeNode("Second-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode124});
+            System.Windows.Forms.TreeNode treeNode126 = new System.Windows.Forms.TreeNode("Hindi");
+            System.Windows.Forms.TreeNode treeNode127 = new System.Windows.Forms.TreeNode("Second-S2", new System.Windows.Forms.TreeNode[] {
+            treeNode126});
+            System.Windows.Forms.TreeNode treeNode128 = new System.Windows.Forms.TreeNode("Second", new System.Windows.Forms.TreeNode[] {
+            treeNode125,
+            treeNode127});
+            System.Windows.Forms.TreeNode treeNode129 = new System.Windows.Forms.TreeNode("English");
+            System.Windows.Forms.TreeNode treeNode130 = new System.Windows.Forms.TreeNode("Third-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode129});
+            System.Windows.Forms.TreeNode treeNode131 = new System.Windows.Forms.TreeNode("Third", new System.Windows.Forms.TreeNode[] {
+            treeNode130});
+            System.Windows.Forms.TreeNode treeNode132 = new System.Windows.Forms.TreeNode("Classes", new System.Windows.Forms.TreeNode[] {
+            treeNode123,
+            treeNode128,
+            treeNode131});
             this.pnlMain = new System.Windows.Forms.Panel();
             this.panel9 = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
@@ -71,6 +71,7 @@
             this.flowLayoutPanelPrevious = new System.Windows.Forms.FlowLayoutPanel();
             this.label1 = new System.Windows.Forms.Label();
             this.pnlHeading = new System.Windows.Forms.Panel();
+            this.lblFileName = new System.Windows.Forms.Label();
             this.lblWelcome = new System.Windows.Forms.Label();
             this.pnlBottome = new System.Windows.Forms.Panel();
             this.pnlTop = new System.Windows.Forms.Panel();
@@ -89,7 +90,7 @@
             this.lblAppTitle = new System.Windows.Forms.Label();
             this.lblContact = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.lblFileName = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.pnlMain.SuspendLayout();
             this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.axWindowsMediaPlayer1)).BeginInit();
@@ -229,7 +230,6 @@
             this.lblWatchCount.Name = "lblWatchCount";
             this.lblWatchCount.Size = new System.Drawing.Size(170, 20);
             this.lblWatchCount.TabIndex = 12;
-            this.lblWatchCount.Text = "Watch Count";
             this.lblWatchCount.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // pnlVideo
@@ -326,15 +326,31 @@
             this.pnlHeading.Size = new System.Drawing.Size(977, 32);
             this.pnlHeading.TabIndex = 61;
             // 
+            // lblFileName
+            // 
+            this.lblFileName.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblFileName.AutoEllipsis = true;
+            this.lblFileName.BackColor = System.Drawing.Color.White;
+            this.lblFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFileName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.lblFileName.Location = new System.Drawing.Point(585, 0);
+            this.lblFileName.Name = "lblFileName";
+            this.lblFileName.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.lblFileName.Size = new System.Drawing.Size(388, 20);
+            this.lblFileName.TabIndex = 11;
+            this.lblFileName.Text = "  ";
+            this.lblFileName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // lblWelcome
             // 
+            this.lblWelcome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblWelcome.AutoEllipsis = true;
             this.lblWelcome.BackColor = System.Drawing.Color.White;
-            this.lblWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWelcome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.lblWelcome.Location = new System.Drawing.Point(0, 0);
+            this.lblWelcome.Location = new System.Drawing.Point(-14, 0);
             this.lblWelcome.Name = "lblWelcome";
-            this.lblWelcome.Size = new System.Drawing.Size(971, 32);
+            this.lblWelcome.Size = new System.Drawing.Size(561, 23);
             this.lblWelcome.TabIndex = 7;
             this.lblWelcome.Text = "  ";
             // 
@@ -391,32 +407,32 @@
             this.treeView1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.treeView1.Location = new System.Drawing.Point(0, 267);
             this.treeView1.Name = "treeView1";
-            treeNode37.Name = "Node12";
-            treeNode37.Text = "Urdu";
-            treeNode38.Name = "Node2";
-            treeNode38.Text = "First-S1";
-            treeNode39.Name = "Node1";
-            treeNode39.Text = "First";
-            treeNode40.Name = "Node11";
-            treeNode40.Text = "Maths";
-            treeNode41.Name = "Node4";
-            treeNode41.Text = "Second-S1";
-            treeNode42.Name = "Node10";
-            treeNode42.Text = "Hindi";
-            treeNode43.Name = "Node5";
-            treeNode43.Text = "Second-S2";
-            treeNode44.Name = "Node3";
-            treeNode44.Text = "Second";
-            treeNode45.Name = "Node9";
-            treeNode45.Text = "English";
-            treeNode46.Name = "Node8";
-            treeNode46.Text = "Third-S1";
-            treeNode47.Name = "Node7";
-            treeNode47.Text = "Third";
-            treeNode48.Name = "Node0";
-            treeNode48.Text = "Classes";
+            treeNode121.Name = "Node12";
+            treeNode121.Text = "Urdu";
+            treeNode122.Name = "Node2";
+            treeNode122.Text = "First-S1";
+            treeNode123.Name = "Node1";
+            treeNode123.Text = "First";
+            treeNode124.Name = "Node11";
+            treeNode124.Text = "Maths";
+            treeNode125.Name = "Node4";
+            treeNode125.Text = "Second-S1";
+            treeNode126.Name = "Node10";
+            treeNode126.Text = "Hindi";
+            treeNode127.Name = "Node5";
+            treeNode127.Text = "Second-S2";
+            treeNode128.Name = "Node3";
+            treeNode128.Text = "Second";
+            treeNode129.Name = "Node9";
+            treeNode129.Text = "English";
+            treeNode130.Name = "Node8";
+            treeNode130.Text = "Third-S1";
+            treeNode131.Name = "Node7";
+            treeNode131.Text = "Third";
+            treeNode132.Name = "Node0";
+            treeNode132.Text = "Classes";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode48});
+            treeNode132});
             this.treeView1.Size = new System.Drawing.Size(318, 389);
             this.treeView1.TabIndex = 4;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
@@ -448,6 +464,7 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.panel4.Controls.Add(this.label3);
             this.panel4.Controls.Add(this.lblPrivacyPolicy);
             this.panel4.Controls.Add(this.lblExpireDate);
             this.panel4.Controls.Add(this.label11);
@@ -493,7 +510,7 @@
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(594, 11);
+            this.label11.Location = new System.Drawing.Point(579, 11);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(337, 16);
             this.label11.TabIndex = 0;
@@ -558,18 +575,17 @@
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
-            // lblFileName
+            // label3
             // 
-            this.lblFileName.AutoEllipsis = true;
-            this.lblFileName.AutoSize = true;
-            this.lblFileName.BackColor = System.Drawing.Color.White;
-            this.lblFileName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFileName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.lblFileName.Location = new System.Drawing.Point(750, 3);
-            this.lblFileName.Name = "lblFileName";
-            this.lblFileName.Size = new System.Drawing.Size(19, 20);
-            this.lblFileName.TabIndex = 11;
-            this.lblFileName.Text = "  ";
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(38, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(129, 16);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "Version 1.0";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // frmUpCommingVideo
             // 
@@ -595,7 +611,6 @@
             this.pnlUpcomingVideo.ResumeLayout(false);
             this.pnlPreviousVideo.ResumeLayout(false);
             this.pnlHeading.ResumeLayout(false);
-            this.pnlHeading.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.pnlLogo.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -646,5 +661,6 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label lblFileName;
+        private System.Windows.Forms.Label label3;
     }
 }
