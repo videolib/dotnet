@@ -228,7 +228,8 @@ namespace LBFVideoLib.Client
                 }
                 else
                 {
-                    lblStatus.Text = "Invalid Email Id or Password!!";
+                    //lblStatus.Text = "Invalid Email Id or Password!!";
+                    MessageBox.Show("Invalid Email Id or Password!!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
             catch (Exception ex)
