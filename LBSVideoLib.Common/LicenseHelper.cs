@@ -13,7 +13,7 @@ namespace LBFVideoLib.Common
         private static Dictionary<string, string> sessionList = new Dictionary<string, string>();
         public static string licenseExpiredMessage = "Your package has been expired. To renew, Please Contact info@lbf.in or call 91091 38808.";
         public static string invalidClockMessage = "Invalid Clock";
-        public static string invalidLicenseMessage = "License is invalid. To create new or renew, Please Contact info@lbf.in or call 91091 38808.";
+        public static string invalidLicenseMessage = "License is invalid. To create new or renew, Please Contact info@lbf.in or call 91091 38808.";        
         public static string onlineConnectivityIsMust = "Your system is offline, Please connect to the internet.";
         public static string maxLicenseOccupiedMessage = "You seem to be exceeding your machine count. To increase, Please Contact info@lbf.in or call 91091 38808.";
 

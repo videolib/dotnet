@@ -13,6 +13,7 @@ namespace LBFVideoLib.Client
         PictureBox pict = new PictureBox();
         Label lbl = new Label();
         Panel pnlSpace = new Panel();
+        Panel pnlLbl= new Panel();
         public VideoInfo ThumbnailInformation { get; set; }
 
         public CustomeThumbControl(Action<object, EventArgs> clickDeligate)
@@ -46,6 +47,11 @@ namespace LBFVideoLib.Client
             get; set;
         }
 
+        public Int32 LabelWidth
+        {
+            get; set;
+        }
+
         protected override void OnPaint(PaintEventArgs e)
         {
             base.OnPaint(e);
@@ -68,27 +74,38 @@ namespace LBFVideoLib.Client
             pict.Dock = DockStyle.Fill;
             if (string.IsNullOrEmpty(ThumbUrl))
             {
-                pict.BackgroundImage = PlayImage;
+                pict.Image = PlayImage;
             }
             else
             {
-                pict.BackgroundImage = new ImageEx(ThumbUrl).Image;
+                pict.Image = new ImageEx(ThumbUrl).Image;
             }
-
-            pict.BackgroundImageLayout = ImageLayout.Stretch;
+            pict.SizeMode = PictureBoxSizeMode.StretchImage;
+            //pict.lay = ImageLayout.Zoom;
             //pict.Image = PlayImage;
-            this.Controls.Add(pict);
+             this.Controls.Add(pict);
             //this.Controls.SetChildIndex(lbl, 0);
 
-
-            lbl.Dock = DockStyle.Bottom;
+            
+            lbl.Dock = DockStyle.Fill;
             lbl.Text = ThumbName;
             //lbl.Font = new Font(lbl.Font, FontStyle.Bold);
             lbl.ForeColor = System.Drawing.Color.Red;
             lbl.Font = new Font("Microsoft Sans Serif", 10, FontStyle.Regular);
-            lbl.Height = 15;
-            lbl.TextAlign = ContentAlignment.MiddleCenter;
-            this.Controls.Add(lbl);
+            
+            //lbl.Height = 30;
+            //lbl.Width = 300;
+            lbl.TextAlign = ContentAlignment.MiddleLeft;
+            lbl.MaximumSize = new Size(LabelWidth, 40);
+            lbl.AutoSize = true;
+            lbl.AutoEllipsis = true;
+
+            pnlLbl.Controls.Add(lbl);
+            pnlLbl.AutoSize = true;
+            pnlLbl.Dock = DockStyle.Bottom;
+            this.Controls.Add(pnlLbl);
+         
+            //pict.Dock = DockStyle.Fill;
             //this.Controls.SetChildIndex(lbl, 1);
         }
 

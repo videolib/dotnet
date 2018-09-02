@@ -285,7 +285,9 @@ namespace LBFVideoLib.Client
                 ctlThumb.VideoUrl = thumbnailInfoList[j].VideoFullUrl;
                 ctlThumb.ThumbnailInformation = thumbnailInfoList[j];
                 //ctlThumb.Click += CtlThumb_Click;
+                ctlThumb.LabelWidth = 178;
                 ctlThumb.Size = new System.Drawing.Size(180, 180);
+
                 //ctlThumb
                 flowLayoutVideoPanel.Controls.Add(ctlThumb);
             }

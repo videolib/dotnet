@@ -318,7 +318,14 @@ namespace LBFVideoLib.Client
 
         private void lblForgotPwd_Click(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start(string.Format("mailto:info@lbf.in?subject={0}-{1}", _clientInfo.SchoolName, _clientInfo.SchoolId));
+            if (_clientInfo != null)
+            {
+                System.Diagnostics.Process.Start(string.Format("mailto:info@lbf.in?subject={0}-{1}", _clientInfo.SchoolName, _clientInfo.SchoolId));
+            }
+            else
+            {
+                MessageBox.Show("Invalid client configuration.", "Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+            }
         }
         #endregion
 
