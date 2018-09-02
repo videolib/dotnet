@@ -43,7 +43,7 @@ namespace LBFVideoLib.Client
             //Cryptograph.EncryptObject(this.ClientInfoObject, _clientInfoFilePath);
 
             CommonAppStateDataHelper.ClientInfoObject.LastAccessEndTime = this.ClientInfoObject.LastAccessEndTime = DateTime.Now;
- 
+
             FileInfo clientInfoFileInfo = new FileInfo(ClientHelper.GetClientInfoFilePath());
             clientInfoFileInfo.Attributes &= ~FileAttributes.Hidden;
             Cryptograph.EncryptObject(this.ClientInfoObject, _clientInfoFilePath);
@@ -206,13 +206,21 @@ namespace LBFVideoLib.Client
         {
             (this.DashboardFormControl as frmDashboard).SelectedNode = this.treeView1.SelectedNode;
             this.DashboardFormControl.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            string searchText = txtSearch.Text.Trim().ToLower();
-            ApplySearch(searchText);
+            try
+            {
+                string searchText = txtSearch.Text.Trim().ToLower();
+                ApplySearch(searchText);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex, ex.Message, false);
+                throw;
+            }
         }
 
         private void ApplySearch(string searchText)
@@ -235,11 +243,19 @@ namespace LBFVideoLib.Client
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            FillVideoLibrary(e.Node.Tag as TreeTag);
-            string searchText = txtSearch.Text.Trim();
-            if (searchText.Length > 0)
+            try
             {
-                ApplySearch(searchText);
+                FillVideoLibrary(e.Node.Tag as TreeTag);
+                string searchText = txtSearch.Text.Trim();
+                if (searchText.Length > 0)
+                {
+                    ApplySearch(searchText);
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex, ex.Message, false);
+                throw;
             }
         }
 
@@ -322,26 +338,50 @@ namespace LBFVideoLib.Client
 
         private void lblPrivacyPolicy_Click(object sender, EventArgs e)
         {
-            frmPrivacyPolicy frm = new frmPrivacyPolicy();
-            frm.Show();
+            try
+            {
+                frmPrivacyPolicy frm = new frmPrivacyPolicy();
+                frm.Show();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex, ex.Message, false);
+                throw;
+            }
         }
 
         private void frmVideoLibrary_VisibleChanged(object sender, EventArgs e)
         {
-            if (UpdateTreeSelectedNode)
+            try
             {
-                UpdateTreeSelectedNode = false;
+                if (UpdateTreeSelectedNode)
+                {
+                    UpdateTreeSelectedNode = false;
                     UpdateTreeNodeSelection();
-                FillVideoLibrary(this.treeView1.SelectedNode.Tag as TreeTag);
+                    FillVideoLibrary(this.treeView1.SelectedNode.Tag as TreeTag);
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex, ex.Message, false);
+                throw;
             }
 
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            (this.DashboardFormControl as frmDashboard).SelectedNode = this.treeView1.SelectedNode;
-            this.DashboardFormControl.Show();
-            this.Close();
+            try
+            {
+                (this.DashboardFormControl as frmDashboard).SelectedNode = this.treeView1.SelectedNode;
+                this.DashboardFormControl.Show();
+                this.Hide();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex, ex.Message, false);
+                throw;
+            }
         }
     }
 }

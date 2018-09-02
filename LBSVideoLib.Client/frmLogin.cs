@@ -94,10 +94,15 @@ namespace LBFVideoLib.Client
                     //    Application.Exit();
                     //}
                 }
+                else
+                {
+                    throw new Exception("Invalid client info configuration.");
+                }
             }
             catch (Exception ex)
             {
                 ExceptionHandler.HandleException(ex);
+                MessageBox.Show(ex.Message + "\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -234,6 +239,7 @@ namespace LBFVideoLib.Client
             }
             catch (Exception ex)
             {
+                MessageBox.Show(ex.Message + "\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 ExceptionHandler.HandleException(ex);
             }
         }
@@ -277,16 +283,15 @@ namespace LBFVideoLib.Client
                 Cryptograph.EncryptObject(_clientInfo, ClientHelper.GetClientInfoFilePath());
                 clientInfoFileInfo.Attributes |= FileAttributes.Hidden;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                ExceptionHandler.HandleException(ex);
                 throw;
             }
             finally
             {
                 clientInfoFileInfo.Attributes |= FileAttributes.Hidden;
             }
-
-
 
             frmDashboard frm = new frmDashboard();
             // frm.MdiParent = this.MdiParent;
@@ -300,40 +305,72 @@ namespace LBFVideoLib.Client
 
         private void lblShowPwd_Click(object sender, EventArgs e)
         {
-            if (txtPwd.PasswordChar == '*')
+            try
             {
-                txtPwd.PasswordChar = '\0';
-                lblShowPwd.Text = "Hide";
+                if (txtPwd.PasswordChar == '*')
+                {
+                    txtPwd.PasswordChar = '\0';
+                    lblShowPwd.Text = "Hide";
+                }
+                else
+                {
+                    lblShowPwd.Text = "Show";
+                    txtPwd.PasswordChar = '*';
+                }
             }
-            else
+            catch (Exception ex)
             {
-                lblShowPwd.Text = "Show";
-                txtPwd.PasswordChar = '*';
+                MessageBox.Show(ex.Message + "\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ExceptionHandler.HandleException(ex);
             }
         }
 
         private void lblContact_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(ClientHelper.GetContactMessageString(), "Contact", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+                MessageBox.Show(ClientHelper.GetContactMessageString(), "Contact", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ExceptionHandler.HandleException(ex);
+            }
         }
 
         private void lblForgotPwd_Click(object sender, EventArgs e)
         {
-            if (_clientInfo != null)
+            try
             {
-                System.Diagnostics.Process.Start(string.Format("mailto:info@lbf.in?subject={0}-{1}", _clientInfo.SchoolName, _clientInfo.SchoolId));
+                if (_clientInfo != null)
+                {
+                    System.Diagnostics.Process.Start(string.Format("mailto:info@lbf.in?subject={0}-{1}", _clientInfo.SchoolName, _clientInfo.SchoolId));
+                }
+                else
+                {
+                    MessageBox.Show("Invalid client configuration.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Invalid client configuration.", "Error",MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message + "\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ExceptionHandler.HandleException(ex);
             }
         }
         #endregion
 
         private void lblPrivacyPolicy_Click(object sender, EventArgs e)
         {
-            frmPrivacyPolicy frm = new frmPrivacyPolicy();
-            frm.Show();
+            try
+            {
+                frmPrivacyPolicy frm = new frmPrivacyPolicy();
+                frm.Show();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message + "\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ExceptionHandler.HandleException(ex);
+            }
         }
 
 
@@ -354,26 +391,32 @@ namespace LBFVideoLib.Client
 
         private void frmLogin_Shown(object sender, EventArgs e)
         {
-            this.progressBar1.Value = 100;
-
-            if (_showLoginForm == false)
+            try
             {
-                OnAfterAuthentication();
+                this.progressBar1.Value = 100;
+
+                if (_showLoginForm == false)
+                {
+                    OnAfterAuthentication();
+                }
+                else
+                {
+                    btnLogin.Visible = true;
+                    lblEmail.Visible = true;
+                    txtEmailId.Visible = true;
+                    lblPassword.Visible = true;
+                    lblShowPwd.Visible = true;
+                    txtPwd.Visible = true;
+                    linklblForgotPwd.Visible = true;
+                    lblShowContact.Visible = true;
+                    progressBar1.Visible = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                btnLogin.Visible = true;
-                lblEmail.Visible = true;
-                txtEmailId.Visible = true;
-                lblPassword.Visible = true;
-                lblShowPwd.Visible = true;
-                txtPwd.Visible = true;
-                linklblForgotPwd.Visible = true;
-                lblShowContact.Visible = true;
-                progressBar1.Visible = false;
+                MessageBox.Show(ex.Message + "\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ExceptionHandler.HandleException(ex);
             }
-
-
         }
     }
 }

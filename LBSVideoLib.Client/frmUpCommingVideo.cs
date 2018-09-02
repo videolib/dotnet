@@ -152,7 +152,7 @@ namespace LBFVideoLib.Client
             catch (Exception ex)
             {
                 progressBar1.Visible = false;
-                ExceptionHandler.HandleException(ex,"", false);
+                ExceptionHandler.HandleException(ex, "", false);
             }
         }
 
@@ -206,17 +206,25 @@ namespace LBFVideoLib.Client
 
         private void CtlThumb_Click(object sender, EventArgs e)
         {
-            CustomeThumbControl ctl = sender as CustomeThumbControl;
-            if (_lastPlayedVideoFullUrl.Equals(ctl.VideoUrl) == true)
+            try
             {
-                return;
-            }
+                CustomeThumbControl ctl = sender as CustomeThumbControl;
+                if (_lastPlayedVideoFullUrl.Equals(ctl.VideoUrl) == true)
+                {
+                    return;
+                }
 
-            //this.axWindowsMediaPlayer1.URL = "";
-            //_lastPlayedVideoFullUrl = ctl.VideoUrl;
-            //this.lblFileName.Text = Path.GetFileNameWithoutExtension(ctl.ThumbName);
-            this.EncryptedVideo = true;
-            PlayEncryptedVideo(ctl.VideoUrl);
+                //this.axWindowsMediaPlayer1.URL = "";
+                //_lastPlayedVideoFullUrl = ctl.VideoUrl;
+                //this.lblFileName.Text = Path.GetFileNameWithoutExtension(ctl.ThumbName);
+                this.EncryptedVideo = true;
+                PlayEncryptedVideo(ctl.VideoUrl);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex, ex.Message, false);
+                throw;
+            }
         }
 
         #region Private Methods
@@ -280,48 +288,88 @@ namespace LBFVideoLib.Client
 
         private void lblContact_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(ClientHelper.GetContactMessageString(), "Contact", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            try
+            {
+                MessageBox.Show(ClientHelper.GetContactMessageString(), "Contact", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex, ex.Message, false);
+                throw;
+            }
         }
 
 
         private void pnlLogo_Click(object sender, EventArgs e)
         {
-            this._hiddenSourceControl = pnlLogo;
-            this.Hide();
-            this.DashboardFormControl.Show();
+            try
+            {
+                this._hiddenSourceControl = pnlLogo;
+                this.Hide();
+                this.DashboardFormControl.Show();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex, ex.Message, false);
+                throw;
+            }
         }
 
         private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (_skipNodeSelection == false)
+            try
             {
-                //frmVideoLibrary frmVideoLibrary = new frmVideoLibrary();
-                //frmVideoLibrary.ParentFormControl = this.DashboardFormControl;
-                //frmVideoLibrary.SelectedNode = e.Node;
-                //frmVideoLibrary.ClientInfoObject = this.ClientInfoObject;
-                //frmVideoLibrary.Show();
-                _hiddenSourceControl = treeView1;
-                this.Hide();
+                if (_skipNodeSelection == false)
+                {
+                    //frmVideoLibrary frmVideoLibrary = new frmVideoLibrary();
+                    //frmVideoLibrary.ParentFormControl = this.DashboardFormControl;
+                    //frmVideoLibrary.SelectedNode = e.Node;
+                    //frmVideoLibrary.ClientInfoObject = this.ClientInfoObject;
+                    //frmVideoLibrary.Show();
+                    _hiddenSourceControl = treeView1;
+                    this.Hide();
+                }
+                else
+                {
+                    _skipNodeSelection = false;
+                }
             }
-            else
+            catch (Exception ex)
             {
-                _skipNodeSelection = false;
+                ExceptionHandler.HandleException(ex, ex.Message, false);
+                throw;
             }
         }
 
         private void lblPrivacyPolicy_Click(object sender, EventArgs e)
         {
-            frmPrivacyPolicy frm = new frmPrivacyPolicy();
-            frm.Show();
+            try
+            {
+                frmPrivacyPolicy frm = new frmPrivacyPolicy();
+                frm.Show();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex, ex.Message, false);
+                throw;
+            }
         }
 
 
 
         private void frmUpCommingVideo_VisibleChanged(object sender, EventArgs e)
         {
-            if (this.Visible == false)
+            try
             {
-                OnFormVisiblityChangeAndClose();
+                if (this.Visible == false)
+                {
+                    OnFormVisiblityChangeAndClose();
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex, ex.Message, false);
+                throw;
             }
         }
 
@@ -436,12 +484,12 @@ namespace LBFVideoLib.Client
                 string url = string.Format("clientanalytic-data/{0}/{1}/videowatchcount/{2}/Count", ClientInfoObject.SchoolId, machineName, videoName);
                 FirebaseHelper.PostData(jsonString, url);
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                if (e.Message.Contains("A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond"))
+                if (ex.Message.Contains("A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond"))
                 {
                     Console.Out.WriteLine("-----------------");
-                    Console.Out.WriteLine(e.Message);
+                    Console.Out.WriteLine(ex.Message);
                 }
             }
 
@@ -449,9 +497,17 @@ namespace LBFVideoLib.Client
 
         private void axWindowsMediaPlayer1_KeyDownEvent(object sender, AxWMPLib._WMPOCXEvents_KeyDownEvent e)
         {
-            if (e.nKeyCode == (short)Keys.F11)
+            try
             {
-                this.axWindowsMediaPlayer1.fullScreen = !this.axWindowsMediaPlayer1.fullScreen;
+                if (e.nKeyCode == (short)Keys.F11)
+                {
+                    this.axWindowsMediaPlayer1.fullScreen = !this.axWindowsMediaPlayer1.fullScreen;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex, ex.Message, false);
+                throw;
             }
         }
 
@@ -478,35 +534,51 @@ namespace LBFVideoLib.Client
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            this.SelectedNode = null;
-            this._hiddenSourceControl = pnlLogo;
-            this.Hide();
-            this.DashboardFormControl.Show();
+            try
+            {
+                this.SelectedNode = null;
+                this._hiddenSourceControl = pnlLogo;
+                this.Hide();
+                this.DashboardFormControl.Show();
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex, ex.Message, false);
+                throw;
+            }
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            BackgroundProcessData currentData = e.Argument as BackgroundProcessData;
-            if (currentData.CurrentVideoInfo != null)
+            try
             {
-                VideoInfo currentVideoInfo = currentData.CurrentVideoInfo;
-                currentVideoInfo.WatchCount++;
-                backgroundWorker1.ReportProgress(50, currentData);
+                BackgroundProcessData currentData = e.Argument as BackgroundProcessData;
+                if (currentData.CurrentVideoInfo != null)
+                {
+                    VideoInfo currentVideoInfo = currentData.CurrentVideoInfo;
+                    currentVideoInfo.WatchCount++;
+                    backgroundWorker1.ReportProgress(50, currentData);
 
-                string tempDirectory = Path.Combine(Path.GetTempPath(), "Temp");
-                Directory.CreateDirectory(tempDirectory);
-                backgroundWorker1.ReportProgress(97, currentData);
+                    string tempDirectory = Path.Combine(Path.GetTempPath(), "Temp");
+                    Directory.CreateDirectory(tempDirectory);
+                    backgroundWorker1.ReportProgress(97, currentData);
 
-                string tempFilePath = Path.Combine(tempDirectory, Path.GetFileName(currentData.OrignalVideoPath));
-                tempFileList.Add(tempFilePath);
-                Cryptograph.DecryptFile(currentData.OrignalVideoPath, tempFilePath);
-                currentData.DecryptedVideoPath = tempFilePath;
-                backgroundWorker1.ReportProgress(99, currentData);
+                    string tempFilePath = Path.Combine(tempDirectory, Path.GetFileName(currentData.OrignalVideoPath));
+                    tempFileList.Add(tempFilePath);
+                    Cryptograph.DecryptFile(currentData.OrignalVideoPath, tempFilePath);
+                    currentData.DecryptedVideoPath = tempFilePath;
+                    backgroundWorker1.ReportProgress(99, currentData);
 
 
-                SaveWatchedVideoCountOnFireBase(currentVideoInfo.VideoName, currentVideoInfo.WatchCount);
-                currentData.DecryptedVideoPath = "";
-                backgroundWorker1.ReportProgress(100, currentData);
+                    SaveWatchedVideoCountOnFireBase(currentVideoInfo.VideoName, currentVideoInfo.WatchCount);
+                    currentData.DecryptedVideoPath = "";
+                    backgroundWorker1.ReportProgress(100, currentData);
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex, ex.Message, false);
+                throw;
             }
         }
 
@@ -517,31 +589,47 @@ namespace LBFVideoLib.Client
 
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            BackgroundProcessData currentData = e.UserState as BackgroundProcessData;
-            // Change the value of the ProgressBar  
-            progressBar1.Value = e.ProgressPercentage;
-            if (currentData != null && currentData.State == BackgroundAppState.DecryptingVideoToPlay && currentData.DecryptedVideoPath != "")
+            try
             {
-                progressBar1.Visible = false;
-                this.CurrentVideoInfo = currentData.CurrentVideoInfo;
-                this.axWindowsMediaPlayer1.URL = currentData.DecryptedVideoPath;
-                this.axWindowsMediaPlayer1.stretchToFit = true;
-                //lblWelcome.Text = string.Format("{0}", this.CurrentVideoInfo.Subject);
-                lblWelcome.Text = string.Format("{0}", this.CurrentVideoInfo.Book);                
+                BackgroundProcessData currentData = e.UserState as BackgroundProcessData;
+                // Change the value of the ProgressBar  
+                progressBar1.Value = e.ProgressPercentage;
+                if (currentData != null && currentData.State == BackgroundAppState.DecryptingVideoToPlay && currentData.DecryptedVideoPath != "")
+                {
+                    progressBar1.Visible = false;
+                    this.CurrentVideoInfo = currentData.CurrentVideoInfo;
+                    this.axWindowsMediaPlayer1.URL = currentData.DecryptedVideoPath;
+                    this.axWindowsMediaPlayer1.stretchToFit = true;
+                    //lblWelcome.Text = string.Format("{0}", this.CurrentVideoInfo.Subject);
+                    lblWelcome.Text = string.Format("{0}", this.CurrentVideoInfo.Book);
 
-                lblWatchCount.Text = string.Format("Watch Count: {0} Times",  currentData.CurrentVideoInfo.WatchCount);
-                this.lblFileName.Text = Path.GetFileNameWithoutExtension(currentData.CurrentVideoInfo.VideoFullUrl);
-                _lastPlayedVideoFullUrl = currentData.CurrentVideoInfo.VideoFullUrl;
+                    lblWatchCount.Text = string.Format("Watch Count: {0} Times", currentData.CurrentVideoInfo.WatchCount);
+                    this.lblFileName.Text = Path.GetFileNameWithoutExtension(currentData.CurrentVideoInfo.VideoFullUrl);
+                    _lastPlayedVideoFullUrl = currentData.CurrentVideoInfo.VideoFullUrl;
 
 
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex, ex.Message, false);
+                throw;
             }
         }
 
         private void frmUpCommingVideo_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (progressBar1.Value != 100)
+            try
             {
-                e.Cancel = true;
+                if (progressBar1.Value != 100)
+                {
+                    e.Cancel = true;
+                }
+            }
+            catch (Exception ex)
+            {
+                ExceptionHandler.HandleException(ex, ex.Message, false);
+                throw;
             }
         }
     }
