@@ -2,12 +2,9 @@
 using LBFVideoLib.Common.Entity;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
 using System.Linq;
-using System.Linq.Expressions;
-using System.Collections;
 
 namespace LBFVideoLib.Client
 {
@@ -203,12 +200,14 @@ namespace LBFVideoLib.Client
             }
             for (int i = 0; _mostRecommandedVideos != null && i < _mostRecommandedVideos.Count; i++)
             {
+                // Nitin Start
                 //ThumbnailInfo thumbInfo = new ThumbnailInfo();
                 //thumbInfo.FileName = _mostRecommandedVideos[i].VideoName;
                 //thumbInfo.ThumbnailFilePath = Path.Combine(ClientHelper.GetClientThumbanailPath(), ThumbnailHelper.GetThumbnailFileName(ClientHelper.GetClientThumbanailPath(),_mostRecommandedVideos[i].ClassName, _mostRecommandedVideos[i].Book));
                 //thumbInfo.VideoFullUrl = _mostRecommandedVideos[i].VideoFullUrl;
                 //_mostRecommandedVideosThumbList.Add(thumbInfo);
-                _mostRecommandedVideos[i].ThumbnailFilePath = Path.Combine(ClientHelper.GetClientThumbanailPath(), ThumbnailHelper.GetThumbnailFileName(ClientHelper.GetClientThumbanailPath(), _mostRecommandedVideos[i].ClassName, _mostRecommandedVideos[i].Book));
+                _mostRecommandedVideos[i].ThumbnailFilePath = ThumbnailHelper.GetThumbnailFilePathByVideoPath(_mostRecommandedVideos[i].VideoFullUrl);
+                // Nitin End
             }
             if (_mostRecommandedVideos != null && _mostRecommandedVideos.Count > 0)
             {
@@ -223,12 +222,14 @@ namespace LBFVideoLib.Client
 
             for (int i = 0; _mostWatchedVideos != null && i < _mostWatchedVideos.Count; i++)
             {
+                // Nitin Start
                 //ThumbnailInfo thumbInfo = new ThumbnailInfo();
                 //thumbInfo.FileName = _mostWatchedVideos[i].VideoName;
                 //thumbInfo.ThumbnailFilePath = Path.Combine(ClientHelper.GetClientThumbanailPath(), ThumbnailHelper.GetThumbnailFileName(ClientHelper.GetClientThumbanailPath(),_mostWatchedVideos[i].ClassName, _mostWatchedVideos[i].Book));
                 //thumbInfo.VideoFullUrl = _mostWatchedVideos[i].VideoFullUrl;
                 //_mostWatchedVideosThumbList.Add(thumbInfo);
-                _mostWatchedVideos[i].ThumbnailFilePath = Path.Combine(ClientHelper.GetClientThumbanailPath(), ThumbnailHelper.GetThumbnailFileName(ClientHelper.GetClientThumbanailPath(), _mostWatchedVideos[i].ClassName, _mostWatchedVideos[i].Book));
+                _mostWatchedVideos[i].ThumbnailFilePath = ThumbnailHelper.GetThumbnailFilePathByVideoPath(_mostWatchedVideos[i].VideoFullUrl);
+                // Nitin End
             }
             if (_mostWatchedVideos != null && _mostWatchedVideos.Count > 0)
             {
@@ -236,16 +237,17 @@ namespace LBFVideoLib.Client
             }
         }
 
-        private void AddVideoThumbnailControls(FlowLayoutPanel flowLayoutPanel, List<VideoInfo> thumbnailInfoList, Action<object, EventArgs> clickDeligate)
+        // Nitin Start
+        private void AddVideoThumbnailControls(FlowLayoutPanel flowLayoutPanel, List<VideoInfo> videoInfoList, Action<object, EventArgs> clickDeligate)
         {
             flowLayoutPanel.Controls.Clear();
-            for (int j = 0; j < thumbnailInfoList.Count; j++)
+            for (int j = 0; j < videoInfoList.Count; j++)
             {
                 CustomeThumbControl ctlThumb = new CustomeThumbControl(clickDeligate);
-                ctlThumb.ThumbnailInformation = thumbnailInfoList[j];
-                ctlThumb.ThumbName = thumbnailInfoList[j].VideoName;
-                ctlThumb.ThumbUrl = thumbnailInfoList[j].ThumbnailFilePath;
-                ctlThumb.VideoUrl = thumbnailInfoList[j].VideoFullUrl;
+                ctlThumb.ThumbnailInformation = videoInfoList[j];
+                ctlThumb.ThumbName = videoInfoList[j].VideoName;
+                ctlThumb.ThumbUrl = videoInfoList[j].ThumbnailFilePath;
+                ctlThumb.VideoUrl = videoInfoList[j].VideoFullUrl;
                 ctlThumb.Size = new System.Drawing.Size(180, 180);
                 flowLayoutPanel.Controls.Add(ctlThumb);
             }
@@ -345,7 +347,7 @@ namespace LBFVideoLib.Client
 
         private void frmDashboard_VisibleChanged(object sender, EventArgs e)
         {
-            if(this.Visible && this._formLoaded)
+            if (this.Visible && this._formLoaded)
             {
                 this.SelectedNode = treeView1.Nodes[0];
                 treeView1.CollapseAll();

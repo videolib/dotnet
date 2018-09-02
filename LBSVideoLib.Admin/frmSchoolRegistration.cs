@@ -44,7 +44,7 @@ namespace LBFVideoLib.Admin
         private void frmSchoolRegistration_Load(object sender, EventArgs e)
         {
             try
-            {               
+            {
                 // read configuration information
                 _sourceVideoFolderPath = ConfigHelper.SourceVideoFolderPath;
                 _clientDistributionRootPath = ConfigHelper.ClientDistributionTargetRootPath;
@@ -260,6 +260,21 @@ namespace LBFVideoLib.Admin
 
                             Cryptograph.EncryptFile(selectedBookVideo, clientTargetVideoPath);
 
+                            // Nitin Start
+                            // Copy thumbnail file
+                            string targetThumbnailFilePath = ThumbnailHelper.GetThumbnailFilePathByVideoPath(clientTargetVideoPath);
+
+                            if (System.IO.File.Exists(targetThumbnailFilePath) == false)
+                            {
+                                if (Directory.Exists(Path.GetDirectoryName(targetThumbnailFilePath)) == false)
+                                {
+                                    Directory.CreateDirectory(Path.GetDirectoryName(targetThumbnailFilePath));
+                                }
+                                string sourceThumbnailFilePath = ThumbnailHelper.GetThumbnailFilePathByVideoPath(selectedBookVideo);
+                                System.IO.File.Copy(sourceThumbnailFilePath, targetThumbnailFilePath);
+                            }
+                            // Nitin End
+
                             FileInfo clientTargetVideoPathFileInfo = new FileInfo(clientTargetVideoPath);
                             clientTargetVideoPathFileInfo.Attributes = FileAttributes.Hidden;
 
@@ -268,16 +283,17 @@ namespace LBFVideoLib.Admin
                     }
                 }
 
+                // Nitin Start
+                //string[] subjectThumbnailFiles = Directory.GetFiles(ClientHelper.GetSubjectThumbnailSourcePath());
+                //for (int i = 0; i < subjectThumbnailFiles.Length; i++)
+                //{
+                //    string thumbnailFilePath = Path.Combine(clientThumbnailPath, Path.GetFileName(subjectThumbnailFiles[i]));
+                //    System.IO.File.Copy(subjectThumbnailFiles[i], thumbnailFilePath, true);
 
-                string[] subjectThumbnailFiles = Directory.GetFiles(ClientHelper.GetSubjectThumbnailSourcePath());
-                for (int i = 0; i < subjectThumbnailFiles.Length; i++)
-                {
-                    string thumbnailFilePath = Path.Combine(clientThumbnailPath, Path.GetFileName(subjectThumbnailFiles[i]));
-                    System.IO.File.Copy(subjectThumbnailFiles[i], thumbnailFilePath, true);
-
-                    FileInfo thumbnailFilePathFileInfo = new FileInfo(thumbnailFilePath);
-                    thumbnailFilePathFileInfo.Attributes = FileAttributes.Hidden;
-                }
+                //    FileInfo thumbnailFilePathFileInfo = new FileInfo(thumbnailFilePath);
+                //    thumbnailFilePathFileInfo.Attributes = FileAttributes.Hidden;
+                //}
+                // Nitin End
                 #endregion
 
                 progressBar1.Value = 70;
@@ -289,7 +305,9 @@ namespace LBFVideoLib.Admin
 
                 string registeredSchoolInfo = Newtonsoft.Json.JsonConvert.SerializeObject(selectedClassList);
 
-                CreateRegisteredSchoolInfoFile(registeredSchoolInfo, schoolCode, txtSchoolCity.Text.Trim());
+                // Nitin Start
+                CreateRegisteredSchoolInfoFile(registeredSchoolInfo, schoolCode, txtSchoolCity.Text.Trim(), txtSchoolName.Text.Trim(), newMemoNumber);
+                // Nitin End
 
                 progressBar1.Value = 80;
 
@@ -378,11 +396,12 @@ namespace LBFVideoLib.Admin
             return counter.ToString();
         }
 
-        private void CreateRegisteredSchoolInfoFile(string registeredSchoolInfo, string schoolCode, string schoolCity)
+        // Nitin Start
+        private void CreateRegisteredSchoolInfoFile(string registeredSchoolInfo, string schoolCode, string schoolCity, string schoolName, string memoNumber)
         {
             try
             {
-                string fileName = string.Format("{0}-{1}", schoolCode, schoolCity);
+                string fileName = string.Format("{0}-{1}-{2}-{3}", memoNumber, schoolName, schoolCity, schoolCode);
                 if (Directory.Exists(ClientHelper.NewRegisteredSchoolInfoFilePath()) == false)
                 {
                     Directory.CreateDirectory(ClientHelper.NewRegisteredSchoolInfoFilePath());
@@ -393,8 +412,13 @@ namespace LBFVideoLib.Admin
                 for (int i = 0; i < existingFiles.Length; i++)
                 {
                     string existingFileName = Path.GetFileNameWithoutExtension(existingFiles[i]).ToLower();
+                    string[] existingFileSpilitedName = existingFileName.Split('-');
+                    //if (existingFileName.StartsWith(fileName.ToLower()))
+                    //{
+                    //    existingFileCounter++;
+                    //}
 
-                    if (existingFileName.StartsWith(fileName.ToLower()))
+                    if (existingFileSpilitedName[1].ToLower().Equals(schoolName.ToLower()) && existingFileSpilitedName[2].ToLower().Equals(schoolCity.ToLower()) && existingFileSpilitedName[1].ToLower().Equals(schoolName.ToLower()))
                     {
                         existingFileCounter++;
                     }

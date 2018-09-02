@@ -301,7 +301,10 @@ namespace LBFVideoLib.Client
                     VideoInfo thumbnailInfo = new VideoInfo();
                     thumbnailInfo.VideoFullUrl = fileList[i];
                     thumbnailInfo.VideoName = Path.GetFileName(fileList[i]);
-                    thumbnailInfo.ThumbnailFilePath = Path.Combine(ClientHelper.GetClientThumbanailPath(), ThumbnailHelper.GetThumbnailFileName(ClientHelper.GetClientThumbanailPath(), ClientHelper.GetClassNameFromFullPath(currentPath), currentPath));
+                    // Nitin Start
+                    //thumbnailInfo.ThumbnailFilePath = Path.Combine(ClientHelper.GetClientThumbanailPath(), ThumbnailHelper.GetThumbnailFileName(ClientHelper.GetClientThumbanailPath(), ClientHelper.GetClassNameFromFullPath(currentPath), currentPath));
+                    thumbnailInfo.ThumbnailFilePath = ThumbnailHelper.GetThumbnailFilePathByVideoPath(fileList[i]);
+                    // Nitin End
                     videoFilePathList.Add(thumbnailInfo);
                 }
             }

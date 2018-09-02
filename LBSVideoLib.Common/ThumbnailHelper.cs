@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+﻿using System.IO;
 
 namespace LBFVideoLib.Common
 {
@@ -124,6 +120,12 @@ namespace LBFVideoLib.Common
             //    return "Subjects_Maths.png";
             //}
             //return "Subjects_English.png";
+        }
+
+        // Nitin Start
+        public static string GetThumbnailFilePathByVideoPath(string videoFilePath)
+        {
+            return Path.Combine(Path.Combine(Path.GetDirectoryName(videoFilePath), "Thumbnail"), ConfigHelper.GetClientThumbnailImageFileName);
         }
     }
 }

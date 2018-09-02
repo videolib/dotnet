@@ -95,7 +95,7 @@ namespace LBFVideoLib.Client
                     //}
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ExceptionHandler.HandleException(ex);
             }
@@ -234,7 +234,7 @@ namespace LBFVideoLib.Client
             catch (Exception ex)
             {
                 ExceptionHandler.HandleException(ex);
-            }        
+            }
         }
 
         private void OnAfterAuthentication()
@@ -262,6 +262,9 @@ namespace LBFVideoLib.Client
                 if (Path.Combine(ClientHelper.GetClientRootPath(), _clientInfo.VideoInfoList[i].VideoRelativeUrl).Equals(_clientInfo.VideoInfoList[i].VideoFullUrl) == false)
                 {
                     _clientInfo.VideoInfoList[i].VideoFullUrl = Path.Combine(ClientHelper.GetClientRootPath(), _clientInfo.VideoInfoList[i].VideoRelativeUrl);
+                    // Nitin Start
+                    _clientInfo.VideoInfoList[i].ThumbnailFilePath = ThumbnailHelper.GetThumbnailFilePathByVideoPath(_clientInfo.VideoInfoList[i].VideoFullUrl);
+                    // Nitin End
                 }
             }
 
