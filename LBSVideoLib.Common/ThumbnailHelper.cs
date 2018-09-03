@@ -122,10 +122,24 @@ namespace LBFVideoLib.Common
             //return "Subjects_English.png";
         }
 
-        // Nitin Start
+        // Nitin Start 03-Sep
+
+        public static string GetThumbnailDirectoryPathByVideoPath(string videoFilePath)
+        {
+           return  Path.Combine(Path.GetDirectoryName(videoFilePath), "Thumbnail");
+        }
+
         public static string GetThumbnailFilePathByVideoPath(string videoFilePath)
         {
-            return Path.Combine(Path.Combine(Path.GetDirectoryName(videoFilePath), "Thumbnail"), ConfigHelper.GetClientThumbnailImageFileName);
+            string thumbnailDirectoryPath = GetThumbnailDirectoryPathByVideoPath(videoFilePath);
+            return Path.Combine(thumbnailDirectoryPath, Directory.GetFiles(thumbnailDirectoryPath)[0]);
         }
+
+        public static string GetThumbnailFileNameByVideoPath(string videoFilePath)
+        {
+            string thumbnailDirectoryPath = GetThumbnailDirectoryPathByVideoPath(videoFilePath);
+            return Path.GetFileName(Directory.GetFiles(thumbnailDirectoryPath)[0]);
+        }
+        // Nitin End 03-Sep
     }
 }

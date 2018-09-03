@@ -260,20 +260,21 @@ namespace LBFVideoLib.Admin
 
                             Cryptograph.EncryptFile(selectedBookVideo, clientTargetVideoPath);
 
-                            // Nitin Start
+                            // Nitin Start 03-Sep
                             // Copy thumbnail file
-                            string targetThumbnailFilePath = ThumbnailHelper.GetThumbnailFilePathByVideoPath(clientTargetVideoPath);
+                            string targetThumbnailFilePath = ThumbnailHelper.GetThumbnailDirectoryPathByVideoPath(clientTargetVideoPath);
 
                             if (System.IO.File.Exists(targetThumbnailFilePath) == false)
                             {
-                                if (Directory.Exists(Path.GetDirectoryName(targetThumbnailFilePath)) == false)
+                                if (Directory.Exists(targetThumbnailFilePath) == false)
                                 {
-                                    Directory.CreateDirectory(Path.GetDirectoryName(targetThumbnailFilePath));
+                                    Directory.CreateDirectory(targetThumbnailFilePath);
                                 }
                                 string sourceThumbnailFilePath = ThumbnailHelper.GetThumbnailFilePathByVideoPath(selectedBookVideo);
-                                System.IO.File.Copy(sourceThumbnailFilePath, targetThumbnailFilePath);
+                                targetThumbnailFilePath = Path.Combine(targetThumbnailFilePath, ThumbnailHelper.GetThumbnailFileNameByVideoPath(selectedBookVideo));
+                                System.IO.File.Copy(sourceThumbnailFilePath, targetThumbnailFilePath, true);
                             }
-                            // Nitin End
+                            // Nitin End 03-Sep
 
                             FileInfo clientTargetVideoPathFileInfo = new FileInfo(clientTargetVideoPath);
                             clientTargetVideoPathFileInfo.Attributes = FileAttributes.Hidden;
@@ -352,7 +353,6 @@ namespace LBFVideoLib.Admin
             }
             catch (Exception ex)
             {
-
                 // Delete all file on folder
                 if (Directory.Exists(clientSchoolCodePath))
                 {
