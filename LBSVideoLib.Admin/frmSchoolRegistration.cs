@@ -89,7 +89,7 @@ namespace LBFVideoLib.Admin
                 string schoolCode = txtSchoolCode.Text.Trim();
                 clientSchoolCodePath = Path.Combine(_clientDistributionRootPath, schoolCode);
                 string clientVideoPath = ClientHelper.GetRegisteredSchoolPackageVideoPath(schoolCode, txtSchoolCity.Text.Trim());
-                string clientThumbnailPath = ClientHelper.GetRegisteredSchoolPackageThumbnailPath(schoolCode); // Path.Combine(clientPacakgeFolderPath, "Thumbnails");
+               // string clientThumbnailPath = ClientHelper.GetRegisteredSchoolPackageThumbnailPath(schoolCode); // Path.Combine(clientPacakgeFolderPath, "Thumbnails");
                 string clientVideoFolderName = ClientHelper.GetClientVideoFolderName(schoolCode, txtSchoolCity.Text.Trim());
 
                 List<VideoInfo> videoInfoList = new List<VideoInfo>();
@@ -142,12 +142,12 @@ namespace LBFVideoLib.Admin
                 DirectoryInfo clientVideoFolderInfo = new DirectoryInfo(clientVideoPath);
                 clientVideoFolderInfo.Attributes = FileAttributes.Hidden;
 
-                if (Directory.Exists(clientThumbnailPath) == false)
-                {
-                    Directory.CreateDirectory(clientThumbnailPath);
-                }
-                DirectoryInfo clientPackageThumbnailPathDirInfo = new DirectoryInfo(clientThumbnailPath);
-                clientPackageThumbnailPathDirInfo.Attributes = FileAttributes.Hidden;
+                //if (Directory.Exists(clientThumbnailPath) == false)
+                //{
+                //    Directory.CreateDirectory(clientThumbnailPath);
+                //}
+                //DirectoryInfo clientPackageThumbnailPathDirInfo = new DirectoryInfo(clientThumbnailPath);
+                //clientPackageThumbnailPathDirInfo.Attributes = FileAttributes.Hidden;
 
                 progressBar1.Value = 30;
 
@@ -260,20 +260,21 @@ namespace LBFVideoLib.Admin
 
                             Cryptograph.EncryptFile(selectedBookVideo, clientTargetVideoPath);
 
-                            // Nitin Start
+                            // Nitin Start 03-Sep
                             // Copy thumbnail file
-                            string targetThumbnailFilePath = ThumbnailHelper.GetThumbnailFilePathByVideoPath(clientTargetVideoPath);
+                            string targetThumbnailFilePath = ThumbnailHelper.GetThumbnailDirectoryPathByVideoPath(clientTargetVideoPath);
 
                             if (System.IO.File.Exists(targetThumbnailFilePath) == false)
                             {
-                                if (Directory.Exists(Path.GetDirectoryName(targetThumbnailFilePath)) == false)
+                                if (Directory.Exists(targetThumbnailFilePath) == false)
                                 {
-                                    Directory.CreateDirectory(Path.GetDirectoryName(targetThumbnailFilePath));
+                                    Directory.CreateDirectory(targetThumbnailFilePath);
                                 }
                                 string sourceThumbnailFilePath = ThumbnailHelper.GetThumbnailFilePathByVideoPath(selectedBookVideo);
-                                System.IO.File.Copy(sourceThumbnailFilePath, targetThumbnailFilePath);
+                                targetThumbnailFilePath = Path.Combine(targetThumbnailFilePath, ThumbnailHelper.GetThumbnailFileNameByVideoPath(selectedBookVideo));
+                                System.IO.File.Copy(sourceThumbnailFilePath, targetThumbnailFilePath, true);
                             }
-                            // Nitin End
+                            // Nitin End 03-Sep
 
                             FileInfo clientTargetVideoPathFileInfo = new FileInfo(clientTargetVideoPath);
                             clientTargetVideoPathFileInfo.Attributes = FileAttributes.Hidden;

@@ -347,12 +347,11 @@
             // 
             // lblWelcome
             // 
-            this.lblWelcome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblWelcome.AutoEllipsis = true;
             this.lblWelcome.BackColor = System.Drawing.Color.White;
             this.lblWelcome.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWelcome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.lblWelcome.Location = new System.Drawing.Point(-14, 0);
+            this.lblWelcome.Location = new System.Drawing.Point(1, 0);
             this.lblWelcome.Name = "lblWelcome";
             this.lblWelcome.Size = new System.Drawing.Size(561, 23);
             this.lblWelcome.TabIndex = 7;
