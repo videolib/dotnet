@@ -248,8 +248,8 @@ namespace LBFVideoLib.Client
                 ctlThumb.ThumbName = videoInfoList[j].VideoName;
                 ctlThumb.ThumbUrl = videoInfoList[j].ThumbnailFilePath;
                 ctlThumb.VideoUrl = videoInfoList[j].VideoFullUrl;
-                ctlThumb.LabelWidth = 178;
-                ctlThumb.Size = new System.Drawing.Size(180, 180);                
+                ctlThumb.LabelWidth = 118;
+                ctlThumb.Size = new System.Drawing.Size(120, 183);                
                 flowLayoutPanel.Controls.Add(ctlThumb);
             }
         }

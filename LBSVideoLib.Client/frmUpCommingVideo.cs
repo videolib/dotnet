@@ -165,8 +165,9 @@ namespace LBFVideoLib.Client
                 ctlThumb.ThumbUrl = PreviousVideoFileList[i].ThumbnailFilePath; //Path.Combine(thumbnailSubjectPath, "Subjects_ENGLISH.png");
                 ctlThumb.VideoUrl = PreviousVideoFileList[i].VideoFullUrl;
                 ctlThumb.ThumbnailInformation = PreviousVideoFileList[i];
-                ctlThumb.Size = new System.Drawing.Size(80, 80);
-                ctlThumb.LabelWidth = 78;
+                //ctlThumb.Size = new System.Drawing.Size(80, 80);
+                ctlThumb.LabelWidth = 90;
+                ctlThumb.Size = new System.Drawing.Size(80, 80);                
                 flowLayoutPanelPrevious.Controls.Add(ctlThumb);
             }
 
@@ -185,6 +186,7 @@ namespace LBFVideoLib.Client
                 ctlThumb.ThumbName = NextVideoFileList[i].VideoName;
                 ctlThumb.ThumbUrl = NextVideoFileList[i].ThumbnailFilePath; //Path.Combine(thumbnailSubjectPath, "Subjects_ENGLISH.png");
                 ctlThumb.VideoUrl = NextVideoFileList[i].VideoFullUrl;
+                ctlThumb.LabelWidth = 90;
                 ctlThumb.Size = new System.Drawing.Size(80, 80);
                 flowLayoutPanelUpcoming.Controls.Add(ctlThumb);
             }
