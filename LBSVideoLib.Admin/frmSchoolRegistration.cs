@@ -419,7 +419,7 @@ namespace LBFVideoLib.Admin
                     //    existingFileCounter++;
                     //}
 
-                    if (existingFileSpilitedName[1].ToLower().Equals(schoolName.ToLower()) && existingFileSpilitedName[2].ToLower().Equals(schoolCity.ToLower()) && existingFileSpilitedName[1].ToLower().Equals(schoolName.ToLower()))
+                    if (existingFileSpilitedName[1].ToLower().Equals(schoolName.ToLower()) && existingFileSpilitedName[2].ToLower().Equals(schoolCity.ToLower()) && existingFileSpilitedName[3].ToLower().Equals(schoolCode.ToLower()))
                     {
                         existingFileCounter++;
                     }
