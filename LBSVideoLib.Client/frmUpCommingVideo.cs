@@ -168,7 +168,8 @@ namespace LBFVideoLib.Client
                 //ctlThumb.Size = new System.Drawing.Size(80, 80);
                 ctlThumb.LabelWidth = 90;
                 //ctlThumb.Size = new System.Drawing.Size(80, 80);
-                ctlThumb.Size = new System.Drawing.Size(90, 120);
+                ctlThumb.Size = new System.Drawing.Size(60, 120);
+                ctlThumb.Margin = new Padding(0, 5, 15, 0);
                 flowLayoutPanelPrevious.Controls.Add(ctlThumb);
             }
 
@@ -189,7 +190,8 @@ namespace LBFVideoLib.Client
                 ctlThumb.VideoUrl = NextVideoFileList[i].VideoFullUrl;
                 ctlThumb.LabelWidth = 90;
                 //ctlThumb.Size = new System.Drawing.Size(80, 80);
-                ctlThumb.Size = new System.Drawing.Size(90, 120);
+                ctlThumb.Size = new System.Drawing.Size(60, 120);
+                ctlThumb.Margin = new Padding(8, 5, 0, 0);
                 flowLayoutPanelUpcoming.Controls.Add(ctlThumb);
             }
 

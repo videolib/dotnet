@@ -302,6 +302,7 @@ namespace LBFVideoLib.Client
                 ctlThumb.ThumbnailInformation = thumbnailInfoList[j];
                 //ctlThumb.Click += CtlThumb_Click;
                 ctlThumb.LabelWidth = 118;
+                ctlThumb.Margin = new Padding(5, 0, 10, 0);
                 ctlThumb.Size = new System.Drawing.Size(120, 183);
 
                 //ctlThumb
