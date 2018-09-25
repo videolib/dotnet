@@ -113,16 +113,16 @@
             // pnlMostWatchVideo
             // 
             this.pnlMostWatchVideo.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMostWatchVideo.Location = new System.Drawing.Point(348, 449);
+            this.pnlMostWatchVideo.Location = new System.Drawing.Point(348, 442);
             this.pnlMostWatchVideo.Name = "pnlMostWatchVideo";
-            this.pnlMostWatchVideo.Size = new System.Drawing.Size(987, 232);
+            this.pnlMostWatchVideo.Size = new System.Drawing.Size(987, 239);
             this.pnlMostWatchVideo.TabIndex = 46;
             // 
             // panel7
             // 
             this.panel7.Controls.Add(this.label5);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(348, 392);
+            this.panel7.Location = new System.Drawing.Point(348, 385);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(987, 57);
             this.panel7.TabIndex = 45;
@@ -148,7 +148,7 @@
             this.pnlRecomVideo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlRecomVideo.Location = new System.Drawing.Point(348, 173);
             this.pnlRecomVideo.Name = "pnlRecomVideo";
-            this.pnlRecomVideo.Size = new System.Drawing.Size(987, 219);
+            this.pnlRecomVideo.Size = new System.Drawing.Size(987, 212);
             this.pnlRecomVideo.TabIndex = 44;
             // 
             // panel6

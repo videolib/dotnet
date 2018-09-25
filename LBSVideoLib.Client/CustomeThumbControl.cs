@@ -88,9 +88,9 @@ namespace LBFVideoLib.Client
 
             pnlSpace.Height = 8;
             pnlSpace.Dock = DockStyle.Bottom;
-            this.Controls.Add(pnlSpace);
+            //this.Controls.Add(pnlSpace);
 
-            lbl.Dock = DockStyle.Fill;
+            lbl.Dock = DockStyle.Bottom;
             lbl.Text = ThumbName;
             //lbl.Font = new Font(lbl.Font, FontStyle.Bold);
             lbl.ForeColor = System.Drawing.Color.Red;
@@ -100,8 +100,11 @@ namespace LBFVideoLib.Client
             //lbl.Width = 300;
             lbl.TextAlign = ContentAlignment.MiddleLeft;
             lbl.MaximumSize = new Size(LabelWidth, 40);
+            lbl.MinimumSize = new Size(LabelWidth, 40);
+            lbl.Height = 40;
             lbl.AutoSize = true;
             lbl.AutoEllipsis = true;
+
 
             pnlLbl.Controls.Add(lbl);
             pnlLbl.AutoSize = true;

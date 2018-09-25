@@ -113,7 +113,7 @@ namespace LBFVideoLib.Client
                 {
                     return;
                 }
-                this.axWindowsMediaPlayer1.URL = "";
+                // this.axWindowsMediaPlayer1.URL = "";
 
                 progressBar1.Visible = true;
 
@@ -605,7 +605,7 @@ namespace LBFVideoLib.Client
                     progressBar1.Visible = false;
                     this.CurrentVideoInfo = currentData.CurrentVideoInfo;
                     this.axWindowsMediaPlayer1.URL = currentData.DecryptedVideoPath;
-                    this.axWindowsMediaPlayer1.stretchToFit = true;
+                    //this.axWindowsMediaPlayer1.stretchToFit = true;
                     //lblWelcome.Text = string.Format("{0}", this.CurrentVideoInfo.Subject);
                     lblWelcome.Text = string.Format("{0}", this.CurrentVideoInfo.Book);
 
