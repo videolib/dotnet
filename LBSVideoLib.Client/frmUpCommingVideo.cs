@@ -59,6 +59,9 @@ namespace LBFVideoLib.Client
 
         private void InitializeForm()
         {
+            label11.Location = new System.Drawing.Point(panel4.Width / 2 - 150, 11);
+            lblAppTitle.Location = new System.Drawing.Point(panel4.Width / 2 - 75, 15);
+
             _clientRootPath = ClientHelper.GetClientRootPath();
             _clientInfoFilePath = ClientHelper.GetClientInfoFilePath();
             this.ClientInfoObject.LastAccessEndTime = DateTime.Now;

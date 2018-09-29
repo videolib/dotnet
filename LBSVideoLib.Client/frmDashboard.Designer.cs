@@ -28,29 +28,29 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Urdu");
-            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("First-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode1});
-            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("First", new System.Windows.Forms.TreeNode[] {
-            treeNode2});
-            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Maths");
-            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Second-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode4});
-            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Hindi");
-            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Second-S2", new System.Windows.Forms.TreeNode[] {
-            treeNode6});
-            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Second", new System.Windows.Forms.TreeNode[] {
-            treeNode5,
-            treeNode7});
-            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("English");
-            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Third-S1", new System.Windows.Forms.TreeNode[] {
-            treeNode9});
-            System.Windows.Forms.TreeNode treeNode11 = new System.Windows.Forms.TreeNode("Third", new System.Windows.Forms.TreeNode[] {
-            treeNode10});
-            System.Windows.Forms.TreeNode treeNode12 = new System.Windows.Forms.TreeNode("Classes", new System.Windows.Forms.TreeNode[] {
-            treeNode3,
-            treeNode8,
-            treeNode11});
+            System.Windows.Forms.TreeNode treeNode25 = new System.Windows.Forms.TreeNode("Urdu");
+            System.Windows.Forms.TreeNode treeNode26 = new System.Windows.Forms.TreeNode("First-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode25});
+            System.Windows.Forms.TreeNode treeNode27 = new System.Windows.Forms.TreeNode("First", new System.Windows.Forms.TreeNode[] {
+            treeNode26});
+            System.Windows.Forms.TreeNode treeNode28 = new System.Windows.Forms.TreeNode("Maths");
+            System.Windows.Forms.TreeNode treeNode29 = new System.Windows.Forms.TreeNode("Second-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode28});
+            System.Windows.Forms.TreeNode treeNode30 = new System.Windows.Forms.TreeNode("Hindi");
+            System.Windows.Forms.TreeNode treeNode31 = new System.Windows.Forms.TreeNode("Second-S2", new System.Windows.Forms.TreeNode[] {
+            treeNode30});
+            System.Windows.Forms.TreeNode treeNode32 = new System.Windows.Forms.TreeNode("Second", new System.Windows.Forms.TreeNode[] {
+            treeNode29,
+            treeNode31});
+            System.Windows.Forms.TreeNode treeNode33 = new System.Windows.Forms.TreeNode("English");
+            System.Windows.Forms.TreeNode treeNode34 = new System.Windows.Forms.TreeNode("Third-S1", new System.Windows.Forms.TreeNode[] {
+            treeNode33});
+            System.Windows.Forms.TreeNode treeNode35 = new System.Windows.Forms.TreeNode("Third", new System.Windows.Forms.TreeNode[] {
+            treeNode34});
+            System.Windows.Forms.TreeNode treeNode36 = new System.Windows.Forms.TreeNode("Classes", new System.Windows.Forms.TreeNode[] {
+            treeNode27,
+            treeNode32,
+            treeNode35});
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDashboard));
             this.pnlMain = new System.Windows.Forms.Panel();
             this.pnlMostWatchVideo = new System.Windows.Forms.FlowLayoutPanel();
@@ -69,24 +69,25 @@
             this.treeView1 = new System.Windows.Forms.TreeView();
             this.panel5 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblContact = new System.Windows.Forms.Label();
+            this.lblSessionYears = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.label3 = new System.Windows.Forms.Label();
             this.lblPrivacyPolicy = new System.Windows.Forms.Label();
             this.lblExpireDate = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.lblContact = new System.Windows.Forms.Label();
-            this.lblSessionYears = new System.Windows.Forms.Label();
             this.pnlMain.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
             this.pnlHeading.SuspendLayout();
+            this.pnlBottome.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel4.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlMain
@@ -97,17 +98,16 @@
             this.pnlMain.Controls.Add(this.pnlRecomVideo);
             this.pnlMain.Controls.Add(this.panel6);
             this.pnlMain.Controls.Add(this.pnlHeading);
-            this.pnlMain.Controls.Add(this.pnlBottome);
             this.pnlMain.Controls.Add(this.pnlTop);
             this.pnlMain.Controls.Add(this.pnlRight);
             this.pnlMain.Controls.Add(this.pnlLeft);
             this.pnlMain.Controls.Add(this.panel1);
-            this.pnlMain.Controls.Add(this.panel4);
             this.pnlMain.Controls.Add(this.panel2);
+            this.pnlMain.Controls.Add(this.pnlBottome);
             this.pnlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMain.Location = new System.Drawing.Point(0, 0);
             this.pnlMain.Name = "pnlMain";
-            this.pnlMain.Size = new System.Drawing.Size(1359, 741);
+            this.pnlMain.Size = new System.Drawing.Size(1370, 740);
             this.pnlMain.TabIndex = 0;
             // 
             // pnlMostWatchVideo
@@ -115,7 +115,7 @@
             this.pnlMostWatchVideo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMostWatchVideo.Location = new System.Drawing.Point(348, 442);
             this.pnlMostWatchVideo.Name = "pnlMostWatchVideo";
-            this.pnlMostWatchVideo.Size = new System.Drawing.Size(987, 239);
+            this.pnlMostWatchVideo.Size = new System.Drawing.Size(998, 255);
             this.pnlMostWatchVideo.TabIndex = 46;
             // 
             // panel7
@@ -124,7 +124,7 @@
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel7.Location = new System.Drawing.Point(348, 385);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(987, 57);
+            this.panel7.Size = new System.Drawing.Size(998, 57);
             this.panel7.TabIndex = 45;
             // 
             // label5
@@ -148,7 +148,7 @@
             this.pnlRecomVideo.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlRecomVideo.Location = new System.Drawing.Point(348, 173);
             this.pnlRecomVideo.Name = "pnlRecomVideo";
-            this.pnlRecomVideo.Size = new System.Drawing.Size(987, 212);
+            this.pnlRecomVideo.Size = new System.Drawing.Size(998, 212);
             this.pnlRecomVideo.TabIndex = 44;
             // 
             // panel6
@@ -157,7 +157,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(348, 135);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(987, 38);
+            this.panel6.Size = new System.Drawing.Size(998, 38);
             this.panel6.TabIndex = 43;
             // 
             // label4
@@ -180,7 +180,7 @@
             this.pnlHeading.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeading.Location = new System.Drawing.Point(348, 75);
             this.pnlHeading.Name = "pnlHeading";
-            this.pnlHeading.Size = new System.Drawing.Size(987, 60);
+            this.pnlHeading.Size = new System.Drawing.Size(998, 60);
             this.pnlHeading.TabIndex = 42;
             // 
             // lblSchoolWelcome
@@ -197,10 +197,11 @@
             // 
             // pnlBottome
             // 
+            this.pnlBottome.Controls.Add(this.panel4);
             this.pnlBottome.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnlBottome.Location = new System.Drawing.Point(348, 681);
+            this.pnlBottome.Location = new System.Drawing.Point(0, 697);
             this.pnlBottome.Name = "pnlBottome";
-            this.pnlBottome.Size = new System.Drawing.Size(987, 17);
+            this.pnlBottome.Size = new System.Drawing.Size(1370, 43);
             this.pnlBottome.TabIndex = 41;
             // 
             // pnlTop
@@ -208,15 +209,15 @@
             this.pnlTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlTop.Location = new System.Drawing.Point(348, 53);
             this.pnlTop.Name = "pnlTop";
-            this.pnlTop.Size = new System.Drawing.Size(987, 22);
+            this.pnlTop.Size = new System.Drawing.Size(998, 22);
             this.pnlTop.TabIndex = 40;
             // 
             // pnlRight
             // 
             this.pnlRight.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnlRight.Location = new System.Drawing.Point(1335, 53);
+            this.pnlRight.Location = new System.Drawing.Point(1346, 53);
             this.pnlRight.Name = "pnlRight";
-            this.pnlRight.Size = new System.Drawing.Size(24, 645);
+            this.pnlRight.Size = new System.Drawing.Size(24, 644);
             this.pnlRight.TabIndex = 39;
             // 
             // pnlLeft
@@ -224,7 +225,7 @@
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlLeft.Location = new System.Drawing.Point(320, 53);
             this.pnlLeft.Name = "pnlLeft";
-            this.pnlLeft.Size = new System.Drawing.Size(28, 645);
+            this.pnlLeft.Size = new System.Drawing.Size(28, 644);
             this.pnlLeft.TabIndex = 38;
             // 
             // panel1
@@ -236,7 +237,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel1.Location = new System.Drawing.Point(0, 53);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(320, 645);
+            this.panel1.Size = new System.Drawing.Size(320, 644);
             this.panel1.TabIndex = 25;
             // 
             // treeView1
@@ -248,33 +249,33 @@
             this.treeView1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
             this.treeView1.Location = new System.Drawing.Point(0, 267);
             this.treeView1.Name = "treeView1";
-            treeNode1.Name = "Node12";
-            treeNode1.Text = "Urdu";
-            treeNode2.Name = "Node2";
-            treeNode2.Text = "First-S1";
-            treeNode3.Name = "Node1";
-            treeNode3.Text = "First";
-            treeNode4.Name = "Node11";
-            treeNode4.Text = "Maths";
-            treeNode5.Name = "Node4";
-            treeNode5.Text = "Second-S1";
-            treeNode6.Name = "Node10";
-            treeNode6.Text = "Hindi";
-            treeNode7.Name = "Node5";
-            treeNode7.Text = "Second-S2";
-            treeNode8.Name = "Node3";
-            treeNode8.Text = "Second";
-            treeNode9.Name = "Node9";
-            treeNode9.Text = "English";
-            treeNode10.Name = "Node8";
-            treeNode10.Text = "Third-S1";
-            treeNode11.Name = "Node7";
-            treeNode11.Text = "Third";
-            treeNode12.Name = "Node0";
-            treeNode12.Text = "Classes";
+            treeNode25.Name = "Node12";
+            treeNode25.Text = "Urdu";
+            treeNode26.Name = "Node2";
+            treeNode26.Text = "First-S1";
+            treeNode27.Name = "Node1";
+            treeNode27.Text = "First";
+            treeNode28.Name = "Node11";
+            treeNode28.Text = "Maths";
+            treeNode29.Name = "Node4";
+            treeNode29.Text = "Second-S1";
+            treeNode30.Name = "Node10";
+            treeNode30.Text = "Hindi";
+            treeNode31.Name = "Node5";
+            treeNode31.Text = "Second-S2";
+            treeNode32.Name = "Node3";
+            treeNode32.Text = "Second";
+            treeNode33.Name = "Node9";
+            treeNode33.Text = "English";
+            treeNode34.Name = "Node8";
+            treeNode34.Text = "Third-S1";
+            treeNode35.Name = "Node7";
+            treeNode35.Text = "Third";
+            treeNode36.Name = "Node0";
+            treeNode36.Text = "Classes";
             this.treeView1.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode12});
-            this.treeView1.Size = new System.Drawing.Size(318, 376);
+            treeNode36});
+            this.treeView1.Size = new System.Drawing.Size(318, 375);
             this.treeView1.TabIndex = 4;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             // 
@@ -300,73 +301,6 @@
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
-            // panel4
-            // 
-            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.panel4.Controls.Add(this.label3);
-            this.panel4.Controls.Add(this.lblPrivacyPolicy);
-            this.panel4.Controls.Add(this.lblExpireDate);
-            this.panel4.Controls.Add(this.label11);
-            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(0, 698);
-            this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1359, 43);
-            this.panel4.TabIndex = 24;
-            // 
-            // label3
-            // 
-            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
-            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(38, 11);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(129, 16);
-            this.label3.TabIndex = 23;
-            this.label3.Text = "Version 1.0";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // lblPrivacyPolicy
-            // 
-            this.lblPrivacyPolicy.Anchor = System.Windows.Forms.AnchorStyles.Right;
-            this.lblPrivacyPolicy.AutoSize = true;
-            this.lblPrivacyPolicy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrivacyPolicy.ForeColor = System.Drawing.Color.White;
-            this.lblPrivacyPolicy.Location = new System.Drawing.Point(1230, 11);
-            this.lblPrivacyPolicy.Name = "lblPrivacyPolicy";
-            this.lblPrivacyPolicy.Size = new System.Drawing.Size(107, 16);
-            this.lblPrivacyPolicy.TabIndex = 3;
-            this.lblPrivacyPolicy.Text = "Privacy Policy";
-            this.lblPrivacyPolicy.Click += new System.EventHandler(this.lblPrivacyPolicy_Click);
-            // 
-            // lblExpireDate
-            // 
-            this.lblExpireDate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblExpireDate.AutoSize = true;
-            this.lblExpireDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblExpireDate.ForeColor = System.Drawing.Color.White;
-            this.lblExpireDate.Location = new System.Drawing.Point(35, 11);
-            this.lblExpireDate.Name = "lblExpireDate";
-            this.lblExpireDate.Size = new System.Drawing.Size(105, 16);
-            this.lblExpireDate.TabIndex = 1;
-            this.lblExpireDate.Text = "Expires on {0}";
-            this.lblExpireDate.Visible = false;
-            // 
-            // label11
-            // 
-            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.ForeColor = System.Drawing.Color.White;
-            this.label11.Location = new System.Drawing.Point(579, 11);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(337, 16);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "LBF Publications Pvt. Ltd. |  All Rights Reserved";
-            // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
@@ -376,7 +310,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1359, 53);
+            this.panel2.Size = new System.Drawing.Size(1370, 53);
             this.panel2.TabIndex = 12;
             // 
             // label2
@@ -385,7 +319,7 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(685, 15);
+            this.label2.Location = new System.Drawing.Point(458, 15);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(144, 24);
             this.label2.TabIndex = 5;
@@ -398,7 +332,7 @@
             this.lblContact.AutoSize = true;
             this.lblContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblContact.ForeColor = System.Drawing.Color.White;
-            this.lblContact.Location = new System.Drawing.Point(1263, 15);
+            this.lblContact.Location = new System.Drawing.Point(1274, 15);
             this.lblContact.Name = "lblContact";
             this.lblContact.Size = new System.Drawing.Size(80, 24);
             this.lblContact.TabIndex = 4;
@@ -418,11 +352,75 @@
             this.lblSessionYears.Text = "Session {0}";
             this.lblSessionYears.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.panel4.Controls.Add(this.label3);
+            this.panel4.Controls.Add(this.lblPrivacyPolicy);
+            this.panel4.Controls.Add(this.lblExpireDate);
+            this.panel4.Controls.Add(this.label11);
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel4.Location = new System.Drawing.Point(0, 0);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(1370, 43);
+            this.panel4.TabIndex = 25;
+            // 
+            // label3
+            // 
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(50)))), ((int)(((byte)(55)))));
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold);
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(38, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(129, 16);
+            this.label3.TabIndex = 23;
+            this.label3.Text = "Version 1.0";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblPrivacyPolicy
+            // 
+            this.lblPrivacyPolicy.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.lblPrivacyPolicy.AutoSize = true;
+            this.lblPrivacyPolicy.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrivacyPolicy.ForeColor = System.Drawing.Color.White;
+            this.lblPrivacyPolicy.Location = new System.Drawing.Point(1241, 11);
+            this.lblPrivacyPolicy.Name = "lblPrivacyPolicy";
+            this.lblPrivacyPolicy.Size = new System.Drawing.Size(107, 16);
+            this.lblPrivacyPolicy.TabIndex = 3;
+            this.lblPrivacyPolicy.Text = "Privacy Policy";
+            // 
+            // lblExpireDate
+            // 
+            this.lblExpireDate.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblExpireDate.AutoSize = true;
+            this.lblExpireDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExpireDate.ForeColor = System.Drawing.Color.White;
+            this.lblExpireDate.Location = new System.Drawing.Point(35, 11);
+            this.lblExpireDate.Name = "lblExpireDate";
+            this.lblExpireDate.Size = new System.Drawing.Size(105, 16);
+            this.lblExpireDate.TabIndex = 1;
+            this.lblExpireDate.Text = "Expires on {0}";
+            this.lblExpireDate.Visible = false;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = System.Windows.Forms.AnchorStyles.Right;
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.ForeColor = System.Drawing.Color.White;
+            this.label11.Location = new System.Drawing.Point(549, 11);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(337, 16);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "LBF Publications Pvt. Ltd. |  All Rights Reserved";
+            // 
             // frmDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1359, 741);
+            this.ClientSize = new System.Drawing.Size(1370, 740);
             this.Controls.Add(this.pnlMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmDashboard";
@@ -438,13 +436,14 @@
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.pnlHeading.ResumeLayout(false);
+            this.pnlBottome.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panel4.ResumeLayout(false);
-            this.panel4.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -459,9 +458,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.TreeView treeView1;
-        private System.Windows.Forms.Panel panel4;
-        private System.Windows.Forms.Label lblExpireDate;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Panel pnlBottome;
         private System.Windows.Forms.Panel pnlTop;
         private System.Windows.Forms.Panel pnlRight;
@@ -474,8 +470,11 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Panel pnlHeading;
         private System.Windows.Forms.Label lblSchoolWelcome;
-        private System.Windows.Forms.Label lblPrivacyPolicy;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblPrivacyPolicy;
+        private System.Windows.Forms.Label lblExpireDate;
+        private System.Windows.Forms.Label label11;
     }
 }

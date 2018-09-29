@@ -553,11 +553,12 @@
             // 
             this.lblAppTitle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
             this.lblAppTitle.AutoEllipsis = true;
+            this.lblAppTitle.AutoSize = true;
             this.lblAppTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblAppTitle.ForeColor = System.Drawing.Color.White;
             this.lblAppTitle.Location = new System.Drawing.Point(318, 13);
             this.lblAppTitle.Name = "lblAppTitle";
-            this.lblAppTitle.Size = new System.Drawing.Size(745, 24);
+            this.lblAppTitle.Size = new System.Drawing.Size(22, 24);
             this.lblAppTitle.TabIndex = 5;
             this.lblAppTitle.Text = "  ";
             this.lblAppTitle.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

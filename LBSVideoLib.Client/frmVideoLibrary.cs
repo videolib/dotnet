@@ -38,6 +38,9 @@ namespace LBFVideoLib.Client
 
         private void frmVideoLibrary_Load(object sender, EventArgs e)
         {
+            label11.Location = new System.Drawing.Point(panel4.Width / 2 - 150, 11);
+            label2.Location = new System.Drawing.Point(panel4.Width / 2 - 75, 15);
+
             _clientInfoFilePath = ClientHelper.GetClientInfoFilePath();
             //this.ClientInfoObject.LastAccessEndTime = DateTime.UtcNow;
             //Cryptograph.EncryptObject(this.ClientInfoObject, _clientInfoFilePath);

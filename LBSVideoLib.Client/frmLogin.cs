@@ -27,6 +27,11 @@ namespace LBFVideoLib.Client
         {
             try
             {
+
+                label11.Location = new System.Drawing.Point(panel4.Width / 2 - 150, 11);
+                label2.Location = new System.Drawing.Point(panel4.Width / 2 - 75, 15);
+
+
                 this.progressBar1.Visible = true;
                 this.progressBar1.Enabled = true;
                 this.progressBar1.Value = 10;
